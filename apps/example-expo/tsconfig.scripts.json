@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+
+    "module": "nodenext",
+    "target": "esnext",
+    "lib": ["esnext"],
+    "types": ["node"]
+  },
+  "include": ["scripts/**/*"]
+}

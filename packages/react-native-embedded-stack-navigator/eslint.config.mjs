@@ -1,7 +1,7 @@
-import { fixupConfigRules } from '@eslint/compat';
-import reactNativeConfig from '@react-native/eslint-config/flat';
-import prettier from 'eslint-plugin-prettier';
-import { defineConfig } from 'eslint/config';
+import { fixupConfigRules } from '@eslint/compat'
+import reactNativeConfig from '@react-native/eslint-config/flat'
+import prettier from 'eslint-plugin-prettier'
+import { defineConfig } from 'eslint/config'
 
 export default defineConfig([
   ...fixupConfigRules(reactNativeConfig),
@@ -17,4 +17,4 @@ export default defineConfig([
       'prettier/prettier': 'error',
     },
   },
-]);
+])

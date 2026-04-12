@@ -4,23 +4,19 @@ A stack navigator that can be embedded anywhere
 
 ## Installation
 
-
 ```sh
 npm install react-native-embedded-stack-navigator
 ```
 
-
 ## Usage
 
-
 ```js
-import { multiply } from 'react-native-embedded-stack-navigator';
+import { multiply } from 'react-native-embedded-stack-navigator'
 
 // ...
 
-const result = multiply(3, 7);
+const result = multiply(3, 7)
 ```
-
 
 ## Contributing
 
