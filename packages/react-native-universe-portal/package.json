@@ -1,7 +1,7 @@
 {
-  "name": "react-native-embedded-stack-navigator",
+  "name": "react-native-universe-portal",
   "version": "0.1.0",
-  "description": "A stack navigator that can be embedded anywhere",
+  "description": "Portals that transport your components to a different universe",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
   "exports": {
@@ -73,7 +73,7 @@
     "eslint-plugin-ft-flow": "^3.0.11",
     "eslint-plugin-prettier": "^5.5.5",
     "jest": "^30.3.0",
-    "prettier": "^3.8.1",
+    "prettier": "^3.8.2",
     "react": "19.2.5",
     "react-native": "0.85.0",
     "react-native-builder-bob": "^0.41.0",
@@ -103,11 +103,11 @@
     ]
   },
   "codegenConfig": {
-    "name": "EmbeddedStackNavigatorSpec",
+    "name": "UniversePortalSpec",
     "type": "modules",
     "jsSrcsDir": "src",
     "android": {
-      "javaPackageName": "com.embeddedstacknavigator"
+      "javaPackageName": "com.universeportal"
     }
   },
   "jest": {
