@@ -6,5 +6,7 @@
     "source.sortMembers": "explicit"
   },
 
-  "eslint.useFlatConfig": true
+  "eslint.useFlatConfig": true,
+
+  "git.openRepositoryInParentFolders": "always"
 }

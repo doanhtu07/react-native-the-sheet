@@ -1,0 +1,352 @@
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Animated, StyleSheet, View } from 'react-native'
+import {
+  MiniStackNavigationContext,
+  type MiniStackNavigationApi,
+  type MiniStackRoute,
+} from './context'
+import { StackScreen } from './stack-screen'
+import type { ScreenRenderer, TransitionType } from './types'
+import { FADE_DURATION_MS, SLIDE_DURATION_MS } from './config'
+
+type Props<
+  Screens extends Record<string, ScreenRenderer>,
+  ParamList extends Record<keyof Screens, unknown>,
+  InitialRouteName extends keyof Screens = keyof Screens,
+> = {
+  initialRouteName: InitialRouteName
+  initialParams: ParamList[InitialRouteName]
+  screens: Screens
+  transitionType?: TransitionType
+}
+
+export const MiniStackNavigator = function <
+  Screens extends Record<string, ScreenRenderer>,
+  ParamList extends Record<keyof Screens, unknown>,
+  InitialRouteName extends keyof Screens = keyof Screens,
+>({
+  initialRouteName,
+  initialParams,
+  screens,
+  transitionType = 'slide',
+}: Props<Screens, ParamList, InitialRouteName>) {
+  const isMountedRef = useRef(false)
+  const fadeTimeoutRef = useRef<number | null>(null)
+
+  const [stack, setStack] = useState<MiniStackRoute[]>([
+    {
+      key: `${String(initialRouteName)}_${Date.now()}`,
+      name: String(initialRouteName),
+      params: initialParams,
+      isFocused: true,
+      canGoBack: false,
+    },
+  ])
+
+  const [removingScreenName, setRemovingScreenName] = useState<string | null>(
+    null,
+  )
+
+  const [rootWidth, setRootWidth] = useState(0)
+  const translateX = useMemo(() => new Animated.Value(0), [])
+
+  // MARK: Transition methods
+
+  const jumpTo = useCallback(
+    (toValue: number) => {
+      translateX.setValue(toValue)
+    },
+    [translateX],
+  )
+
+  const slideTo = useCallback(
+    (toValue: number, newStack: MiniStackRoute[]) => {
+      Animated.timing(translateX, {
+        toValue,
+        duration: SLIDE_DURATION_MS,
+        useNativeDriver: true,
+      }).start(({ finished }) => {
+        if (finished && isMountedRef.current) {
+          setStack(newStack)
+        }
+      })
+    },
+    [translateX],
+  )
+
+  const fadeTo = useCallback((newStack: MiniStackRoute[]) => {
+    fadeTimeoutRef.current = setTimeout(() => {
+      if (!isMountedRef.current) return
+      setStack(newStack)
+      setRemovingScreenName(null)
+    }, FADE_DURATION_MS)
+  }, [])
+
+  // MARK: Navigation methods
+
+  const navigate = useCallback(
+    function navigate<ScreenName extends keyof ParamList>(input: {
+      name: ScreenName
+      params: ParamList[ScreenName]
+    }) {
+      const { name, params } = input
+
+      setStack((prev) => {
+        const existingIdx = prev.findIndex((route) => route.name === name)
+        let newStack: MiniStackRoute[]
+
+        if (existingIdx === -1) {
+          // Not found - push new route
+          newStack = [
+            ...prev,
+            {
+              key: `${String(name)}_${Date.now()}`,
+              name: String(name),
+              params,
+              isFocused: false,
+              canGoBack: false,
+            },
+          ]
+        } else {
+          // Found it - remove the route and all routes after + push new instance with updated params
+          newStack = [
+            ...prev.slice(0, existingIdx),
+            {
+              key: `${String(name)}_${Date.now()}`,
+              name: String(name),
+              params,
+              isFocused: false,
+              canGoBack: false,
+            },
+          ]
+        }
+
+        if (transitionType === 'slide') {
+          slideTo(-rootWidth * (newStack.length - 1), newStack)
+
+          // If screen already exists in stack, we keep previous stack, so the animation could finish smoothly
+          // Then, after animation finishes, the new stack will be set (see slideTo callback)
+          if (existingIdx !== -1) {
+            return prev
+          }
+        } else {
+          fadeTo(newStack)
+        }
+
+        return newStack
+      })
+    },
+    [transitionType, slideTo, rootWidth, fadeTo],
+  )
+
+  const push = useCallback(
+    function push<ScreenName extends keyof ParamList>(input: {
+      name: ScreenName
+      params: ParamList[ScreenName]
+    }) {
+      const { name, params } = input
+
+      setStack((prev) => {
+        const route = {
+          key: `${String(name)}_${Date.now()}`,
+          name: String(name),
+          params,
+          isFocused: false,
+          canGoBack: false,
+        }
+
+        const newStack = [...prev, route]
+
+        if (transitionType === 'slide') {
+          slideTo(-rootWidth * (newStack.length - 1), newStack)
+        } else {
+          fadeTo(newStack)
+        }
+
+        return newStack
+      })
+    },
+    [transitionType, slideTo, rootWidth, fadeTo],
+  )
+
+  const pop = useCallback(() => {
+    setStack((prev) => {
+      if (prev.length <= 1) return prev
+
+      const newStack = prev.slice(0, -1)
+
+      if (transitionType === 'slide') {
+        slideTo(-rootWidth * (prev.length - 2), newStack)
+      } else {
+        setRemovingScreenName(prev.at(-1)?.name || null)
+        fadeTo(newStack)
+      }
+
+      return prev // Keep previous stack until animation finishes
+    })
+  }, [transitionType, slideTo, rootWidth, fadeTo])
+
+  const pushBefore = useCallback(
+    function pushBefore<ScreenName extends keyof ParamList>(input: {
+      name: ScreenName
+      params: ParamList[ScreenName]
+    }) {
+      const { name, params } = input
+
+      setStack((prev) => {
+        // Step 1: Create new stack with new screen inserted before current
+        const newScreenRoute = {
+          key: `${String(name)}_${Date.now()}`,
+          name: String(name),
+          params,
+          isFocused: false,
+          canGoBack: false,
+        }
+
+        const stackWithNewScreen = [...prev]
+        stackWithNewScreen.splice(-1, 0, newScreenRoute)
+
+        // Step 2: Jump to current screen (last position in new stack)
+        if (transitionType === 'slide') {
+          jumpTo(-rootWidth * (stackWithNewScreen.length - 1))
+        }
+
+        // Step 3: Schedule animation to the newly inserted screen
+        setTimeout(pop, 0)
+
+        return stackWithNewScreen
+      })
+    },
+    [transitionType, pop, jumpTo, rootWidth],
+  )
+
+  const replace = useCallback(
+    function replace<ScreenName extends keyof ParamList>(input: {
+      name: ScreenName
+      params: ParamList[ScreenName]
+    }) {
+      const { name, params } = input
+
+      setStack((prev) => {
+        const route = {
+          key: `${String(name)}_${Date.now()}`,
+          name: String(name),
+          params,
+          isFocused: false,
+          canGoBack: false,
+        }
+        const newStack = [...prev.slice(0, -1), route]
+
+        if (transitionType === 'slide') {
+          slideTo(-rootWidth * (newStack.length - 1), newStack)
+        } else {
+          fadeTo(newStack)
+        }
+
+        return newStack
+      })
+    },
+    [transitionType, slideTo, rootWidth, fadeTo],
+  )
+
+  const reset = useCallback(
+    function reset<ScreenName extends keyof ParamList>(input: {
+      name: ScreenName
+      params: ParamList[ScreenName]
+    }) {
+      const { name, params } = input
+
+      const route = {
+        key: `${String(name)}_${Date.now()}`,
+        name: String(name),
+        params,
+        isFocused: false,
+        canGoBack: false,
+      }
+
+      setStack([route])
+      translateX.setValue(0)
+    },
+    [translateX],
+  )
+
+  const navigation = useMemo(
+    () => ({ push, pushBefore, pop, replace, reset, navigate }),
+    [navigate, pop, push, pushBefore, replace, reset],
+  )
+
+  // MARK: Effects
+
+  useEffect(
+    () => {
+      isMountedRef.current = true
+
+      return () => {
+        isMountedRef.current = false
+
+        if (fadeTimeoutRef.current) {
+          clearTimeout(fadeTimeoutRef.current)
+        }
+
+        translateX.removeAllListeners()
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  )
+
+  // MARK: Renderers
+
+  // Type assertion is safe: widening from ParamList-specific to general Record<string, unknown>
+  return (
+    <MiniStackNavigationContext.Provider
+      value={navigation as MiniStackNavigationApi}
+    >
+      <View
+        style={styles.root}
+        onLayout={(e) => setRootWidth(e.nativeEvent.layout.width)}
+      >
+        <Animated.View
+          style={[
+            styles.animatedContainer,
+            {
+              width:
+                transitionType === 'slide'
+                  ? rootWidth * stack.length
+                  : rootWidth,
+              transform: [{ translateX }],
+            },
+          ]}
+        >
+          {stack.map((route, idx) => (
+            <StackScreen
+              key={route.key}
+              screens={screens}
+              transitionType={transitionType}
+              //
+              route={route}
+              idx={idx}
+              stackLength={stack.length}
+              rootWidth={rootWidth}
+              removingScreenName={removingScreenName}
+            />
+          ))}
+        </Animated.View>
+      </View>
+    </MiniStackNavigationContext.Provider>
+  )
+}
+
+// MARK: Styles
+
+const styles = StyleSheet.create({
+  animatedContainer: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  root: {
+    flex: 1,
+    overflow: 'hidden',
+    width: '100%',
+  },
+})
