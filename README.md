@@ -6,8 +6,8 @@ This is the sheet for React Native
 
 - [x] Embedded stack navigator
 
-- [ ] Portal
-  - Support for isolated universe
+- [x] Portal
+  - Support for isolated host
 
 - [ ] Provider sheet stack
   - Push, switch, replace

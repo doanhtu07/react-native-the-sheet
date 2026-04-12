@@ -1,0 +1,20 @@
+{
+  "watch": ["src", "android", "ios", "*.podspec", "react-native.config.js"],
+  "ext": "kt,xml,gradle,h,mm,js,jsx,ts,tsx,podspec",
+  "ignore": [
+    "lib",
+    "cpp",
+
+    "ios/build",
+    "android/build",
+    "android/gradle",
+    "android/gradlew",
+    "android/gradlew.bat",
+    "android/local.properties",
+    "**/__tests__/**",
+    "**/__fixtures__/**",
+    "**/__mocks__/**",
+    "**/.*"
+  ],
+  "exec": "pnpm prepare"
+}

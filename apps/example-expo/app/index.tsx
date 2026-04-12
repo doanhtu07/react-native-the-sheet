@@ -1,6 +1,6 @@
 import { useRouter } from 'expo-router'
 import { useEffect } from 'react'
-import { Button, StyleSheet, View } from 'react-native'
+import { Button, StyleSheet, Text, View } from 'react-native'
 import { multiply } from 'react-native-embedded-stack-navigator'
 
 export default function Index() {
@@ -12,6 +12,8 @@ export default function Index() {
 
   return (
     <View style={styles.root}>
+      <Text style={styles.header}>Navigator</Text>
+
       <Button
         title="Go to Example Navigator Fade"
         onPress={() => {
@@ -25,6 +27,15 @@ export default function Index() {
           router.push('/example-navigator-slide')
         }}
       />
+
+      <Text style={styles.header}>Portal</Text>
+
+      <Button
+        title="Go to Example Portal"
+        onPress={() => {
+          router.push('/example-portal')
+        }}
+      />
     </View>
   )
 }
@@ -32,8 +43,11 @@ export default function Index() {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    padding: 16,
     gap: 8,
+  },
+  header: {
+    fontSize: 20,
+    fontWeight: '500',
   },
 })

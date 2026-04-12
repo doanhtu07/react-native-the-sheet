@@ -33,6 +33,7 @@
   ],
   "scripts": {
     "clean": "del-cli lib",
+    "dev": "nodemon",
     "prepare": "bob build",
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
@@ -73,6 +74,7 @@
     "eslint-plugin-ft-flow": "^3.0.11",
     "eslint-plugin-prettier": "^5.5.5",
     "jest": "^30.3.0",
+    "nodemon": "^3.1.14",
     "prettier": "^3.8.1",
     "react": "19.2.5",
     "react-native": "0.85.0",
