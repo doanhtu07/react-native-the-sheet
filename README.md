@@ -30,3 +30,8 @@ This is the sheet for React Native
   - Snap points
   - Free movement
   - Hide, present, snap to index, move to position
+
+## Resources
+
+- [Create React Native Module](./docs/create-react-native-module.md)
+- [React Native Module Codegen](./docs/react-native-module-codegen.md)
