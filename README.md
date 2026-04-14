@@ -31,6 +31,15 @@ This is the sheet for React Native
   - Free movement
   - Hide, present, snap to index, move to position
 
+# Maintenance
+
+## Global dependency versions
+
+Keep these dependency versions when updating dependencies in packages:
+
+- react: 19.2.0
+- react-native: 0.83.4
+
 ## Resources
 
 - [Create React Native Module](./docs/create-react-native-module.md)
