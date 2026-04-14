@@ -1,7 +1,7 @@
 {
-  "name": "react-native-embedded-stack-navigator",
+  "name": "react-native-the-sheet",
   "version": "0.1.0",
-  "description": "A stack navigator that can be embedded anywhere",
+  "description": "This is the sheet for React NativeBottom sheet for React Native",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
   "exports": {
@@ -74,8 +74,7 @@
     "eslint-plugin-ft-flow": "^3.0.11",
     "eslint-plugin-prettier": "^5.5.5",
     "jest": "^30.3.0",
-    "nodemon": "^3.1.14",
-    "prettier": "^3.8.1",
+    "prettier": "^3.8.2",
     "react": "19.2.0",
     "react-native": "0.83.4",
     "react-native-builder-bob": "^0.41.0",
@@ -105,11 +104,11 @@
     ]
   },
   "codegenConfig": {
-    "name": "EmbeddedStackNavigatorSpec",
+    "name": "TheSheetSpec",
     "type": "modules",
     "jsSrcsDir": "src",
     "android": {
-      "javaPackageName": "com.embeddedstacknavigator"
+      "javaPackageName": "com.thesheet"
     }
   },
   "jest": {
@@ -126,6 +125,6 @@
       "eslint",
       "jest"
     ],
-    "version": "0.61.0"
+    "version": "0.62.0"
   }
 }
