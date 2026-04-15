@@ -6,9 +6,13 @@ import { multiply } from 'react-native-embedded-stack-navigator'
 export default function Index() {
   const router = useRouter()
 
+  // MARK: Effects
+
   useEffect(() => {
     console.info(`app/index.tsx - multiply():`, multiply(2, 3))
   }, [])
+
+  // MARK: Renderers
 
   return (
     <View style={styles.root}>
@@ -36,9 +40,20 @@ export default function Index() {
           router.push('/example-portal')
         }}
       />
+
+      <Text style={styles.header}>Sheet Stack</Text>
+
+      <Button
+        title="Go to Example Sheet Stack"
+        onPress={() => {
+          router.push('/example-sheet-stack')
+        }}
+      />
     </View>
   )
 }
+
+// MARK: Styles
 
 const styles = StyleSheet.create({
   root: {

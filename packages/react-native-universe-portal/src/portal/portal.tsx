@@ -58,13 +58,19 @@ export function PortalHost({ name, debug }: Readonly<PortalHostProps>) {
   useEffect(() => {
     if (debug) {
       console.debug(
-        `src/portal/portal.tsx - PortalHost "${name}" portals:`,
+        `react-native-universe-portal - src/portal/portal.tsx - PortalHost "${name}" portals:`,
         Object.keys(portals),
       )
     }
   }, [debug, name, portals])
 
-  return <Fragment>{Object.values(portals)}</Fragment>
+  return (
+    <Fragment>
+      {Object.keys(portals).map((portalName) => (
+        <Fragment key={portalName}>{portals[portalName]}</Fragment>
+      ))}
+    </Fragment>
+  )
 }
 
 export function Portal({ name, hostName, children }: Readonly<PortalProps>) {

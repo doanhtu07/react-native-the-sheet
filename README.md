@@ -9,13 +9,15 @@ This is the sheet for React Native
 - [x] Portal
   - Support for isolated host
 
-- [ ] Provider sheet stack
-  - Push, switch, replace
+- [x] Sheet stack provider
+  - Actions: push, pop, remove
 
-- [ ] Sheet stack item
-  - Own z-index, based on index in provider stack
+- [x] Sheet stack item
+  - Behavior: push, switch, replace
+  - z-index based on index in provider stack
   - Always open at 100%, no animation at all
-  - Backdrop
+
+- [ ] Backdrop
 
 - [ ] Sheet container
   - Sheet interface
