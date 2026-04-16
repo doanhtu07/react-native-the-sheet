@@ -34,14 +34,39 @@ This is the sheet for React Native
     - Handle
     - Drag freely
 
-# Maintenance
+## Compatibility
 
-## Global dependency versions
+| Sheet version          | Reanimated version | React Native Worklets version | React Native version | React version           | Expo SDK version     |
+| ---------------------- | ------------------ | ----------------------------- | -------------------- | ----------------------- | -------------------- |
+| 2.x.x (branch `main`)  | 4.x.x              | 0.4.x - 0.8.x                 | 0.78 - 0.85          | Depends on React Native | Manages React Native |
+| 1.x.x (branch `1.x.x`) | 3.x.x              | N/A                           | 0.63 - 0.81          | Depends on React Native | Manages React Native |
 
-Keep these dependency versions when updating dependencies in packages:
+### Core dependencies
 
-- react: 19.2.0
-- react-native: 0.83.4
+- `react-native-reanimated`
+  - Defines our package major version => Other dependencies (React, React Native, ...) must be compatible with it
+  - Check v4 compatibility table: https://docs.swmansion.com/react-native-reanimated/docs/4.x/guides/compatibility/
+  - Check v3 compatibility table: https://docs.swmansion.com/react-native-reanimated/docs/3.x/guides/compatibility/
+
+- `react-native`
+  - Defines React version
+  - Check React Native compatibility through its package.json
+    - Example: https://github.com/facebook/react-native/blob/v0.85.0/package.json
+
+- `expo`
+  - Manages React Native version and some other dependencies (including Reanimated)
+  - Check compatibility table: https://docs.expo.dev/versions/latest/
+  - Note: You can use `apps/example-expo/scripts/expo-packages-check.ts` to check the packages Expo manages
+    - Go to `apps/example-expo`
+    - Run `pnpm epc <expo-sdk-version>` (e.g. `pnpm epc 55`)
+
+- `typescript`
+  - Anything is fine as long as it works with React Native
+  - But in our monorepo, we should maintain the same version across all apps + packages to avoid any issues with types
+
+### Contributing notes
+
+When contributing to this project, please ensure the versions of these core dependencies are consistent across all packages
 
 ## Resources
 

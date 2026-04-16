@@ -30,7 +30,7 @@ export const SheetStackProvider: FC<SheetStackProviderProps> = ({
   const [stack, setStack] = useState<SheetStackItemDataWrapper[]>([])
   const zIndexCounter = useRef(0)
 
-  const compressStackTimer = useRef<number | null>(null)
+  const compressStackTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const compressStack = useCallback(() => {
     setStack((prevStack) => {

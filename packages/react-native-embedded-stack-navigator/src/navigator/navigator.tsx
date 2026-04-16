@@ -31,7 +31,7 @@ export const MiniStackNavigator = function <
   transitionType = 'slide',
 }: Props<Screens, ParamList, InitialRouteName>) {
   const isMountedRef = useRef(false)
-  const fadeTimeoutRef = useRef<number | null>(null)
+  const fadeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const [stack, setStack] = useState<MiniStackRoute[]>([
     {
