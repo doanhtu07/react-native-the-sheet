@@ -5,4 +5,6 @@ export type BottomSheetPresenterProps = PropsWithChildren & {
   styles?: {
     root?: StyleProp<ViewStyle>
   }
+
+  testID?: string
 }

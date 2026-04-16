@@ -14,8 +14,13 @@ export type SheetStackItemData = {
   testID?: string
 }
 
+export type SheetStackItemDataWrapper = {
+  item: SheetStackItemData
+  assignedZIndex: number
+}
+
 export type SheetStackContextType = {
-  stack: SheetStackItemData[]
+  stack: SheetStackItemDataWrapper[]
 
   push: (
     input: { item: SheetStackItemData }, // Reference of new sheet
@@ -37,8 +42,11 @@ export type SheetStackProviderProps = PropsWithChildren & {
 // MARK: SheetStackItem
 
 export type SheetStackItemContextType = {
-  isCurrentlyInStack: boolean
+  isOpen: boolean
   close: () => void
+
+  isHidden: boolean
+  isCurrentlyInStack: boolean
   onFullyExit: () => void
 }
 

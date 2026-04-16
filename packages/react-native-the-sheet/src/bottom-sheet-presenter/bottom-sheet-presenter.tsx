@@ -5,36 +5,40 @@ import { useSheetStackItem } from '../sheet-stack'
 
 export function BottomSheetPresenter({
   styles: propStyles,
+  testID,
   children,
 }: Readonly<BottomSheetPresenterProps>) {
-  const { isCurrentlyInStack, onFullyExit } = useSheetStackItem()
+  const { isHidden, isCurrentlyInStack, onFullyExit } = useSheetStackItem()
+
   const { height } = useWindowDimensions()
 
   const onFullyExitRef = useRef(onFullyExit)
   onFullyExitRef.current = onFullyExit
+
+  const allowPresent = isCurrentlyInStack && !isHidden
 
   const translateY = useRef(new Animated.Value(height))
 
   // MARK: Effects
 
   useEffect(() => {
-    if (isCurrentlyInStack) {
+    if (allowPresent) {
       translateY.current.setValue(height)
     }
 
     Animated.spring(translateY.current, {
-      toValue: isCurrentlyInStack ? 0 : height,
-      useNativeDriver: false,
+      toValue: allowPresent ? 0 : height,
+      useNativeDriver: true,
       overshootClamping: true,
       damping: 20,
       stiffness: 200,
       mass: 1,
     }).start(({ finished }) => {
-      if (finished && !isCurrentlyInStack) {
+      if (finished && !allowPresent) {
         onFullyExitRef.current()
       }
     })
-  }, [height, isCurrentlyInStack])
+  }, [height, allowPresent, testID])
 
   // MARK: Renderers
 
@@ -45,6 +49,7 @@ export function BottomSheetPresenter({
         propStyles?.root,
         { height, transform: [{ translateY: translateY.current }] },
       ]}
+      testID={testID}
     >
       {children}
     </Animated.View>

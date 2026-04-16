@@ -34,16 +34,16 @@ export function SheetStackItem({
   const closeRef = useRef(close)
   closeRef.current = close
 
-  const [allowMount, setAllowMount] = useState(false)
+  const [allowShow, setAllowShow] = useState(false)
   const [isHidden, setIsHidden] = useState(false)
 
   const lastProcessedIsOpen = useRef(!isOpen)
   const isSyncingToStack = useRef(false)
 
-  // MARK: Stack index
+  // MARK: Stack index related
 
   const stackIndex = useMemo(() => {
-    return stack.findIndex((item) => item.id === id)
+    return stack.findIndex((itemWrapper) => itemWrapper.item.id === id)
   }, [id, stack])
 
   const isCurrentlyInStack = stackIndex !== -1
@@ -51,35 +51,39 @@ export function SheetStackItem({
 
   const nextSheetPushBehavior = isTop
     ? undefined
-    : stack[stackIndex + 1]?.pushBehavior
+    : stack[stackIndex + 1]?.item.pushBehavior
 
-  const zIndex = isCurrentlyInStack ? stackIndex + 1 : undefined
+  // Persist zIndex for cases where the sheet is removed from stack but still exiting
+  const persistedZIndex = useRef(stack[stackIndex]?.assignedZIndex)
+  if (isCurrentlyInStack) {
+    persistedZIndex.current = stack[stackIndex]?.assignedZIndex
+  }
 
   // MARK: Sheet stack item context
 
   const onFullyExit = useCallback(() => {
-    setAllowMount(false)
+    setAllowShow(false)
   }, [])
 
   const contextValue = useMemo<SheetStackItemContextType>(() => {
-    return { isCurrentlyInStack, close, onFullyExit }
-  }, [isCurrentlyInStack, close, onFullyExit])
+    return { isOpen, close, isHidden, isCurrentlyInStack, onFullyExit }
+  }, [isOpen, close, isHidden, isCurrentlyInStack, onFullyExit])
 
   // MARK: Effects
 
-  // Effect: Clear allowMount on unmount
+  // Effect: Clear allowShow on unmount
   useEffect(() => {
     return () => {
-      setAllowMount(false)
+      setAllowShow(false)
     }
-  }, [])
+  }, [testID])
 
-  // Effect: Allow mounting when isOpen becomes true
+  // Effect: Reset allowShow when sheet becomes isOpen and not hidden
   useEffect(() => {
-    if (isOpen) {
-      setAllowMount(true)
+    if (isOpen && !isHidden) {
+      setAllowShow(true)
     }
-  }, [isOpen])
+  }, [isHidden, isOpen])
 
   // Effect: Reset isSyncingToStack
   useEffect(() => {
@@ -130,7 +134,11 @@ export function SheetStackItem({
 
   const allowRender =
     isCurrentlyInStack || // Currently in stack
-    (waitForFullyExit && !isOpen && allowMount) // On exiting transition
+    (waitForFullyExit && allowShow && !isCurrentlyInStack) // On exiting transition
+
+  const applyHiddenStyle =
+    (!waitForFullyExit && isHidden) || // If not waiting for exit, hide immediately
+    (waitForFullyExit && !allowShow && isHidden) // Wait for exit before hide
 
   if (!allowRender) {
     return null
@@ -139,7 +147,11 @@ export function SheetStackItem({
   return (
     <SheetStackItemContext.Provider value={contextValue}>
       <View
-        style={[styles.root, isHidden && styles.hidden, { zIndex }]}
+        style={[
+          styles.root,
+          applyHiddenStyle && styles.hidden,
+          { zIndex: persistedZIndex.current },
+        ]}
         testID={testID}
       >
         {children}

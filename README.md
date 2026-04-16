@@ -26,10 +26,13 @@ This is the sheet for React Native
     - Can signal sheet stack item to unmount when close animation finishes
 
 - [ ] Bottom sheet
-  - Implements sheet interface
   - Snap points
   - Free movement
   - Hide, present, snap to index, move to position
+  - Plan:
+    - Blank sheet
+    - Handle
+    - Drag freely
 
 # Maintenance
 
