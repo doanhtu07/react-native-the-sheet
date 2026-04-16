@@ -17,15 +17,13 @@ This is the sheet for React Native
   - z-index based on index in provider stack
   - Always open at 100%, no animation at all
 
-- [ ] Backdrop
+- [x] Backdrop
 
-- [ ] Sheet container
-  - Sheet interface
-    - Signal close
+- [x] Bottom sheet presenter
   - Open: Always slide from 0% to 100%
-    - This hopefully solves the problem of bottom sheet dynamic sizing
-  - Close: Wait for sheet interface signal close
-    - Unmount + Close clean up
+    - This solves the problem of bottom sheet dynamic sizing
+  - Close: Always slide from 100% to 0%
+    - Can signal sheet stack item to unmount when close animation finishes
 
 - [ ] Bottom sheet
   - Implements sheet interface

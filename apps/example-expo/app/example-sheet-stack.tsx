@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
-import { SheetStackItem } from 'react-native-the-sheet'
+import { Backdrop, SheetStackItem } from 'react-native-the-sheet'
 import { Portal } from 'react-native-universe-portal'
 
 export default function ExampleSheetStack() {
@@ -15,7 +15,13 @@ export default function ExampleSheetStack() {
       <Button title="Open Sheet A" onPress={() => setIsOpenA(true)} />
 
       <Portal hostName="root">
-        <SheetStackItem isOpen={isOpenA} setIsOpen={setIsOpenA} testID="sheetA">
+        <SheetStackItem
+          isOpen={isOpenA}
+          close={() => setIsOpenA(false)}
+          testID="sheetA"
+        >
+          <Backdrop />
+
           <View style={styles.boxContainer}>
             <View style={styles.boxA}>
               <Text>Sheet A</Text>
@@ -29,7 +35,7 @@ export default function ExampleSheetStack() {
       <Portal hostName="root">
         <SheetStackItem
           isOpen={isOpenB}
-          setIsOpen={setIsOpenB}
+          close={() => setIsOpenB(false)}
           pushBehavior="replace"
           testID="sheetB"
         >
@@ -44,7 +50,11 @@ export default function ExampleSheetStack() {
       </Portal>
 
       <Portal hostName="root">
-        <SheetStackItem isOpen={isOpenC} setIsOpen={setIsOpenC} testID="sheetC">
+        <SheetStackItem
+          isOpen={isOpenC}
+          close={() => setIsOpenC(false)}
+          testID="sheetC"
+        >
           <View style={styles.boxContainer}>
             <View style={styles.boxC}>
               <Text>Sheet C</Text>

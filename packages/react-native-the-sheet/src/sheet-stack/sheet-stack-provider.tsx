@@ -9,40 +9,16 @@ import {
 } from 'react'
 import {
   SheetStackItemPushBehavior,
+  type SheetStackContextType,
+  type SheetStackItemData,
   type SheetStackProviderProps,
 } from './types'
 
-// MARK: Types
-
-type SheetStackItemData = {
-  id: string
-  pushBehavior: keyof typeof SheetStackItemPushBehavior
-  testID?: string
-}
-
-type SheetStackContextType = {
-  stack: SheetStackItemData[]
-
-  push: (
-    input: { item: SheetStackItemData }, // Reference of new sheet
-  ) => void
-
-  pop: (
-    input: { item: SheetStackItemData }, // Reference to confirm the correct sheet is being popped
-  ) => void
-
-  remove: (
-    input: { item: SheetStackItemData }, // Reference of sheet to remove
-  ) => void
-}
-
-// MARK: Context
+// MARK: Provider
 
 const SheetStackContext = createContext<SheetStackContextType | undefined>(
   undefined,
 )
-
-// MARK: Provider
 
 export const SheetStackProvider: FC<SheetStackProviderProps> = ({
   debug,

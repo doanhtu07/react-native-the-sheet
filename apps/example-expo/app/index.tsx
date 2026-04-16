@@ -49,6 +49,15 @@ export default function Index() {
           router.push('/example-sheet-stack')
         }}
       />
+
+      <Text style={styles.header}>Bottom Sheet Presenter</Text>
+
+      <Button
+        title="Go to Example Bottom Sheet Presenter"
+        onPress={() => {
+          router.push('/example-bottom-sheet-presenter')
+        }}
+      />
     </View>
   )
 }

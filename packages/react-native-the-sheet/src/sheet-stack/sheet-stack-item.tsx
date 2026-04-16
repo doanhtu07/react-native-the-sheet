@@ -1,22 +1,46 @@
-import { useEffect, useId, useMemo, useRef, useState } from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+} from 'react'
 import { StyleSheet, View } from 'react-native'
 import { useSheetStack } from './sheet-stack-provider'
-import { SheetStackItemPushBehavior, type SheetStackItemProps } from './types'
+import {
+  SheetStackItemPushBehavior,
+  type SheetStackItemContextType,
+  type SheetStackItemProps,
+} from './types'
+
+const SheetStackItemContext = createContext<
+  SheetStackItemContextType | undefined
+>(undefined)
 
 export function SheetStackItem({
   isOpen,
-  setIsOpen,
+  close,
   pushBehavior = SheetStackItemPushBehavior.push,
+  waitForFullyExit = false,
   testID,
   children,
 }: SheetStackItemProps) {
   const { stack, push, remove } = useSheetStack()
   const id = useId()
 
+  const closeRef = useRef(close)
+  closeRef.current = close
+
+  const [allowMount, setAllowMount] = useState(false)
   const [isHidden, setIsHidden] = useState(false)
 
   const lastProcessedIsOpen = useRef(!isOpen)
   const isSyncingToStack = useRef(false)
+
+  // MARK: Stack index
 
   const stackIndex = useMemo(() => {
     return stack.findIndex((item) => item.id === id)
@@ -31,7 +55,31 @@ export function SheetStackItem({
 
   const zIndex = isCurrentlyInStack ? stackIndex + 1 : undefined
 
+  // MARK: Sheet stack item context
+
+  const onFullyExit = useCallback(() => {
+    setAllowMount(false)
+  }, [])
+
+  const contextValue = useMemo<SheetStackItemContextType>(() => {
+    return { isCurrentlyInStack, close, onFullyExit }
+  }, [isCurrentlyInStack, close, onFullyExit])
+
   // MARK: Effects
+
+  // Effect: Clear allowMount on unmount
+  useEffect(() => {
+    return () => {
+      setAllowMount(false)
+    }
+  }, [])
+
+  // Effect: Allow mounting when isOpen becomes true
+  useEffect(() => {
+    if (isOpen) {
+      setAllowMount(true)
+    }
+  }, [isOpen])
 
   // Effect: Reset isSyncingToStack
   useEffect(() => {
@@ -61,9 +109,9 @@ export function SheetStackItem({
   useEffect(() => {
     if (!isSyncingToStack.current && !isCurrentlyInStack && isOpen) {
       lastProcessedIsOpen.current = false
-      setIsOpen(false)
+      closeRef.current()
     }
-  }, [isCurrentlyInStack, isOpen, setIsOpen])
+  }, [isCurrentlyInStack, isOpen])
 
   // Effect: Internal Visibility
   useEffect(() => {
@@ -80,15 +128,36 @@ export function SheetStackItem({
 
   // MARK: Renderers
 
-  if (!isCurrentlyInStack) {
+  const allowRender =
+    isCurrentlyInStack || // Currently in stack
+    (waitForFullyExit && !isOpen && allowMount) // On exiting transition
+
+  if (!allowRender) {
     return null
   }
 
   return (
-    <View style={[styles.root, isHidden && styles.hidden, { zIndex }]}>
-      {children}
-    </View>
+    <SheetStackItemContext.Provider value={contextValue}>
+      <View
+        style={[styles.root, isHidden && styles.hidden, { zIndex }]}
+        testID={testID}
+      >
+        {children}
+      </View>
+    </SheetStackItemContext.Provider>
   )
+}
+
+// MARK: Hooks
+
+export const useSheetStackItem = () => {
+  const context = useContext(SheetStackItemContext)
+
+  if (!context) {
+    throw new Error('useSheetStackItem must be used within a SheetStackItem')
+  }
+
+  return context
 }
 
 // MARK: Styles

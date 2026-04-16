@@ -48,31 +48,25 @@ export const MiniStackNavigator = function <
   )
 
   const [rootWidth, setRootWidth] = useState(0)
-  const translateX = useMemo(() => new Animated.Value(0), [])
+  const translateX = useRef(new Animated.Value(0))
 
   // MARK: Transition methods
 
-  const jumpTo = useCallback(
-    (toValue: number) => {
-      translateX.setValue(toValue)
-    },
-    [translateX],
-  )
+  const jumpTo = useCallback((toValue: number) => {
+    translateX.current.setValue(toValue)
+  }, [])
 
-  const slideTo = useCallback(
-    (toValue: number, newStack: MiniStackRoute[]) => {
-      Animated.timing(translateX, {
-        toValue,
-        duration: SLIDE_DURATION_MS,
-        useNativeDriver: true,
-      }).start(({ finished }) => {
-        if (finished && isMountedRef.current) {
-          setStack(newStack)
-        }
-      })
-    },
-    [translateX],
-  )
+  const slideTo = useCallback((toValue: number, newStack: MiniStackRoute[]) => {
+    Animated.timing(translateX.current, {
+      toValue,
+      duration: SLIDE_DURATION_MS,
+      useNativeDriver: true,
+    }).start(({ finished }) => {
+      if (finished && isMountedRef.current) {
+        setStack(newStack)
+      }
+    })
+  }, [])
 
   const fadeTo = useCallback((newStack: MiniStackRoute[]) => {
     fadeTimeoutRef.current = setTimeout(() => {
@@ -249,26 +243,22 @@ export const MiniStackNavigator = function <
     [transitionType, slideTo, rootWidth, fadeTo],
   )
 
-  const reset = useCallback(
-    function reset<ScreenName extends keyof ParamList>(input: {
-      name: ScreenName
-      params: ParamList[ScreenName]
-    }) {
-      const { name, params } = input
+  const reset = useCallback(function reset<
+    ScreenName extends keyof ParamList,
+  >(input: { name: ScreenName; params: ParamList[ScreenName] }) {
+    const { name, params } = input
 
-      const route = {
-        key: `${String(name)}_${Date.now()}`,
-        name: String(name),
-        params,
-        isFocused: false,
-        canGoBack: false,
-      }
+    const route = {
+      key: `${String(name)}_${Date.now()}`,
+      name: String(name),
+      params,
+      isFocused: false,
+      canGoBack: false,
+    }
 
-      setStack([route])
-      translateX.setValue(0)
-    },
-    [translateX],
-  )
+    setStack([route])
+    translateX.current.setValue(0)
+  }, [])
 
   const navigation = useMemo(
     () => ({ push, pushBefore, pop, replace, reset, navigate }),
@@ -277,27 +267,23 @@ export const MiniStackNavigator = function <
 
   // MARK: Effects
 
-  useEffect(
-    () => {
-      isMountedRef.current = true
+  useEffect(() => {
+    isMountedRef.current = true
+    const translateXCurrent = translateX.current
 
-      return () => {
-        isMountedRef.current = false
+    return () => {
+      isMountedRef.current = false
 
-        if (fadeTimeoutRef.current) {
-          clearTimeout(fadeTimeoutRef.current)
-        }
-
-        translateX.removeAllListeners()
+      if (fadeTimeoutRef.current) {
+        clearTimeout(fadeTimeoutRef.current)
       }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  )
+
+      translateXCurrent.removeAllListeners()
+    }
+  }, [])
 
   // MARK: Renderers
 
-  // Type assertion is safe: widening from ParamList-specific to general Record<string, unknown>
   return (
     <MiniStackNavigationContext.Provider
       value={navigation as MiniStackNavigationApi}
@@ -314,7 +300,7 @@ export const MiniStackNavigator = function <
                 transitionType === 'slide'
                   ? rootWidth * stack.length
                   : rootWidth,
-              transform: [{ translateX }],
+              transform: [{ translateX: translateX.current }],
             },
           ]}
         >
