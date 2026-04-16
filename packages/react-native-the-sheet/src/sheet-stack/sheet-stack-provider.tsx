@@ -15,7 +15,7 @@ import {
   type SheetStackProviderProps,
 } from './types'
 
-const COMPRESS_STACK_TIMEOUT = 5000
+const COMPRESS_STACK_TIMEOUT = 5 * 1000
 
 // MARK: Provider
 
