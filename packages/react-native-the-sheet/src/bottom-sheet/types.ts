@@ -36,3 +36,11 @@ export type BottomSheetScrollViewProps = PropsWithChildren & {
     root?: StyleProp<ViewStyle>
   }
 }
+
+// MARK: Bottom sheet view
+
+export type BottomSheetViewProps = PropsWithChildren & {
+  styles?: {
+    root?: StyleProp<ViewStyle>
+  }
+}

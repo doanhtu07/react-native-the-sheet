@@ -5,6 +5,7 @@ import {
   BottomSheet,
   BottomSheetHandle,
   BottomSheetPresenter,
+  BottomSheetView,
   SheetStackItem,
 } from 'react-native-the-sheet'
 import { Portal } from 'react-native-universe-portal'
@@ -50,8 +51,15 @@ export default function ExampleBottomSheet() {
     <View style={styles.root}>
       <Text style={styles.header}>Example Bottom Sheet</Text>
 
-      <Button title="Open Sheet A" onPress={() => setIsOpenA(true)} />
-      <Button title="Open Sheet B" onPress={() => setIsOpenB(true)} />
+      <Button
+        title="Open Sheet A (Dynamic sizing)"
+        onPress={() => setIsOpenA(true)}
+      />
+
+      <Button
+        title="Open Sheet B (Snap points + Bottom sheet view)"
+        onPress={() => setIsOpenB(true)}
+      />
 
       <Portal hostName="root">
         <SheetStackItem
@@ -86,12 +94,17 @@ export default function ExampleBottomSheet() {
 
           <BottomSheetPresenter>
             <BottomSheet snapPoints={[200, 500]}>
-              <BottomSheetHandle />
+              <BottomSheetView>
+                <BottomSheetHandle />
 
-              <Text>Sheet B</Text>
-              <Button title="Close Sheet B" onPress={() => setIsOpenB(false)} />
+                <Text>Sheet B</Text>
+                <Button
+                  title="Close Sheet B"
+                  onPress={() => setIsOpenB(false)}
+                />
 
-              {renderContent()}
+                {renderContent()}
+              </BottomSheetView>
             </BottomSheet>
           </BottomSheetPresenter>
         </SheetStackItem>

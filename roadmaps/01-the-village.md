@@ -38,6 +38,9 @@
   - Drag to move bottom sheet
   - Gesture to close bottom sheet
 
+- [x] Bottom sheet view
+  - The whole view handles pan gesture + animate bottom sheet position
+
 - [ ] Bottom sheet scroll view
 
 - [ ] Bottom sheet flat list
