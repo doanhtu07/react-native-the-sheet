@@ -69,9 +69,30 @@ export default function Index() {
       <Text style={styles.header}>Bottom sheet</Text>
 
       <Button
-        title="Go to Example Bottom Sheet"
+        title="Go to Example Bottom Sheet (Dynamic Sizing)"
         onPress={() => {
-          router.push('/example-bottom-sheet')
+          router.push('/example-bottom-sheet-dynamic-sizing')
+        }}
+      />
+
+      <Button
+        title="Go to Example Bottom Sheet (Snap Points)"
+        onPress={() => {
+          router.push('/example-bottom-sheet-snap-points')
+        }}
+      />
+
+      <Button
+        title="Go to Example Bottom Sheet View"
+        onPress={() => {
+          router.push('/example-bottom-sheet-view')
+        }}
+      />
+
+      <Button
+        title="Go to Example Bottom Sheet Scroll View"
+        onPress={() => {
+          router.push('/example-bottom-sheet-scroll-view')
         }}
       />
     </View>

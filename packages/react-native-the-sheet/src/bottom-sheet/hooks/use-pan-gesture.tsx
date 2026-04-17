@@ -1,44 +1,112 @@
 import { Gesture } from 'react-native-gesture-handler'
 import { useSheetStackItem } from '../../sheet-stack'
-import { useSharedValue, withSpring } from 'react-native-reanimated'
+import { scrollTo, useSharedValue, withSpring } from 'react-native-reanimated'
 import { runOnJS } from 'react-native-worklets'
 import type { BottomSheetContextType } from '../types'
-import { useMemo } from 'react'
+import { useMemo, useRef } from 'react'
 import { useSyncedRef } from '../../hooks/use-synced-ref'
 
+/**
+  # Mental model
+
+  Two explicit exclusive modes:
+
+  - Scrolling: Gesture starts on scroll view
+  - Panning: Gesture starts outside scroll view
+
+  ## Scrolling
+
+  - Bottom sheet not at rest:
+    - Lock scroll view
+    - Move sheet
+
+  - Bottom sheet at rest:
+    - Pan down + Scroll at top: 
+      - Lock scroll view
+      - Move sheet
+    - Else: Scroll
+
+  ## Panning
+
+  - Bottom sheet not at rest:
+    - Lock scroll view
+    - Move sheet
+
+  - Bottom sheet at rest:
+    - Lock scroll view
+    - Move sheet
+ */
 export const usePanGesture = (
-  props: Pick<
-    BottomSheetContextType,
-    'sheetHeight' | 'snapTranslateYs' | 'translateY'
-  >,
+  props: Omit<BottomSheetContextType, 'panGesture'>,
 ) => {
-  const { sheetHeight, snapTranslateYs, translateY } = props
+  const {
+    sheetHeight,
+    snapTranslateYs,
+    translateY,
+    scrollViewRef,
+    scrollY,
+    isTouchingScrollView,
+  } = props
 
   const { close } = useSheetStackItem()
   const closeRef = useSyncedRef(close)
-  const prevTranslateY = useSharedValue(0)
+
+  const snapshotTranslateY = useSharedValue(0)
+  const snapshotScrollY = useSharedValue(0)
+  const lastTranslationY = useSharedValue(0)
+
+  const moveSheetIncrementalRef = useRef((deltaY: number) => {
+    'worklet'
+    let nextValue = translateY.value + deltaY
+    translateY.value = Math.max(0, nextValue)
+  })
+
+  const lockScrollRef = useRef(() => {
+    'worklet'
+    scrollTo(scrollViewRef, 0, 0, false)
+  })
 
   const panGesture = useMemo(() => {
     const closeRefCurrent = closeRef.current
+    // const moveSheetSinceSnapshotRefCurrent = moveSheetSinceSnapshotRef.current
+    const moveSheetIncrementalRefCurrent = moveSheetIncrementalRef.current
+    const lockScrollRefCurrent = lockScrollRef.current
 
     return Gesture.Pan()
       .onStart(() => {
         'worklet'
-        prevTranslateY.value = translateY.value
+
+        // Capture stuff at the moment pan gesture starts
+        snapshotTranslateY.value = translateY.value
+        snapshotScrollY.value = scrollY.value
+
+        lastTranslationY.value = 0
       })
       .onUpdate((event) => {
         'worklet'
 
-        // We update the RELATIVE displacement
-        const nextValue = event.translationY + prevTranslateY.value
-        translateY.value = Math.max(0, nextValue)
+        const deltaY = event.translationY - lastTranslationY.value
+        lastTranslationY.value = event.translationY
+
+        const isSheetAtRest = translateY.value <= 0
+        const isScrollAtTop = scrollY.value <= 0
+
+        if (
+          !isSheetAtRest ||
+          !isTouchingScrollView.value ||
+          (isScrollAtTop && deltaY > 0)
+        ) {
+          lockScrollRefCurrent()
+          moveSheetIncrementalRefCurrent(deltaY)
+        }
       })
       .onEnd((event) => {
         'worklet'
 
+        const isAtScrollTop = scrollY.value <= 0
         const isFlickedDown = event.velocityY > 500
 
-        if (isFlickedDown) {
+        if (isFlickedDown && isAtScrollTop) {
           // Scroll super fast
           runOnJS(closeRefCurrent)()
           return
@@ -76,7 +144,17 @@ export const usePanGesture = (
           })
         }
       })
-  }, [closeRef, prevTranslateY, sheetHeight, snapTranslateYs, translateY])
+  }, [
+    closeRef,
+    snapshotTranslateY,
+    translateY,
+    snapshotScrollY,
+    scrollY,
+    lastTranslationY,
+    isTouchingScrollView,
+    snapTranslateYs,
+    sheetHeight,
+  ])
 
   return panGesture
 }

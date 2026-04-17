@@ -41,7 +41,7 @@
 - [x] Bottom sheet view
   - The whole view handles pan gesture + animate bottom sheet position
 
-- [ ] Bottom sheet scroll view
+- [x] Bottom sheet scroll view
 
 - [ ] Bottom sheet flat list
 
@@ -49,3 +49,8 @@
 
 - [ ] Keyboard view
   - Get keyboard height and animate expanding/shrinking height gradually
+
+---
+
+- [ ] Above bottom sheet view
+  - A view that fills the area above the bottom sheet

@@ -6,6 +6,7 @@ import {
 } from 'react-native'
 import type { BottomSheetContextType, BottomSheetProps } from './types'
 import Animated, {
+  useAnimatedRef,
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
@@ -82,25 +83,45 @@ export function BottomSheet({
   })
 
   const onLayout = (event: LayoutChangeEvent) => {
+    'worklet'
     sheetHeight.value = event.nativeEvent.layout.height
   }
 
   // MARK: Bottom sheet context
 
-  const panGesture = usePanGesture({
-    sheetHeight,
-    snapTranslateYs,
-    translateY,
-  })
+  const scrollViewRef = useAnimatedRef<Animated.ScrollView>()
+  const scrollY = useSharedValue(0)
+  const isTouchingScrollView = useSharedValue<boolean>(false)
 
-  const contextValue = useMemo<BottomSheetContextType>(() => {
+  const excludePanGestureContext = useMemo<
+    Omit<BottomSheetContextType, 'panGesture'>
+  >(() => {
     return {
       sheetHeight,
       snapTranslateYs,
       translateY,
+
+      scrollViewRef,
+      scrollY,
+      isTouchingScrollView,
+    }
+  }, [
+    isTouchingScrollView,
+    scrollViewRef,
+    scrollY,
+    sheetHeight,
+    snapTranslateYs,
+    translateY,
+  ])
+
+  const panGesture = usePanGesture(excludePanGestureContext)
+
+  const contextValue = useMemo<BottomSheetContextType>(() => {
+    return {
+      ...excludePanGestureContext,
       panGesture,
     }
-  }, [panGesture, sheetHeight, snapTranslateYs, translateY])
+  }, [excludePanGestureContext, panGesture])
 
   // MARK: Renderers
 
