@@ -51,10 +51,10 @@
 
 ---
 
-- [ ] Keyboard view
-  - Get keyboard height and animate expanding/shrinking height gradually
+- [ ] Above bottom sheet view
+  - A view that fills the area above the bottom sheet
 
 ---
 
-- [ ] Above bottom sheet view
-  - A view that fills the area above the bottom sheet
+- [ ] Keyboard view
+  - Get keyboard height and animate expanding/shrinking height gradually

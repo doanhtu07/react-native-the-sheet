@@ -1,5 +1,6 @@
 import { Fragment, useState } from 'react'
-import { Button, ScrollView, StyleSheet, Text } from 'react-native'
+import { Button, StyleSheet, Text } from 'react-native'
+import { ScrollView as GestureScrollView } from 'react-native-gesture-handler'
 import {
   Backdrop,
   BottomSheet,
@@ -54,9 +55,9 @@ export function NestedScrollSheetC() {
                   onPress={() => setIsOpenC(false)}
                 />
 
-                <ScrollView style={styles.nestedScrollView}>
+                <GestureScrollView style={styles.nestedScrollView}>
                   {renderContent()}
-                </ScrollView>
+                </GestureScrollView>
 
                 {renderContent()}
               </BottomSheetScrollView>
