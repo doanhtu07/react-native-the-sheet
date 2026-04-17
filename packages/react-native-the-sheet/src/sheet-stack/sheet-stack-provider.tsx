@@ -58,7 +58,7 @@ export const SheetStackProvider: FC<SheetStackProviderProps> = ({
       }, COMPRESS_STACK_TIMEOUT)
 
       setStack((prevStack) => {
-        const top = prevStack.length === 0 ? undefined : prevStack.at(-1)
+        const top = prevStack.length === 0 ? undefined : prevStack.at(-1)!
 
         // Cannot push same ref on top again
         if (top?.item.id === item.id) {
@@ -91,7 +91,7 @@ export const SheetStackProvider: FC<SheetStackProviderProps> = ({
       }, COMPRESS_STACK_TIMEOUT)
 
       setStack((prevStack) => {
-        const top = prevStack.length === 0 ? undefined : prevStack.at(-1)
+        const top = prevStack.length === 0 ? undefined : prevStack.at(-1)!
 
         // Cannot pop a different ref out
         if (prevStack.length === 0 || top?.item.id !== item.id) {

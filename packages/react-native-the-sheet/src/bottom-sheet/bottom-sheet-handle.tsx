@@ -10,32 +10,62 @@ export function BottomSheetHandle({
   styles: propStyles,
 }: Readonly<BottomSheetHandleProps>) {
   const { close } = useSheetStackItem()
-  const { sheetHeight, translateY } = useBottomSheet()
+  const { sheetHeight, snapTranslateYs, translateY } = useBottomSheet()
   const theme = useColorScheme()
 
   const isDark = theme === 'dark'
   const backgroundColor = isDark ? '#48484A' : '#E0E0E0'
 
-  const cacheTranslateY = useSharedValue(0)
+  const prevTranslateY = useSharedValue(0)
 
   const panGesture = Gesture.Pan()
     .onStart(() => {
-      cacheTranslateY.value = translateY.value
+      prevTranslateY.value = translateY.value
     })
     .onUpdate((event) => {
       // We update the RELATIVE displacement
-      const nextValue = event.translationY + cacheTranslateY.value
+      const nextValue = event.translationY + prevTranslateY.value
       translateY.value = Math.max(0, nextValue)
     })
     .onEnd((event) => {
       const isFlickedDown = event.velocityY > 500
-      const isDraggedFarEnough = translateY.value > sheetHeight.value * 0.5
 
-      if (isFlickedDown || isDraggedFarEnough) {
+      if (isFlickedDown) {
+        // Scroll super fast
+        runOnJS(close)()
+        return
+      }
+
+      const curTranslateY = translateY.value
+
+      // Snap translate ys always have at least one value (0 = fully open)
+      // Snap translate ys are sorted in descending order (largest value = closest to fully closed)
+      const snaps = snapTranslateYs.value
+
+      let closestSnap = snaps[0]!
+      let minDistance = Math.abs(curTranslateY - snaps[0]!)
+
+      for (let i = 1; i < snaps.length; i++) {
+        const curSnap = snaps[i]!
+        const distance = Math.abs(curTranslateY - curSnap)
+
+        if (distance < minDistance) {
+          minDistance = distance
+          closestSnap = curSnap
+        }
+      }
+
+      const maxSnap = snaps[0]!
+      const maxSnapPlusHalf = maxSnap + (sheetHeight.value - maxSnap) * 0.5
+
+      if (curTranslateY > maxSnapPlusHalf) {
+        // If the bottom sheet is close to closed position, snap more than halfway
         runOnJS(close)()
       } else {
         // Snap back to rest state
-        translateY.value = withSpring(0, { velocity: event.velocityY })
+        translateY.value = withSpring(closestSnap, {
+          velocity: event.velocityY,
+        })
       }
     })
 

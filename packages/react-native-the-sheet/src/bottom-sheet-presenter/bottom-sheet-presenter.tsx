@@ -16,7 +16,7 @@ export function BottomSheetPresenter({
 }: Readonly<BottomSheetPresenterProps>) {
   const { isHidden, isCurrentlyInStack, onFullyExit } = useSheetStackItem()
 
-  const { height } = useWindowDimensions()
+  const { height: screenHeight } = useWindowDimensions()
 
   const onFullyExitRef = useRef(onFullyExit)
   onFullyExitRef.current = onFullyExit
@@ -28,7 +28,7 @@ export function BottomSheetPresenter({
    * - = 0: Bottom sheet presenter is fully visible
    * - > 0: Bottom sheet presenter is going below the bottom of the screen
    */
-  const translateY = useSharedValue(height)
+  const translateY = useSharedValue(screenHeight)
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -40,14 +40,14 @@ export function BottomSheetPresenter({
 
   useEffect(() => {
     if (allowPresent) {
-      translateY.value = height
+      translateY.value = screenHeight
     }
 
     // Snapshot refs for worklet
     const onFullyExitRefCurrent = onFullyExitRef.current
 
     translateY.value = withSpring(
-      allowPresent ? 0 : height,
+      allowPresent ? 0 : screenHeight,
       {
         overshootClamping: true,
         damping: 20,
@@ -55,19 +55,23 @@ export function BottomSheetPresenter({
         mass: 1,
       },
       (finished) => {
-        'worklet'
         if (finished && !allowPresent) {
           runOnJS(onFullyExitRefCurrent)()
         }
       },
     )
-  }, [allowPresent, height, translateY])
+  }, [allowPresent, screenHeight, translateY])
 
   // MARK: Renderers
 
   return (
     <Animated.View
-      style={[styles.root, propStyles?.root, { height }, animatedStyle]}
+      style={[
+        styles.root,
+        propStyles?.root,
+        { height: screenHeight },
+        animatedStyle,
+      ]}
       testID={testID}
     >
       {children}

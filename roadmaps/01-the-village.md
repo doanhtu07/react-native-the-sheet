@@ -31,7 +31,7 @@
 
 - [ ] Bottom sheet
   - [x] Free movement
-  - [ ] Snap points
+  - [x] Snap points
   - [ ] Hide, present, snap to index, move to position
 
 - [x] Bottom sheet handle

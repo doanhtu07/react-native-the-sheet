@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
 import {
   Backdrop,
@@ -11,12 +11,47 @@ import { Portal } from 'react-native-universe-portal'
 
 export default function ExampleBottomSheet() {
   const [isOpenA, setIsOpenA] = useState(false)
+  const [isOpenB, setIsOpenB] = useState(false)
+
+  // MARK: Renderers
+
+  const renderContent = () => {
+    return (
+      <Fragment>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </Text>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </Text>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </Text>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </Text>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </Text>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </Text>
+      </Fragment>
+    )
+  }
 
   return (
     <View style={styles.root}>
       <Text style={styles.header}>Example Bottom Sheet</Text>
 
       <Button title="Open Sheet A" onPress={() => setIsOpenA(true)} />
+      <Button title="Open Sheet B" onPress={() => setIsOpenB(true)} />
 
       <Portal hostName="root">
         <SheetStackItem
@@ -34,30 +69,29 @@ export default function ExampleBottomSheet() {
               <Text>Sheet A</Text>
               <Button title="Close Sheet A" onPress={() => setIsOpenA(false)} />
 
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </Text>
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </Text>
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </Text>
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </Text>
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </Text>
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </Text>
+              {renderContent()}
+            </BottomSheet>
+          </BottomSheetPresenter>
+        </SheetStackItem>
+      </Portal>
+
+      <Portal hostName="root">
+        <SheetStackItem
+          isOpen={isOpenB}
+          close={() => setIsOpenB(false)}
+          waitForFullyExit
+          testID="sheetB"
+        >
+          <Backdrop />
+
+          <BottomSheetPresenter>
+            <BottomSheet snapPoints={[200, 500]}>
+              <BottomSheetHandle />
+
+              <Text>Sheet B</Text>
+              <Button title="Close Sheet B" onPress={() => setIsOpenB(false)} />
+
+              {renderContent()}
             </BottomSheet>
           </BottomSheetPresenter>
         </SheetStackItem>
@@ -69,10 +103,6 @@ export default function ExampleBottomSheet() {
 // MARK: Styles
 
 const styles = StyleSheet.create({
-  boxA: {
-    backgroundColor: '#6A0572',
-    width: '100%',
-  },
   root: {
     flex: 1,
     padding: 16,
