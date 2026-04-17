@@ -1,6 +1,6 @@
 import { useRouter } from 'expo-router'
 import { useEffect } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, ScrollView, StyleSheet, Text } from 'react-native'
 import { multiply } from 'react-native-embedded-stack-navigator'
 
 export default function Index() {
@@ -15,7 +15,7 @@ export default function Index() {
   // MARK: Renderers
 
   return (
-    <View style={styles.root}>
+    <ScrollView contentContainerStyle={styles.root}>
       <Text style={styles.header}>Navigator</Text>
 
       <Button
@@ -95,7 +95,14 @@ export default function Index() {
           router.push('/example-bottom-sheet-scroll-view')
         }}
       />
-    </View>
+
+      <Button
+        title="Go to Example Bottom Sheet Flat List"
+        onPress={() => {
+          router.push('/example-bottom-sheet-flat-list')
+        }}
+      />
+    </ScrollView>
   )
 }
 
