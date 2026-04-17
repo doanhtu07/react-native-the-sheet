@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { StyleSheet, useWindowDimensions } from 'react-native'
 import type { BottomSheetPresenterProps } from './types'
 import { useSheetStackItem } from '../sheet-stack'
@@ -8,6 +8,7 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated'
 import { runOnJS } from 'react-native-worklets'
+import { useSyncedRef } from '../hooks/use-synced-ref'
 
 export function BottomSheetPresenter({
   styles: propStyles,
@@ -15,11 +16,8 @@ export function BottomSheetPresenter({
   children,
 }: Readonly<BottomSheetPresenterProps>) {
   const { isHidden, isCurrentlyInStack, onFullyExit } = useSheetStackItem()
-
   const { height: screenHeight } = useWindowDimensions()
-
-  const onFullyExitRef = useRef(onFullyExit)
-  onFullyExitRef.current = onFullyExit
+  const onFullyExitRef = useSyncedRef(onFullyExit)
 
   const allowPresent = isCurrentlyInStack && !isHidden
 
@@ -55,12 +53,13 @@ export function BottomSheetPresenter({
         mass: 1,
       },
       (finished) => {
+        'worklet'
         if (finished && !allowPresent) {
           runOnJS(onFullyExitRefCurrent)()
         }
       },
     )
-  }, [allowPresent, screenHeight, translateY])
+  }, [allowPresent, onFullyExitRef, screenHeight, translateY])
 
   // MARK: Renderers
 

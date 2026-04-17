@@ -15,6 +15,7 @@ import {
   type SheetStackItemContextType,
   type SheetStackItemProps,
 } from './types'
+import { useSyncedRef } from '../hooks/use-synced-ref'
 
 const SheetStackItemContext = createContext<
   SheetStackItemContextType | undefined
@@ -30,9 +31,7 @@ export function SheetStackItem({
 }: SheetStackItemProps) {
   const { stack, push, remove } = useSheetStack()
   const id = useId()
-
-  const closeRef = useRef(close)
-  closeRef.current = close
+  const closeRef = useSyncedRef(close)
 
   const [allowShow, setAllowShow] = useState(false)
   const [isHidden, setIsHidden] = useState(false)
@@ -115,7 +114,7 @@ export function SheetStackItem({
       lastProcessedIsOpen.current = false
       closeRef.current()
     }
-  }, [isCurrentlyInStack, isOpen])
+  }, [closeRef, isCurrentlyInStack, isOpen])
 
   // Effect: Internal Visibility
   useEffect(() => {

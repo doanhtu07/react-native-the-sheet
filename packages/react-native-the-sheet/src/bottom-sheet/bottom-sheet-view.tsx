@@ -1,15 +1,13 @@
 import Animated from 'react-native-reanimated'
 import type { BottomSheetViewProps } from './types'
 import { GestureDetector } from 'react-native-gesture-handler'
-import { usePanGesture } from './hooks/use-pan-gesture'
+import { useBottomSheet } from './bottom-sheet'
 
 export function BottomSheetView({
   styles: propStyles,
   children,
 }: Readonly<BottomSheetViewProps>) {
-  const panGesture = usePanGesture()
-
-  // MARK: Renderers
+  const { panGesture } = useBottomSheet()
 
   return (
     <GestureDetector gesture={panGesture}>

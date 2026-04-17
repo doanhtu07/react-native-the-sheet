@@ -1,5 +1,6 @@
 import type { PropsWithChildren } from 'react'
 import type { StyleProp, ViewStyle } from 'react-native'
+import type { PanGesture } from 'react-native-gesture-handler'
 import type { SharedValue } from 'react-native-reanimated'
 
 // MARK: Bottom sheet handle
@@ -20,6 +21,7 @@ export type BottomSheetContextType = {
   sheetHeight: SharedValue<number>
   snapTranslateYs: SharedValue<number[]>
   translateY: SharedValue<number>
+  panGesture: PanGesture
 }
 
 export type BottomSheetProps = PropsWithChildren & {

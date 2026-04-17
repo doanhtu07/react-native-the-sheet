@@ -11,7 +11,9 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated'
 import { createContext, useContext, useMemo } from 'react'
-import { useBridgedValue } from './utils/use-bridge-value'
+import { useBridgedValue } from '../hooks/use-bridged-value'
+import { usePanGesture } from './hooks/use-pan-gesture'
+import { useSyncedSharedValue } from '../hooks/use-synced-shared-value'
 
 const BottomSheetContext = createContext<BottomSheetContextType | undefined>(
   undefined,
@@ -65,9 +67,14 @@ export function BottomSheet({
    * - > 0: Bottom sheet is being dragged down from rest point
    * - < 0: Bottom sheet is being dragged up from rest point
    */
-  const translateY = useSharedValue(snapTranslateYs.value[0]!)
+  const translateY = useSyncedSharedValue(0, () => {
+    'worklet'
+    return snapTranslateYs.value[0]!
+  })
 
   const animatedStyle = useAnimatedStyle(() => {
+    'worklet'
+
     return {
       height: normalizedSnaps.value.at(-1),
       transform: [{ translateY: translateY.value }],
@@ -80,9 +87,20 @@ export function BottomSheet({
 
   // MARK: Bottom sheet context
 
+  const panGesture = usePanGesture({
+    sheetHeight,
+    snapTranslateYs,
+    translateY,
+  })
+
   const contextValue = useMemo<BottomSheetContextType>(() => {
-    return { sheetHeight, snapTranslateYs, translateY }
-  }, [sheetHeight, snapTranslateYs, translateY])
+    return {
+      sheetHeight,
+      snapTranslateYs,
+      translateY,
+      panGesture,
+    }
+  }, [panGesture, sheetHeight, snapTranslateYs, translateY])
 
   // MARK: Renderers
 
