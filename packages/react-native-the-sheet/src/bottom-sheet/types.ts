@@ -1,4 +1,4 @@
-import type { PropsWithChildren } from 'react'
+import type { ComponentProps, PropsWithChildren } from 'react'
 import type { StyleProp, ViewStyle } from 'react-native'
 import type { PanGesture } from 'react-native-gesture-handler'
 import type Animated from 'react-native-reanimated'
@@ -23,7 +23,7 @@ export type BottomSheetContextType = {
   snapTranslateYs: SharedValue<number[]>
   translateY: SharedValue<number>
 
-  scrollViewRef: AnimatedRef<Animated.ScrollView>
+  scrollViewRef: AnimatedRef<Animated.ScrollView | Animated.FlatList>
   scrollY: SharedValue<number>
   isTouchingScrollView: SharedValue<boolean>
 
@@ -37,17 +37,29 @@ export type BottomSheetProps = PropsWithChildren & {
   }
 }
 
-// MARK: Bottom sheet scroll view
+// MARK: Bottom sheet view
 
-export type BottomSheetScrollViewProps = PropsWithChildren & {
+export type BottomSheetViewProps = PropsWithChildren & {
   styles?: {
     root?: StyleProp<ViewStyle>
   }
 }
 
-// MARK: Bottom sheet view
+// MARK: Bottom sheet scroll view
 
-export type BottomSheetViewProps = PropsWithChildren & {
+type AnimatedScrollViewProps = ComponentProps<typeof Animated.ScrollView>
+
+export type BottomSheetScrollViewProps = AnimatedScrollViewProps & {
+  styles?: {
+    root?: StyleProp<ViewStyle>
+  }
+}
+
+// MARK: Bottom sheet flatlist
+
+type AnimatedFlatListProps<T> = ComponentProps<typeof Animated.FlatList<T>>
+
+export type BottomSheetFlatListProps<T> = AnimatedFlatListProps<T> & {
   styles?: {
     root?: StyleProp<ViewStyle>
   }

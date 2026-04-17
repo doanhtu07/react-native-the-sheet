@@ -34,7 +34,6 @@ export function BottomSheet({
   const sheetHeight = useSharedValue(0)
 
   // Normalize snap points into numbers
-
   const normalizedSnaps = useBridgedValue(
     useMemo(() => {
       if (!snapPoints || snapPoints.length === 0) return []
@@ -89,7 +88,9 @@ export function BottomSheet({
 
   // MARK: Bottom sheet context
 
-  const scrollViewRef = useAnimatedRef<Animated.ScrollView>()
+  const scrollViewRef = useAnimatedRef<
+    Animated.ScrollView | Animated.FlatList
+  >()
   const scrollY = useSharedValue(0)
   const isTouchingScrollView = useSharedValue<boolean>(false)
 

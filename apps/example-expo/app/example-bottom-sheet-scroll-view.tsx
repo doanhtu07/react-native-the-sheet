@@ -1,5 +1,6 @@
 import { Fragment, useState } from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
 import {
   Backdrop,
   BottomSheet,
@@ -13,6 +14,7 @@ import { Portal } from 'react-native-universe-portal'
 export default function ExampleBottomSheetScrollView() {
   const [isOpenA, setIsOpenA] = useState(false)
   const [isOpenB, setIsOpenB] = useState(false)
+  const [isOpenC, setIsOpenC] = useState(false)
 
   const renderContent = () => {
     return (
@@ -41,6 +43,13 @@ export default function ExampleBottomSheetScrollView() {
         onPress={() => setIsOpenB(true)}
       />
 
+      <Button
+        title="Open Sheet C (Nested scroll views)"
+        onPress={() => setIsOpenC(true)}
+      />
+
+      {/* MARK: Dynamic sizing */}
+
       <Portal hostName="root">
         <SheetStackItem
           isOpen={isOpenA}
@@ -67,6 +76,8 @@ export default function ExampleBottomSheetScrollView() {
         </SheetStackItem>
       </Portal>
 
+      {/* MARK: Snap points */}
+
       <Portal hostName="root">
         <SheetStackItem
           isOpen={isOpenB}
@@ -92,6 +103,39 @@ export default function ExampleBottomSheetScrollView() {
           </BottomSheetPresenter>
         </SheetStackItem>
       </Portal>
+
+      {/* MARK: Nested scroll views */}
+
+      <Portal hostName="root">
+        <SheetStackItem
+          isOpen={isOpenC}
+          close={() => setIsOpenC(false)}
+          waitForFullyExit
+          testID="sheetC"
+        >
+          <Backdrop />
+
+          <BottomSheetPresenter>
+            <BottomSheet snapPoints={['50%', '75%']}>
+              <BottomSheetHandle />
+
+              <BottomSheetScrollView>
+                <Text>Sheet C</Text>
+                <Button
+                  title="Close Sheet C"
+                  onPress={() => setIsOpenC(false)}
+                />
+
+                <ScrollView style={styles.nestedScrollView}>
+                  {renderContent()}
+                </ScrollView>
+
+                {renderContent()}
+              </BottomSheetScrollView>
+            </BottomSheet>
+          </BottomSheetPresenter>
+        </SheetStackItem>
+      </Portal>
     </View>
   )
 }
@@ -107,5 +151,9 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 20,
     fontWeight: '500',
+  },
+  nestedScrollView: {
+    height: 200,
+    backgroundColor: '#dbeafe',
   },
 })

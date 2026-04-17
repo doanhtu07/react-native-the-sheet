@@ -1,10 +1,15 @@
-import { Gesture } from 'react-native-gesture-handler'
-import { useSheetStackItem } from '../../sheet-stack'
-import { scrollTo, useSharedValue, withSpring } from 'react-native-reanimated'
-import { runOnJS } from 'react-native-worklets'
-import type { BottomSheetContextType } from '../types'
 import { useMemo, useRef } from 'react'
+import { Gesture } from 'react-native-gesture-handler'
+import {
+  scrollTo,
+  useAnimatedReaction,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated'
+import { runOnJS } from 'react-native-worklets'
 import { useSyncedRef } from '../../hooks/use-synced-ref'
+import { useSheetStackItem } from '../../sheet-stack'
+import type { BottomSheetContextType } from '../types'
 
 /**
   # Mental model
@@ -61,14 +66,18 @@ export const usePanGesture = (
     translateY.value = Math.max(0, nextValue)
   })
 
-  const lockScrollRef = useRef(() => {
+  const lockScroll = () => {
     'worklet'
     scrollTo(scrollViewRef, 0, 0, false)
-  })
+  }
+
+  const lockScrollRef = useSyncedRef(lockScroll)
+
+  // MARK: Pan gesture
 
   const panGesture = useMemo(() => {
+    // Snapshot refs for worklet
     const closeRefCurrent = closeRef.current
-    // const moveSheetSinceSnapshotRefCurrent = moveSheetSinceSnapshotRef.current
     const moveSheetIncrementalRefCurrent = moveSheetIncrementalRef.current
     const lockScrollRefCurrent = lockScrollRef.current
 
@@ -146,6 +155,7 @@ export const usePanGesture = (
       })
   }, [
     closeRef,
+    lockScrollRef,
     snapshotTranslateY,
     translateY,
     snapshotScrollY,
@@ -155,6 +165,22 @@ export const usePanGesture = (
     snapTranslateYs,
     sheetHeight,
   ])
+
+  // MARK: Effects
+
+  // Effect: Lock scroll more aggressively when sheet is not at rest
+  useAnimatedReaction(
+    () => {
+      return { translateY: translateY.value, scrollY: scrollY.value }
+    },
+    (prepared) => {
+      'worklet'
+      const isSheetAtRest = prepared.translateY <= 0
+      if (!isSheetAtRest) {
+        lockScroll()
+      }
+    },
+  )
 
   return panGesture
 }

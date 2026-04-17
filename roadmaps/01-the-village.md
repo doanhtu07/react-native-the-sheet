@@ -42,8 +42,12 @@
   - The whole view handles pan gesture + animate bottom sheet position
 
 - [x] Bottom sheet scroll view
+  - Handle pan gesture for both scrolling and moving bottom sheet
+  - Note: Use only one main bottom sheet scroll view per bottom sheet, which is responsible for syncing the pan gesture
+    - You can still have nested normal scroll views inside this bottom sheet scroll view
 
-- [ ] Bottom sheet flat list
+- [x] Bottom sheet flat list
+  - Similar to bottom sheet scroll view
 
 ---
 
