@@ -2,17 +2,19 @@ import { useState } from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
 import {
   Backdrop,
+  BottomSheet,
+  BottomSheetHandle,
   BottomSheetPresenter,
   SheetStackItem,
 } from 'react-native-the-sheet'
 import { Portal } from 'react-native-universe-portal'
 
-export default function ExampleBottomSheetPresenter() {
-  const [isOpenA, setIsOpenA] = useState(true)
+export default function ExampleBottomSheet() {
+  const [isOpenA, setIsOpenA] = useState(false)
 
   return (
     <View style={styles.root}>
-      <Text style={styles.header}>Example Bottom Sheet Presenter</Text>
+      <Text style={styles.header}>Example Bottom Sheet</Text>
 
       <Button title="Open Sheet A" onPress={() => setIsOpenA(true)} />
 
@@ -26,7 +28,9 @@ export default function ExampleBottomSheetPresenter() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <View style={styles.boxA}>
+            <BottomSheet>
+              <BottomSheetHandle />
+
               <Text>Sheet A</Text>
               <Button title="Close Sheet A" onPress={() => setIsOpenA(false)} />
 
@@ -54,7 +58,7 @@ export default function ExampleBottomSheetPresenter() {
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua.
               </Text>
-            </View>
+            </BottomSheet>
           </BottomSheetPresenter>
         </SheetStackItem>
       </Portal>

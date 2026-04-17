@@ -1,7 +1,13 @@
 import { useEffect, useRef } from 'react'
-import { Animated, StyleSheet, useWindowDimensions } from 'react-native'
+import { StyleSheet, useWindowDimensions } from 'react-native'
 import type { BottomSheetPresenterProps } from './types'
 import { useSheetStackItem } from '../sheet-stack'
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated'
+import { runOnJS } from 'react-native-worklets'
 
 export function BottomSheetPresenter({
   styles: propStyles,
@@ -17,38 +23,51 @@ export function BottomSheetPresenter({
 
   const allowPresent = isCurrentlyInStack && !isHidden
 
-  const translateY = useRef(new Animated.Value(height))
+  /**
+   * translateY = tracks the offset of the bottom sheet presenter from the bottom of the screen
+   * - = 0: Bottom sheet presenter is fully visible
+   * - > 0: Bottom sheet presenter is going below the bottom of the screen
+   */
+  const translateY = useSharedValue(height)
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateY: translateY.value }],
+    }
+  })
 
   // MARK: Effects
 
   useEffect(() => {
     if (allowPresent) {
-      translateY.current.setValue(height)
+      translateY.value = height
     }
 
-    Animated.spring(translateY.current, {
-      toValue: allowPresent ? 0 : height,
-      useNativeDriver: true,
-      overshootClamping: true,
-      damping: 20,
-      stiffness: 200,
-      mass: 1,
-    }).start(({ finished }) => {
-      if (finished && !allowPresent) {
-        onFullyExitRef.current()
-      }
-    })
-  }, [height, allowPresent, testID])
+    // Snapshot refs for worklet
+    const onFullyExitRefCurrent = onFullyExitRef.current
+
+    translateY.value = withSpring(
+      allowPresent ? 0 : height,
+      {
+        overshootClamping: true,
+        damping: 20,
+        stiffness: 200,
+        mass: 1,
+      },
+      (finished) => {
+        'worklet'
+        if (finished && !allowPresent) {
+          runOnJS(onFullyExitRefCurrent)()
+        }
+      },
+    )
+  }, [allowPresent, height, translateY])
 
   // MARK: Renderers
 
   return (
     <Animated.View
-      style={[
-        styles.root,
-        propStyles?.root,
-        { height, transform: [{ translateY: translateY.current }] },
-      ]}
+      style={[styles.root, propStyles?.root, { height }, animatedStyle]}
       testID={testID}
     >
       {children}
