@@ -69,8 +69,8 @@ export function BottomSheetScrollView({
 }
 
 const styles = StyleSheet.create({
-  root: {},
   fill: {
     flex: 1,
   },
+  root: {},
 })

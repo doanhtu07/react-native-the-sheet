@@ -174,12 +174,12 @@ export const useSheetStackItem = () => {
 // MARK: Styles
 
 const styles = StyleSheet.create({
-  root: {
-    ...StyleSheet.absoluteFill,
-    pointerEvents: 'box-none',
-  },
   hidden: {
     opacity: 0,
     pointerEvents: 'none',
+  },
+  root: {
+    ...StyleSheet.absoluteFill,
+    pointerEvents: 'box-none',
   },
 })

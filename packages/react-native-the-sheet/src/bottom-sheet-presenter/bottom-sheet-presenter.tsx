@@ -113,8 +113,8 @@ export const useBottomSheetPresenter = () => {
 
 const styles = StyleSheet.create({
   root: {
-    width: '100%',
     justifyContent: 'flex-end',
     pointerEvents: 'box-none',
+    width: '100%',
   },
 })

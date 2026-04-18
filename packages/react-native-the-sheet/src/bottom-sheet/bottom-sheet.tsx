@@ -166,12 +166,12 @@ export const useBottomSheet = () => {
 // MARK: Styles
 
 const styles = StyleSheet.create({
-  root: {
-    width: '100%',
-    borderTopLeftRadius: 16,
-    borderTopRightRadius: 16,
-  },
   fill: {
     flex: 1,
+  },
+  root: {
+    borderTopLeftRadius: 16,
+    borderTopRightRadius: 16,
+    width: '100%',
   },
 })

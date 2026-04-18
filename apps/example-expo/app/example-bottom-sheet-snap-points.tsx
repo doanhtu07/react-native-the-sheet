@@ -15,11 +15,8 @@ export default function ExampleBottomSheetSnapPoints() {
   const renderContent = () => {
     return (
       <Fragment>
-        {Array.from({ length: 6 }).map((_, index) => (
-          <Text key={index}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </Text>
+        {Array.from({ length: 20 }).map((_, index) => (
+          <Text key={index}>Item {index + 1}</Text>
         ))}
       </Fragment>
     )
@@ -58,13 +55,13 @@ export default function ExampleBottomSheetSnapPoints() {
 // MARK: Styles
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    padding: 16,
-    gap: 8,
-  },
   header: {
     fontSize: 20,
     fontWeight: '500',
+  },
+  root: {
+    flex: 1,
+    gap: 8,
+    padding: 16,
   },
 })

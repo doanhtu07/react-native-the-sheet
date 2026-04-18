@@ -66,8 +66,8 @@ export function BottomSheetFlatList<T>({
 }
 
 const styles = StyleSheet.create({
-  root: {},
   fill: {
     flex: 1,
   },
+  root: {},
 })

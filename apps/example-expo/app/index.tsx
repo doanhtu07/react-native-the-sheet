@@ -86,7 +86,7 @@ export default function Index() {
 
       {/* MARK: Bottom Sheet */}
 
-      <Text style={styles.header}>Bottom sheet</Text>
+      <Text style={styles.header}>Bottom Sheet</Text>
 
       <Button
         title="Example Bottom Sheet (Dynamic Sizing)"
@@ -101,6 +101,10 @@ export default function Index() {
           router.push('/example-bottom-sheet-snap-points')
         }}
       />
+
+      {/* MARK: Bottom Sheet View Types */}
+
+      <Text style={styles.header}>Bottom Sheet View Types</Text>
 
       <Button
         title="Example Bottom Sheet View"
@@ -123,6 +127,17 @@ export default function Index() {
         }}
       />
 
+      {/* MARK: Bottom Sheet + Navigator */}
+
+      <Text style={styles.header}>Bottom Sheet + Navigator</Text>
+
+      <Button
+        title="Example Bottom Sheet + Navigator"
+        onPress={() => {
+          router.push('/example-bottom-sheet-with-navigator')
+        }}
+      />
+
       {/* MARK: Watcher Pattern */}
 
       <Text style={styles.header}>Watcher Pattern</Text>
@@ -140,16 +155,16 @@ export default function Index() {
 // MARK: Styles
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-  },
   contentContainer: {
-    padding: 16,
     gap: 8,
+    padding: 16,
     paddingBottom: 64,
   },
   header: {
     fontSize: 20,
     fontWeight: '500',
+  },
+  root: {
+    flex: 1,
   },
 })

@@ -1,5 +1,12 @@
-import { Fragment, useState } from 'react'
+import { ScreenA } from '@/features/example-navigator/screen-a'
+import { ScreenB } from '@/features/example-navigator/screen-b'
+import { RouteParamList } from '@/features/example-navigator/types'
+import { useCallback, useMemo, useState } from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
+import {
+  MiniStackNavigator,
+  ScreenRenderer,
+} from 'react-native-embedded-stack-navigator'
 import {
   Backdrop,
   BottomSheet,
@@ -10,22 +17,25 @@ import {
 } from 'react-native-the-sheet'
 import { Portal } from 'react-native-universe-portal'
 
-export default function ExampleBottomSheetView() {
+export default function ExampleBottomSheetPresenter() {
   const [isOpenA, setIsOpenA] = useState(false)
 
-  const renderContent = () => {
-    return (
-      <Fragment>
-        {Array.from({ length: 20 }).map((_, index) => (
-          <Text key={index}>Item {index + 1}</Text>
-        ))}
-      </Fragment>
-    )
-  }
+  // MARK: Renderers
+
+  const renderScreenA = useCallback(() => <ScreenA />, [])
+
+  const renderScreenB = useCallback(() => <ScreenB />, [])
+
+  const screens = useMemo(() => {
+    return {
+      ScreenA: renderScreenA,
+      ScreenB: renderScreenB,
+    } satisfies Record<keyof RouteParamList, ScreenRenderer>
+  }, [renderScreenA, renderScreenB])
 
   return (
     <View style={styles.root}>
-      <Text style={styles.header}>Example Bottom Sheet View</Text>
+      <Text style={styles.header}>Example Bottom Sheet With Navigator</Text>
 
       <Button title="Open Sheet A" onPress={() => setIsOpenA(true)} />
 
@@ -39,16 +49,22 @@ export default function ExampleBottomSheetView() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheet snapPoints={[200, 500]}>
+            <BottomSheet fill styles={{ root: { maxHeight: '75%' } }}>
               <BottomSheetHandle />
 
-              <BottomSheetView>
+              <BottomSheetView fill>
                 <Text>Sheet A</Text>
                 <Button
                   title="Close Sheet A"
                   onPress={() => setIsOpenA(false)}
                 />
-                {renderContent()}
+
+                <MiniStackNavigator<typeof screens, RouteParamList, 'ScreenA'>
+                  initialRouteName={'ScreenA'}
+                  initialParams={undefined}
+                  screens={screens}
+                  transitionType="fade"
+                />
               </BottomSheetView>
             </BottomSheet>
           </BottomSheetPresenter>

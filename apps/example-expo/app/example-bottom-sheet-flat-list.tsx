@@ -42,30 +42,6 @@ export default function ExampleBottomSheetFlatList() {
     <View style={styles.root}>
       <Text style={styles.header}>Example Bottom Sheet Flat List</Text>
 
-      <View style={styles.note}>
-        <Text style={styles.noteText}>
-          When nesting BottomSheetScrollView / BottomSheetFlatList inside
-          BottomSheetView, if you see issues with flex / overflow, try setting
-          `fill` along the component hierarchy
-        </Text>
-
-        <Text style={styles.noteText}>
-          Example: BottomSheet -- BottomSheetView -- BottomSheetFlatList
-        </Text>
-
-        <Text style={styles.noteText}>
-          If that does not work, you should solve the the flex puzzle yourself
-          by placing `flex: 1` to certain components.
-        </Text>
-      </View>
-
-      <View style={styles.note}>
-        <Text style={styles.noteText}>
-          You should not use `fill` on BottomSheet when you are using snap
-          points
-        </Text>
-      </View>
-
       <Button
         title="Open Sheet A (Dynamic sizing + Wrapped with BottomSheetView)"
         onPress={() => setIsOpenA(true)}
@@ -138,31 +114,18 @@ export default function ExampleBottomSheetFlatList() {
 // MARK: Styles
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    padding: 16,
-    gap: 8,
-  },
   header: {
     fontSize: 20,
     fontWeight: '500',
   },
   item: {
-    padding: 16,
-    borderBottomWidth: 1,
     borderBottomColor: '#ccc',
+    borderBottomWidth: 1,
+    padding: 16,
   },
-  note: {
-    gap: 16,
-    backgroundColor: '#EFF6FF',
-    borderLeftWidth: 4,
-    borderLeftColor: '#3B82F6',
-    borderRadius: 4,
-    padding: 12,
-  },
-  noteText: {
-    color: '#1E40AF',
-    lineHeight: 22,
-    fontWeight: '500',
+  root: {
+    flex: 1,
+    gap: 8,
+    padding: 16,
   },
 })

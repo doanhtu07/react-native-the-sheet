@@ -69,13 +69,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#6A0572',
     width: '100%',
   },
-  root: {
-    flex: 1,
-    padding: 16,
-    gap: 8,
-  },
   header: {
     fontSize: 20,
     fontWeight: '500',
+  },
+  root: {
+    flex: 1,
+    gap: 8,
+    padding: 16,
   },
 })

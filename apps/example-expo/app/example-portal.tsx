@@ -45,43 +45,43 @@ export default function ExamplePortal() {
 // MARK: Styles
 
 const styles = StyleSheet.create({
+  header: {
+    color: '#1a1a2e',
+    fontSize: 20,
+    fontWeight: '500',
+  },
+  hostContainer: {
+    backgroundColor: '#dbeafe',
+    borderColor: '#bfdbfe',
+    borderRadius: 12,
+    borderWidth: 1,
+    padding: 16,
+  },
+  planet: {
+    color: '#1a1a2e',
+    fontSize: 15,
+    paddingVertical: 2,
+  },
   root: {
+    backgroundColor: '#f8f8f2',
     flex: 1,
     gap: 12,
     padding: 16,
-    backgroundColor: '#f8f8f2',
-  },
-  header: {
-    fontSize: 20,
-    fontWeight: '500',
-    color: '#1a1a2e',
-  },
-  subheader: {
-    fontSize: 14,
-    fontWeight: '600',
-    marginBottom: 6,
-    color: '#1a1a2e',
-    opacity: 0.6,
-    textTransform: 'uppercase',
-    letterSpacing: 0.8,
-  },
-  planet: {
-    fontSize: 15,
-    color: '#1a1a2e',
-    paddingVertical: 2,
   },
   sourceContainer: {
-    padding: 16,
-    borderRadius: 12,
     backgroundColor: '#fde8d8',
-    borderWidth: 1,
     borderColor: '#f5c4a1',
-  },
-  hostContainer: {
-    padding: 16,
     borderRadius: 12,
-    backgroundColor: '#dbeafe',
     borderWidth: 1,
-    borderColor: '#bfdbfe',
+    padding: 16,
+  },
+  subheader: {
+    color: '#1a1a2e',
+    fontSize: 14,
+    fontWeight: '600',
+    letterSpacing: 0.8,
+    marginBottom: 6,
+    opacity: 0.6,
+    textTransform: 'uppercase',
   },
 })

@@ -81,26 +81,26 @@ export default function ExampleBottomSheetPresenterMultiple() {
 const styles = StyleSheet.create({
   boxA: {
     backgroundColor: '#6A0572',
-    width: '100%',
     height: 500,
+    width: '100%',
   },
   boxB: {
     backgroundColor: '#AB0845',
-    width: '100%',
     height: 400,
+    width: '100%',
   },
   boxC: {
     backgroundColor: '#FFB800',
-    width: '100%',
     height: 300,
-  },
-  root: {
-    flex: 1,
-    padding: 16,
-    gap: 8,
+    width: '100%',
   },
   header: {
     fontSize: 20,
     fontWeight: '500',
+  },
+  root: {
+    flex: 1,
+    gap: 8,
+    padding: 16,
   },
 })

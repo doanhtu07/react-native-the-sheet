@@ -23,8 +23,8 @@ export function BottomSheetView({
 }
 
 const styles = StyleSheet.create({
-  root: {},
   fill: {
     flex: 1,
   },
+  root: {},
 })

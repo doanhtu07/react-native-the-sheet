@@ -30,11 +30,8 @@ export default function ExampleAboveBottomSheetView() {
   const renderContent = () => {
     return (
       <Fragment>
-        {Array.from({ length: 6 }).map((_, index) => (
-          <Text key={index}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </Text>
+        {Array.from({ length: 20 }).map((_, index) => (
+          <Text key={index}>Item {index + 1}</Text>
         ))}
       </Fragment>
     )
@@ -84,26 +81,22 @@ export default function ExampleAboveBottomSheetView() {
 // MARK: Styles
 
 const styles = StyleSheet.create({
-  topView: {
-    flex: 1,
+  header: {
+    fontSize: 20,
+    fontWeight: '500',
   },
   redSpan: {
-    borderRadius: 16,
     backgroundColor: 'red',
-    width: '100%',
+    borderRadius: 16,
     height: '100%',
-  },
-  boxA: {
-    backgroundColor: '#6A0572',
     width: '100%',
   },
   root: {
     flex: 1,
-    padding: 16,
     gap: 8,
+    padding: 16,
   },
-  header: {
-    fontSize: 20,
-    fontWeight: '500',
+  topView: {
+    flex: 1,
   },
 })

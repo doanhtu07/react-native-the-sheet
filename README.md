@@ -6,6 +6,12 @@ This is the sheet for React Native
 
 - [Roadmap: The Village](./roadmaps/01-the-village.md)
 
+## Components
+
+Components supported by our library:
+
+- [Components List](./docs/components/components-list.md)
+
 ## Compatibility
 
 | Sheet version          | Reanimated version | React Native Worklets version | React Native version | React version           | Expo SDK version     |
@@ -75,5 +81,5 @@ When contributing to this project, please ensure the versions of these core depe
 
 ## Resources
 
-- [Create React Native Module](./docs/create-react-native-module.md)
-- [React Native Module Codegen](./docs/react-native-module-codegen.md)
+- [Create React Native Module](./docs/resources/create-react-native-module.md)
+- [React Native Module Codegen](./docs/resources/react-native-module-codegen.md)

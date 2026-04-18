@@ -70,33 +70,33 @@ export default function ExampleSheetStack() {
 // MARK: Styles
 
 const styles = StyleSheet.create({
-  boxContainer: {
-    width: '100%',
-    height: '100%',
-    justifyContent: 'flex-end',
-  },
   boxA: {
     backgroundColor: '#6A0572',
-    width: '100%',
     height: 400,
+    width: '100%',
   },
   boxB: {
     backgroundColor: '#AB0845',
-    width: '100%',
     height: 300,
+    width: '100%',
   },
   boxC: {
     backgroundColor: '#FFB800',
-    width: '100%',
     height: 200,
+    width: '100%',
   },
-  root: {
-    flex: 1,
-    padding: 16,
-    gap: 8,
+  boxContainer: {
+    height: '100%',
+    justifyContent: 'flex-end',
+    width: '100%',
   },
   header: {
     fontSize: 20,
     fontWeight: '500',
+  },
+  root: {
+    flex: 1,
+    gap: 8,
+    padding: 16,
   },
 })

@@ -17,13 +17,13 @@ export default function ExampleBottomSheetScrollView() {
 // MARK: Styles
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-    padding: 16,
-    gap: 8,
-  },
   header: {
     fontSize: 20,
     fontWeight: '500',
+  },
+  root: {
+    flex: 1,
+    gap: 8,
+    padding: 16,
   },
 })

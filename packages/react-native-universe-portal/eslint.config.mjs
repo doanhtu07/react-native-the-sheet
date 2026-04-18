@@ -14,11 +14,27 @@ export default defineConfig([
     ignores: ['node_modules/', 'lib/'],
   },
 
+  // Prettier
   {
     plugins: { prettier },
     rules: {
+      'prettier/prettier': 'warn',
+    },
+  },
+
+  // React
+  {
+    rules: {
       'react/react-in-jsx-scope': 'off',
-      'prettier/prettier': 'error',
+    },
+  },
+
+  // React Native
+  {
+    rules: {
+      'react-native/no-raw-text': 'error',
+      'react-native/sort-styles': 'warn',
+      'react-native/no-unused-styles': 'warn',
     },
   },
 ])

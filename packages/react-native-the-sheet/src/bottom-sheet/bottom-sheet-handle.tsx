@@ -28,15 +28,15 @@ export function BottomSheetHandle({
 // MARK: Styles
 
 const styles = StyleSheet.create({
+  indicator: {
+    borderRadius: 9999,
+    height: 5,
+    width: 36,
+  },
   root: {
-    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 12,
-  },
-  indicator: {
-    width: 36,
-    height: 5,
-    borderRadius: 9999,
+    width: '100%',
   },
 })
