@@ -22,6 +22,7 @@ const BottomSheetContext = createContext<BottomSheetContextType | undefined>(
 
 export function BottomSheet({
   snapPoints,
+  fill,
   styles: propStyles,
   children,
 }: Readonly<BottomSheetProps>) {
@@ -72,15 +73,6 @@ export function BottomSheet({
     return snapTranslateYs.value[0]!
   })
 
-  const animatedStyle = useAnimatedStyle(() => {
-    'worklet'
-
-    return {
-      height: normalizedSnaps.value.at(-1),
-      transform: [{ translateY: translateY.value }],
-    }
-  })
-
   const onLayout = (event: LayoutChangeEvent) => {
     'worklet'
     sheetHeight.value = event.nativeEvent.layout.height
@@ -91,8 +83,9 @@ export function BottomSheet({
   const scrollViewRef = useAnimatedRef<
     Animated.ScrollView | Animated.FlatList
   >()
+  const isScrollViewReady = useSharedValue(false)
+  const isTouchingScrollView = useSharedValue(false)
   const scrollY = useSharedValue(0)
-  const isTouchingScrollView = useSharedValue<boolean>(false)
 
   const excludePanGestureContext = useMemo<
     Omit<BottomSheetContextType, 'panGesture'>
@@ -103,10 +96,12 @@ export function BottomSheet({
       translateY,
 
       scrollViewRef,
-      scrollY,
+      isScrollViewReady,
       isTouchingScrollView,
+      scrollY,
     }
   }, [
+    isScrollViewReady,
     isTouchingScrollView,
     scrollViewRef,
     scrollY,
@@ -124,6 +119,18 @@ export function BottomSheet({
     }
   }, [excludePanGestureContext, panGesture])
 
+  // MARK: Preparation
+
+  const animatedStyle = useAnimatedStyle(() => {
+    'worklet'
+    return {
+      height: normalizedSnaps.value.at(-1),
+      transform: [{ translateY: translateY.value }],
+    }
+  })
+
+  const applyFillStyle = fill && (!snapPoints || snapPoints.length === 0)
+
   // MARK: Renderers
 
   return (
@@ -132,6 +139,7 @@ export function BottomSheet({
         onLayout={onLayout}
         style={[
           styles.root,
+          applyFillStyle && styles.fill,
           { backgroundColor },
           propStyles?.root,
           animatedStyle,
@@ -162,5 +170,8 @@ const styles = StyleSheet.create({
     width: '100%',
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
+  },
+  fill: {
+    flex: 1,
   },
 })

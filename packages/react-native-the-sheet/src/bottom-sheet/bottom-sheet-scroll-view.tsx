@@ -5,23 +5,47 @@ import Animated, {
 import type { BottomSheetScrollViewProps } from './types'
 import { useBottomSheet } from './bottom-sheet'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
+import { StyleSheet, type LayoutChangeEvent } from 'react-native'
 
 export function BottomSheetScrollView({
+  onLayout: propOnLayout,
+  fill,
   styles: propStyles,
   children,
   ...rest
 }: Readonly<BottomSheetScrollViewProps>) {
-  const { scrollViewRef, scrollY, isTouchingScrollView, panGesture } =
-    useBottomSheet()
+  const {
+    scrollViewRef,
+    isScrollViewReady,
+    isTouchingScrollView,
+    scrollY,
+    panGesture,
+  } = useBottomSheet()
+
+  const onLayout = (event: LayoutChangeEvent) => {
+    'worklet'
+
+    if (propOnLayout) {
+      const resolvedOnLayout =
+        typeof propOnLayout === 'function' ? propOnLayout : propOnLayout.value
+
+      resolvedOnLayout?.(event)
+    }
+
+    isScrollViewReady.value = true
+  }
 
   const onScroll = useAnimatedScrollHandler({
     onScroll: (event) => {
+      'worklet'
       scrollY.value = event.contentOffset.y
     },
     onBeginDrag: () => {
+      'worklet'
       isTouchingScrollView.value = true
     },
     onEndDrag: () => {
+      'worklet'
       isTouchingScrollView.value = false
     },
   })
@@ -33,8 +57,9 @@ export function BottomSheetScrollView({
       <Animated.ScrollView
         {...rest}
         ref={scrollViewRef as AnimatedRef<Animated.ScrollView>}
-        style={propStyles?.root}
+        style={[styles.root, fill && styles.fill, propStyles?.root]}
         bounces={false} // iOS bounce ruins the scrollY <= 0 check
+        onLayout={onLayout}
         onScroll={onScroll}
       >
         {children}
@@ -42,3 +67,10 @@ export function BottomSheetScrollView({
     </GestureDetector>
   )
 }
+
+const styles = StyleSheet.create({
+  root: {},
+  fill: {
+    flex: 1,
+  },
+})

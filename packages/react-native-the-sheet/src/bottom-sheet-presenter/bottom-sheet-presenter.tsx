@@ -1,6 +1,9 @@
-import { useEffect } from 'react'
+import { createContext, useContext, useEffect, useMemo } from 'react'
 import { StyleSheet, useWindowDimensions } from 'react-native'
-import type { BottomSheetPresenterProps } from './types'
+import type {
+  BottomSheetPresenterContextType,
+  BottomSheetPresenterProps,
+} from './types'
 import { useSheetStackItem } from '../sheet-stack'
 import Animated, {
   useAnimatedStyle,
@@ -9,6 +12,10 @@ import Animated, {
 } from 'react-native-reanimated'
 import { runOnJS } from 'react-native-worklets'
 import { useSyncedRef } from '../hooks/use-synced-ref'
+
+const BottomSheetPresenterContext = createContext<
+  BottomSheetPresenterContextType | undefined
+>(undefined)
 
 export function BottomSheetPresenter({
   styles: propStyles,
@@ -33,6 +40,14 @@ export function BottomSheetPresenter({
       transform: [{ translateY: translateY.value }],
     }
   })
+
+  // MARK: Bottom sheet presenter context
+
+  const contextValue = useMemo<BottomSheetPresenterContextType>(() => {
+    return {
+      translateY,
+    }
+  }, [translateY])
 
   // MARK: Effects
 
@@ -64,18 +79,34 @@ export function BottomSheetPresenter({
   // MARK: Renderers
 
   return (
-    <Animated.View
-      style={[
-        styles.root,
-        propStyles?.root,
-        { height: screenHeight },
-        animatedStyle,
-      ]}
-      testID={testID}
-    >
-      {children}
-    </Animated.View>
+    <BottomSheetPresenterContext.Provider value={contextValue}>
+      <Animated.View
+        style={[
+          styles.root,
+          propStyles?.root,
+          { height: screenHeight },
+          animatedStyle,
+        ]}
+        testID={testID}
+      >
+        {children}
+      </Animated.View>
+    </BottomSheetPresenterContext.Provider>
   )
+}
+
+// MARK: Hooks
+
+export const useBottomSheetPresenter = () => {
+  const context = useContext(BottomSheetPresenterContext)
+
+  if (!context) {
+    throw new Error(
+      'useBottomSheetPresenter must be used within a BottomSheetPresenter',
+    )
+  }
+
+  return context
 }
 
 // MARK: Styles

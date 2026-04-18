@@ -51,8 +51,8 @@
 
 ---
 
-- [ ] Above bottom sheet view
-  - A view that fills the area above the bottom sheet
+- [x] Above bottom sheet view example
+  - Uses BottomSheetPositionTracker (which calculates the visible height of bottom sheet, not taking into account the keyboard)
 
 ---
 

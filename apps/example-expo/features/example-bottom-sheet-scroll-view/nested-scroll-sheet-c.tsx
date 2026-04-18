@@ -17,11 +17,8 @@ export function NestedScrollSheetC() {
   const renderContent = () => {
     return (
       <Fragment>
-        {Array.from({ length: 20 }).map((_, index) => (
-          <Text key={index}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          </Text>
+        {Array.from({ length: 50 }).map((_, index) => (
+          <Text key={index}>Item {index + 1}</Text>
         ))}
       </Fragment>
     )

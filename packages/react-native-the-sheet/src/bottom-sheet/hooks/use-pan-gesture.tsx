@@ -49,16 +49,21 @@ export const usePanGesture = (
     snapTranslateYs,
     translateY,
     scrollViewRef,
-    scrollY,
+    isScrollViewReady,
     isTouchingScrollView,
+    scrollY,
   } = props
 
   const { close } = useSheetStackItem()
   const closeRef = useSyncedRef(close)
 
+  const isGestureActive = useSharedValue(false)
+
   const snapshotTranslateY = useSharedValue(0)
-  const snapshotScrollY = useSharedValue(0)
   const lastTranslationY = useSharedValue(0)
+
+  const lockedScrollY = useSharedValue(0)
+  const isScrollLocked = useSharedValue(false)
 
   const moveSheetIncrementalRef = useRef((deltaY: number) => {
     'worklet'
@@ -68,10 +73,30 @@ export const usePanGesture = (
 
   const lockScroll = () => {
     'worklet'
-    scrollTo(scrollViewRef, 0, 0, false)
-  }
 
+    if (isScrollViewReady.value) {
+      if (!isScrollLocked.value) {
+        lockedScrollY.value = scrollY.value
+        isScrollLocked.value = true
+      }
+
+      scrollTo(scrollViewRef, 0, lockedScrollY.value, false)
+    }
+  }
   const lockScrollRef = useSyncedRef(lockScroll)
+
+  const unlockScroll = () => {
+    'worklet'
+    isScrollLocked.value = false
+  }
+  const unlockScrollRef = useSyncedRef(unlockScroll)
+
+  const cleanupGesture = () => {
+    'worklet'
+    isGestureActive.value = false
+    unlockScroll()
+  }
+  const cleanupGestureRef = useSyncedRef(cleanupGesture)
 
   // MARK: Pan gesture
 
@@ -80,14 +105,17 @@ export const usePanGesture = (
     const closeRefCurrent = closeRef.current
     const moveSheetIncrementalRefCurrent = moveSheetIncrementalRef.current
     const lockScrollRefCurrent = lockScrollRef.current
+    const unlockScrollRefCurrent = unlockScrollRef.current
+    const cleanupGestureRefCurrent = cleanupGestureRef.current
 
     return Gesture.Pan()
       .onStart(() => {
         'worklet'
 
+        isGestureActive.value = true
+
         // Capture stuff at the moment pan gesture starts
         snapshotTranslateY.value = translateY.value
-        snapshotScrollY.value = scrollY.value
 
         lastTranslationY.value = 0
       })
@@ -107,6 +135,8 @@ export const usePanGesture = (
         ) {
           lockScrollRefCurrent()
           moveSheetIncrementalRefCurrent(deltaY)
+        } else {
+          unlockScrollRefCurrent()
         }
       })
       .onEnd((event) => {
@@ -152,15 +182,20 @@ export const usePanGesture = (
             velocity: event.velocityY,
           })
         }
+
+        // Cleanup
+        cleanupGestureRefCurrent()
       })
   }, [
     closeRef,
     lockScrollRef,
+    unlockScrollRef,
+    cleanupGestureRef,
+    isGestureActive,
     snapshotTranslateY,
     translateY,
-    snapshotScrollY,
-    scrollY,
     lastTranslationY,
+    scrollY,
     isTouchingScrollView,
     snapTranslateYs,
     sheetHeight,
@@ -171,12 +206,23 @@ export const usePanGesture = (
   // Effect: Lock scroll more aggressively when sheet is not at rest
   useAnimatedReaction(
     () => {
-      return { translateY: translateY.value, scrollY: scrollY.value }
+      return {
+        translateY: translateY.value,
+      }
     },
     (prepared) => {
       'worklet'
+
+      // If gesture is active, we already handle scroll locking
+      if (isGestureActive.value) {
+        return
+      }
+
       const isSheetAtRest = prepared.translateY <= 0
-      if (!isSheetAtRest) {
+
+      if (isSheetAtRest) {
+        unlockScroll()
+      } else {
         lockScroll()
       }
     },

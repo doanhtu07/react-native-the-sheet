@@ -1,5 +1,6 @@
 export * from './backdrop'
 export * from './bottom-sheet'
+export * from './bottom-sheet-position-tracker'
 export * from './bottom-sheet-presenter'
 export * from './multiply'
 export * from './sheet-stack'

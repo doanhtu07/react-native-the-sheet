@@ -5,13 +5,34 @@ import Animated, {
 import { useBottomSheet } from './bottom-sheet'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import type { BottomSheetFlatListProps } from './types'
+import { StyleSheet, type LayoutChangeEvent } from 'react-native'
 
 export function BottomSheetFlatList<T>({
+  onLayout: propOnLayout,
+  fill,
   styles: propStyles,
   ...rest
 }: Readonly<BottomSheetFlatListProps<T>>) {
-  const { scrollViewRef, scrollY, isTouchingScrollView, panGesture } =
-    useBottomSheet()
+  const {
+    scrollViewRef,
+    isScrollViewReady,
+    isTouchingScrollView,
+    scrollY,
+    panGesture,
+  } = useBottomSheet()
+
+  const onLayout = (event: LayoutChangeEvent) => {
+    'worklet'
+
+    if (propOnLayout) {
+      const resolvedOnLayout =
+        typeof propOnLayout === 'function' ? propOnLayout : propOnLayout.value
+
+      resolvedOnLayout?.(event)
+    }
+
+    isScrollViewReady.value = true
+  }
 
   const onScroll = useAnimatedScrollHandler({
     onScroll: (event) => {
@@ -35,10 +56,18 @@ export function BottomSheetFlatList<T>({
       <Animated.FlatList
         {...rest}
         ref={scrollViewRef as AnimatedRef<Animated.FlatList>}
-        style={propStyles?.root}
+        style={[styles.root, fill && styles.fill, propStyles?.root]}
         bounces={false} // iOS bounce ruins the scrollY <= 0 check
+        onLayout={onLayout}
         onScroll={onScroll}
       />
     </GestureDetector>
   )
 }
+
+const styles = StyleSheet.create({
+  root: {},
+  fill: {
+    flex: 1,
+  },
+})

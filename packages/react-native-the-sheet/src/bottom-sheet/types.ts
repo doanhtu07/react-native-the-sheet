@@ -24,14 +24,17 @@ export type BottomSheetContextType = {
   translateY: SharedValue<number>
 
   scrollViewRef: AnimatedRef<Animated.ScrollView | Animated.FlatList>
-  scrollY: SharedValue<number>
+  isScrollViewReady: SharedValue<boolean>
   isTouchingScrollView: SharedValue<boolean>
+  scrollY: SharedValue<number>
 
   panGesture: PanGesture
 }
 
 export type BottomSheetProps = PropsWithChildren & {
   snapPoints?: SnapPoint[]
+  fill?: boolean
+
   styles?: {
     root?: StyleProp<ViewStyle>
   }
@@ -40,6 +43,7 @@ export type BottomSheetProps = PropsWithChildren & {
 // MARK: Bottom sheet view
 
 export type BottomSheetViewProps = PropsWithChildren & {
+  fill?: boolean
   styles?: {
     root?: StyleProp<ViewStyle>
   }
@@ -50,6 +54,7 @@ export type BottomSheetViewProps = PropsWithChildren & {
 type AnimatedScrollViewProps = ComponentProps<typeof Animated.ScrollView>
 
 export type BottomSheetScrollViewProps = AnimatedScrollViewProps & {
+  fill?: boolean
   styles?: {
     root?: StyleProp<ViewStyle>
   }
@@ -60,6 +65,7 @@ export type BottomSheetScrollViewProps = AnimatedScrollViewProps & {
 type AnimatedFlatListProps<T> = ComponentProps<typeof Animated.FlatList<T>>
 
 export type BottomSheetFlatListProps<T> = AnimatedFlatListProps<T> & {
+  fill?: boolean
   styles?: {
     root?: StyleProp<ViewStyle>
   }

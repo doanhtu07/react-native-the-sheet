@@ -15,91 +15,122 @@ export default function Index() {
   // MARK: Renderers
 
   return (
-    <ScrollView contentContainerStyle={styles.root}>
+    <ScrollView
+      style={styles.root}
+      contentContainerStyle={styles.contentContainer}
+    >
+      {/* MARK: Navigator */}
+
       <Text style={styles.header}>Navigator</Text>
 
       <Button
-        title="Go to Example Navigator Fade"
+        title="Example Navigator Fade"
         onPress={() => {
           router.push('/example-navigator-fade')
         }}
       />
 
       <Button
-        title="Go to Example Navigator Slide"
+        title="Example Navigator Slide"
         onPress={() => {
           router.push('/example-navigator-slide')
         }}
       />
 
+      {/* MARK: Portal */}
+
       <Text style={styles.header}>Portal</Text>
 
       <Button
-        title="Go to Example Portal"
+        title="Example Portal"
         onPress={() => {
           router.push('/example-portal')
         }}
       />
 
+      {/* MARK: Sheet Stack */}
+
       <Text style={styles.header}>Sheet Stack</Text>
 
       <Button
-        title="Go to Example Sheet Stack"
+        title="Example Sheet Stack"
         onPress={() => {
           router.push('/example-sheet-stack')
         }}
       />
 
+      {/* MARK: Bottom Sheet Presenter */}
+
       <Text style={styles.header}>Bottom Sheet Presenter</Text>
 
       <Button
-        title="Go to Example Bottom Sheet Presenter"
+        title="Example Bottom Sheet Presenter"
         onPress={() => {
           router.push('/example-bottom-sheet-presenter')
         }}
       />
 
       <Button
-        title="Go to Example Bottom Sheet Presenter (Multiple)"
+        title="Example Bottom Sheet Presenter (Multiple)"
         onPress={() => {
           router.push('/example-bottom-sheet-presenter-multiple')
         }}
       />
 
+      <Button
+        title="Example Bottom Sheet Presenter (Center Sheet)"
+        onPress={() => {
+          router.push('/example-bottom-sheet-presenter-center-sheet')
+        }}
+      />
+
+      {/* MARK: Bottom Sheet */}
+
       <Text style={styles.header}>Bottom sheet</Text>
 
       <Button
-        title="Go to Example Bottom Sheet (Dynamic Sizing)"
+        title="Example Bottom Sheet (Dynamic Sizing)"
         onPress={() => {
           router.push('/example-bottom-sheet-dynamic-sizing')
         }}
       />
 
       <Button
-        title="Go to Example Bottom Sheet (Snap Points)"
+        title="Example Bottom Sheet (Snap Points)"
         onPress={() => {
           router.push('/example-bottom-sheet-snap-points')
         }}
       />
 
       <Button
-        title="Go to Example Bottom Sheet View"
+        title="Example Bottom Sheet View"
         onPress={() => {
           router.push('/example-bottom-sheet-view')
         }}
       />
 
       <Button
-        title="Go to Example Bottom Sheet Scroll View"
+        title="Example Bottom Sheet Scroll View"
         onPress={() => {
           router.push('/example-bottom-sheet-scroll-view')
         }}
       />
 
       <Button
-        title="Go to Example Bottom Sheet Flat List"
+        title="Example Bottom Sheet Flat List"
         onPress={() => {
           router.push('/example-bottom-sheet-flat-list')
+        }}
+      />
+
+      {/* MARK: Watcher Pattern */}
+
+      <Text style={styles.header}>Watcher Pattern</Text>
+
+      <Button
+        title="Example Above Bottom Sheet View"
+        onPress={() => {
+          router.push('/example-above-bottom-sheet-view')
         }}
       />
     </ScrollView>
@@ -111,8 +142,11 @@ export default function Index() {
 const styles = StyleSheet.create({
   root: {
     flex: 1,
+  },
+  contentContainer: {
     padding: 16,
     gap: 8,
+    paddingBottom: 64,
   },
   header: {
     fontSize: 20,

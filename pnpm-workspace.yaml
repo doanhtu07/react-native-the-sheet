@@ -1,3 +1,6 @@
+# https://docs.expo.dev/guides/monorepos/
+nodeLinker: hoisted
+
 packages:
   - "apps/*"
   - "packages/*"
