@@ -45,6 +45,11 @@ export type BottomSheetProps = PropsWithChildren & {
   }
 }
 
+export type BottomSheetApi = {
+  snapToIndex: (index: number) => void
+  snapToPosition: (position: SnapPoint) => void
+}
+
 // MARK: Bottom sheet view
 
 export type BottomSheetViewProps = PropsWithChildren & {

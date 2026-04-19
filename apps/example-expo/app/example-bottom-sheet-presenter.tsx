@@ -1,14 +1,17 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
 import {
   Backdrop,
   BottomSheetPresenter,
   SheetStackItem,
+  SheetStackItemApi,
 } from 'react-native-the-sheet'
 import { Portal } from 'react-native-universe-portal'
 
 export default function ExampleBottomSheetPresenter() {
   const [isOpenA, setIsOpenA] = useState(true)
+
+  const refA = useRef<SheetStackItemApi>(null)
 
   return (
     <View style={styles.root}>
@@ -16,8 +19,14 @@ export default function ExampleBottomSheetPresenter() {
 
       <Button title="Open Sheet A" onPress={() => setIsOpenA(true)} />
 
+      <Button
+        title="Show (Unhide) Sheet A"
+        onPress={() => refA.current?.show()}
+      />
+
       <Portal hostName="root">
         <SheetStackItem
+          ref={refA}
           isOpen={isOpenA}
           close={() => setIsOpenA(false)}
           waitForFullyExit
@@ -29,6 +38,11 @@ export default function ExampleBottomSheetPresenter() {
             <View style={styles.boxA}>
               <Text>Sheet A</Text>
               <Button title="Close Sheet A" onPress={() => setIsOpenA(false)} />
+
+              <Button
+                title="Hide Sheet A"
+                onPress={() => refA.current?.hide()}
+              />
 
               <Text>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do

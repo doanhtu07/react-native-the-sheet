@@ -1,16 +1,27 @@
 # react-native-the-sheet
 
-This is the sheet for React Native
+This is the sheet for React Native! (excluding Web)
+
+A modular bottom sheet library built on top of React Native Reanimated and React Native Gesture Handler
+
+So modular that I recommend you to DIY certain aspects if you really need to...
 
 ## Roadmaps
 
-- [Roadmap: The Village](./roadmaps/01-the-village.md)
+I don't plan to support Web for a couple of reasons:
+
+1. Bottom sheets on web are usually not the right UX choice
+2. Web leans towards popups/modals which can be implemented much simpler with CSS and libraries like https://motion.dev
+
+---
+
+- [Chapter 1: The Village](./roadmaps/01-the-village.md)
 
 ## Components
 
 Components supported by our library:
 
-- [Components List](./docs/components/components-list.md)
+- [Component List](./docs/components/component-list.md)
 
 ## Compatibility
 
@@ -85,7 +96,7 @@ When contributing to this project, please ensure the versions of these core depe
 - [React Native Module Codegen](./docs/resources/react-native-module-codegen.md)
 - [Expo Android Notes](./docs/resources/expo-android-notes.md)
 
-# Inspiration
+## Inspiration
 
 Thank you to all the open source projects that inspired this project:
 

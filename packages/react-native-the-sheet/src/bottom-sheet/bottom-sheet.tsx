@@ -4,14 +4,26 @@ import {
   useWindowDimensions,
   type LayoutChangeEvent,
 } from 'react-native'
-import type { BottomSheetContextType, BottomSheetProps } from './types'
+import type {
+  BottomSheetContextType,
+  BottomSheetApi,
+  BottomSheetProps,
+} from './types'
 import Animated, {
   useAnimatedRef,
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
+  withSpring,
+  type WithSpringConfig,
 } from 'react-native-reanimated'
-import { createContext, useContext, useMemo } from 'react'
+import {
+  createContext,
+  forwardRef,
+  useContext,
+  useImperativeHandle,
+  useMemo,
+} from 'react'
 import { useBridgedValue } from '../hooks/use-bridged-value'
 import { usePanGesture } from './hooks/use-pan-gesture'
 import { useSyncedSharedValue } from '../hooks/use-synced-shared-value'
@@ -20,169 +32,223 @@ const BottomSheetContext = createContext<BottomSheetContextType | undefined>(
   undefined,
 )
 
-export function BottomSheet({
-  snapPoints = [],
-  floatMode = false,
-  overdragSnapMode = false,
-  fill = false,
-  styles: propStyles,
-  children,
-}: Readonly<BottomSheetProps>) {
-  // MARK: Catch exceptions
+export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
+  function BottomSheetCore(
+    {
+      snapPoints = [],
+      floatMode = false,
+      overdragSnapMode = false,
+      fill = false,
+      styles: propStyles,
+      children,
+    },
+    ref,
+  ) {
+    // MARK: Catch exceptions
 
-  if (overdragSnapMode && snapPoints.length === 0) {
-    throw new Error(
-      'react-native-the-sheet - src/bottom-sheet/bottom-sheet.tsx - overdragSnapMode cannot be enabled without snap points',
+    if (overdragSnapMode && snapPoints.length === 0) {
+      throw new Error(
+        'react-native-the-sheet - src/bottom-sheet/bottom-sheet.tsx - overdragSnapMode cannot be enabled without snap points',
+      )
+    }
+
+    // MARK: Artifacts
+
+    const theme = useColorScheme()
+    const { height: screenHeight } = useWindowDimensions()
+
+    const isDark = theme === 'dark'
+    const backgroundColor = isDark ? '#1C1C1E' : '#FFFFFF'
+
+    const sheetHeight = useSharedValue(0)
+
+    // Normalize snap points into numbers
+    const normalizedSnaps = useBridgedValue(
+      useMemo(() => {
+        if (snapPoints.length === 0) return []
+
+        return snapPoints
+          .map((point) => {
+            if (typeof point === 'number') return point
+            const percentage = Number.parseFloat(point as string) / 100
+            return screenHeight * percentage
+          })
+          .filter((point) => point > 0 && point <= screenHeight)
+          .sort((a, b) => a - b)
+      }, [screenHeight, snapPoints]),
     )
-  }
 
-  // MARK: Artifacts
+    // Convert snap points to translate ys (relative distance from fully open position)
+    // Naturally, snapTranslateYs is sorted in descending order (largest value = closest to fully closed)
+    const snapTranslateYs = useDerivedValue(() => {
+      const snaps = normalizedSnaps.value
+      if (snaps.length === 0) return [0]
 
-  const theme = useColorScheme()
-  const { height: screenHeight } = useWindowDimensions()
+      // We have established snaps is not empty
+      const maxSnapPoint = snaps.at(-1)!
 
-  const isDark = theme === 'dark'
-  const backgroundColor = isDark ? '#1C1C1E' : '#FFFFFF'
+      return snaps.map((point) => maxSnapPoint - point)
+    })
 
-  const sheetHeight = useSharedValue(0)
+    /**
+     * translateY = tracks relative position of bottom sheet to its rest point
+     * - = 0: Bottom sheet is fully visible inside bottom sheet presenter
+     * - > 0: Bottom sheet is being dragged down from rest point
+     * - < 0: Bottom sheet is being dragged up from rest point
+     */
+    const translateY = useSyncedSharedValue(0, () => {
+      'worklet'
+      return snapTranslateYs.value[0]!
+    })
 
-  // Normalize snap points into numbers
-  const normalizedSnaps = useBridgedValue(
-    useMemo(() => {
-      if (snapPoints.length === 0) return []
+    const onLayout = (event: LayoutChangeEvent) => {
+      'worklet'
+      sheetHeight.value = event.nativeEvent.layout.height
+    }
 
-      return snapPoints
-        .map((point) => {
-          if (typeof point === 'number') return point
-          const percentage = Number.parseFloat(point as string) / 100
-          return screenHeight * percentage
-        })
-        .filter((point) => point > 0 && point <= screenHeight)
-        .sort((a, b) => a - b)
-    }, [screenHeight, snapPoints]),
-  )
+    const springConfig: WithSpringConfig = {
+      overshootClamping: true,
+      damping: 20,
+      stiffness: 200,
+      mass: 1,
+    }
 
-  // Convert snap points to translate ys (relative distance from fully open position)
-  // Naturally, snapTranslateYs is sorted in descending order (largest value = closest to fully closed)
-  const snapTranslateYs = useDerivedValue(() => {
-    const snaps = normalizedSnaps.value
-    if (snaps.length === 0) return [0]
+    // MARK: Bottom sheet context
 
-    // We have established snaps is not empty
-    const maxSnapPoint = snaps.at(-1)!
+    const scrollViewRef = useAnimatedRef<
+      Animated.ScrollView | Animated.FlatList
+    >()
+    const isScrollViewReady = useSharedValue(false)
+    const isScrolling = useSharedValue<0 | 1>(0)
+    const scrollY = useSharedValue(0)
 
-    return snaps.map((point) => maxSnapPoint - point)
-  })
+    const excludePanGestureContext = useMemo<
+      Omit<BottomSheetContextType, 'getPanGesture'>
+    >(() => {
+      return {
+        overdragSnapMode,
 
-  /**
-   * translateY = tracks relative position of bottom sheet to its rest point
-   * - = 0: Bottom sheet is fully visible inside bottom sheet presenter
-   * - > 0: Bottom sheet is being dragged down from rest point
-   * - < 0: Bottom sheet is being dragged up from rest point
-   */
-  const translateY = useSyncedSharedValue(0, () => {
-    'worklet'
-    return snapTranslateYs.value[0]!
-  })
+        sheetHeight,
+        snapTranslateYs,
+        translateY,
 
-  const onLayout = (event: LayoutChangeEvent) => {
-    'worklet'
-    sheetHeight.value = event.nativeEvent.layout.height
-  }
-
-  // MARK: Bottom sheet context
-
-  const scrollViewRef = useAnimatedRef<
-    Animated.ScrollView | Animated.FlatList
-  >()
-  const isScrollViewReady = useSharedValue(false)
-  const isScrolling = useSharedValue<0 | 1>(0)
-  const scrollY = useSharedValue(0)
-
-  const excludePanGestureContext = useMemo<
-    Omit<BottomSheetContextType, 'getPanGesture'>
-  >(() => {
-    return {
+        scrollViewRef,
+        isScrollViewReady,
+        isScrolling,
+        scrollY,
+      }
+    }, [
+      isScrollViewReady,
+      isScrolling,
       overdragSnapMode,
-
+      scrollViewRef,
+      scrollY,
       sheetHeight,
       snapTranslateYs,
       translateY,
+    ])
 
-      scrollViewRef,
-      isScrollViewReady,
-      isScrolling,
-      scrollY,
-    }
-  }, [
-    isScrollViewReady,
-    isScrolling,
-    overdragSnapMode,
-    scrollViewRef,
-    scrollY,
-    sheetHeight,
-    snapTranslateYs,
-    translateY,
-  ])
+    const getPanGesture = usePanGesture({
+      excludePanGestureContext,
+      floatMode,
+    })
 
-  const getPanGesture = usePanGesture({
-    excludePanGestureContext,
-    floatMode,
-  })
+    const contextValue = useMemo<BottomSheetContextType>(() => {
+      return {
+        ...excludePanGestureContext,
+        getPanGesture,
+      }
+    }, [excludePanGestureContext, getPanGesture])
 
-  const contextValue = useMemo<BottomSheetContextType>(() => {
-    return {
-      ...excludePanGestureContext,
-      getPanGesture,
-    }
-  }, [excludePanGestureContext, getPanGesture])
+    // MARK: Effects
 
-  // MARK: Preparation
+    // Effect: Expose API
+    useImperativeHandle(ref, () => ({
+      snapToIndex: (index) => {
+        'worklet'
 
-  const animatedStyle = useAnimatedStyle(() => {
-    'worklet'
+        const targets = snapTranslateYs.value
 
-    const maxSnap = normalizedSnaps.value.at(-1)
+        if (index >= 0 && index < targets.length) {
+          const targetY = targets[index]!
+          translateY.value = withSpring(targetY, springConfig)
+        } else {
+          console.warn(
+            `react-native-the-sheet - src/bottom-sheet/bottom-sheet.tsx - Index ${index} out of bounds`,
+          )
+        }
+      },
 
-    // Snap points defined
+      snapToPosition: (position) => {
+        'worklet'
 
-    if (maxSnap) {
-      const overDrag = Math.min(0, translateY.value) // will be negative
+        const snaps = normalizedSnaps.value
+
+        const normalizedPosition =
+          typeof position === 'number'
+            ? position
+            : (Number.parseFloat(position) / 100) * screenHeight
+
+        if (snaps.length > 0) {
+          // Basis: The largest snap point is our translateY = 0
+          const maxSnapPoint = snaps.at(-1)!
+          const targetTranslateY = maxSnapPoint - normalizedPosition
+          translateY.value = withSpring(targetTranslateY, springConfig)
+        } else {
+          // Fallback: If dynamic/no snaps, we use the measured sheetHeight
+          const targetTranslateY = sheetHeight.value - normalizedPosition
+          translateY.value = withSpring(targetTranslateY, springConfig)
+        }
+      },
+    }))
+
+    // MARK: Preparation
+
+    const animatedStyle = useAnimatedStyle(() => {
+      'worklet'
+
+      const maxSnap = normalizedSnaps.value.at(-1)
+
+      // Snap points defined
+
+      if (maxSnap) {
+        const overDrag = Math.min(0, translateY.value) // overDrag should be negative
+
+        return {
+          height: maxSnap - overDrag,
+          transform: [{ translateY: Math.max(0, translateY.value) }],
+        }
+      }
+
+      // Dynamic sizing
 
       return {
-        height: maxSnap - overDrag,
-        transform: [{ translateY: Math.max(0, translateY.value) }],
+        transform: [{ translateY: translateY.value }],
       }
-    }
+    })
 
-    // Dynamic sizing
+    const applyFillStyle = fill && snapPoints.length === 0
 
-    return {
-      transform: [{ translateY: translateY.value }],
-    }
-  })
+    // MARK: Renderers
 
-  const applyFillStyle = fill && snapPoints.length === 0
-
-  // MARK: Renderers
-
-  return (
-    <BottomSheetContext.Provider value={contextValue}>
-      <Animated.View
-        onLayout={onLayout}
-        style={[
-          styles.root,
-          applyFillStyle && styles.fill,
-          { backgroundColor },
-          propStyles?.root,
-          animatedStyle,
-        ]}
-      >
-        {children}
-      </Animated.View>
-    </BottomSheetContext.Provider>
-  )
-}
+    return (
+      <BottomSheetContext.Provider value={contextValue}>
+        <Animated.View
+          onLayout={onLayout}
+          style={[
+            styles.root,
+            applyFillStyle && styles.fill,
+            { backgroundColor },
+            propStyles?.root,
+            animatedStyle,
+          ]}
+        >
+          {children}
+        </Animated.View>
+      </BottomSheetContext.Provider>
+    )
+  },
+)
 
 // MARK: Hooks
 

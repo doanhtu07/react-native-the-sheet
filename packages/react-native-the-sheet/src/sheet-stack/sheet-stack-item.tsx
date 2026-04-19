@@ -1,9 +1,11 @@
 import {
   createContext,
+  forwardRef,
   useCallback,
   useContext,
   useEffect,
   useId,
+  useImperativeHandle,
   useMemo,
   useRef,
   useState,
@@ -13,6 +15,7 @@ import { useSheetStack } from './sheet-stack-provider'
 import {
   SheetStackItemPushBehavior,
   type SheetStackItemContextType,
+  type SheetStackItemApi,
   type SheetStackItemProps,
 } from './types'
 import { useSyncedRef } from '../hooks/use-synced-ref'
@@ -21,20 +24,28 @@ const SheetStackItemContext = createContext<
   SheetStackItemContextType | undefined
 >(undefined)
 
-export function SheetStackItem({
-  isOpen,
-  close,
-  pushBehavior = SheetStackItemPushBehavior.push,
-  waitForFullyExit = false,
-  testID,
-  children,
-}: SheetStackItemProps) {
+export const SheetStackItem = forwardRef<
+  SheetStackItemApi,
+  SheetStackItemProps
+>(function SheetStackItemCore(
+  {
+    isOpen,
+    close,
+    pushBehavior = SheetStackItemPushBehavior.push,
+    waitForFullyExit = false,
+    testID,
+    children,
+  },
+  ref,
+) {
   const { stack, push, remove } = useSheetStack()
   const id = useId()
   const closeRef = useSyncedRef(close)
 
   const [allowShow, setAllowShow] = useState(false)
-  const [isHidden, setIsHidden] = useState(false)
+  const [isHiddenByStack, setIsHiddenByStack] = useState(false)
+  const [isManuallyHidden, setIsManuallyHidden] = useState(false)
+  const isHidden = isManuallyHidden || isHiddenByStack
 
   const lastProcessedIsOpen = useRef(!isOpen)
   const isSyncingToStack = useRef(false)
@@ -65,10 +76,22 @@ export function SheetStackItem({
   }, [])
 
   const contextValue = useMemo<SheetStackItemContextType>(() => {
-    return { isOpen, close, isHidden, isCurrentlyInStack, onFullyExit }
+    return {
+      isOpen,
+      close,
+      isHidden,
+      isCurrentlyInStack,
+      onFullyExit,
+    }
   }, [isOpen, close, isHidden, isCurrentlyInStack, onFullyExit])
 
   // MARK: Effects
+
+  // Effect: Expose API
+  useImperativeHandle(ref, () => ({
+    hide: () => setIsManuallyHidden(true),
+    show: () => setIsManuallyHidden(false),
+  }))
 
   // Effect: Clear allowShow on unmount
   useEffect(() => {
@@ -123,9 +146,9 @@ export function SheetStackItem({
       nextSheetPushBehavior === SheetStackItemPushBehavior.switch &&
       !isTop
     ) {
-      setIsHidden(true)
+      setIsHiddenByStack(true)
     } else {
-      setIsHidden(false)
+      setIsHiddenByStack(false)
     }
   }, [isTop, isCurrentlyInStack, nextSheetPushBehavior])
 
@@ -157,7 +180,7 @@ export function SheetStackItem({
       </View>
     </SheetStackItemContext.Provider>
   )
-}
+})
 
 // MARK: Hooks
 

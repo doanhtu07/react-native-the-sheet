@@ -59,3 +59,8 @@ export type SheetStackItemProps = PropsWithChildren & {
 
   testID?: string
 }
+
+export type SheetStackItemApi = {
+  hide: () => void
+  show: () => void
+}

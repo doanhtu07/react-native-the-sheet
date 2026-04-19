@@ -1,9 +1,10 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useRef, useState } from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
 import {
   Backdrop,
   BottomSheet,
   BottomSheetHandle,
+  BottomSheetApi,
   BottomSheetPresenter,
   SheetStackItem,
 } from 'react-native-the-sheet'
@@ -11,6 +12,8 @@ import { Portal } from 'react-native-universe-portal'
 
 export default function ExampleBottomSheetDynamicSizing() {
   const [isOpenA, setIsOpenA] = useState(false)
+
+  const botRefA = useRef<BottomSheetApi>(null)
 
   const renderContent = () => {
     return (
@@ -38,11 +41,22 @@ export default function ExampleBottomSheetDynamicSizing() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheet>
+            <BottomSheet ref={botRefA}>
               <BottomSheetHandle />
 
               <Text>Sheet A</Text>
               <Button title="Close Sheet A" onPress={() => setIsOpenA(false)} />
+
+              <Button
+                title="Snap to 50%"
+                onPress={() => botRefA.current?.snapToPosition('50%')}
+              />
+
+              <Button
+                title="Snap to 70%"
+                onPress={() => botRefA.current?.snapToPosition('70%')}
+              />
+
               {renderContent()}
             </BottomSheet>
           </BottomSheetPresenter>

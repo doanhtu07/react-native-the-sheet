@@ -1,6 +1,10 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
-import { Backdrop, SheetStackItem } from 'react-native-the-sheet'
+import {
+  Backdrop,
+  SheetStackItem,
+  SheetStackItemApi,
+} from 'react-native-the-sheet'
 import { Portal } from 'react-native-universe-portal'
 
 export default function ExampleSheetStack() {
@@ -8,14 +12,22 @@ export default function ExampleSheetStack() {
   const [isOpenB, setIsOpenB] = useState(false)
   const [isOpenC, setIsOpenC] = useState(false)
 
+  const refA = useRef<SheetStackItemApi>(null)
+
   return (
     <View style={styles.root}>
       <Text style={styles.header}>Example Sheet Stack</Text>
 
       <Button title="Open Sheet A" onPress={() => setIsOpenA(true)} />
 
+      <Button
+        title="Show (Unhide) Sheet A"
+        onPress={() => refA.current?.show()}
+      />
+
       <Portal hostName="root">
         <SheetStackItem
+          ref={refA}
           isOpen={isOpenA}
           close={() => setIsOpenA(false)}
           testID="sheetA"
@@ -26,6 +38,12 @@ export default function ExampleSheetStack() {
             <View style={styles.boxA}>
               <Text>Sheet A</Text>
               <Button title="Close Sheet A" onPress={() => setIsOpenA(false)} />
+
+              <Button
+                title="Hide Sheet A"
+                onPress={() => refA.current?.hide()}
+              />
+
               <Button title="Open Sheet B" onPress={() => setIsOpenB(true)} />
             </View>
           </View>

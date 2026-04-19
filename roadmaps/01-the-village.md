@@ -1,4 +1,8 @@
-## Roadmap: The Village
+## Chapter 1: The Village
+
+- [ ] Support both Reanimated v3 and v4
+
+---
 
 - [x] Embedded stack navigator
 
@@ -16,6 +20,7 @@
   - Behavior: push, switch, replace
   - z-index based on index in provider stack
   - Always open at 100%, no animation at all
+  - [x] Ref API: Hide, present
 
 ---
 
@@ -29,7 +34,7 @@
   - Close: Always slide from 100% to 0%
     - Can signal sheet stack item to unmount when close animation finishes
 
-- [ ] Bottom sheet
+- [x] Bottom sheet
   - [x] Free movement
   - [x] Snap points
   - [x] Float mode
@@ -39,7 +44,7 @@
   - [x] Overdrag snap mode
     - Need at least 1 snap point
     - Allow overdragging beyond the max snap point
-  - [ ] Hide, present, snap to index, move to position
+  - [x] Ref API: snap to index, snap to position
 
 - [x] Bottom sheet handle
   - Drag to move bottom sheet
