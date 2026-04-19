@@ -2,13 +2,29 @@
   "name": "react-native-the-sheet-monorepo",
   "version": "1.0.0",
   "description": "",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "clean-deps": "bash ./scripts/clean-deps.sh"
+    "clean-deps": "bash ./scripts/clean-deps.sh",
+    "prepare": "husky"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.33.0"
+  "lint-staged": {
+    "apps/**/*.{js,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "packages/**/*.{js,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^20.5.0",
+    "@commitlint/config-conventional": "^20.5.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.4.0"
+  }
 }

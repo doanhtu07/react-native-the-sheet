@@ -10,9 +10,9 @@
     "build:ios": "expo run:ios",
     "ios": "expo run:ios",
     "reset-project": "node ./scripts/reset-project.js",
-    "lint": "expo lint",
+    "lint": "expo lint && eslint",
     "format": "prettier",
-    "check": "prettier --write . && expo lint --fix",
+    "check": "prettier --write . && expo lint --fix && eslint --fix",
     "epc": "tsx scripts/expo-packages-check.ts"
   },
   "dependencies": {

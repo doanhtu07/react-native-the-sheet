@@ -70,7 +70,7 @@ export function NestedScrollSheetC() {
 
 const styles = StyleSheet.create({
   nestedScrollView: {
-    height: 200,
     backgroundColor: '#dbeafe',
+    height: 200,
   },
 })
