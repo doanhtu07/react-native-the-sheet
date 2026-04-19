@@ -1,6 +1,6 @@
 # react-native-the-sheet
 
-This is the sheet for React Native! (excluding Web)
+This is the sheet for React Native! - excluding Web
 
 A modular bottom sheet library built on top of React Native Reanimated and React Native Gesture Handler
 
@@ -25,10 +25,10 @@ Components supported by our library:
 
 ## Compatibility
 
-| Sheet version          | Reanimated version | React Native Worklets version | React Native version | React version           | Expo SDK version     |
-| ---------------------- | ------------------ | ----------------------------- | -------------------- | ----------------------- | -------------------- |
-| 2.x.x (branch `main`)  | 4.x.x              | 0.4.x - 0.8.x                 | 0.78 - 0.85          | Depends on React Native | Manages React Native |
-| 1.x.x (branch `1.x.x`) | 3.x.x              | N/A                           | 0.63 - 0.81          | Depends on React Native | Manages React Native |
+| Sheet version         | Reanimated version | React Native Worklets version | React Native version | React version           | Expo SDK version     |
+| --------------------- | ------------------ | ----------------------------- | -------------------- | ----------------------- | -------------------- |
+| 2.x.x (branch `main`) | 4.x.x              | 0.4.x - 0.8.x                 | 0.78 - 0.85          | Depends on React Native | Manages React Native |
+| 1.x.x (branch `v1`)   | 3.x.x              | N/A                           | 0.63 - 0.81          | Depends on React Native | Manages React Native |
 
 ### Core dependencies
 
