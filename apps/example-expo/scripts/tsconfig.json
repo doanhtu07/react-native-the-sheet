@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+
+    "module": "nodenext",
+    "target": "esnext",
+    "lib": ["esnext"],
+    "types": ["node"],
+    "typeRoots": [
+      "../node_modules/@types", // Current package types
+      "../../../node_modules/@types" // For monorepo root types
+    ]
+  },
+  "include": ["./**/*"]
+}

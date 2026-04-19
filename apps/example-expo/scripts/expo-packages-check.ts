@@ -35,7 +35,7 @@ interface SdkInfo {
 
 async function fetchVersions() {
   const res = await fetch('https://api.expo.dev/v2/versions/latest')
-  const { data } = await res.json()
+  const { data } = (await res.json()) as { data: Record<string, unknown> }
   return data
 }
 
@@ -43,7 +43,7 @@ async function fetchNativeModules() {
   const res = await fetch(
     `https://api.expo.dev/v2/sdks/${SDK_VERSION}.0.0/native-modules`,
   )
-  const { data } = await res.json()
+  const { data } = (await res.json()) as { data: Record<string, unknown> }
   return data
 }
 
