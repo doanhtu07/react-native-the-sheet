@@ -86,10 +86,6 @@ Note: You can use `apps/example-expo/scripts/expo-packages-check.ts` to check th
 
 - Anything is fine as long as it works with React Native
 
-### Contributing notes
-
-When contributing to this project, please ensure the versions of these core dependencies are consistent across all packages
-
 ## Resources
 
 - [Create React Native Module](./docs/resources/create-react-native-module.md)
@@ -101,3 +97,7 @@ When contributing to this project, please ensure the versions of these core depe
 Thank you to all the open source projects that inspired this project:
 
 - https://github.com/gorhom/react-native-bottom-sheet
+
+## Contributing
+
+- Check out notes on contributing: [CONTRIBUTING.md](./CONTRIBUTING.md)
