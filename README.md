@@ -83,3 +83,10 @@ When contributing to this project, please ensure the versions of these core depe
 
 - [Create React Native Module](./docs/resources/create-react-native-module.md)
 - [React Native Module Codegen](./docs/resources/react-native-module-codegen.md)
+- [Expo Android Notes](./docs/resources/expo-android-notes.md)
+
+# Inspiration
+
+Thank you to all the open source projects that inspired this project:
+
+- https://github.com/gorhom/react-native-bottom-sheet

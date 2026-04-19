@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react'
+import { useCallback } from 'react'
 import { Gesture } from 'react-native-gesture-handler'
 import {
   scrollTo,
@@ -10,6 +10,18 @@ import { runOnJS } from 'react-native-worklets'
 import { useSyncedRef } from '../../hooks/use-synced-ref'
 import { useSheetStackItem } from '../../sheet-stack'
 import type { BottomSheetContextType } from '../types'
+import { useBridgedValue } from '../../hooks/use-bridged-value'
+import { isApproxEqual } from '../../utils/approximately-equal'
+
+const TRANSLATE_Y_REST_THRESHOLD = 1
+const SCROLL_Y_TOP_THRESHOLD = 1
+const MICRO_FLICK_VELOCITY_THRESHOLD = 100
+const FLICK_VELOCITY_THRESHOLD = 500
+
+type Props = {
+  excludePanGestureContext: Omit<BottomSheetContextType, 'getPanGesture'>
+  floatMode: boolean
+}
 
 /**
   # Mental model
@@ -41,21 +53,26 @@ import type { BottomSheetContextType } from '../types'
     - Lock scroll view
     - Move sheet
  */
-export const usePanGesture = (
-  props: Omit<BottomSheetContextType, 'panGesture'>,
-) => {
+export const usePanGesture = ({
+  excludePanGestureContext,
+  floatMode: propFloatMode,
+}: Props) => {
   const {
+    overdragSnapMode: propOverdragSnapMode,
     sheetHeight,
     snapTranslateYs,
     translateY,
     scrollViewRef,
     isScrollViewReady,
-    isTouchingScrollView,
+    isScrolling,
     scrollY,
-  } = props
+  } = excludePanGestureContext
 
   const { close } = useSheetStackItem()
   const closeRef = useSyncedRef(close)
+
+  const floatMode = useBridgedValue(propFloatMode)
+  const overdragSnapMode = useBridgedValue(propOverdragSnapMode)
 
   const isGestureActive = useSharedValue(false)
 
@@ -64,12 +81,6 @@ export const usePanGesture = (
 
   const lockedScrollY = useSharedValue(0)
   const isScrollLocked = useSharedValue(false)
-
-  const moveSheetIncrementalRef = useRef((deltaY: number) => {
-    'worklet'
-    let nextValue = translateY.value + deltaY
-    translateY.value = Math.max(0, nextValue)
-  })
 
   const lockScroll = () => {
     'worklet'
@@ -100,15 +111,15 @@ export const usePanGesture = (
 
   // MARK: Pan gesture
 
-  const panGesture = useMemo(() => {
+  const getPanGesture = useCallback(() => {
     // Snapshot refs for worklet
     const closeRefCurrent = closeRef.current
-    const moveSheetIncrementalRefCurrent = moveSheetIncrementalRef.current
     const lockScrollRefCurrent = lockScrollRef.current
     const unlockScrollRefCurrent = unlockScrollRef.current
     const cleanupGestureRefCurrent = cleanupGestureRef.current
 
     return Gesture.Pan()
+      .maxPointers(1)
       .onStart(() => {
         'worklet'
 
@@ -125,16 +136,44 @@ export const usePanGesture = (
         const deltaY = event.translationY - lastTranslationY.value
         lastTranslationY.value = event.translationY
 
-        const isSheetAtRest = translateY.value <= 0
-        const isScrollAtTop = scrollY.value <= 0
+        const isSheetAtRest = isApproxEqual(
+          translateY.value,
+          0,
+          TRANSLATE_Y_REST_THRESHOLD,
+        )
+
+        const isScrollAtTop = scrollY.value <= SCROLL_Y_TOP_THRESHOLD
+
+        // If we are moving UP fast (velocityY < -MICRO_FLICK_VELOCITY_THRESHOLD)
+        // and we are already at or above the rest point,
+        // FORCE translateY to 0 and let the ScrollView handle everything
+        if (
+          event.velocityY < -MICRO_FLICK_VELOCITY_THRESHOLD &&
+          isScrolling.value > 0 &&
+          isSheetAtRest
+        ) {
+          translateY.value = 0
+          unlockScrollRefCurrent()
+          return
+        }
 
         if (
-          !isSheetAtRest ||
-          !isTouchingScrollView.value ||
-          (isScrollAtTop && deltaY > 0)
+          !isSheetAtRest || // Sheet not at rest
+          isScrolling.value === 0 || // No scroll mode
+          (isScrolling.value > 0 && isScrollAtTop && deltaY > 0) // Scroll mode + Pan down
         ) {
           lockScrollRefCurrent()
-          moveSheetIncrementalRefCurrent(deltaY)
+
+          let nextValue = translateY.value + deltaY
+
+          // If we ARE scrolling, prevent the sheet from going into the overdrag zone
+          if (isScrolling.value > 0 && nextValue < 0) {
+            nextValue = 0
+          }
+
+          translateY.value = overdragSnapMode.value
+            ? nextValue
+            : Math.max(0, nextValue) // Prevent overdrag if overdragSnapMode is disabled
         } else {
           unlockScrollRefCurrent()
         }
@@ -142,11 +181,11 @@ export const usePanGesture = (
       .onEnd((event) => {
         'worklet'
 
-        const isAtScrollTop = scrollY.value <= 0
-        const isFlickedDown = event.velocityY > 500
+        const isAtScrollTop = scrollY.value <= SCROLL_Y_TOP_THRESHOLD
+        const isFlickedDown = event.velocityY > FLICK_VELOCITY_THRESHOLD
 
         if (isFlickedDown && isAtScrollTop) {
-          // Scroll super fast
+          // Pan down super fast
           runOnJS(closeRefCurrent)()
           return
         }
@@ -176,7 +215,7 @@ export const usePanGesture = (
         if (curTranslateY > maxSnapPlusHalf) {
           // If the bottom sheet is close to closed position, snap more than halfway
           runOnJS(closeRefCurrent)()
-        } else {
+        } else if (!floatMode.value) {
           // Snap back to rest state
           translateY.value = withSpring(closestSnap, {
             velocity: event.velocityY,
@@ -196,9 +235,11 @@ export const usePanGesture = (
     translateY,
     lastTranslationY,
     scrollY,
-    isTouchingScrollView,
+    isScrolling,
+    overdragSnapMode,
     snapTranslateYs,
     sheetHeight,
+    floatMode,
   ])
 
   // MARK: Effects
@@ -218,7 +259,11 @@ export const usePanGesture = (
         return
       }
 
-      const isSheetAtRest = prepared.translateY <= 0
+      const isSheetAtRest = isApproxEqual(
+        prepared.translateY,
+        0,
+        TRANSLATE_Y_REST_THRESHOLD,
+      )
 
       if (isSheetAtRest) {
         unlockScroll()
@@ -228,5 +273,5 @@ export const usePanGesture = (
     },
   )
 
-  return panGesture
+  return getPanGesture
 }

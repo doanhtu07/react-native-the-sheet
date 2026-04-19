@@ -21,11 +21,23 @@ const BottomSheetContext = createContext<BottomSheetContextType | undefined>(
 )
 
 export function BottomSheet({
-  snapPoints,
-  fill,
+  snapPoints = [],
+  floatMode = false,
+  overdragSnapMode = false,
+  fill = false,
   styles: propStyles,
   children,
 }: Readonly<BottomSheetProps>) {
+  // MARK: Catch exceptions
+
+  if (overdragSnapMode && snapPoints.length === 0) {
+    throw new Error(
+      'react-native-the-sheet - src/bottom-sheet/bottom-sheet.tsx - overdragSnapMode cannot be enabled without snap points',
+    )
+  }
+
+  // MARK: Artifacts
+
   const theme = useColorScheme()
   const { height: screenHeight } = useWindowDimensions()
 
@@ -37,7 +49,7 @@ export function BottomSheet({
   // Normalize snap points into numbers
   const normalizedSnaps = useBridgedValue(
     useMemo(() => {
-      if (!snapPoints || snapPoints.length === 0) return []
+      if (snapPoints.length === 0) return []
 
       return snapPoints
         .map((point) => {
@@ -56,7 +68,7 @@ export function BottomSheet({
     const snaps = normalizedSnaps.value
     if (snaps.length === 0) return [0]
 
-    // We have established snapPoints is not empty
+    // We have established snaps is not empty
     const maxSnapPoint = snaps.at(-1)!
 
     return snaps.map((point) => maxSnapPoint - point)
@@ -84,25 +96,28 @@ export function BottomSheet({
     Animated.ScrollView | Animated.FlatList
   >()
   const isScrollViewReady = useSharedValue(false)
-  const isTouchingScrollView = useSharedValue(false)
+  const isScrolling = useSharedValue<0 | 1>(0)
   const scrollY = useSharedValue(0)
 
   const excludePanGestureContext = useMemo<
-    Omit<BottomSheetContextType, 'panGesture'>
+    Omit<BottomSheetContextType, 'getPanGesture'>
   >(() => {
     return {
+      overdragSnapMode,
+
       sheetHeight,
       snapTranslateYs,
       translateY,
 
       scrollViewRef,
       isScrollViewReady,
-      isTouchingScrollView,
+      isScrolling,
       scrollY,
     }
   }, [
     isScrollViewReady,
-    isTouchingScrollView,
+    isScrolling,
+    overdragSnapMode,
     scrollViewRef,
     scrollY,
     sheetHeight,
@@ -110,26 +125,44 @@ export function BottomSheet({
     translateY,
   ])
 
-  const panGesture = usePanGesture(excludePanGestureContext)
+  const getPanGesture = usePanGesture({
+    excludePanGestureContext,
+    floatMode,
+  })
 
   const contextValue = useMemo<BottomSheetContextType>(() => {
     return {
       ...excludePanGestureContext,
-      panGesture,
+      getPanGesture,
     }
-  }, [excludePanGestureContext, panGesture])
+  }, [excludePanGestureContext, getPanGesture])
 
   // MARK: Preparation
 
   const animatedStyle = useAnimatedStyle(() => {
     'worklet'
+
+    const maxSnap = normalizedSnaps.value.at(-1)
+
+    // Snap points defined
+
+    if (maxSnap) {
+      const overDrag = Math.min(0, translateY.value) // will be negative
+
+      return {
+        height: maxSnap - overDrag,
+        transform: [{ translateY: Math.max(0, translateY.value) }],
+      }
+    }
+
+    // Dynamic sizing
+
     return {
-      height: normalizedSnaps.value.at(-1),
       transform: [{ translateY: translateY.value }],
     }
   })
 
-  const applyFillStyle = fill && (!snapPoints || snapPoints.length === 0)
+  const applyFillStyle = fill && snapPoints.length === 0
 
   // MARK: Renderers
 

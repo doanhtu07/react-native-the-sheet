@@ -19,20 +19,25 @@ export type BottomSheetHandleProps = {
 type SnapPoint = number | `${number}%`
 
 export type BottomSheetContextType = {
+  overdragSnapMode: boolean
+
   sheetHeight: SharedValue<number>
   snapTranslateYs: SharedValue<number[]>
   translateY: SharedValue<number>
 
   scrollViewRef: AnimatedRef<Animated.ScrollView | Animated.FlatList>
   isScrollViewReady: SharedValue<boolean>
-  isTouchingScrollView: SharedValue<boolean>
+  isScrolling: SharedValue<0 | 1>
   scrollY: SharedValue<number>
 
-  panGesture: PanGesture
+  getPanGesture: () => PanGesture
 }
 
 export type BottomSheetProps = PropsWithChildren & {
   snapPoints?: SnapPoint[]
+  floatMode?: boolean
+  overdragSnapMode?: boolean
+
   fill?: boolean
 
   styles?: {

@@ -1,52 +1,29 @@
-import Animated, {
-  useAnimatedScrollHandler,
-  type AnimatedRef,
-} from 'react-native-reanimated'
+import Animated, { type AnimatedRef } from 'react-native-reanimated'
 import { useBottomSheet } from './bottom-sheet'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import type { BottomSheetFlatListProps } from './types'
-import { StyleSheet, type LayoutChangeEvent } from 'react-native'
+import { StyleSheet } from 'react-native'
+import { useMemo } from 'react'
+import { useScrollViewUtils } from './hooks/use-scroll-view-utils'
 
 export function BottomSheetFlatList<T>({
   onLayout: propOnLayout,
+  onTouchStart: propOnTouchStart,
+  onTouchEnd: propOnTouchEnd,
   fill,
   styles: propStyles,
   ...rest
 }: Readonly<BottomSheetFlatListProps<T>>) {
-  const {
-    scrollViewRef,
-    isScrollViewReady,
-    isTouchingScrollView,
-    scrollY,
-    panGesture,
-  } = useBottomSheet()
+  const { scrollViewRef, getPanGesture } = useBottomSheet()
 
-  const onLayout = (event: LayoutChangeEvent) => {
-    'worklet'
+  const panGesture = useMemo(() => {
+    return getPanGesture()
+  }, [getPanGesture])
 
-    if (propOnLayout) {
-      const resolvedOnLayout =
-        typeof propOnLayout === 'function' ? propOnLayout : propOnLayout.value
-
-      resolvedOnLayout?.(event)
-    }
-
-    isScrollViewReady.value = true
-  }
-
-  const onScroll = useAnimatedScrollHandler({
-    onScroll: (event) => {
-      'worklet'
-      scrollY.value = event.contentOffset.y
-    },
-    onBeginDrag: () => {
-      'worklet'
-      isTouchingScrollView.value = true
-    },
-    onEndDrag: () => {
-      'worklet'
-      isTouchingScrollView.value = false
-    },
+  const { onLayout, onTouchStart, onTouchEnd, onScroll } = useScrollViewUtils({
+    onLayout: propOnLayout,
+    onTouchStart: propOnTouchStart,
+    onTouchEnd: propOnTouchEnd,
   })
 
   return (
@@ -60,6 +37,8 @@ export function BottomSheetFlatList<T>({
         bounces={false} // iOS bounce ruins the scrollY <= 0 check
         onLayout={onLayout}
         onScroll={onScroll}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
       />
     </GestureDetector>
   )

@@ -102,6 +102,20 @@ export default function Index() {
         }}
       />
 
+      <Button
+        title="Example Bottom Sheet (Float Mode)"
+        onPress={() => {
+          router.push('/example-bottom-sheet-float-mode')
+        }}
+      />
+
+      <Button
+        title="Example Bottom Sheet (Overdrag Mode)"
+        onPress={() => {
+          router.push('/example-bottom-sheet-overdrag-mode')
+        }}
+      />
+
       {/* MARK: Bottom Sheet View Types */}
 
       <Text style={styles.header}>Bottom Sheet View Types</Text>
@@ -135,6 +149,17 @@ export default function Index() {
         title="Example Bottom Sheet + Navigator"
         onPress={() => {
           router.push('/example-bottom-sheet-with-navigator')
+        }}
+      />
+
+      {/* MARK: Bottom Sheet + Keyboard */}
+
+      <Text style={styles.header}>Bottom Sheet + Keyboard</Text>
+
+      <Button
+        title="Example Bottom Sheet + Keyboard"
+        onPress={() => {
+          router.push('/example-bottom-sheet-with-keyboard')
         }}
       />
 

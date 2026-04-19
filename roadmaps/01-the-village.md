@@ -32,6 +32,13 @@
 - [ ] Bottom sheet
   - [x] Free movement
   - [x] Snap points
+  - [x] Float mode
+    - Does not strictly require snap points
+    - Can be dragged anywhere
+    - Could go beyond max snap point if used with overdrag snap mode
+  - [x] Overdrag snap mode
+    - Need at least 1 snap point
+    - Allow overdragging beyond the max snap point
   - [ ] Hide, present, snap to index, move to position
 
 - [x] Bottom sheet handle
@@ -56,5 +63,7 @@
 
 ---
 
-- [ ] Keyboard view
+- [x] Keyboard expander
   - Get keyboard height and animate expanding/shrinking height gradually
+  - Conditions to disable expanding
+    - Maybe the input position is already higher than the keyboard height?

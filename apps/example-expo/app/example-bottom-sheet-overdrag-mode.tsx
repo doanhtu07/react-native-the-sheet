@@ -1,36 +1,23 @@
-import React, { Fragment, useState } from 'react'
+import { Fragment, useState } from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-} from 'react-native-reanimated'
 import {
+  Backdrop,
   BottomSheet,
   BottomSheetHandle,
-  BottomSheetPositionTracker,
   BottomSheetPresenter,
+  BottomSheetScrollView,
   BottomSheetView,
   SheetStackItem,
 } from 'react-native-the-sheet'
 import { Portal } from 'react-native-universe-portal'
 
-export default function ExampleAboveBottomSheetView() {
+export default function ExampleBottomSheetOverdragMode() {
   const [isOpenA, setIsOpenA] = useState(false)
-
-  const bottomSheetVisibleHeight = useSharedValue(0)
-
-  const animatedSpacerStyle = useAnimatedStyle(() => {
-    return {
-      paddingBottom: bottomSheetVisibleHeight.value,
-    }
-  })
-
-  // MARK: Renderers
 
   const renderContent = () => {
     return (
       <Fragment>
-        {Array.from({ length: 20 }).map((_, index) => (
+        {Array.from({ length: 50 }).map((_, index) => (
           <Text key={index}>Item {index + 1}</Text>
         ))}
       </Fragment>
@@ -39,13 +26,12 @@ export default function ExampleAboveBottomSheetView() {
 
   return (
     <View style={styles.root}>
-      <Text style={styles.header}>Example Above Bottom Sheet View</Text>
+      <Text style={styles.header}>Example Bottom Sheet (Overdrag Mode)</Text>
 
-      <Button title="Open Sheet A" onPress={() => setIsOpenA(true)} />
-
-      <Animated.View style={[styles.topView, animatedSpacerStyle]}>
-        <View style={styles.redSpan} />
-      </Animated.View>
+      <Button
+        title="Open Sheet A (Snap points)"
+        onPress={() => setIsOpenA(true)}
+      />
 
       <Portal hostName="root">
         <SheetStackItem
@@ -54,21 +40,22 @@ export default function ExampleAboveBottomSheetView() {
           waitForFullyExit
           testID="sheetA"
         >
+          <Backdrop />
+
           <BottomSheetPresenter>
             <BottomSheet snapPoints={['60%']} overdragSnapMode>
-              <BottomSheetPositionTracker
-                trackBottomSheetVisibleHeight={bottomSheetVisibleHeight}
-              />
-
               <BottomSheetHandle />
 
-              <BottomSheetView>
+              <BottomSheetView fill>
                 <Text>Sheet A</Text>
                 <Button
                   title="Close Sheet A"
                   onPress={() => setIsOpenA(false)}
                 />
-                {renderContent()}
+
+                <BottomSheetScrollView fill>
+                  {renderContent()}
+                </BottomSheetScrollView>
               </BottomSheetView>
             </BottomSheet>
           </BottomSheetPresenter>
@@ -85,18 +72,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '500',
   },
-  redSpan: {
-    backgroundColor: 'red',
-    borderRadius: 16,
-    height: '100%',
-    width: '100%',
-  },
   root: {
     flex: 1,
     gap: 8,
     padding: 16,
-  },
-  topView: {
-    flex: 1,
   },
 })
