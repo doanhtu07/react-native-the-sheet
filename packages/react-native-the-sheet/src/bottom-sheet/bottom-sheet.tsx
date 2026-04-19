@@ -36,8 +36,8 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
   function BottomSheetCore(
     {
       snapPoints = [],
-      floatMode = false,
-      overdragSnapMode = false,
+      enableFloat = false,
+      enableOverdrag = false,
       fill = false,
       styles: propStyles,
       children,
@@ -46,9 +46,9 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
   ) {
     // MARK: Catch exceptions
 
-    if (overdragSnapMode && snapPoints.length === 0) {
+    if (enableOverdrag && snapPoints.length === 0) {
       throw new Error(
-        'react-native-the-sheet - src/bottom-sheet/bottom-sheet.tsx - overdragSnapMode cannot be enabled without snap points',
+        'react-native-the-sheet - src/bottom-sheet/bottom-sheet.tsx - enableOverdrag cannot be enabled without snap points',
       )
     }
 
@@ -126,7 +126,7 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
       Omit<BottomSheetContextType, 'getPanGesture'>
     >(() => {
       return {
-        overdragSnapMode,
+        enableOverdrag,
 
         sheetHeight,
         snapTranslateYs,
@@ -140,7 +140,7 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
     }, [
       isScrollViewReady,
       isScrolling,
-      overdragSnapMode,
+      enableOverdrag,
       scrollViewRef,
       scrollY,
       sheetHeight,
@@ -150,7 +150,7 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
 
     const getPanGesture = usePanGesture({
       excludePanGestureContext,
-      floatMode,
+      enableFloat,
     })
 
     const contextValue = useMemo<BottomSheetContextType>(() => {

@@ -43,7 +43,7 @@ export default function ExampleBottomSheetOverdragMode() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheet snapPoints={['60%']} overdragSnapMode>
+            <BottomSheet snapPoints={['60%']} enableOverdrag>
               <BottomSheetHandle />
 
               <BottomSheetView fill>

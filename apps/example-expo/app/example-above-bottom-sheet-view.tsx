@@ -55,7 +55,7 @@ export default function ExampleAboveBottomSheetView() {
           testID="sheetA"
         >
           <BottomSheetPresenter>
-            <BottomSheet snapPoints={['60%']} overdragSnapMode>
+            <BottomSheet snapPoints={['60%']} enableOverdrag>
               <BottomSheetPositionTracker
                 trackBottomSheetVisibleHeight={bottomSheetVisibleHeight}
               />

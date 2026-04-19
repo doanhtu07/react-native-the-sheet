@@ -41,8 +41,8 @@
   - [x] Float mode
     - Does not strictly require snap points
     - Can be dragged anywhere
-    - Could go beyond max snap point if used with overdrag snap mode
-  - [x] Overdrag snap mode
+    - Could go beyond max snap point if used with overdrag mode
+  - [x] Overdrag mode
     - Need at least 1 snap point
     - Allow overdragging beyond the max snap point
   - [x] Ref API: snap to index, snap to position

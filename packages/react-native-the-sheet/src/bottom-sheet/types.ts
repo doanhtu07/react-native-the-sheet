@@ -19,7 +19,7 @@ export type BottomSheetHandleProps = {
 type SnapPoint = number | `${number}%`
 
 export type BottomSheetContextType = {
-  overdragSnapMode: boolean
+  enableOverdrag: boolean
 
   sheetHeight: SharedValue<number>
   snapTranslateYs: SharedValue<number[]>
@@ -35,8 +35,8 @@ export type BottomSheetContextType = {
 
 export type BottomSheetProps = PropsWithChildren & {
   snapPoints?: SnapPoint[]
-  floatMode?: boolean
-  overdragSnapMode?: boolean
+  enableFloat?: boolean
+  enableOverdrag?: boolean
 
   fill?: boolean
 

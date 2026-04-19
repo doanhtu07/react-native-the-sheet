@@ -9,13 +9,13 @@ export function useBottomSheetPositionTracker() {
     useBottomSheetPresenter()
 
   const {
-    overdragSnapMode: propOverdragSnapMode,
+    enableOverdrag: propEnableOverdrag,
     sheetHeight,
     translateY: bottomSheetTranslateY,
   } = useBottomSheet()
 
   const bottomSheetVisibleHeight = useSharedValue(0)
-  const overdragSnapMode = useBridgedValue(propOverdragSnapMode)
+  const enableOverdrag = useBridgedValue(propEnableOverdrag)
 
   useAnimatedReaction(
     () => {
@@ -23,14 +23,14 @@ export function useBottomSheetPositionTracker() {
         bottomSheetPresenterTranslateY: bottomSheetPresenterTranslateY.value,
         bottomSheetTranslateY: bottomSheetTranslateY.value,
         sheetHeight: sheetHeight.value,
-        overdragSnapMode: overdragSnapMode.value,
+        enableOverdrag: enableOverdrag.value,
       }
     },
     (prepared) => {
       const total = prepared.sheetHeight
       const pY = prepared.bottomSheetPresenterTranslateY
 
-      const bY = prepared.overdragSnapMode
+      const bY = prepared.enableOverdrag
         ? // Clamp negative translateY since bottom sheet height already absorbs it
           Math.max(0, prepared.bottomSheetTranslateY)
         : prepared.bottomSheetTranslateY

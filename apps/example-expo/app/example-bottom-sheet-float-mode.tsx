@@ -48,7 +48,7 @@ export default function ExampleBottomSheetFloatMode() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheet floatMode styles={{ root: { height: '70%' } }}>
+            <BottomSheet styles={{ root: { height: '70%' } }} enableFloat>
               <BottomSheetHandle />
 
               <BottomSheetView>
@@ -74,7 +74,7 @@ export default function ExampleBottomSheetFloatMode() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheet snapPoints={['20%', '70%']} floatMode>
+            <BottomSheet snapPoints={['20%', '70%']} enableFloat>
               <BottomSheetHandle />
 
               <BottomSheetView>

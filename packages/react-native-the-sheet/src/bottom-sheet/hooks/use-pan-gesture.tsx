@@ -20,7 +20,7 @@ const FLICK_VELOCITY_THRESHOLD = 500
 
 type Props = {
   excludePanGestureContext: Omit<BottomSheetContextType, 'getPanGesture'>
-  floatMode: boolean
+  enableFloat: boolean
 }
 
 /**
@@ -55,10 +55,10 @@ type Props = {
  */
 export const usePanGesture = ({
   excludePanGestureContext,
-  floatMode: propFloatMode,
+  enableFloat: propEnableFloat,
 }: Props) => {
   const {
-    overdragSnapMode: propOverdragSnapMode,
+    enableOverdrag: propEnableOverdrag,
     sheetHeight,
     snapTranslateYs,
     translateY,
@@ -71,8 +71,8 @@ export const usePanGesture = ({
   const { close } = useSheetStackItem()
   const closeRef = useSyncedRef(close)
 
-  const floatMode = useBridgedValue(propFloatMode)
-  const overdragSnapMode = useBridgedValue(propOverdragSnapMode)
+  const enableFloat = useBridgedValue(propEnableFloat)
+  const enableOverdrag = useBridgedValue(propEnableOverdrag)
 
   const isGestureActive = useSharedValue(false)
 
@@ -171,9 +171,9 @@ export const usePanGesture = ({
             nextValue = 0
           }
 
-          translateY.value = overdragSnapMode.value
+          translateY.value = enableOverdrag.value
             ? nextValue
-            : Math.max(0, nextValue) // Prevent overdrag if overdragSnapMode is disabled
+            : Math.max(0, nextValue) // Prevent overdrag if enableOverdrag is disabled
         } else {
           unlockScrollRefCurrent()
         }
@@ -215,7 +215,7 @@ export const usePanGesture = ({
         if (curTranslateY > maxSnapPlusHalf) {
           // If the bottom sheet is close to closed position, snap more than halfway
           runOnJS(closeRefCurrent)()
-        } else if (!floatMode.value) {
+        } else if (!enableFloat.value) {
           // Snap back to rest state
           translateY.value = withSpring(closestSnap, {
             velocity: event.velocityY,
@@ -236,10 +236,10 @@ export const usePanGesture = ({
     lastTranslationY,
     scrollY,
     isScrolling,
-    overdragSnapMode,
+    enableOverdrag,
     snapTranslateYs,
     sheetHeight,
-    floatMode,
+    enableFloat,
   ])
 
   // MARK: Effects
