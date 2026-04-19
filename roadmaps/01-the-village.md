@@ -1,6 +1,7 @@
 ## Chapter 1: The Village
 
 - [ ] Support both Reanimated v3 and v4
+  - [ ] Reanimated compat export layer
 
 ---
 

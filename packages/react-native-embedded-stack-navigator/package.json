@@ -104,14 +104,6 @@
       ]
     ]
   },
-  "codegenConfig": {
-    "name": "EmbeddedStackNavigatorSpec",
-    "type": "modules",
-    "jsSrcsDir": "src",
-    "android": {
-      "javaPackageName": "com.embeddedstacknavigator"
-    }
-  },
   "jest": {
     "preset": "@react-native/jest-preset",
     "modulePathIgnorePatterns": [

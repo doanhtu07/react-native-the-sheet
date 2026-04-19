@@ -1,0 +1,10 @@
+{
+  "codegenConfig": {
+    "name": "TheSheetSpec",
+    "type": "modules",
+    "jsSrcsDir": "src",
+    "android": {
+      "javaPackageName": "com.thesheet"
+    }
+  }
+}

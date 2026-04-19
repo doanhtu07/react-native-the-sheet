@@ -104,14 +104,6 @@
       ]
     ]
   },
-  "codegenConfig": {
-    "name": "UniversePortalSpec",
-    "type": "modules",
-    "jsSrcsDir": "src",
-    "android": {
-      "javaPackageName": "com.universeportal"
-    }
-  },
   "jest": {
     "preset": "@react-native/jest-preset",
     "modulePathIgnorePatterns": [

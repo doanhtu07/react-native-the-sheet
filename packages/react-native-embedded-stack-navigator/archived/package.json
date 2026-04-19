@@ -1,0 +1,10 @@
+{
+  "codegenConfig": {
+    "name": "EmbeddedStackNavigatorSpec",
+    "type": "modules",
+    "jsSrcsDir": "src",
+    "android": {
+      "javaPackageName": "com.embeddedstacknavigator"
+    }
+  }
+}

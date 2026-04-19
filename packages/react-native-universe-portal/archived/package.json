@@ -1,0 +1,10 @@
+{
+  "codegenConfig": {
+    "name": "UniversePortalSpec",
+    "type": "modules",
+    "jsSrcsDir": "src",
+    "android": {
+      "javaPackageName": "com.universeportal"
+    }
+  }
+}
