@@ -116,6 +116,13 @@ export default function Index() {
         }}
       />
 
+      <Button
+        title="Example Bottom Sheet (Disable Drag)"
+        onPress={() => {
+          router.push('/example-bottom-sheet-disable-drag')
+        }}
+      />
+
       {/* MARK: Bottom Sheet View Types */}
 
       <Text style={styles.header}>Bottom Sheet View Types</Text>

@@ -37,6 +37,7 @@ export type BottomSheetProps = PropsWithChildren & {
   snapPoints?: SnapPoint[]
   enableFloat?: boolean
   enableOverdrag?: boolean
+  disableDrag?: boolean
 
   fill?: boolean
 

@@ -21,6 +21,7 @@ const FLICK_VELOCITY_THRESHOLD = 500
 type Props = {
   excludePanGestureContext: Omit<BottomSheetContextType, 'getPanGesture'>
   enableFloat: boolean
+  disableDrag: boolean
 }
 
 /**
@@ -56,6 +57,7 @@ type Props = {
 export const usePanGesture = ({
   excludePanGestureContext,
   enableFloat: propEnableFloat,
+  disableDrag: propDisableDrag,
 }: Props) => {
   const {
     enableOverdrag: propEnableOverdrag,
@@ -73,6 +75,7 @@ export const usePanGesture = ({
 
   const enableFloat = useBridgedValue(propEnableFloat)
   const enableOverdrag = useBridgedValue(propEnableOverdrag)
+  const disableDrag = useBridgedValue(propDisableDrag)
 
   const isGestureActive = useSharedValue(false)
 
@@ -158,9 +161,10 @@ export const usePanGesture = ({
         }
 
         if (
-          !isSheetAtRest || // Sheet not at rest
-          isScrolling.value === 0 || // No scroll mode
-          (isScrolling.value > 0 && isScrollAtTop && deltaY > 0) // Scroll mode + Pan down
+          !disableDrag.value &&
+          (!isSheetAtRest || // Sheet not at rest
+            isScrolling.value === 0 || // No scroll mode
+            (isScrolling.value > 0 && isScrollAtTop && deltaY > 0)) // Scroll mode + Pan down
         ) {
           lockScrollRefCurrent()
 
@@ -218,8 +222,6 @@ export const usePanGesture = ({
         } else if (!enableFloat.value) {
           // Snap back to rest state
           translateY.value = withSpring(closestSnap, {
-            velocity: event.velocityY,
-
             overshootClamping: true,
             damping: 20,
             stiffness: 200,
@@ -241,6 +243,7 @@ export const usePanGesture = ({
     lastTranslationY,
     scrollY,
     isScrolling,
+    disableDrag,
     enableOverdrag,
     snapTranslateYs,
     sheetHeight,

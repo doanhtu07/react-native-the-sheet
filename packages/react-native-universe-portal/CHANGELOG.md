@@ -1,5 +1,11 @@
 # react-native-universe-portal
 
+## 2.0.3
+
+### Patch Changes
+
+- Add disableDrag to BottomSheet
+
 ## 2.0.2
 
 ### Patch Changes

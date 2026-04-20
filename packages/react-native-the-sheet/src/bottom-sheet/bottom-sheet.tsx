@@ -38,6 +38,7 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
       snapPoints = [],
       enableFloat = false,
       enableOverdrag = false,
+      disableDrag = false,
       fill = false,
       styles: propStyles,
       children,
@@ -151,6 +152,7 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
     const getPanGesture = usePanGesture({
       excludePanGestureContext,
       enableFloat,
+      disableDrag,
     })
 
     const contextValue = useMemo<BottomSheetContextType>(() => {
