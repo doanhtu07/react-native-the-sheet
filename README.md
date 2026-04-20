@@ -1,5 +1,7 @@
 # react-native-the-sheet
 
+[![Reanimated v3 version](https://img.shields.io/github/package-json/v/doanhtu07/react-native-the-sheet/main?filename=packages/react-native-the-sheet/package.json&label=Reanimated%20v3&style=flat-square)](https://github.com/doanhtu07/react-native-the-sheet) [![Reanimated v2 version](https://img.shields.io/github/package-json/v/doanhtu07/react-native-the-sheet/v1?filename=packages/react-native-the-sheet/package.json&label=Reanimated%20v2&style=flat-square)](https://github.com/doanhtu07/react-native-the-sheet/tree/v1) [![license](https://img.shields.io/npm/l/@gorhom/bottom-sheet?style=flat-square)]()
+
 This is the sheet for React Native! - excluding Web
 
 A modular bottom sheet library built on top of React Native Reanimated and React Native Gesture Handler
@@ -11,17 +13,6 @@ You can DIY some certain aspects using the building blocks and hooks we have
 - Embedded Stack Navigator: https://www.npmjs.com/package/react-native-embedded-stack-navigator/v/1.0.0
 - Universe Portal: https://www.npmjs.com/package/react-native-universe-portal/v/1.0.0
 - The Sheet: https://www.npmjs.com/package/react-native-the-sheet/v/1.0.0
-
-## Roadmaps
-
-I don't plan to support Web for a couple of reasons:
-
-1. Bottom sheets on web are usually not the right UX choice
-2. Web leans towards popups/modals which can be implemented much simpler with CSS and libraries like https://motion.dev
-
----
-
-- [Chapter 1: The Village](./roadmaps/01-the-village.md)
 
 ## Components
 
@@ -92,11 +83,16 @@ Note: You can use `apps/example-expo/scripts/expo-packages-check.ts` to check th
 
 - Anything is fine as long as it works with React Native
 
-## Resources
+## Roadmaps
 
-- [Create React Native Module](./docs/resources/create-react-native-module.md)
-- [React Native Module Codegen](./docs/resources/react-native-module-codegen.md)
-- [Expo Android Notes](./docs/resources/expo-android-notes.md)
+I don't plan to support Web for a couple of reasons:
+
+1. Bottom sheets on web are usually not the right UX choice
+2. Web leans towards popups/modals which can be implemented much simpler with CSS and libraries like https://motion.dev
+
+---
+
+- [Chapter 1: The Village](./roadmaps/01-the-village.md)
 
 ## Inspiration
 
@@ -107,3 +103,9 @@ Thank you to all the open source projects that inspired this project:
 ## Contributing
 
 - Check out notes on contributing: [CONTRIBUTING.md](./CONTRIBUTING.md)
+
+## Resources
+
+- [Create React Native Module](./docs/resources/create-react-native-module.md)
+- [React Native Module Codegen](./docs/resources/react-native-module-codegen.md)
+- [Expo Android Notes](./docs/resources/expo-android-notes.md)
