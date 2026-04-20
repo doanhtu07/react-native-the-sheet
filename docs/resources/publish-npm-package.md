@@ -4,9 +4,11 @@
 
 1. `npm login`
 
-2. `pnpm changeset publish`
+2. `pnpm changeset` + `pnpm changeset version` (Optional)
 
-3. `git tag` + `git push --tags`
+3. `pnpm changeset publish`
+
+4. `git tag` + `git push --tags`
 
 ## Publish through Github Actions
 

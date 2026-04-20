@@ -1,26 +1,16 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Animated, StyleSheet, View } from 'react-native'
-import {
-  MiniStackNavigationContext,
-  type MiniStackNavigationApi,
-  type MiniStackRoute,
-} from './context'
-import { StackScreen } from './stack-screen'
-import type { ScreenRenderer, TransitionType } from './types'
+import { EmbeddedStackScreen } from './stack-screen'
+import type {
+  EmbeddedStackNavigationApi,
+  EmbeddedStackNavigatorProps,
+  EmbeddedStackRoute,
+  ScreenRenderer,
+} from './types'
 import { FADE_DURATION_MS, SLIDE_DURATION_MS } from './config'
+import { EmbeddedStackNavigationContext } from './context'
 
-type Props<
-  Screens extends Record<string, ScreenRenderer>,
-  ParamList extends Record<keyof Screens, unknown>,
-  InitialRouteName extends keyof Screens = keyof Screens,
-> = {
-  initialRouteName: InitialRouteName
-  initialParams: ParamList[InitialRouteName]
-  screens: Screens
-  transitionType?: TransitionType
-}
-
-export const MiniStackNavigator = function <
+export const EmbeddedStackNavigator = function <
   Screens extends Record<string, ScreenRenderer>,
   ParamList extends Record<keyof Screens, unknown>,
   InitialRouteName extends keyof Screens = keyof Screens,
@@ -29,11 +19,11 @@ export const MiniStackNavigator = function <
   initialParams,
   screens,
   transitionType = 'slide',
-}: Props<Screens, ParamList, InitialRouteName>) {
+}: EmbeddedStackNavigatorProps<Screens, ParamList, InitialRouteName>) {
   const isMountedRef = useRef(false)
   const fadeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  const [stack, setStack] = useState<MiniStackRoute[]>([
+  const [stack, setStack] = useState<EmbeddedStackRoute[]>([
     {
       key: `${String(initialRouteName)}_${Date.now()}`,
       name: String(initialRouteName),
@@ -56,19 +46,22 @@ export const MiniStackNavigator = function <
     translateX.current.setValue(toValue)
   }, [])
 
-  const slideTo = useCallback((toValue: number, newStack: MiniStackRoute[]) => {
-    Animated.timing(translateX.current, {
-      toValue,
-      duration: SLIDE_DURATION_MS,
-      useNativeDriver: true,
-    }).start(({ finished }) => {
-      if (finished && isMountedRef.current) {
-        setStack(newStack)
-      }
-    })
-  }, [])
+  const slideTo = useCallback(
+    (toValue: number, newStack: EmbeddedStackRoute[]) => {
+      Animated.timing(translateX.current, {
+        toValue,
+        duration: SLIDE_DURATION_MS,
+        useNativeDriver: true,
+      }).start(({ finished }) => {
+        if (finished && isMountedRef.current) {
+          setStack(newStack)
+        }
+      })
+    },
+    [],
+  )
 
-  const fadeTo = useCallback((newStack: MiniStackRoute[]) => {
+  const fadeTo = useCallback((newStack: EmbeddedStackRoute[]) => {
     fadeTimeoutRef.current = setTimeout(() => {
       if (!isMountedRef.current) return
       setStack(newStack)
@@ -87,7 +80,7 @@ export const MiniStackNavigator = function <
 
       setStack((prev) => {
         const existingIdx = prev.findIndex((route) => route.name === name)
-        let newStack: MiniStackRoute[]
+        let newStack: EmbeddedStackRoute[]
 
         if (existingIdx === -1) {
           // Not found - push new route
@@ -285,8 +278,8 @@ export const MiniStackNavigator = function <
   // MARK: Renderers
 
   return (
-    <MiniStackNavigationContext.Provider
-      value={navigation as MiniStackNavigationApi}
+    <EmbeddedStackNavigationContext.Provider
+      value={navigation as EmbeddedStackNavigationApi}
     >
       <View
         style={styles.root}
@@ -305,7 +298,7 @@ export const MiniStackNavigator = function <
           ]}
         >
           {stack.map((route, idx) => (
-            <StackScreen
+            <EmbeddedStackScreen
               key={route.key}
               screens={screens}
               transitionType={transitionType}
@@ -319,7 +312,7 @@ export const MiniStackNavigator = function <
           ))}
         </Animated.View>
       </View>
-    </MiniStackNavigationContext.Provider>
+    </EmbeddedStackNavigationContext.Provider>
   )
 }
 

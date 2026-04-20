@@ -16,7 +16,7 @@ This lists all the components available in the library and their usage hierarchy
 
 ---
 
-- `MiniStackNavigator` (Standalone component that can be used inside anything as long as it makes sense)
+- `EmbeddedStackNavigator` (Standalone component that can be used inside anything as long as it makes sense)
 
 ## `flex: 1` note
 
@@ -33,7 +33,7 @@ A few observations I've seen:
 
 ---
 
-2. If you use `MiniStackNavigator` (which needs `flex: 1`), you need to apply `flex: 1` on bottom sheet components as well like above
+2. If you use `EmbeddedStackNavigator` (which needs `flex: 1`), you need to apply `flex: 1` on bottom sheet components as well like above
 
 ---
 

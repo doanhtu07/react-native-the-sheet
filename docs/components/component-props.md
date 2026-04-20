@@ -212,7 +212,7 @@ styles?: {
 }
 ```
 
-## MiniStackNavigator
+## EmbeddedStackNavigator
 
 | Prop name          | Type                             | Required | Default | Description                                         |
 | ------------------ | -------------------------------- | -------- | ------- | --------------------------------------------------- |

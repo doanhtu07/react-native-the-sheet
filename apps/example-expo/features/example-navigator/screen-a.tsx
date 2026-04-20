@@ -1,9 +1,9 @@
 import { Button, StyleSheet, Text, View } from 'react-native'
-import { useMiniStackNavigation } from 'react-native-embedded-stack-navigator'
 import { RouteParamList } from './types'
+import { useEmbeddedStackNavigation } from 'react-native-embedded-stack-navigator'
 
 export function ScreenA() {
-  const navigation = useMiniStackNavigation<RouteParamList>()
+  const navigation = useEmbeddedStackNavigation<RouteParamList>()
 
   return (
     <View style={styles.root}>
