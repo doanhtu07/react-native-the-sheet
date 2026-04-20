@@ -1,4 +1,4 @@
-# Components List
+# Component List
 
 This lists all the components available in the library and their usage hierarchy:
 

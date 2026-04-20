@@ -30,6 +30,7 @@ You can DIY some certain aspects using the building blocks and hooks we have
 Components supported by our library:
 
 - [Component List](./docs/components/component-list.md)
+- [Component Props](./docs/components/component-props.md)
 
 ## Compatibility
 
