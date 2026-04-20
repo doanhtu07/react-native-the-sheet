@@ -6,6 +6,12 @@ A modular bottom sheet library built on top of React Native Reanimated and React
 
 You can DIY some certain aspects using the building blocks and hooks we have
 
+## NPM packages
+
+- Embedded Stack Navigator: https://www.npmjs.com/package/react-native-embedded-stack-navigator/v/1.0.0
+- Universe Portal: https://www.npmjs.com/package/react-native-universe-portal/v/1.0.0
+- The Sheet: https://www.npmjs.com/package/react-native-the-sheet/v/1.0.0
+
 ## Roadmaps
 
 I don't plan to support Web for a couple of reasons:
