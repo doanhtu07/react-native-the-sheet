@@ -1,6 +1,6 @@
 {
   "main": "expo-router/entry",
-  "name": "expo-template",
+  "name": "example-expo",
   "version": "1.0.0",
   "private": true,
   "scripts": {

@@ -12,16 +12,6 @@
     "clean-deps": "bash ./scripts/clean-deps.sh",
     "prepare": "husky"
   },
-  "lint-staged": {
-    "apps/**/*.{js,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "packages/**/*.{js,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ]
-  },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
     "@commitlint/cli": "^20.5.0",

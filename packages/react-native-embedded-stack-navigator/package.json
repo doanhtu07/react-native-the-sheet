@@ -1,6 +1,6 @@
 {
   "name": "react-native-embedded-stack-navigator",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A stack navigator that can be embedded anywhere",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",

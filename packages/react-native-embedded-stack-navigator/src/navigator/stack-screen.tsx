@@ -5,22 +5,11 @@ import {
   StyleSheet,
   type ViewStyle,
 } from 'react-native'
-import { type MiniStackRoute, MiniStackRouteContext } from './context'
-import type { ScreenRenderer, TransitionType } from './types'
+import type { EmbeddedStackScreenProps } from './types'
 import { FADE_DURATION_MS } from './config'
+import { EmbeddedStackRouteContext } from './context'
 
-type Props = {
-  screens: Record<string, ScreenRenderer>
-  transitionType: TransitionType
-
-  route: MiniStackRoute
-  idx: number
-  stackLength: number
-  rootWidth: number
-  removingScreenName: string | null
-}
-
-export const StackScreen: FC<Props> = ({
+export const EmbeddedStackScreen: FC<EmbeddedStackScreenProps> = ({
   screens,
   transitionType,
   route,
@@ -87,9 +76,9 @@ export const StackScreen: FC<Props> = ({
 
   return (
     <Animated.View style={screenStyle}>
-      <MiniStackRouteContext.Provider value={routeContext}>
+      <EmbeddedStackRouteContext.Provider value={routeContext}>
         {renderScreen?.()}
-      </MiniStackRouteContext.Provider>
+      </EmbeddedStackRouteContext.Provider>
     </Animated.View>
   )
 }

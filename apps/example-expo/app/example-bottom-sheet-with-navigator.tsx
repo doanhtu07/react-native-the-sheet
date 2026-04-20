@@ -4,7 +4,7 @@ import { RouteParamList } from '@/features/example-navigator/types'
 import { useCallback, useMemo, useState } from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
 import {
-  MiniStackNavigator,
+  EmbeddedStackNavigator,
   ScreenRenderer,
 } from 'react-native-embedded-stack-navigator'
 import {
@@ -59,7 +59,11 @@ export default function ExampleBottomSheetPresenter() {
                   onPress={() => setIsOpenA(false)}
                 />
 
-                <MiniStackNavigator<typeof screens, RouteParamList, 'ScreenA'>
+                <EmbeddedStackNavigator<
+                  typeof screens,
+                  RouteParamList,
+                  'ScreenA'
+                >
                   initialRouteName={'ScreenA'}
                   initialParams={undefined}
                   screens={screens}
