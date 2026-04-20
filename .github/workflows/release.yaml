@@ -6,7 +6,7 @@ on:
 # https://docs.npmjs.com/trusted-publishers
 permissions:
   id-token: write # Required for OIDC
-  contents: read
+  contents: write # Required to push tags
 
 jobs:
   release:
@@ -14,6 +14,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0 # IMPORTANT: needed to push tags
+
       - uses: pnpm/action-setup@v6
 
       - uses: actions/setup-node@v4
@@ -26,3 +29,6 @@ jobs:
 
       - name: Publish
         run: pnpm changeset publish
+
+      - name: Push tags
+        run: git push --follow-tags
