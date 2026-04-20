@@ -16,4 +16,6 @@ Release branches (code freeze):
 
 ## Versioning
 
-We will follow lockstep versioning. All packages will share the same version number, which will be bumped up for every release
+We use @changesets/cli for managing versioning and releases
+
+- We will use lockstep versioning for simplicity
