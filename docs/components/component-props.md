@@ -133,6 +133,10 @@ styles?: {
 | ------------------------------- | --------------------- | -------- | ------- | -------------------------------------------- |
 | `trackBottomSheetVisibleHeight` | `SharedValue<number>` | false    | `false` | Track the VISIBLE height of the bottom sheet |
 
+## KeyboardExpander
+
+Automatically expands to make focused inputs visible above the keyboard
+
 ## BottomSheetHandle
 
 | Prop name | Type   | Required | Default     | Description                           |

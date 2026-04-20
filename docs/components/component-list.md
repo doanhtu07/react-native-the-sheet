@@ -13,6 +13,7 @@ This lists all the components available in the library and their usage hierarchy
             - `BottomSheetHandle`
             - `BottomSheetView`
             - `BottomSheetScrollView`, `BottomSheetFlatList` (Could be nested under `BottomSheetView` as well)
+          - `KeyboardExpander`
 
 ---
 
