@@ -1,33 +1,5 @@
 # react-native-the-sheet
 
-This is the sheet for React NativeBottom sheet for React Native
+This is the sheet for React Native!
 
-## Installation
-
-```sh
-npm install react-native-the-sheet
-```
-
-## Usage
-
-```js
-import { multiply } from 'react-native-the-sheet'
-
-// ...
-
-const result = multiply(3, 7)
-```
-
-## Contributing
-
-- [Development workflow](CONTRIBUTING.md#development-workflow)
-- [Sending a pull request](CONTRIBUTING.md#sending-a-pull-request)
-- [Code of conduct](CODE_OF_CONDUCT.md)
-
-## License
-
-MIT
-
----
-
-Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
+Please refer to README.md at https://github.com/doanhtu07/react-native-the-sheet for more details and documentation

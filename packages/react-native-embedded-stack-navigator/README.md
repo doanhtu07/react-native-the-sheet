@@ -2,8 +2,4 @@
 
 A stack navigator that can be embedded anywhere
 
-## Installation
-
-```sh
-npm install react-native-embedded-stack-navigator
-```
+Please refer to README.md at https://github.com/doanhtu07/react-native-the-sheet for more details and documentation
