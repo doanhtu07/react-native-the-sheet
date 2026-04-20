@@ -21,9 +21,9 @@ You can DIY some certain aspects using the building blocks and hooks we have
 
 ## NPM packages
 
-- Embedded Stack Navigator: https://www.npmjs.com/package/react-native-embedded-stack-navigator
-- Universe Portal: https://www.npmjs.com/package/react-native-universe-portal
-- The Sheet: https://www.npmjs.com/package/react-native-the-sheet
+- Embedded Stack Navigator: https://www.npmjs.com/package/react-native-embedded-stack-navigator/v/2.0.2
+- Universe Portal: https://www.npmjs.com/package/react-native-universe-portal/v/2.0.2
+- The Sheet: https://www.npmjs.com/package/react-native-the-sheet/v/2.0.2
 
 ## Components
 
