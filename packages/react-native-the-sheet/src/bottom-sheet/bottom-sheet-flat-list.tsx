@@ -32,7 +32,7 @@ export function BottomSheetFlatList<T>({
     >
       <Animated.FlatList
         {...rest}
-        ref={scrollViewRef as AnimatedRef<Animated.FlatList>}
+        ref={scrollViewRef as AnimatedRef<Animated.FlatList<unknown>>}
         style={[styles.root, fill && styles.fill, propStyles?.root]}
         bounces={false} // iOS bounce ruins the scrollY <= 0 check
         onLayout={onLayout}

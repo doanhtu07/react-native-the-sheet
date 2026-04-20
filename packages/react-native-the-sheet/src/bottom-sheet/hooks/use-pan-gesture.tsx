@@ -1,12 +1,12 @@
 import { useCallback } from 'react'
 import { Gesture } from 'react-native-gesture-handler'
 import {
+  runOnJS,
   scrollTo,
   useAnimatedReaction,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated'
-import { runOnJS } from 'react-native-worklets'
 import { useSyncedRef } from '../../hooks/use-synced-ref'
 import { useSheetStackItem } from '../../sheet-stack'
 import type { BottomSheetContextType } from '../types'
@@ -219,6 +219,11 @@ export const usePanGesture = ({
           // Snap back to rest state
           translateY.value = withSpring(closestSnap, {
             velocity: event.velocityY,
+
+            overshootClamping: true,
+            damping: 20,
+            stiffness: 200,
+            mass: 1,
           })
         }
 

@@ -116,7 +116,7 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
     // MARK: Bottom sheet context
 
     const scrollViewRef = useAnimatedRef<
-      Animated.ScrollView | Animated.FlatList
+      Animated.ScrollView | Animated.FlatList<unknown>
     >()
     const isScrollViewReady = useSharedValue(false)
     const isScrolling = useSharedValue<0 | 1>(0)

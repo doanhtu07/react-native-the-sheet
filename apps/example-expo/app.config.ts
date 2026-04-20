@@ -21,7 +21,7 @@ const config: ExpoConfig = {
       backgroundImage: './assets/images/android-icon-background.png',
       monochromeImage: './assets/images/android-icon-monochrome.png',
     },
-    predictiveBackGestureEnabled: false,
+    edgeToEdgeEnabled: true,
   },
   // "web": {
   //   "output": "static",

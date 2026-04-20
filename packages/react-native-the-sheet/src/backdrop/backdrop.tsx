@@ -19,7 +19,7 @@ export function Backdrop({
 
 const styles = StyleSheet.create({
   root: {
-    ...StyleSheet.absoluteFill,
+    ...StyleSheet.absoluteFillObject,
     backgroundColor: '#1C1F2E',
     opacity: 0.5,
   },

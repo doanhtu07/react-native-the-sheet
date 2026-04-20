@@ -25,7 +25,7 @@ export type BottomSheetContextType = {
   snapTranslateYs: SharedValue<number[]>
   translateY: SharedValue<number>
 
-  scrollViewRef: AnimatedRef<Animated.ScrollView | Animated.FlatList>
+  scrollViewRef: AnimatedRef<Animated.ScrollView | Animated.FlatList<unknown>>
   isScrollViewReady: SharedValue<boolean>
   isScrolling: SharedValue<0 | 1>
   scrollY: SharedValue<number>

@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     pointerEvents: 'none',
   },
   root: {
-    ...StyleSheet.absoluteFill,
+    ...StyleSheet.absoluteFillObject,
     pointerEvents: 'box-none',
   },
 })

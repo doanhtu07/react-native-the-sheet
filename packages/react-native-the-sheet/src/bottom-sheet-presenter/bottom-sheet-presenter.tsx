@@ -6,11 +6,11 @@ import type {
 } from './types'
 import { useSheetStackItem } from '../sheet-stack'
 import Animated, {
+  runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated'
-import { runOnJS } from 'react-native-worklets'
 import { useSyncedRef } from '../hooks/use-synced-ref'
 
 const BottomSheetPresenterContext = createContext<

@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import {
+  runOnUI,
   useAnimatedReaction,
   useSharedValue,
   type SharedValue,
 } from 'react-native-reanimated'
-import { runOnUI } from 'react-native-worklets'
 import { useSyncedRef } from './use-synced-ref'
 
 export function useSyncedSharedValue<T>(

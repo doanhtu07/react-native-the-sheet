@@ -67,7 +67,7 @@
     "@react-native/babel-preset": "0.85.1",
     "@react-native/eslint-config": "0.85.1",
     "@react-native/jest-preset": "0.85.1",
-    "@types/react": "^19.2.0",
+    "@types/react": "~19.0.14",
     "del-cli": "^7.0.0",
     "eslint": "^10.2.0",
     "eslint-config-prettier": "^10.1.8",
@@ -76,11 +76,11 @@
     "jest": "^30.3.0",
     "nodemon": "^3.1.14",
     "prettier": "^3.8.2",
-    "react": "19.2.0",
-    "react-native": "0.83.4",
+    "react": "19.0.0",
+    "react-native": "0.79.6",
     "react-native-builder-bob": "^0.41.0",
     "turbo": "^2.8.21",
-    "typescript": "~5.9.3"
+    "typescript": "~5.8.3"
   },
   "peerDependencies": {
     "react": "*",
