@@ -1,8 +1,6 @@
 # example-expo
 
-Example Expo app that demonstrates:
-
-- `react-native-embedded-stack-navigator`
+Example Expo app to test and demonstrate the usage of this monorepo library
 
 ## Running the app
 
