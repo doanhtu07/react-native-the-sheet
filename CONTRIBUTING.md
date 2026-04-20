@@ -10,9 +10,9 @@ Most up-to-date branches:
 
 - `main`, `v1`, ...
 
-Release branches (code freeze):
+Release tags (code freeze):
 
-- `release/v1.x.x`, `release/v2.x.x`, ...
+- `react-native-the-sheet@1.0.0`, `react-native-the-sheet@2.0.0`, ...
 
 ## Versioning
 
