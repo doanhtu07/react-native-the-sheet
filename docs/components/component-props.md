@@ -90,15 +90,16 @@ styles?: {
 
 ## BottomSheet
 
-| Prop name        | Type                                | Required | Default     | Description                                                                   |
-| ---------------- | ----------------------------------- | -------- | ----------- | ----------------------------------------------------------------------------- |
-| `ref`            | `RefObject<BottomSheetApi \| null>` | false    | `undefined` | The ref of the bottom sheet to use BottomSheetApi                             |
-| `snapPoints`     | `SnapPoint[]`                       | false    | `[]`        | The snap points of the bottom sheet. Bottom sheet will snap to these heights  |
-| `enableFloat`    | `boolean`                           | false    | `false`     | Bottom sheet doesn't need to snap to provided snap points                     |
-| `enableOverdrag` | `boolean`                           | false    | `false`     | Dragging beyond the highest snap point                                        |
-| `fill`           | `boolean`                           | false    | `false`     | Whether the bottom sheet should fill the available height (applies `flex: 1`) |
-| `styles`         | object                              | false    | `undefined` | The styles of the bottom sheet                                                |
-| `children`       | `ReactNode`                         | false    | `undefined` | The children of the bottom sheet                                              |
+| Prop name        | Type                                | Required | Default     | Description                                                                      |
+| ---------------- | ----------------------------------- | -------- | ----------- | -------------------------------------------------------------------------------- |
+| `ref`            | `RefObject<BottomSheetApi \| null>` | false    | `undefined` | The ref of the bottom sheet to use BottomSheetApi                                |
+| `snapPoints`     | `SnapPoint[]`                       | false    | `[]`        | The snap points of the bottom sheet. Bottom sheet will snap to these heights     |
+| `enableFloat`    | `boolean`                           | false    | `false`     | Bottom sheet doesn't need to snap to provided snap points                        |
+| `enableOverdrag` | `boolean`                           | false    | `false`     | Dragging beyond the highest snap point                                           |
+| `disableDrag`    | `boolean`                           | false    | `false`     | Disable dragging the bottom sheet (but can still be controlled programmatically) |
+| `fill`           | `boolean`                           | false    | `false`     | Whether the bottom sheet should fill the available height (applies `flex: 1`)    |
+| `styles`         | object                              | false    | `undefined` | The styles of the bottom sheet                                                   |
+| `children`       | `ReactNode`                         | false    | `undefined` | The children of the bottom sheet                                                 |
 
 ---
 
