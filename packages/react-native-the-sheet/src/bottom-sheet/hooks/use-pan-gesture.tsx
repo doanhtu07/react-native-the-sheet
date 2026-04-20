@@ -219,6 +219,11 @@ export const usePanGesture = ({
           // Snap back to rest state
           translateY.value = withSpring(closestSnap, {
             velocity: event.velocityY,
+
+            overshootClamping: true,
+            damping: 20,
+            stiffness: 200,
+            mass: 1,
           })
         }
 
