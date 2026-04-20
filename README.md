@@ -32,6 +32,10 @@ Components supported by our library:
 - [Component List](./docs/components/component-list.md)
 - [Component Props](./docs/components/component-props.md)
 
+## Examples
+
+- [Example Expo App](./apps/example-expo)
+
 ## Compatibility
 
 | Sheet version         | Reanimated version | React Native Worklets version | React Native version | React version           | Expo SDK version     |
