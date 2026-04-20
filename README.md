@@ -8,6 +8,17 @@ A modular bottom sheet library built on top of React Native Reanimated and React
 
 You can DIY some certain aspects using the building blocks and hooks we have
 
+<table>
+  <tr>
+    <td width="50%">
+      <video src="https://github.com/user-attachments/assets/9201cc74-8e23-427d-a076-36c0bb299a3c" controls width="100%"></video>
+    </td>
+    <td width="50%">
+      <video src="https://github.com/user-attachments/assets/9b6ae67f-4171-44db-a620-56f90c5cd632" controls width="100%"></video>
+    </td>
+  </tr>
+</table>
+
 ## NPM packages
 
 - Embedded Stack Navigator: https://www.npmjs.com/package/react-native-embedded-stack-navigator/v/1.0.0
