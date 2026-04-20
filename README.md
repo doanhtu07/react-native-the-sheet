@@ -4,7 +4,7 @@ This is the sheet for React Native! - excluding Web
 
 A modular bottom sheet library built on top of React Native Reanimated and React Native Gesture Handler
 
-So modular that I recommend you to DIY certain aspects if you really need to...
+You can DIY some certain aspects using the building blocks and hooks we have
 
 ## Roadmaps
 
