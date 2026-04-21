@@ -31,10 +31,10 @@ First, you need to determine which version of React Native Reanimated you are us
 
 - Choose the right version of our library based on `Compatibility` section below
 
-For example, if you are using Reanimated v4, you would install v2 of our library like this:
+For example, if you are using Reanimated v3, you would install v1 of our library like this:
 
 ```bash
-npm install react-native-the-sheet@2.0.3
+npm install react-native-the-sheet@1.0.2
 ```
 
 ---
