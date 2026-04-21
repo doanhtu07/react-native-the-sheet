@@ -25,6 +25,34 @@ You can DIY some certain aspects using the building blocks and hooks we have
 - Universe Portal: https://www.npmjs.com/package/react-native-universe-portal/v/2.0.3
 - The Sheet: https://www.npmjs.com/package/react-native-the-sheet/v/2.0.3
 
+## Installation
+
+First, you need to determine which version of React Native Reanimated you are using
+
+- Choose the right version of our library based on `Compatibility` section below
+
+For example, if you are using Reanimated v4, you would install v2 of our library like this:
+
+```bash
+npm install react-native-the-sheet@2.0.3
+```
+
+---
+
+`react-native-universe-portal`: Install if you need portal features and don't have a library of your own yet
+
+- What are React Portals? https://www.w3schools.com/react/react_portals.asp
+
+---
+
+`react-native-embedded-stack-navigator`: Install if you want a pure React navigator to work within the bottom sheet
+
+---
+
+While the library is stable enough for use, it is currently in a rapid experimentation phase regarding its API
+
+- I recommend pinning a specific version for your projects
+
 ## Components
 
 Components supported by our library:
@@ -34,7 +62,109 @@ Components supported by our library:
 
 ## Examples
 
-- [Example Expo App](./apps/example-expo)
+- Check out full examples and test cases: [Example Expo App](./apps/example-expo)
+
+### Wrap your app with necessary providers
+
+NOTE: Ignore portals if you don't use them
+
+```tsx
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { SheetStackProvider } from 'react-native-the-sheet'
+import { PortalHost, PortalProvider } from 'react-native-universe-portal'
+
+export default function App() {
+  return (
+    <SheetStackProvider>
+      <PortalProvider>
+        <GestureHandlerRootView>
+          {...restOfYourApp}
+          <PortalHost name="root" />
+        </GestureHandlerRootView>
+      </PortalProvider>
+    </SheetStackProvider>
+  )
+}
+```
+
+### Use only components you need for your use case
+
+```tsx
+import { Fragment, useState } from 'react'
+import { Button, StyleSheet, Text, View } from 'react-native'
+import {
+  Backdrop,
+  BottomSheet,
+  BottomSheetHandle,
+  BottomSheetPresenter,
+  BottomSheetView,
+  SheetStackItem,
+} from 'react-native-the-sheet'
+import { Portal } from 'react-native-universe-portal'
+
+export default function ExampleBottomSheetView() {
+  const [isOpenA, setIsOpenA] = useState(false)
+
+  const renderContent = () => {
+    return (
+      <Fragment>
+        {Array.from({ length: 20 }).map((_, index) => (
+          <Text key={index}>Item {index + 1}</Text>
+        ))}
+      </Fragment>
+    )
+  }
+
+  return (
+    <View style={styles.root}>
+      <Text style={styles.header}>Example Bottom Sheet View</Text>
+
+      <Button title="Open Sheet A" onPress={() => setIsOpenA(true)} />
+
+      <Portal hostName="root">
+        <SheetStackItem
+          isOpen={isOpenA}
+          close={() => setIsOpenA(false)}
+          waitForFullyExit
+          testID="sheetA"
+        >
+          <Backdrop />
+
+          <BottomSheetPresenter>
+            <BottomSheet>
+              <BottomSheetHandle />
+
+              <BottomSheetView>
+                <Text>Sheet A</Text>
+                <Button
+                  title="Close Sheet A"
+                  onPress={() => setIsOpenA(false)}
+                />
+                {renderContent()}
+              </BottomSheetView>
+            </BottomSheet>
+          </BottomSheetPresenter>
+        </SheetStackItem>
+      </Portal>
+    </View>
+  )
+}
+
+// MARK: Styles
+
+const styles = StyleSheet.create({
+  header: {
+    fontSize: 20,
+    fontWeight: '500',
+  },
+  root: {
+    flex: 1,
+    gap: 8,
+    padding: 16,
+  },
+})
+```
 
 ## Compatibility
 
