@@ -21,9 +21,9 @@ You can DIY some certain aspects using the building blocks and hooks we have
 
 ## NPM packages
 
-- Embedded Stack Navigator: https://www.npmjs.com/package/react-native-embedded-stack-navigator/v/1.0.2
-- Universe Portal: https://www.npmjs.com/package/react-native-universe-portal/v/1.0.2
-- The Sheet: https://www.npmjs.com/package/react-native-the-sheet/v/1.0.2
+- Embedded Stack Navigator: https://www.npmjs.com/package/react-native-embedded-stack-navigator/v/1.0.3
+- Universe Portal: https://www.npmjs.com/package/react-native-universe-portal/v/1.0.3
+- The Sheet: https://www.npmjs.com/package/react-native-the-sheet/v/1.0.3
 
 ## Installation
 
@@ -34,7 +34,7 @@ First, you need to determine which version of React Native Reanimated you are us
 For example, if you are using Reanimated v3, you would install v1 of our library like this:
 
 ```bash
-npm install react-native-the-sheet@1.0.2
+npm install react-native-the-sheet@1.0.3
 ```
 
 ---
