@@ -10,12 +10,12 @@ import type {
   BottomSheetProps,
 } from './types'
 import Animated, {
+  useAnimatedReaction,
   useAnimatedRef,
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
   withSpring,
-  type WithSpringConfig,
 } from 'react-native-reanimated'
 import {
   createContext,
@@ -27,6 +27,8 @@ import {
 import { useBridgedValue } from '../hooks/use-bridged-value'
 import { usePanGesture } from './hooks/use-pan-gesture'
 import { useSyncedSharedValue } from '../hooks/use-synced-shared-value'
+import { useBottomSheetPresenter } from '../bottom-sheet-presenter'
+import { SPRING_CONFIG } from '../constants'
 
 const BottomSheetContext = createContext<BottomSheetContextType | undefined>(
   undefined,
@@ -58,10 +60,17 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
     const theme = useColorScheme()
     const { height: screenHeight } = useWindowDimensions()
 
+    const { translateY: bottomSheetPresenterTranslateY } =
+      useBottomSheetPresenter()
+
+    const enableOverdragBridge = useBridgedValue(enableOverdrag)
+
     const isDark = theme === 'dark'
     const backgroundColor = isDark ? '#1C1C1E' : '#FFFFFF'
 
     const sheetHeight = useSharedValue(0)
+    const sheetVisibleHeight = useSharedValue(0)
+    const sheetVisibleRatio = useSharedValue(0)
 
     // Normalize snap points into numbers
     const normalizedSnaps = useBridgedValue(
@@ -107,13 +116,6 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
       sheetHeight.value = event.nativeEvent.layout.height
     }
 
-    const springConfig: WithSpringConfig = {
-      overshootClamping: true,
-      damping: 20,
-      stiffness: 200,
-      mass: 1,
-    }
-
     // MARK: Bottom sheet context
 
     const scrollViewRef = useAnimatedRef<
@@ -130,6 +132,8 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
         enableOverdrag,
 
         sheetHeight,
+        sheetVisibleHeight,
+        sheetVisibleRatio,
         snapTranslateYs,
         translateY,
 
@@ -139,14 +143,16 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
         scrollY,
       }
     }, [
-      isScrollViewReady,
-      isScrolling,
       enableOverdrag,
-      scrollViewRef,
-      scrollY,
       sheetHeight,
+      sheetVisibleHeight,
+      sheetVisibleRatio,
       snapTranslateYs,
       translateY,
+      scrollViewRef,
+      isScrollViewReady,
+      isScrolling,
+      scrollY,
     ])
 
     const getPanGesture = usePanGesture({
@@ -173,7 +179,7 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
 
         if (index >= 0 && index < targets.length) {
           const targetY = targets[index]!
-          translateY.value = withSpring(targetY, springConfig)
+          translateY.value = withSpring(targetY, SPRING_CONFIG)
         } else {
           console.warn(
             `react-native-the-sheet - src/bottom-sheet/bottom-sheet.tsx - Index ${index} out of bounds`,
@@ -195,14 +201,38 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
           // Basis: The largest snap point is our translateY = 0
           const maxSnapPoint = snaps.at(-1)!
           const targetTranslateY = maxSnapPoint - normalizedPosition
-          translateY.value = withSpring(targetTranslateY, springConfig)
+          translateY.value = withSpring(targetTranslateY, SPRING_CONFIG)
         } else {
           // Fallback: If dynamic/no snaps, we use the measured sheetHeight
           const targetTranslateY = sheetHeight.value - normalizedPosition
-          translateY.value = withSpring(targetTranslateY, springConfig)
+          translateY.value = withSpring(targetTranslateY, SPRING_CONFIG)
         }
       },
     }))
+
+    // Effect: Track sheet visible height and ratio
+    useAnimatedReaction(
+      () => {
+        return {
+          bottomSheetPresenterTranslateY: bottomSheetPresenterTranslateY.value,
+          bottomSheetTranslateY: translateY.value,
+          sheetHeight: sheetHeight.value,
+          enableOverdrag: enableOverdragBridge.value,
+        }
+      },
+      (prepared) => {
+        const total = prepared.sheetHeight
+        const pY = prepared.bottomSheetPresenterTranslateY
+
+        const bY = prepared.enableOverdrag
+          ? // Clamp negative translateY since bottom sheet height already absorbs it
+            Math.max(0, prepared.bottomSheetTranslateY)
+          : prepared.bottomSheetTranslateY
+
+        sheetVisibleHeight.value = total - (pY + bY)
+        sheetVisibleRatio.value = sheetVisibleHeight.value / total
+      },
+    )
 
     // MARK: Preparation
 

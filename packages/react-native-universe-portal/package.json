@@ -1,6 +1,6 @@
 {
   "name": "react-native-universe-portal",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Portals that transport your components to a different universe",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
@@ -38,7 +38,7 @@
     "typecheck": "tsc",
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "format": "prettier",
-    "check": "prettier --write . && eslint \"**/*.{js,ts,tsx}\" --fix",
+    "check": "pnpm typecheck && prettier --write . && eslint \"**/*.{js,ts,tsx}\" --fix",
     "test": "jest"
   },
   "keywords": [
