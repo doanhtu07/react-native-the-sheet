@@ -58,7 +58,7 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
     // MARK: Artifacts
 
     const theme = useColorScheme()
-    const { height: screenHeight } = useWindowDimensions()
+    const { height: windowHeight } = useWindowDimensions()
 
     const { translateY: bottomSheetPresenterTranslateY } =
       useBottomSheetPresenter()
@@ -81,11 +81,11 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
           .map((point) => {
             if (typeof point === 'number') return point
             const percentage = Number.parseFloat(point as string) / 100
-            return screenHeight * percentage
+            return windowHeight * percentage
           })
-          .filter((point) => point > 0 && point <= screenHeight)
+          .filter((point) => point > 0 && point <= windowHeight)
           .sort((a, b) => a - b)
-      }, [screenHeight, snapPoints]),
+      }, [windowHeight, snapPoints]),
     )
 
     // Convert snap points to translate ys (relative distance from fully open position)
@@ -195,7 +195,7 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
         const normalizedPosition =
           typeof position === 'number'
             ? position
-            : (Number.parseFloat(position) / 100) * screenHeight
+            : (Number.parseFloat(position) / 100) * windowHeight
 
         if (snaps.length > 0) {
           // Basis: The largest snap point is our translateY = 0
