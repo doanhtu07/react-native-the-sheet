@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet } from 'react-native'
 import type { BackdropProps } from './types'
 import { useSheetStackItem } from '../sheet-stack'
+import Animated from 'react-native-reanimated'
 
 export function Backdrop({
   styles: propStyles,
@@ -9,11 +10,9 @@ export function Backdrop({
   const { close } = useSheetStackItem()
 
   return (
-    <Pressable
-      style={[styles.root, propStyles?.root]}
-      onPress={close}
-      testID={testID}
-    />
+    <Pressable style={StyleSheet.absoluteFill} onPress={close} testID={testID}>
+      <Animated.View style={[styles.root, propStyles?.root]} />
+    </Pressable>
   )
 }
 

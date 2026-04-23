@@ -1,60 +1,31 @@
-import { useAnimatedReaction, useSharedValue } from 'react-native-reanimated'
+import { useAnimatedReaction } from 'react-native-reanimated'
 import type { BottomSheetPositionTrackerProps } from './types'
 import { useBottomSheet } from '../bottom-sheet'
-import { useBottomSheetPresenter } from '../bottom-sheet-presenter'
-import { useBridgedValue } from '../hooks/use-bridged-value'
-
-export function useBottomSheetPositionTracker() {
-  const { translateY: bottomSheetPresenterTranslateY } =
-    useBottomSheetPresenter()
-
-  const {
-    enableOverdrag: propEnableOverdrag,
-    sheetHeight,
-    translateY: bottomSheetTranslateY,
-  } = useBottomSheet()
-
-  const bottomSheetVisibleHeight = useSharedValue(0)
-  const enableOverdrag = useBridgedValue(propEnableOverdrag)
-
-  useAnimatedReaction(
-    () => {
-      return {
-        bottomSheetPresenterTranslateY: bottomSheetPresenterTranslateY.value,
-        bottomSheetTranslateY: bottomSheetTranslateY.value,
-        sheetHeight: sheetHeight.value,
-        enableOverdrag: enableOverdrag.value,
-      }
-    },
-    (prepared) => {
-      const total = prepared.sheetHeight
-      const pY = prepared.bottomSheetPresenterTranslateY
-
-      const bY = prepared.enableOverdrag
-        ? // Clamp negative translateY since bottom sheet height already absorbs it
-          Math.max(0, prepared.bottomSheetTranslateY)
-        : prepared.bottomSheetTranslateY
-
-      bottomSheetVisibleHeight.value = total - (pY + bY)
-    },
-  )
-
-  return { bottomSheetVisibleHeight }
-}
 
 export function BottomSheetPositionTracker({
   trackBottomSheetVisibleHeight,
+  trackBottomSheetVisibleRatio,
 }: Readonly<BottomSheetPositionTrackerProps>) {
-  const { bottomSheetVisibleHeight: visibleHeight } =
-    useBottomSheetPositionTracker()
+  const { sheetVisibleHeight, sheetVisibleRatio } = useBottomSheet()
 
   useAnimatedReaction(
     () => {
-      return visibleHeight.value
+      return sheetVisibleHeight.value
     },
     (current, previous) => {
       if (current !== previous && trackBottomSheetVisibleHeight) {
         trackBottomSheetVisibleHeight.value = current
+      }
+    },
+  )
+
+  useAnimatedReaction(
+    () => {
+      return sheetVisibleRatio.value
+    },
+    (current, previous) => {
+      if (current !== previous && trackBottomSheetVisibleRatio) {
+        trackBottomSheetVisibleRatio.value = current
       }
     },
   )

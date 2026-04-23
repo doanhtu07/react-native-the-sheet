@@ -148,6 +148,13 @@ export default function Index() {
         }}
       />
 
+      <Button
+        title="Example Bottom Sheet Footer"
+        onPress={() => {
+          router.push('/example-bottom-sheet-footer')
+        }}
+      />
+
       {/* MARK: Bottom Sheet + Navigator */}
 
       <Text style={styles.header}>Bottom Sheet + Navigator</Text>
@@ -178,6 +185,13 @@ export default function Index() {
         title="Example Above Bottom Sheet View"
         onPress={() => {
           router.push('/example-above-bottom-sheet-view')
+        }}
+      />
+
+      <Button
+        title="Example Backdrop Opacity"
+        onPress={() => {
+          router.push('/example-backdrop-opacity')
         }}
       />
     </ScrollView>

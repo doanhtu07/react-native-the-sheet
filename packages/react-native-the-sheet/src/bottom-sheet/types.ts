@@ -22,6 +22,8 @@ export type BottomSheetContextType = {
   enableOverdrag: boolean
 
   sheetHeight: SharedValue<number>
+  sheetVisibleHeight: SharedValue<number>
+  sheetVisibleRatio: SharedValue<number>
   snapTranslateYs: SharedValue<number[]>
   translateY: SharedValue<number>
 
@@ -77,6 +79,14 @@ type AnimatedFlatListProps<T> = ComponentProps<typeof Animated.FlatList<T>>
 
 export type BottomSheetFlatListProps<T> = AnimatedFlatListProps<T> & {
   fill?: boolean
+  styles?: {
+    root?: StyleProp<ViewStyle>
+  }
+}
+
+// MARK: Bottom sheet footer
+
+export type BottomSheetFooterProps = PropsWithChildren & {
   styles?: {
     root?: StyleProp<ViewStyle>
   }

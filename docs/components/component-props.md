@@ -130,9 +130,10 @@ styles?: {
 
 ## BottomSheetPositionTracker
 
-| Prop name                       | Type                  | Required | Default | Description                                  |
-| ------------------------------- | --------------------- | -------- | ------- | -------------------------------------------- |
-| `trackBottomSheetVisibleHeight` | `SharedValue<number>` | false    | `false` | Track the VISIBLE height of the bottom sheet |
+| Prop name                       | Type                  | Required | Default     | Description                                         |
+| ------------------------------- | --------------------- | -------- | ----------- | --------------------------------------------------- |
+| `trackBottomSheetVisibleHeight` | `SharedValue<number>` | false    | `undefined` | Track the VISIBLE height of the bottom sheet        |
+| `trackBottomSheetVisibleRatio`  | `SharedValue<number>` | false    | `undefined` | Track the VISIBLE ratio of the bottom sheet (0 - 1) |
 
 ## KeyboardExpander
 
@@ -206,6 +207,23 @@ styles?: {
 
 - Inherits all props of `FlatList` as well
 - Cannot override `onScroll`
+
+---
+
+- `styles` is an object with the following
+
+```tsx
+styles?: {
+  root?: StyleProp<ViewStyle>
+}
+```
+
+## BottomSheetFooter
+
+| Prop name  | Type        | Required | Default     | Description                             |
+| ---------- | ----------- | -------- | ----------- | --------------------------------------- |
+| `styles`   | object      | false    | `undefined` | The styles of the bottom sheet footer   |
+| `children` | `ReactNode` | false    | `undefined` | The children of the bottom sheet footer |
 
 ---
 

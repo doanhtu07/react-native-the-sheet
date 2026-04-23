@@ -12,6 +12,7 @@ import { useSheetStackItem } from '../../sheet-stack'
 import type { BottomSheetContextType } from '../types'
 import { useBridgedValue } from '../../hooks/use-bridged-value'
 import { isApproxEqual } from '../../utils/approximately-equal'
+import { SPRING_CONFIG } from '../../constants'
 
 const TRANSLATE_Y_REST_THRESHOLD = 1
 const SCROLL_Y_TOP_THRESHOLD = 1
@@ -221,12 +222,7 @@ export const usePanGesture = ({
           runOnJS(closeRefCurrent)()
         } else if (!enableFloat.value) {
           // Snap back to rest state
-          translateY.value = withSpring(closestSnap, {
-            overshootClamping: true,
-            damping: 20,
-            stiffness: 200,
-            mass: 1,
-          })
+          translateY.value = withSpring(closestSnap, SPRING_CONFIG)
         }
 
         // Cleanup

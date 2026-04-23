@@ -12,6 +12,7 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated'
 import { useSyncedRef } from '../hooks/use-synced-ref'
+import { SPRING_CONFIG } from '../constants'
 
 const BottomSheetPresenterContext = createContext<
   BottomSheetPresenterContextType | undefined
@@ -61,12 +62,7 @@ export function BottomSheetPresenter({
 
     translateY.value = withSpring(
       allowPresent ? 0 : screenHeight,
-      {
-        overshootClamping: true,
-        damping: 20,
-        stiffness: 200,
-        mass: 1,
-      },
+      SPRING_CONFIG,
       (finished) => {
         'worklet'
         if (finished && !allowPresent) {
