@@ -14,17 +14,20 @@ import Animated, {
   withDelay,
   withTiming,
 } from 'react-native-reanimated'
+import type { KeyboardExpanderProps } from './types'
 
 const KEYBOARD_EXPANDER_ANIMATION_DURATION = 600
 const KEYBOARD_EXPANDER_ANIMATION_EASING = Easing.out(Easing.exp)
 
-export function KeyboardExpander() {
-  const { height: screenHeight } = useWindowDimensions()
+export function KeyboardExpander({
+  keyboardOffset,
+}: Readonly<KeyboardExpanderProps>) {
+  const { height: windowHeight } = useWindowDimensions()
 
   const keyboardVisible = useSharedValue(Keyboard.isVisible())
   const keyboardHeight = useSharedValue(0)
 
-  const shouldExpand = useSharedValue(false)
+  const inputOverlap = useSharedValue<number | null>(null)
   const checkShouldExpandTimeout = useRef<ReturnType<typeof setTimeout> | null>(
     null,
   )
@@ -37,27 +40,30 @@ export function KeyboardExpander() {
 
       // Delay slightly to ensure layout has settled before measuring
       checkShouldExpandTimeout.current = setTimeout(() => {
-        const handle = TextInput.State.currentlyFocusedInput()
+        const inputHandle = TextInput.State.currentlyFocusedInput()
 
-        if (!handle) {
-          shouldExpand.value = false
+        if (!inputHandle) {
+          inputOverlap.value = null
           return
         }
 
-        handle.measureInWindow((_x, y, _width, height) => {
+        inputHandle.measureInWindow((_x, y, _width, height) => {
           const inputBottom = y + height
-          const keyboardTop = screenHeight - keyboardHeightValue
+          const keyboardTop = windowHeight - keyboardHeightValue
 
           // Only expand if the input would be obscured by the keyboard
-          shouldExpand.value = inputBottom > keyboardTop
+          inputOverlap.value = inputBottom - keyboardTop
         })
       }, 100)
     },
-    [screenHeight, shouldExpand],
+    [inputOverlap, windowHeight],
   )
 
   const animatedHeight = useDerivedValue(() => {
-    const targetHeight = shouldExpand.value ? keyboardHeight.value : 0
+    const targetHeight =
+      inputOverlap.value !== null && inputOverlap.value > 0
+        ? inputOverlap.value + (keyboardOffset || 0)
+        : 0
 
     if (Platform.OS === 'android') {
       if (keyboardVisible.value) {
@@ -110,7 +116,7 @@ export function KeyboardExpander() {
         () => {
           keyboardHeight.value = 0
           keyboardVisible.value = false
-          shouldExpand.value = false
+          inputOverlap.value = null
         },
       )
 
@@ -136,7 +142,7 @@ export function KeyboardExpander() {
         () => {
           keyboardHeight.value = 0
           keyboardVisible.value = false
-          shouldExpand.value = false
+          inputOverlap.value = null
         },
       )
 
@@ -147,13 +153,7 @@ export function KeyboardExpander() {
     }
 
     return () => {}
-  }, [
-    checkShouldExpand,
-    keyboardHeight,
-    keyboardVisible,
-    screenHeight,
-    shouldExpand,
-  ])
+  }, [checkShouldExpand, inputOverlap, keyboardHeight, keyboardVisible])
 
   // MARK: Renderers
 

@@ -137,7 +137,19 @@ styles?: {
 
 ## KeyboardExpander
 
-Automatically expands to make focused inputs visible above the keyboard
+| Prop name        | Type   | Required | Default     | Description                                            |
+| ---------------- | ------ | -------- | ----------- | ------------------------------------------------------ |
+| `keyboardOffset` | number | false    | `undefined` | The offset added to expander when the keyboard is open |
+
+---
+
+- `keyboardOffset`:
+  - Android (Edge-to-Edge):
+    - If your app is running in edge-to-edge mode, you should probably pass top + bottom safe area insets into this prop
+  - Implementation:
+    - KeyboardExpander calculates the keyboard's position relative to the window height
+    - In edge-to-edge mode, the window height does NOT include the system bars
+    - So adding these insets ensures the input is "pushed" accurately past the physical keyboard and system navigation
 
 ## BottomSheetHandle
 

@@ -1,5 +1,13 @@
 # react-native-the-sheet
 
+## 2.0.5
+
+### Patch Changes
+
+- Update `KeyboardExpander` to push the input just enough to be above the keyboard, instead of pushing an amount equal to the keyboard height all the time
+
+- Expose `keyboardOffset` prop on `KeyboardExpander` to allow users to specify an additional offset on iOS and Android depending on screen mode and layout
+
 ## 2.0.4
 
 ### Patch Changes
