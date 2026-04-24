@@ -22,9 +22,13 @@ We use @changesets/cli for managing versioning and releases
 
 ## Testing
 
+### Manual testing
+
 - When you change something, make sure to manually test it in the example Expo app
 
-- When testing `edge-to-edge` features for Android:
+### Android edge-to-edge testing
+
+- When testing `edge-to-edge` features for Android target SDK 35-:
   - Adjust config accordingly in `apps/example-expo/app.config.ts`
   - There are 3 different cases we need to test
 
