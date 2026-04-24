@@ -39,6 +39,7 @@ For example, if you are using Reanimated v3, you would install v1 of our library
 
 ```bash
 npm install react-native-the-sheet@1.0.5
+npm install react-native-safe-area-context
 ```
 
 ---
