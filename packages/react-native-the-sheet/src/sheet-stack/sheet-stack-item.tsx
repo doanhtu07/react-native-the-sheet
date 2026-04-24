@@ -18,7 +18,7 @@ import {
   type SheetStackItemApi,
   type SheetStackItemProps,
 } from './types'
-import { useSyncedRef } from '../hooks/use-synced-ref'
+import { useSyncedRef } from '../private/hooks/use-synced-ref'
 
 const SheetStackItemContext = createContext<
   SheetStackItemContextType | undefined

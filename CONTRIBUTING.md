@@ -19,3 +19,19 @@ Release tags (code freeze):
 We use @changesets/cli for managing versioning and releases
 
 - We will use lockstep versioning for simplicity
+
+## Testing
+
+### Manual testing
+
+- When you change something, make sure to manually test it in the example Expo app
+
+### Android edge-to-edge testing
+
+- When testing `edge-to-edge` features for Android target SDK 35-:
+  - Adjust config accordingly in `apps/example-expo/app.config.ts`
+  - There are 3 different cases we need to test
+
+- To enable `non-edge-to-edge` mode in Android, run `pnpm ete:disable && pnpm android:clean`
+
+- To enable `edge-to-edge` mode in Android, run `pnpm ete:enable && pnpm android:clean`

@@ -1,33 +1,19 @@
-import { Fragment, useMemo, useState } from 'react'
-import { Button, Platform, StyleSheet, Text, View } from 'react-native'
+import { Fragment, useState } from 'react'
+import { Button, StyleSheet, Text, View } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import {
   Backdrop,
   BottomSheet,
   BottomSheetHandle,
   BottomSheetPresenter,
   BottomSheetScrollView,
-  KeyboardExpander,
+  BottomSheetKeyboardExpander,
   SheetStackItem,
 } from 'react-native-the-sheet'
 import { Portal } from 'react-native-universe-portal'
 
 export default function ExampleBottomSheetWithKeyboard() {
-  const { top, bottom } = useSafeAreaInsets()
   const [isOpenA, setIsOpenA] = useState(false)
-
-  const keyboardOffset = useMemo(() => {
-    const baseOffset = 20
-
-    if (Platform.OS === 'ios') {
-      return baseOffset
-    }
-
-    if (Platform.OS === 'android') {
-      return baseOffset + top + bottom
-    }
-  }, [bottom, top])
 
   // MARK: Renderers
 
@@ -78,7 +64,7 @@ export default function ExampleBottomSheetWithKeyboard() {
               </BottomSheetScrollView>
             </BottomSheet>
 
-            <KeyboardExpander keyboardOffset={keyboardOffset} />
+            <BottomSheetKeyboardExpander keyboardOffset={20} />
           </BottomSheetPresenter>
         </SheetStackItem>
       </Portal>
