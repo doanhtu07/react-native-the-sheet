@@ -1,6 +1,6 @@
 # react-native-the-sheet
 
-[![Reanimated v3 version](https://img.shields.io/github/package-json/v/doanhtu07/react-native-the-sheet/main?filename=packages/react-native-the-sheet/package.json&label=Reanimated%20v3&style=flat-square)](https://github.com/doanhtu07/react-native-the-sheet) [![Reanimated v2 version](https://img.shields.io/github/package-json/v/doanhtu07/react-native-the-sheet/v1?filename=packages/react-native-the-sheet/package.json&label=Reanimated%20v2&style=flat-square)](https://github.com/doanhtu07/react-native-the-sheet/tree/v1) [![license](https://img.shields.io/npm/l/@gorhom/bottom-sheet?style=flat-square)]()
+[![Reanimated v4 version](https://img.shields.io/github/package-json/v/doanhtu07/react-native-the-sheet/main?filename=packages/react-native-the-sheet/package.json&label=Reanimated%20v4&style=flat-square)](https://github.com/doanhtu07/react-native-the-sheet) [![Reanimated v3 version](https://img.shields.io/github/package-json/v/doanhtu07/react-native-the-sheet/v1?filename=packages/react-native-the-sheet/package.json&label=Reanimated%20v3&style=flat-square)](https://github.com/doanhtu07/react-native-the-sheet/tree/v1) [![license](https://img.shields.io/npm/l/@gorhom/bottom-sheet?style=flat-square)]()
 
 This is the sheet for React Native! - excluding Web
 
