@@ -21,6 +21,12 @@
 | `hostName` | `string`    | true     | N/A           | The name of the portal host to portal into (must match the `name` of a `PortalHost`) |
 | `children` | `ReactNode` | false    | `undefined`   | The children of the portal                                                           |
 
+## SheetKeyboardProvider
+
+| Prop name  | Type        | Required | Default     | Description                  |
+| ---------- | ----------- | -------- | ----------- | ---------------------------- |
+| `children` | `ReactNode` | false    | `undefined` | The children of the provider |
+
 ## SheetStackProvider
 
 | Prop name  | Type        | Required | Default     | Description                                               |
@@ -135,7 +141,7 @@ styles?: {
 | `trackBottomSheetVisibleHeight` | `SharedValue<number>` | false    | `undefined` | Track the VISIBLE height of the bottom sheet        |
 | `trackBottomSheetVisibleRatio`  | `SharedValue<number>` | false    | `undefined` | Track the VISIBLE ratio of the bottom sheet (0 - 1) |
 
-## KeyboardExpander
+## BottomSheetKeyboardExpander
 
 | Prop name        | Type   | Required | Default     | Description                                            |
 | ---------------- | ------ | -------- | ----------- | ------------------------------------------------------ |
@@ -143,13 +149,16 @@ styles?: {
 
 ---
 
-- `keyboardOffset`:
-  - Android (Edge-to-Edge):
-    - If your app is running in edge-to-edge mode, you should probably pass top + bottom safe area insets into this prop
-  - Implementation:
-    - KeyboardExpander calculates the keyboard's position relative to the window height
-    - In edge-to-edge mode, the window height does NOT include the system bars
-    - So adding these insets ensures the input is "pushed" accurately past the physical keyboard and system navigation
+Notes on Android edge to edge behavior:
+
+- When disabling edge to edge
+  - If you are setting `windowSoftInputMode` as `adjustResize`
+    - You should not use `BottomSheetKeyboardExpander` as the screen will be resized by OS
+  - If you use `adjustPan` instead
+    - You can use `BottomSheetKeyboardExpander` normally
+
+- When enabling edge to edge
+  - You can use `BottomSheetKeyboardExpander` normally regardless of the `windowSoftInputMode` you set
 
 ## BottomSheetHandle
 

@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useMemo } from 'react'
-import { StyleSheet, useWindowDimensions } from 'react-native'
+import { StyleSheet } from 'react-native'
 import type {
   BottomSheetPresenterContextType,
   BottomSheetPresenterProps,
@@ -11,8 +11,9 @@ import Animated, {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated'
-import { useSyncedRef } from '../hooks/use-synced-ref'
-import { SPRING_CONFIG } from '../constants'
+import { useSyncedRef } from '../private/hooks/use-synced-ref'
+import { SPRING_CONFIG } from '../private/constants'
+import { useTrueSafeArea } from '../hooks'
 
 const BottomSheetPresenterContext = createContext<
   BottomSheetPresenterContextType | undefined
@@ -24,7 +25,7 @@ export function BottomSheetPresenter({
   children,
 }: Readonly<BottomSheetPresenterProps>) {
   const { isHidden, isCurrentlyInStack, onFullyExit } = useSheetStackItem()
-  const { height: windowHeight } = useWindowDimensions()
+  const { safeAreaHeight } = useTrueSafeArea()
   const onFullyExitRef = useSyncedRef(onFullyExit)
 
   const allowPresent = isCurrentlyInStack && !isHidden
@@ -34,7 +35,7 @@ export function BottomSheetPresenter({
    * - = 0: Bottom sheet presenter is fully visible
    * - > 0: Bottom sheet presenter is going below the bottom of the screen
    */
-  const translateY = useSharedValue(windowHeight)
+  const translateY = useSharedValue(safeAreaHeight)
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -54,14 +55,14 @@ export function BottomSheetPresenter({
 
   useEffect(() => {
     if (allowPresent) {
-      translateY.value = windowHeight
+      translateY.value = safeAreaHeight
     }
 
     // Snapshot refs for worklet
     const onFullyExitRefCurrent = onFullyExitRef.current
 
     translateY.value = withSpring(
-      allowPresent ? 0 : windowHeight,
+      allowPresent ? 0 : safeAreaHeight,
       SPRING_CONFIG,
       (finished) => {
         'worklet'
@@ -70,7 +71,7 @@ export function BottomSheetPresenter({
         }
       },
     )
-  }, [allowPresent, onFullyExitRef, windowHeight, translateY])
+  }, [allowPresent, onFullyExitRef, safeAreaHeight, translateY])
 
   // MARK: Renderers
 
@@ -80,7 +81,7 @@ export function BottomSheetPresenter({
         style={[
           styles.root,
           propStyles?.root,
-          { height: windowHeight },
+          { height: safeAreaHeight },
           animatedStyle,
         ]}
         testID={testID}

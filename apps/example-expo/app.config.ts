@@ -21,7 +21,19 @@ const config: ExpoConfig = {
       backgroundImage: './assets/images/android-icon-background.png',
       monochromeImage: './assets/images/android-icon-monochrome.png',
     },
-    edgeToEdgeEnabled: true,
+
+    // === Edge to edge ===
+
+    // Case 1: Resize + Edge to edge opt out
+    softwareKeyboardLayoutMode: 'resize',
+    edgeToEdgeEnabled: false,
+
+    // Case 2: Pan + Edge to edge opt out
+    // softwareKeyboardLayoutMode: 'pan',
+    // edgeToEdgeEnabled: false,
+
+    // Case 3: Edge to edge enabled
+    // edgeToEdgeEnabled: true,
   },
   // "web": {
   //   "output": "static",

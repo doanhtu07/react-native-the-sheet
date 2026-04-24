@@ -7,12 +7,12 @@ import {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated'
-import { useSyncedRef } from '../../hooks/use-synced-ref'
+import { useSyncedRef } from '../../private/hooks/use-synced-ref'
 import { useSheetStackItem } from '../../sheet-stack'
 import type { BottomSheetContextType } from '../types'
-import { useBridgedValue } from '../../hooks/use-bridged-value'
-import { isApproxEqual } from '../../utils/approximately-equal'
-import { SPRING_CONFIG } from '../../constants'
+import { useBridgedValue } from '../../private/hooks/use-bridged-value'
+import { isApproxEqual } from '../../private/utils/approximately-equal'
+import { SPRING_CONFIG } from '../../private/constants'
 
 const TRANSLATE_Y_REST_THRESHOLD = 1
 const SCROLL_Y_TOP_THRESHOLD = 1

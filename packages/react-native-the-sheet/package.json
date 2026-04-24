@@ -1,6 +1,6 @@
 {
   "name": "react-native-the-sheet",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "This is the sheet for React Native!",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
@@ -80,6 +80,7 @@
     "react-native-builder-bob": "^0.41.0",
     "react-native-gesture-handler": "~2.24.0",
     "react-native-reanimated": "~3.17.5",
+    "react-native-safe-area-context": "~5.4.0",
     "turbo": "^2.8.21",
     "typescript": "~5.8.3"
   },
@@ -87,7 +88,8 @@
     "react": "*",
     "react-native": "*",
     "react-native-gesture-handler": "*",
-    "react-native-reanimated": "*"
+    "react-native-reanimated": "*",
+    "react-native-safe-area-context": "*"
   },
   "react-native-builder-bob": {
     "source": "src",

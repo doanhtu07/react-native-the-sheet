@@ -1,5 +1,16 @@
 # react-native-the-sheet
 
+## 1.0.5
+
+### Patch Changes
+
+- Add a requirement for `react-native-safe-area-context` + `SafeAreaProvider` (⚠️ **BREAKING**)
+- Introduce and add a requirement for `SheetKeyboardProvider` (⚠️ **BREAKING**)
+- Rename `KeyboardExpander` to `BottomSheetKeyboardExpander` (⚠️ **BREAKING**)
+- Introduce `useTrueSafeArea` hook
+
+- Overall, support safe area and Android edge-to-edge quirks more robustly for bottom sheet presenter, bottom sheet, and keyboard expander
+
 ## 1.0.4
 
 ### Patch Changes

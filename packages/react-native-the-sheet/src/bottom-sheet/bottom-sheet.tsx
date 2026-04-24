@@ -1,7 +1,6 @@
 import {
   StyleSheet,
   useColorScheme,
-  useWindowDimensions,
   type LayoutChangeEvent,
 } from 'react-native'
 import type {
@@ -24,11 +23,12 @@ import {
   useImperativeHandle,
   useMemo,
 } from 'react'
-import { useBridgedValue } from '../hooks/use-bridged-value'
+import { useBridgedValue } from '../private/hooks/use-bridged-value'
 import { usePanGesture } from './hooks/use-pan-gesture'
-import { useSyncedSharedValue } from '../hooks/use-synced-shared-value'
+import { useSyncedSharedValue } from '../private/hooks/use-synced-shared-value'
 import { useBottomSheetPresenter } from '../bottom-sheet-presenter'
-import { SPRING_CONFIG } from '../constants'
+import { SPRING_CONFIG } from '../private/constants'
+import { useTrueSafeArea } from '../hooks'
 
 const BottomSheetContext = createContext<BottomSheetContextType | undefined>(
   undefined,
@@ -58,7 +58,7 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
     // MARK: Artifacts
 
     const theme = useColorScheme()
-    const { height: windowHeight } = useWindowDimensions()
+    const { safeAreaHeight } = useTrueSafeArea()
 
     const { translateY: bottomSheetPresenterTranslateY } =
       useBottomSheetPresenter()
@@ -81,11 +81,11 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
           .map((point) => {
             if (typeof point === 'number') return point
             const percentage = Number.parseFloat(point as string) / 100
-            return windowHeight * percentage
+            return safeAreaHeight * percentage
           })
-          .filter((point) => point > 0 && point <= windowHeight)
+          .filter((point) => point > 0 && point <= safeAreaHeight)
           .sort((a, b) => a - b)
-      }, [windowHeight, snapPoints]),
+      }, [safeAreaHeight, snapPoints]),
     )
 
     // Convert snap points to translate ys (relative distance from fully open position)
@@ -195,7 +195,7 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
         const normalizedPosition =
           typeof position === 'number'
             ? position
-            : (Number.parseFloat(position) / 100) * windowHeight
+            : (Number.parseFloat(position) / 100) * safeAreaHeight
 
         if (snaps.length > 0) {
           // Basis: The largest snap point is our translateY = 0
@@ -245,17 +245,22 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
 
       if (maxSnap) {
         const overDrag = Math.min(0, translateY.value) // overDrag should be negative
+        const clampedTranslateY = Math.max(0, translateY.value) // exclude overDrag from translateY
+
+        const finalTranslateY = clampedTranslateY
 
         return {
           height: maxSnap - overDrag,
-          transform: [{ translateY: Math.max(0, translateY.value) }],
+          transform: [{ translateY: finalTranslateY }],
         }
       }
 
       // Dynamic sizing
 
+      const finalTranslateY = translateY.value
+
       return {
-        transform: [{ translateY: translateY.value }],
+        transform: [{ translateY: finalTranslateY }],
       }
     })
 

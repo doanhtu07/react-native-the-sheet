@@ -69,21 +69,29 @@ Components supported by our library:
 NOTE: Ignore portals if you don't use them
 
 ```tsx
+import { Stack } from 'expo-router'
 import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { SheetStackProvider } from 'react-native-the-sheet'
+import {
+  SheetStackProvider,
+  SheetKeyboardProvider,
+} from 'react-native-the-sheet'
 import { PortalHost, PortalProvider } from 'react-native-universe-portal'
 
 export default function App() {
   return (
-    <SheetStackProvider>
-      <PortalProvider>
-        <GestureHandlerRootView>
-          {...restOfYourApp}
-          <PortalHost name="root" />
-        </GestureHandlerRootView>
-      </PortalProvider>
-    </SheetStackProvider>
+    <SafeAreaProvider>
+      <SheetKeyboardProvider>
+        <SheetStackProvider debug>
+          <PortalProvider>
+            <GestureHandlerRootView>
+              <Stack />
+              <PortalHost name="root" debug />
+            </GestureHandlerRootView>
+          </PortalProvider>
+        </SheetStackProvider>
+      </SheetKeyboardProvider>
+    </SafeAreaProvider>
   )
 }
 ```
@@ -222,6 +230,15 @@ Note: You can use `apps/example-expo/scripts/expo-packages-check.ts` to check th
 
 - Go to `apps/example-expo`
 - Run `pnpm epc <expo-sdk-version>` (e.g. `pnpm epc 55`)
+
+---
+
+`react-native-safe-area-context`
+
+- Anything is fine as long as it has:
+  - `SafeAreaProvider` component
+  - `useSafeAreaInsets` hook
+  - `useSafeAreaFrame` hook
 
 ---
 
