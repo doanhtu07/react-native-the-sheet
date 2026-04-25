@@ -35,33 +35,9 @@ This lists all the components available in the library and their usage hierarchy
 
 - `EmbeddedStackNavigator` (Standalone component that can be used inside anything as long as it makes sense)
 
-## `flex: 1` issue
+## ScrollView situation
 
-`flex: 1` in React Native is weird...
-
-A few observations I've seen:
-
----
-
-1. If you nest `BottomSheetScrollView` / `BottomSheetFlatList` inside `BottomSheetView`, you need to apply `flex: 1` on all components along the hierarchy
-
-- Example: `BottomSheet` -- `BottomSheetView` -- `BottomSheetScrollView`
-- Else, the scroll view will not fit normally inside the bottom sheet
-
----
-
-2. If you use `EmbeddedStackNavigator` (which needs `flex: 1`), you need to apply `flex: 1` on bottom sheet components as well like above
-
----
-
-To make it easier, I've exposed prop `fill` for:
-
-- `BottomSheet`
-- `BottomSheetView`
-- `BottomSheetScrollView`
-- `BottomSheetFlatList`
-
-Which essentially applies `flex: 1` to the component
+[Read more](./scroll-view-situation.md)
 
 ## KeyboardProvider notes
 
