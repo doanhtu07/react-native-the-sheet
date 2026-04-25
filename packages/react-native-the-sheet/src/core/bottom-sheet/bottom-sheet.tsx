@@ -23,11 +23,11 @@ import {
   useImperativeHandle,
   useMemo,
 } from 'react'
-import { useBridgedValue } from '../private/hooks/use-bridged-value'
+import { useBridgedValue } from '../../private/hooks/use-bridged-value'
 import { usePanGesture } from './hooks/use-pan-gesture'
-import { useSyncedSharedValue } from '../private/hooks/use-synced-shared-value'
+import { useSyncedSharedValue } from '../../private/hooks/use-synced-shared-value'
 import { useBottomSheetPresenter } from '../bottom-sheet-presenter'
-import { SPRING_CONFIG } from '../private/constants'
+import { SPRING_CONFIG } from '../../private/constants'
 import { useTrueSafeArea } from '../hooks'
 
 const BottomSheetContext = createContext<BottomSheetContextType | undefined>(

@@ -1,16 +1,8 @@
 import { useRouter } from 'expo-router'
-import { useEffect } from 'react'
 import { Button, ScrollView, StyleSheet, Text } from 'react-native'
-import { multiply } from 'react-native-embedded-stack-navigator'
 
 export default function Index() {
   const router = useRouter()
-
-  // MARK: Effects
-
-  useEffect(() => {
-    console.info(`app/index.tsx - multiply():`, multiply(2, 3))
-  }, [])
 
   // MARK: Renderers
 

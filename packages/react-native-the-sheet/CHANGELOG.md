@@ -1,5 +1,15 @@
 # react-native-the-sheet
 
+## 2.0.7
+
+### Patch Changes
+
+- Refactor internal code structure
+
+- Improve `SheetKeyboardProvider` to also listen to `keyboardWillChangeFrame` event on iOS, which detects keyboard height changes due to emoji keyboard type
+
+- Improve `BottomSheetKeyboardExpander` to take keyboard height changes after initial height into account
+
 ## 2.0.6
 
 ### Patch Changes

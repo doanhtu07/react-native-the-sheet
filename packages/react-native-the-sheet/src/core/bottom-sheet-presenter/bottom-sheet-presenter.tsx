@@ -11,8 +11,8 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated'
 import { runOnJS } from 'react-native-worklets'
-import { useSyncedRef } from '../private/hooks/use-synced-ref'
-import { SPRING_CONFIG } from '../private/constants'
+import { useSyncedRef } from '../../private/hooks/use-synced-ref'
+import { SPRING_CONFIG } from '../../private/constants'
 import { useTrueSafeArea } from '../hooks'
 
 const BottomSheetPresenterContext = createContext<

@@ -1,4 +1,4 @@
-## Chapter 1: The Village
+# Chapter 1: The Village
 
 - [x] Support both Reanimated v3 and v4
 

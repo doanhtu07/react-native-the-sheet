@@ -3,7 +3,7 @@ import {
   useSafeAreaFrame,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context'
-import { isApproxEqual } from '../private/utils/approximately-equal'
+import { isApproxEqual } from '../../private/utils/approximately-equal'
 import { useMemo } from 'react'
 
 export const useTrueSafeArea = () => {

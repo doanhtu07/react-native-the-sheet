@@ -1,2 +1,1 @@
-export * from './multiply'
 export * from './portal'
