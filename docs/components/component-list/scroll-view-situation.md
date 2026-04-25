@@ -69,7 +69,7 @@ When laying out a ScrollView, Yoga will look for the bound height from its paren
 
 `Case 2, 3, 4`: In these cases, ScrollView sees the bound height inherited from BottomSheetPresenter, but it can't see **indirect** siblings like BottomSheetHandle. So it will just expand to the full height given by BottomSheetPresenter
 
-`Case 5`: In this case, `flex: 1` is special, because they don't care about inherited `atMost` bound from parent. The direct parent needs explicit constraint. Because BottomSheet is unconstrained, View needs to rely entirely on its children. But its child (ScrollView) is relying on View to provide some bounds. This circular dependency causes ScrollView to collapse to 0 height, leading to the parent View to also collapse to 0 height
+`Case 5`: In this case, `flex: 1` is special. It tells the parent to try sizing itself first before distributing the remaining space. So BottomSheet tries to do a bottom-up measurement of all its children. But ScrollView needs to know the height of its parent View (which is waiting for BottomSheet to give some remaining space) in order to grow. This creates a circular dependency and ScrollView collapses to 0 height
 
 `Case 6`: In this case, BottomSheet doesn't care about its children. It grows to fill the BottomSheetPresenter. View also grows to fill BottomSheet, fully aware of its direct sibling (BottomSheetHandle). ScrollView relies on View and grows to fill View
 
@@ -93,3 +93,51 @@ Which essentially applies `flex: 1` to the component
 In general, if ScrollView does not need any indirect siblings, you can just let the component chain be without any bounds or contraints. But you should have a definite ceiling height from the root
 
 If ScrollView has indirect siblings, you need to `flex: 1` all the way from the root to the parent of ScrollView
+
+## Extreme case
+
+What if you want to have:
+
+1. A ScrollView that is NOT directly under BottomSheet and NOT aware of its siblings like BottomSheetHandle
+2. ScrollView fits its content if content is small
+3. But grows up to a height limit that takes into account any indirect siblings (BottomSheetHandle)
+
+Something that looks like this:
+
+```tsx
+<BottomSheetPresenter>
+  <BottomSheet styles={{ root: { maxHeight } }}>
+    <BottomSheetHandle />
+
+    <View>
+      <BottomSheetScrollView>
+        <Text>Sheet A</Text>
+        <Button title="Close Sheet A" onPress={() => setIsOpenA(false)} />
+        {renderContent()}
+      </BottomSheetScrollView>
+    </View>
+  </BottomSheet>
+</BottomSheetPresenter>
+```
+
+The good news is that it's possible. But the bad news is that it's not as trivial as setting `flex: 1`
+
+You would need to measure the heights of all indirect siblings, sums them up, and manually pass down the remaining height until it reaches the direct parent of ScrollView
+
+```tsx
+<BottomSheetPresenter>
+  <BottomSheet styles={{ root: { maxHeight } }}>
+    <View onLayout={(e) => setStaticContentHeight(e.nativeEvent.layout.height)}>
+      <BottomSheetHandle />
+    </View>
+
+    <View style={{ maxHeight: maxHeight - staticContentHeight }}>
+      <BottomSheetScrollView>
+        <Text>Sheet A</Text>
+        <Button title="Close Sheet A" onPress={() => setIsOpenA(false)} />
+        {renderContent()}
+      </BottomSheetScrollView>
+    </View>
+  </BottomSheet>
+</BottomSheetPresenter>
+```
