@@ -6,8 +6,8 @@ import type {
 import { Keyboard, Platform } from 'react-native'
 import { useAnimatedReaction, useSharedValue } from 'react-native-reanimated'
 import { useTrueSafeArea } from '../hooks'
-import { useBridgedValue } from '../private/hooks/use-bridged-value'
-import { isApproxEqual } from '../private/utils/approximately-equal'
+import { useBridgedValue } from '../../private/hooks/use-bridged-value'
+import { isApproxEqual } from '../../private/utils/approximately-equal'
 
 const SheetKeyboardProviderContext = createContext<
   SheetKeyboardProviderContextType | undefined
@@ -61,7 +61,8 @@ export const SheetKeyboardProvider = ({
       }
     }
 
-    // keyboardWillShow as well as keyboardWillHide are generally not available on Android since there is no native corresponding event.
+    // keyboardWillShow, keyboardWillHide, keyboardWillChangeFrame
+    // are generally not available on Android since there is no native corresponding event
     if (Platform.OS === 'ios') {
       const keyboardWillShowListener = Keyboard.addListener(
         'keyboardWillShow',
@@ -79,9 +80,17 @@ export const SheetKeyboardProvider = ({
         },
       )
 
+      const keyboardWillChangeFrameListener = Keyboard.addListener(
+        'keyboardWillChangeFrame',
+        (e) => {
+          keyboardFinalHeight.value = e.endCoordinates.height
+        },
+      )
+
       return () => {
         keyboardWillShowListener.remove()
         keyboardWillHideListener.remove()
+        keyboardWillChangeFrameListener.remove()
       }
     }
 

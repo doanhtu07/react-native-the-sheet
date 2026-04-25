@@ -169,7 +169,7 @@ export default function ExampleBottomSheetView() {
   )
 }
 
-// MARK: Styles
+// Styles
 
 const styles = StyleSheet.create({
   header: {
@@ -266,6 +266,7 @@ I don't plan to support Web for a couple of reasons:
 ---
 
 - [Chapter 1: The Village](./roadmaps/01-the-village.md)
+- [Chapter 2: The Road](./roadmaps/02-the-road.md)
 
 ## Inspiration
 
@@ -282,3 +283,4 @@ Thank you to all the open source projects that inspired this project:
 - [Create React Native Module](./docs/resources/create-react-native-module.md)
 - [React Native Module Codegen](./docs/resources/react-native-module-codegen.md)
 - [Expo Android Notes](./docs/resources/expo-android-notes.md)
+- [Publish NPM Package](./docs/resources/publish-npm-package.md)

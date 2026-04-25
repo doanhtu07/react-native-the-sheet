@@ -3,6 +3,7 @@ import { Platform, StyleSheet, TextInput } from 'react-native'
 import Animated, {
   Easing,
   runOnJS,
+  runOnUI,
   useAnimatedReaction,
   useAnimatedStyle,
   useDerivedValue,
@@ -12,7 +13,7 @@ import Animated, {
 } from 'react-native-reanimated'
 import type { BottomSheetKeyboardExpanderProps } from './types'
 import { useTrueSafeArea } from '../hooks'
-import { isApproxEqual } from '../private/utils/approximately-equal'
+import { isApproxEqual } from '../../private/utils/approximately-equal'
 import { useSheetKeyboardProvider } from '../sheet-keyboard-provider'
 
 const KEYBOARD_EXPANDER_ANIMATION_DURATION = 600
@@ -28,6 +29,8 @@ export function BottomSheetKeyboardExpander({
     useTrueSafeArea()
 
   const inputOverlap = useSharedValue<number | null>(null)
+  const initialInputBottom = useSharedValue<number | null>(null)
+
   const checkShouldExpandTimeout = useRef<ReturnType<typeof setTimeout> | null>(
     null,
   )
@@ -58,24 +61,38 @@ export function BottomSheetKeyboardExpander({
 
         if (!inputHandle) {
           inputOverlap.value = null
+          initialInputBottom.value = null
           return
         }
 
         inputHandle.measureInWindow((_x, y, _width, height) => {
-          const inputBottom = y + height
+          const handleMeasurement = () => {
+            'worklet'
 
-          const keyboardTop =
-            Platform.OS === 'android' && isEdgeToEdge
-              ? safeAreaHeight - trueTop - trueBottom - keyboardHeightValue
-              : safeAreaHeight - keyboardHeightValue
+            if (initialInputBottom.value === null) {
+              initialInputBottom.value = y + height
+            }
 
-          // Only expand if the input would be obscured by the keyboard
-          inputOverlap.value = inputBottom - keyboardTop
+            // Use initial input bottom as the base
+            // to have a good calculation against current keyboard height
+            const inputBottom = initialInputBottom.value
+
+            const keyboardTop =
+              Platform.OS === 'android' && isEdgeToEdge
+                ? safeAreaHeight - trueTop - trueBottom - keyboardHeightValue
+                : safeAreaHeight - keyboardHeightValue
+
+            // Only expand if the input would be obscured by the keyboard
+            inputOverlap.value = inputBottom - keyboardTop
+          }
+
+          runOnUI(handleMeasurement)()
         })
       }, delay)
     },
     [
       clearCheckShouldExpandTimeout,
+      initialInputBottom,
       inputOverlap,
       isCheckShouldExpandTimeoutSet,
       isEdgeToEdge,
@@ -151,6 +168,7 @@ export function BottomSheetKeyboardExpander({
 
       if (!prepared.keyboardVisible && prepared.keyboardFinalHeight === 0) {
         inputOverlap.value = null
+        initialInputBottom.value = null
       }
     },
   )
