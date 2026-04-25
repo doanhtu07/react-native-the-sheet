@@ -34,7 +34,7 @@
     "expo-splash-screen": "~55.0.18",
     "expo-status-bar": "~55.0.5",
     "expo-symbols": "~55.0.7",
-    "expo-system-ui": "~55.0.15",
+    "expo-system-ui": "~55.0.16",
     "expo-web-browser": "~55.0.14",
     "react": "19.2.0",
     "react-dom": "19.2.0",
