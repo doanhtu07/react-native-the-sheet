@@ -159,19 +159,19 @@ function printReport(
 
   console.log(`\nExpo SDK ${sdkKey} — React Native ${reactNativeVersion}\n`)
 
+  if (missing.length) {
+    console.log('\n⚠️  Not tracked by Expo API:')
+    for (const r of missing) {
+      console.log(`  ${r.package} @ ${r.actual}`)
+    }
+  }
+
   if (outdated.length) {
     console.log('❌ Outdated:')
     for (const r of outdated) {
       console.log(`  ${r.package}`)
       console.log(`    installed: ${r.actual}`)
       console.log(`    expected:  ${r.expected}`)
-    }
-  }
-
-  if (missing.length) {
-    console.log('\n⚠️  Not tracked by Expo API:')
-    for (const r of missing) {
-      console.log(`  ${r.package} @ ${r.actual}`)
     }
   }
 
