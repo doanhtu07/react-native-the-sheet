@@ -67,7 +67,7 @@ While the library is stable enough for use, it is currently in a rapid experimen
 
 Components supported by our library:
 
-- [Component List](./docs/components/component-list.md)
+- [Component List](./docs/components/component-list/component-list.md)
 - [Component Props](./docs/components/component-props.md)
 
 ## Examples
