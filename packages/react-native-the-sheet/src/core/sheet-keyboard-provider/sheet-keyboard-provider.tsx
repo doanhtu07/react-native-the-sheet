@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useMemo } from 'react'
 import type {
-  SheetKeyboardProviderContextType,
+  SheetKeyboardContextType,
   SheetKeyboardProviderProps,
 } from './types'
 import { Keyboard, Platform } from 'react-native'
@@ -9,9 +9,21 @@ import { useTrueSafeArea } from '../hooks'
 import { useBridgedValue } from '../../private/hooks/use-bridged-value'
 import { isApproxEqual } from '../../private/utils/approximately-equal'
 
-const SheetKeyboardProviderContext = createContext<
-  SheetKeyboardProviderContextType | undefined
+const SheetKeyboardContext = createContext<
+  SheetKeyboardContextType | undefined
 >(undefined)
+
+export const useSheetKeyboard = () => {
+  const context = useContext(SheetKeyboardContext)
+
+  if (!context) {
+    throw new Error(
+      'useSheetKeyboard must be used within a SheetKeyboardProvider',
+    )
+  }
+
+  return context
+}
 
 export const SheetKeyboardProvider = ({
   children,
@@ -25,7 +37,7 @@ export const SheetKeyboardProvider = ({
 
   const isAndroidKeyboardResizeMode = useSharedValue<boolean | null>(null)
 
-  const contextValue = useMemo<SheetKeyboardProviderContextType>(() => {
+  const contextValue = useMemo<SheetKeyboardContextType>(() => {
     return {
       keyboardVisible,
       keyboardFinalHeight,
@@ -134,20 +146,8 @@ export const SheetKeyboardProvider = ({
   // MARK: Renderers
 
   return (
-    <SheetKeyboardProviderContext.Provider value={contextValue}>
+    <SheetKeyboardContext.Provider value={contextValue}>
       {children}
-    </SheetKeyboardProviderContext.Provider>
+    </SheetKeyboardContext.Provider>
   )
-}
-
-export const useSheetKeyboardProvider = () => {
-  const context = useContext(SheetKeyboardProviderContext)
-
-  if (!context) {
-    throw new Error(
-      'useSheetKeyboardProvider must be used within a SheetKeyboardProvider',
-    )
-  }
-
-  return context
 }

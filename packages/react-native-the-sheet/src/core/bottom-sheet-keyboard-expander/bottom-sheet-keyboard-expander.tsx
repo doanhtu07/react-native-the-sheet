@@ -12,7 +12,7 @@ import Animated, {
 import type { BottomSheetKeyboardExpanderProps } from './types'
 import { useTrueSafeArea } from '../hooks'
 import { isApproxEqual } from '../../private/utils/approximately-equal'
-import { useSheetKeyboardProvider } from '../sheet-keyboard-provider'
+import { useSheetKeyboard } from '../sheet-keyboard-provider'
 import { runOnJS, runOnUI } from 'react-native-worklets'
 
 const KEYBOARD_EXPANDER_ANIMATION_DURATION = 600
@@ -22,7 +22,7 @@ export function BottomSheetKeyboardExpander({
   keyboardOffset,
 }: Readonly<BottomSheetKeyboardExpanderProps>) {
   const { keyboardVisible, keyboardFinalHeight, isAndroidKeyboardResizeMode } =
-    useSheetKeyboardProvider()
+    useSheetKeyboard()
 
   const { isEdgeToEdge, safeAreaHeight, trueTop, trueBottom } =
     useTrueSafeArea()

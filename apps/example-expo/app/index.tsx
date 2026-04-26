@@ -147,6 +147,17 @@ export default function Index() {
         }}
       />
 
+      {/* MARK: Height Budget Pattern */}
+
+      <Text style={styles.header}>Height Budget Pattern</Text>
+
+      <Button
+        title="Example Height Budget Scroll View"
+        onPress={() => {
+          router.push('/example-height-budget-scroll-view')
+        }}
+      />
+
       {/* MARK: Bottom Sheet + Navigator */}
 
       <Text style={styles.header}>Bottom Sheet + Navigator</Text>

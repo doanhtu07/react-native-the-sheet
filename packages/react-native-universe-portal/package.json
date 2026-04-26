@@ -1,6 +1,6 @@
 {
   "name": "react-native-universe-portal",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "Portals that transport your components to a different universe",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",

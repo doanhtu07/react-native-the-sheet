@@ -23,6 +23,16 @@ const SheetStackContext = createContext<SheetStackContextType | undefined>(
   undefined,
 )
 
+export const useSheetStack = () => {
+  const context = useContext(SheetStackContext)
+
+  if (!context) {
+    throw new Error('useSheetStack must be used within a SheetStackProvider')
+  }
+
+  return context
+}
+
 export const SheetStackProvider: FC<SheetStackProviderProps> = ({
   debug,
   children,
@@ -168,16 +178,4 @@ export const SheetStackProvider: FC<SheetStackProviderProps> = ({
       {children}
     </SheetStackContext.Provider>
   )
-}
-
-// MARK: Hook
-
-export const useSheetStack = () => {
-  const context = useContext(SheetStackContext)
-
-  if (!context) {
-    throw new Error('useSheetStack must be used within a SheetStackProvider')
-  }
-
-  return context
 }

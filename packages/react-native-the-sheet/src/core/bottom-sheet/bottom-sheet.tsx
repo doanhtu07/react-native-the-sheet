@@ -34,6 +34,16 @@ const BottomSheetContext = createContext<BottomSheetContextType | undefined>(
   undefined,
 )
 
+export const useBottomSheet = () => {
+  const context = useContext(BottomSheetContext)
+
+  if (!context) {
+    throw new Error('useBottomSheet must be used within a BottomSheet')
+  }
+
+  return context
+}
+
 export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
   function BottomSheetCore(
     {
@@ -286,18 +296,6 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
     )
   },
 )
-
-// MARK: Hooks
-
-export const useBottomSheet = () => {
-  const context = useContext(BottomSheetContext)
-
-  if (!context) {
-    throw new Error('useBottomSheet must be used within a BottomSheet')
-  }
-
-  return context
-}
 
 // MARK: Styles
 

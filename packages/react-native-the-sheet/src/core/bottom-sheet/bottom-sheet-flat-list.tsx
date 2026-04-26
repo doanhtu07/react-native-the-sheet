@@ -7,11 +7,21 @@ import { useMemo } from 'react'
 import { useScrollViewUtils } from './hooks/use-scroll-view-utils'
 
 export function BottomSheetFlatList<T>({
+  fill,
+
   onLayout: propOnLayout,
   onTouchStart: propOnTouchStart,
   onTouchEnd: propOnTouchEnd,
-  fill,
-  styles: propStyles,
+
+  onScroll: propOnScroll,
+  onBeginDrag: propOnBeginDrag,
+  onEndDrag: propOnEndDrag,
+  onMomentumBegin: propOnMomentumBegin,
+  onMomentumEnd: propOnMomentumEnd,
+
+  style,
+  contentContainerStyle,
+
   ...rest
 }: Readonly<BottomSheetFlatListProps<T>>) {
   const { scrollViewRef, getPanGesture } = useBottomSheet()
@@ -24,6 +34,11 @@ export function BottomSheetFlatList<T>({
     onLayout: propOnLayout,
     onTouchStart: propOnTouchStart,
     onTouchEnd: propOnTouchEnd,
+    onScroll: propOnScroll,
+    onBeginDrag: propOnBeginDrag,
+    onEndDrag: propOnEndDrag,
+    onMomentumBegin: propOnMomentumBegin,
+    onMomentumEnd: propOnMomentumEnd,
   })
 
   return (
@@ -33,7 +48,8 @@ export function BottomSheetFlatList<T>({
       <Animated.FlatList
         {...rest}
         ref={scrollViewRef as AnimatedRef<Animated.FlatList>}
-        style={[styles.root, fill && styles.fill, propStyles?.root]}
+        style={[styles.root, fill && styles.fill, style]}
+        contentContainerStyle={contentContainerStyle}
         bounces={false} // iOS bounce ruins the scrollY <= 0 check
         onLayout={onLayout}
         onScroll={onScroll}

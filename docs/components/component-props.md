@@ -200,12 +200,10 @@ styles?: {
 | Prop name | Type      | Required | Default     | Description                                                                               |
 | --------- | --------- | -------- | ----------- | ----------------------------------------------------------------------------------------- |
 | `fill`    | `boolean` | false    | `undefined` | Whether the bottom sheet scroll view should fill the available height (applies `flex: 1`) |
-| `styles`  | object    | false    | `undefined` | The styles of the bottom sheet scroll view                                                |
 
 ---
 
-- Inherits all props of `ScrollView` as well
-- Cannot override `onScroll`
+- Inherits all props of `Animated.ScrollView`
 
 ---
 
@@ -222,12 +220,10 @@ styles?: {
 | Prop name | Type      | Required | Default     | Description                                                                             |
 | --------- | --------- | -------- | ----------- | --------------------------------------------------------------------------------------- |
 | `fill`    | `boolean` | false    | `undefined` | Whether the bottom sheet flat list should fill the available height (applies `flex: 1`) |
-| `styles`  | object    | false    | `undefined` | The styles of the bottom sheet flat list                                                |
 
 ---
 
-- Inherits all props of `FlatList` as well
-- Cannot override `onScroll`
+- Inherits all props of `Animated.FlatList` as well
 
 ---
 
@@ -268,3 +264,18 @@ styles?: {
 ---
 
 - `ScreenRenderer` = `() => ReactElement | null`
+
+## HeightBudgetProvider
+
+| Prop name   | Type        | Required | Default     | Description                                                                                                      |
+| ----------- | ----------- | -------- | ----------- | ---------------------------------------------------------------------------------------------------------------- |
+| `maxHeight` | `number`    | true     | N/A         | The maximum height budget that `HeightClaim` could consume a slice; while `HeightFill` fills the remaining space |
+| `children`  | `ReactNode` | false    | `undefined` | The children of the provider                                                                                     |
+
+## HeightClaim
+
+Inherits all props of `Animated.View`
+
+## HeightFill
+
+Inherits all props of `Animated.View`
