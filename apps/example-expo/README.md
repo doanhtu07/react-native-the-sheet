@@ -4,9 +4,9 @@ Example Expo app to test and demonstrate the usage of this monorepo library
 
 ## Running the app
 
-- iOS: `pnpm build:ios`
+- iOS: `pnpm ios`
 
-- Android: `pnpm build:android`
+- Android: `pnpm android`
   - Recommend using Java 17
   - If you face network issues on Android, check if you have VPN enabled
     - Try disabling VPN
