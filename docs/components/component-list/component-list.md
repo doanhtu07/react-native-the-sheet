@@ -17,9 +17,21 @@ This lists all the components available in the library and their usage hierarchy
               - `BottomSheetFooter`
             - `BottomSheetKeyboardExpander`
 
+---
+
+- `HeightBudgetProvider`, `HeightClaim`, `HeightFill` (For the height budget system, solving the problem of deeply nested dynamic sizing scroll view)
+
+---
+
+- `EmbeddedStackNavigator` (Standalone component that can be used inside anything as long as it makes sense)
+
+---
+
 - `useTrueSafeArea` (A useful hook that combines `useSafeAreaInsets`, `useSafeAreaFrame`, and `useWindowDimensions` to give you the "true" safe area)
 
-- `useSheetKeyboardProvider` (A hook to get some keyboard states from `SheetKeyboardProvider`)
+- `useHeightBudget` (A hook to monitor and manipulate the height budget system from `HeightBudgetProvider`)
+
+- `useSheetKeyboard` (A hook to get some keyboard states from `SheetKeyboardProvider`)
 
 - `useSheetStack` (A hook to monitor and manipulate the sheet stack from `SheetStackProvider`)
 
@@ -30,10 +42,6 @@ This lists all the components available in the library and their usage hierarchy
 - `useBottomSheetPresenter` (A hook to monitor and manipulate the current bottom sheet presenter from `BottomSheetPresenter`)
 
 - `useBottomSheet` (A hook to monitor and manipulate the current bottom sheet from `BottomSheet`)
-
----
-
-- `EmbeddedStackNavigator` (Standalone component that can be used inside anything as long as it makes sense)
 
 ## ScrollView situation
 

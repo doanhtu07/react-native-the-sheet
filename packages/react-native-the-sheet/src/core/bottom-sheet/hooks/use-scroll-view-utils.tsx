@@ -3,6 +3,7 @@ import { useBottomSheet } from '../bottom-sheet'
 import type { BottomSheetScrollViewProps } from '../types'
 import {
   cancelAnimation,
+  runOnUI,
   useAnimatedScrollHandler,
   withDelay,
   withTiming,
@@ -12,28 +13,27 @@ const UNSET_SCROLLING_DELAY = 200
 
 type Props = Pick<
   BottomSheetScrollViewProps,
-  'onLayout' | 'onTouchStart' | 'onTouchEnd'
+  | 'onLayout'
+  | 'onTouchStart'
+  | 'onTouchEnd'
+  | 'onScroll'
+  | 'onBeginDrag'
+  | 'onEndDrag'
+  | 'onMomentumBegin'
+  | 'onMomentumEnd'
 >
 
 export const useScrollViewUtils = ({
   onLayout: propOnLayout,
   onTouchStart: propOnTouchStart,
   onTouchEnd: propOnTouchEnd,
+  onScroll: propOnScroll,
+  onBeginDrag: propOnBeginDrag,
+  onEndDrag: propOnEndDrag,
+  onMomentumBegin: propOnMomentumBegin,
+  onMomentumEnd: propOnMomentumEnd,
 }: Props) => {
   const { isScrollViewReady, isScrolling, scrollY } = useBottomSheet()
-
-  const onLayout = (event: LayoutChangeEvent) => {
-    'worklet'
-
-    if (propOnLayout) {
-      const resolvedOnLayout =
-        typeof propOnLayout === 'function' ? propOnLayout : propOnLayout.value
-
-      resolvedOnLayout?.(event)
-    }
-
-    isScrollViewReady.value = true
-  }
 
   const setScrolling = () => {
     'worklet'
@@ -50,55 +50,57 @@ export const useScrollViewUtils = ({
     )
   }
 
+  const onLayout = (event: LayoutChangeEvent) => {
+    propOnLayout?.(event)
+
+    runOnUI(() => {
+      'worklet'
+      isScrollViewReady.value = true
+    })()
+  }
+
   const onTouchStart = (event: GestureResponderEvent) => {
-    'worklet'
+    propOnTouchStart?.(event)
 
-    if (propOnTouchStart) {
-      const resolvedOnTouchStart =
-        typeof propOnTouchStart === 'function'
-          ? propOnTouchStart
-          : propOnTouchStart.value
-
-      resolvedOnTouchStart?.(event)
-    }
-
-    setScrolling()
+    runOnUI(() => {
+      'worklet'
+      setScrolling()
+    })()
   }
 
   const onTouchEnd = (event: GestureResponderEvent) => {
-    'worklet'
+    propOnTouchEnd?.(event)
 
-    if (propOnTouchEnd) {
-      const resolvedOnTouchEnd =
-        typeof propOnTouchEnd === 'function'
-          ? propOnTouchEnd
-          : propOnTouchEnd.value
-
-      resolvedOnTouchEnd?.(event)
-    }
-
-    unsetScrolling()
+    runOnUI(() => {
+      'worklet'
+      unsetScrolling()
+    })()
   }
 
   const onScroll = useAnimatedScrollHandler({
-    onScroll: (event) => {
+    onScroll: (event, context) => {
       'worklet'
+      propOnScroll?.(event, context)
       scrollY.value = event.contentOffset.y
     },
-    onBeginDrag: () => {
+    onBeginDrag: (event, context) => {
       'worklet'
+      propOnBeginDrag?.(event, context)
       setScrolling()
     },
-    onEndDrag: () => {
+    onEndDrag: (event, context) => {
       'worklet'
+      propOnEndDrag?.(event, context)
       unsetScrolling()
     },
-    onMomentumBegin: () => {
+    onMomentumBegin: (event, context) => {
       'worklet'
+      propOnMomentumBegin?.(event, context)
       setScrolling()
     },
-    onMomentumEnd: () => {
+    onMomentumEnd: (event, context) => {
       'worklet'
+      propOnMomentumEnd?.(event, context)
       unsetScrolling()
     },
   })

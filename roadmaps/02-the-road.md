@@ -1,9 +1,9 @@
 # Chapter 2: The Road
 
-- [ ] Introduce HeightBudgetProvider, HeightConsumer, HeightBudgetConsumer API
+- [x] Introduce HeightBudgetProvider, HeightConsumer, HeightBudgetConsumer API
   - To solve the extreme problem with ScrollView nested deeply in the tree but still wants dynamic sizing behavior
 
-- [ ] Fix styling prop interface for ScrollView and FlatList
+- [x] Fix styling prop interface for ScrollView and FlatList
   - `styles`, `style`, and `contentContainerStyle` are not consistent
 
 - [ ] Support for FlashList + LegendList

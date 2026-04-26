@@ -1,8 +1,17 @@
 import type { ComponentProps, PropsWithChildren } from 'react'
-import type { StyleProp, ViewStyle } from 'react-native'
+import type {
+  GestureResponderEvent,
+  LayoutChangeEvent,
+  StyleProp,
+  ViewStyle,
+} from 'react-native'
 import type { PanGesture } from 'react-native-gesture-handler'
 import type Animated from 'react-native-reanimated'
-import type { AnimatedRef, SharedValue } from 'react-native-reanimated'
+import type {
+  AnimatedRef,
+  ScrollHandler,
+  SharedValue,
+} from 'react-native-reanimated'
 
 // MARK: Bottom sheet handle
 
@@ -66,22 +75,56 @@ export type BottomSheetViewProps = PropsWithChildren & {
 
 type AnimatedScrollViewProps = ComponentProps<typeof Animated.ScrollView>
 
-export type BottomSheetScrollViewProps = AnimatedScrollViewProps & {
+export type BottomSheetScrollViewProps = Omit<
+  AnimatedScrollViewProps,
+  | 'onLayout'
+  | 'onTouchStart'
+  | 'onTouchEnd'
+  | 'onScroll'
+  | 'onBeginDrag'
+  | 'onEndDrag'
+  | 'onMomentumBegin'
+  | 'onMomentumEnd'
+> & {
   fill?: boolean
-  styles?: {
-    root?: StyleProp<ViewStyle>
-  }
+
+  onLayout?: (e: LayoutChangeEvent) => void
+  onTouchStart?: (e: GestureResponderEvent) => void
+  onTouchEnd?: (e: GestureResponderEvent) => void
+
+  onScroll?: ScrollHandler
+  onBeginDrag?: ScrollHandler
+  onEndDrag?: ScrollHandler
+  onMomentumBegin?: ScrollHandler
+  onMomentumEnd?: ScrollHandler
 }
 
 // MARK: Bottom sheet flatlist
 
 type AnimatedFlatListProps<T> = ComponentProps<typeof Animated.FlatList<T>>
 
-export type BottomSheetFlatListProps<T> = AnimatedFlatListProps<T> & {
+export type BottomSheetFlatListProps<T> = Omit<
+  AnimatedFlatListProps<T>,
+  | 'onLayout'
+  | 'onTouchStart'
+  | 'onTouchEnd'
+  | 'onScroll'
+  | 'onBeginDrag'
+  | 'onEndDrag'
+  | 'onMomentumBegin'
+  | 'onMomentumEnd'
+> & {
   fill?: boolean
-  styles?: {
-    root?: StyleProp<ViewStyle>
-  }
+
+  onLayout?: (e: LayoutChangeEvent) => void
+  onTouchStart?: (e: GestureResponderEvent) => void
+  onTouchEnd?: (e: GestureResponderEvent) => void
+
+  onScroll?: ScrollHandler
+  onBeginDrag?: ScrollHandler
+  onEndDrag?: ScrollHandler
+  onMomentumBegin?: ScrollHandler
+  onMomentumEnd?: ScrollHandler
 }
 
 // MARK: Bottom sheet footer

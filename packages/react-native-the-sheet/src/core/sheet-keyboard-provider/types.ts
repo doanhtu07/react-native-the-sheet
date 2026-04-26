@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react'
 import type { SharedValue } from 'react-native-reanimated'
 
-export type SheetKeyboardProviderContextType = {
+export type SheetKeyboardContextType = {
   keyboardVisible: SharedValue<boolean>
   keyboardFinalHeight: SharedValue<number>
 

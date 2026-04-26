@@ -7,11 +7,21 @@ import { useMemo } from 'react'
 import { useScrollViewUtils } from './hooks/use-scroll-view-utils'
 
 export function BottomSheetScrollView({
+  fill,
+
   onLayout: propOnLayout,
   onTouchStart: propOnTouchStart,
   onTouchEnd: propOnTouchEnd,
-  fill,
-  styles: propStyles,
+
+  onScroll: propOnScroll,
+  onBeginDrag: propOnBeginDrag,
+  onEndDrag: propOnEndDrag,
+  onMomentumBegin: propOnMomentumBegin,
+  onMomentumEnd: propOnMomentumEnd,
+
+  style,
+  contentContainerStyle,
+
   children,
   ...rest
 }: Readonly<BottomSheetScrollViewProps>) {
@@ -25,6 +35,11 @@ export function BottomSheetScrollView({
     onLayout: propOnLayout,
     onTouchStart: propOnTouchStart,
     onTouchEnd: propOnTouchEnd,
+    onScroll: propOnScroll,
+    onBeginDrag: propOnBeginDrag,
+    onEndDrag: propOnEndDrag,
+    onMomentumBegin: propOnMomentumBegin,
+    onMomentumEnd: propOnMomentumEnd,
   })
 
   return (
@@ -34,7 +49,8 @@ export function BottomSheetScrollView({
       <Animated.ScrollView
         {...rest}
         ref={scrollViewRef as AnimatedRef<Animated.ScrollView>}
-        style={[styles.root, fill && styles.fill, propStyles?.root]}
+        style={[styles.root, fill && styles.fill, style]}
+        contentContainerStyle={contentContainerStyle}
         bounces={false} // iOS bounce ruins the scrollY <= 0 check
         onLayout={onLayout}
         onScroll={onScroll}

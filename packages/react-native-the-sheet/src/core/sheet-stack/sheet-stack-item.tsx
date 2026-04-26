@@ -24,6 +24,16 @@ const SheetStackItemContext = createContext<
   SheetStackItemContextType | undefined
 >(undefined)
 
+export const useSheetStackItem = () => {
+  const context = useContext(SheetStackItemContext)
+
+  if (!context) {
+    throw new Error('useSheetStackItem must be used within a SheetStackItem')
+  }
+
+  return context
+}
+
 export const SheetStackItem = forwardRef<
   SheetStackItemApi,
   SheetStackItemProps
@@ -181,18 +191,6 @@ export const SheetStackItem = forwardRef<
     </SheetStackItemContext.Provider>
   )
 })
-
-// MARK: Hooks
-
-export const useSheetStackItem = () => {
-  const context = useContext(SheetStackItemContext)
-
-  if (!context) {
-    throw new Error('useSheetStackItem must be used within a SheetStackItem')
-  }
-
-  return context
-}
 
 // MARK: Styles
 

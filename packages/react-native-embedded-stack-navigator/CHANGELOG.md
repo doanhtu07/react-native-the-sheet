@@ -1,5 +1,19 @@
 # react-native-embedded-stack-navigator
 
+## 1.0.7
+
+### Patch Changes
+
+- BottomSheetScrollViewProps has a more defined prop interface (⚠️ **BREAKING**)
+  - Remove `styles` prop
+- BottomSheetFlatListProps has a more defined prop interface (⚠️ **BREAKING**)
+  - Remove `styles` prop
+
+- Rename `SheetKeyboardProviderContextType` to `SheetKeyboardContextType` (⚠️ **BREAKING**)
+- Rename `useSheetKeyboardProvider` to `useSheetKeyboard` (⚠️ **BREAKING**)
+
+- Add `useHeightBudget`, `HeightBudgetProvider`, `HeightClaim`, and `HeightFill` to support for deeply nested dynamic sizing scroll views
+
 ## 1.0.6
 
 ### Patch Changes

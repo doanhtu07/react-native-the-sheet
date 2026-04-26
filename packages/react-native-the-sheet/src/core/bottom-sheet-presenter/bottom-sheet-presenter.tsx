@@ -19,6 +19,18 @@ const BottomSheetPresenterContext = createContext<
   BottomSheetPresenterContextType | undefined
 >(undefined)
 
+export const useBottomSheetPresenter = () => {
+  const context = useContext(BottomSheetPresenterContext)
+
+  if (!context) {
+    throw new Error(
+      'useBottomSheetPresenter must be used within a BottomSheetPresenter',
+    )
+  }
+
+  return context
+}
+
 export function BottomSheetPresenter({
   styles: propStyles,
   testID,
@@ -90,20 +102,6 @@ export function BottomSheetPresenter({
       </Animated.View>
     </BottomSheetPresenterContext.Provider>
   )
-}
-
-// MARK: Hooks
-
-export const useBottomSheetPresenter = () => {
-  const context = useContext(BottomSheetPresenterContext)
-
-  if (!context) {
-    throw new Error(
-      'useBottomSheetPresenter must be used within a BottomSheetPresenter',
-    )
-  }
-
-  return context
 }
 
 // MARK: Styles
