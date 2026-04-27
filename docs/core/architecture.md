@@ -12,13 +12,14 @@ SafeAreaProvider (Required) + KeyboardProvider (Recommended)
             └── SheetStackItem
                 └── Backdrop
                 └── BottomSheetPresenter
-                    └── BottomSheet
-                        └── BottomSheetPositionTracker (Effect component)
-                        └── BottomSheetHandle
-                        └── BottomSheetView
-                        └── BottomSheetScrollView`, `BottomSheetFlatList` (Could be nested under `BottomSheetView` as well)
-                        └── BottomSheetFooter
-                    └── BottomSheetKeyboardExpander
+                    └── InputFocusProvider (Only needed when using BottomSheetKeyboardExpander)
+                        └── BottomSheet
+                            └── BottomSheetPositionTracker (Effect component)
+                            └── BottomSheetHandle
+                            └── BottomSheetView
+                            └── BottomSheetScrollView, BottomSheetFlatList (Could be nested under BottomSheetView as well)
+                            └── BottomSheetFooter
+                        └── BottomSheetKeyboardExpander
 ```
 
 ## Concepts
@@ -42,9 +43,10 @@ These three components will work together to provide a portal system, where you 
 
 ### Keyboard handling
 
-These two components will work together to provide a good keyboard avoiding experience for bottom sheets
+These three components will work together to provide a good keyboard avoiding experience for bottom sheets
 
 - `SheetKeyboardProvider`
+- `InputFocusProvider`
 - `BottomSheetKeyboardExpander`
 
 You can optionally wrap your app with `KeyboardProvider` as well

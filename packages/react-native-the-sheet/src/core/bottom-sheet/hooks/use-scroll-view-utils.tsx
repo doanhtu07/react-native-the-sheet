@@ -3,11 +3,11 @@ import { useBottomSheet } from '../bottom-sheet'
 import type { BottomSheetScrollViewProps } from '../types'
 import {
   cancelAnimation,
-  runOnUI,
   useAnimatedScrollHandler,
   withDelay,
   withTiming,
 } from 'react-native-reanimated'
+import { runOnUI } from 'react-native-worklets'
 
 const UNSET_SCROLLING_DELAY = 200
 

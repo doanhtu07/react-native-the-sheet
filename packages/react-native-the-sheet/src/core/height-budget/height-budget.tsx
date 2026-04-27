@@ -13,12 +13,12 @@ import type {
   HeightClaimProps,
 } from './types'
 import Animated, {
-  runOnUI,
   useAnimatedStyle,
   useDerivedValue,
   useSharedValue,
 } from 'react-native-reanimated'
 import type { LayoutChangeEvent } from 'react-native'
+import { runOnUI } from 'react-native-worklets'
 
 const HeightBudgetContext = createContext<HeightBudgetContextType>(null!)
 
@@ -111,7 +111,7 @@ export function HeightFill({ children, ...rest }: HeightFillProps) {
       consumed += staticHeights.value[key]!
     }
 
-    return maxHeight - consumed
+    return maxHeight.value - consumed
   })
 
   const animatedStyle = useAnimatedStyle(() => ({

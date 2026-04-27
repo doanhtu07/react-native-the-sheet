@@ -10,7 +10,7 @@ import { runOnJS } from 'react-native-worklets'
 import { useSyncedRef } from '../../../private/hooks/use-synced-ref'
 import { useSheetStackItem } from '../../sheet-stack'
 import type { BottomSheetContextType } from '../types'
-import { useBridgedValue } from '../../../private/hooks/use-bridged-value'
+import { useToSharedValue } from '../../../private/hooks/use-to-shared-value'
 import { isApproxEqual } from '../../../private/utils/approximately-equal'
 import { SPRING_CONFIG } from '../../../private/constants'
 
@@ -61,7 +61,7 @@ export const usePanGesture = ({
   disableDrag: propDisableDrag,
 }: Props) => {
   const {
-    enableOverdrag: propEnableOverdrag,
+    enableOverdrag,
     sheetHeight,
     snapTranslateYs,
     translateY,
@@ -74,9 +74,8 @@ export const usePanGesture = ({
   const { close } = useSheetStackItem()
   const closeRef = useSyncedRef(close)
 
-  const enableFloat = useBridgedValue(propEnableFloat)
-  const enableOverdrag = useBridgedValue(propEnableOverdrag)
-  const disableDrag = useBridgedValue(propDisableDrag)
+  const enableFloat = useToSharedValue(propEnableFloat)
+  const disableDrag = useToSharedValue(propDisableDrag)
 
   const isGestureActive = useSharedValue(false)
 

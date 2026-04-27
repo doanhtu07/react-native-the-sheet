@@ -1,5 +1,13 @@
 # react-native-the-sheet
 
+## 2.0.9
+
+### Patch Changes
+
+- Add `InputFocusProvider` to granularly observe input focus (⚠️ **BREAKING**)
+- Change `maxHeight` of `HeightBudgetProvider` and `HeightBudgetContextType` to be a shared value (⚠️ **BREAKING**)
+- Change `enableOverdrag` to be a shared value (⚠️ **BREAKING**)
+
 ## 2.0.8
 
 ### Patch Changes

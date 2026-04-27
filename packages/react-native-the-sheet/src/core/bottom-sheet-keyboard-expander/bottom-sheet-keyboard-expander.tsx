@@ -14,6 +14,8 @@ import { useTrueSafeArea } from '../hooks'
 import { isApproxEqual } from '../../private/utils/approximately-equal'
 import { useSheetKeyboard } from '../sheet-keyboard-provider'
 import { runOnJS, runOnUI } from 'react-native-worklets'
+import { useInputFocus } from '../input-focus-provider'
+import { useToStateValue } from '../../private/hooks/use-to-state-value'
 
 const KEYBOARD_EXPANDER_ANIMATION_DURATION = 600
 const KEYBOARD_EXPANDER_ANIMATION_EASING = Easing.out(Easing.exp)
@@ -26,6 +28,9 @@ export function BottomSheetKeyboardExpander({
 
   const { isEdgeToEdge, safeAreaHeight, trueTop, trueBottom } =
     useTrueSafeArea()
+
+  const { isInputFocused } = useInputFocus()
+  const isInputFocusedState = useToStateValue(isInputFocused)
 
   const inputOverlap = useSharedValue<number | null>(null)
   const initialInputBottom = useSharedValue<number | null>(null)
@@ -43,9 +48,19 @@ export function BottomSheetKeyboardExpander({
     }
   }, [isCheckShouldExpandTimeoutSet])
 
+  const cleanupInput = useCallback(() => {
+    inputOverlap.value = null
+    initialInputBottom.value = null
+  }, [initialInputBottom, inputOverlap])
+
   const checkShouldExpand = useCallback(
     (keyboardHeightValue: number) => {
       clearCheckShouldExpandTimeout()
+
+      if (!isInputFocusedState) {
+        cleanupInput()
+        return
+      }
 
       const delay =
         Platform.OS === 'android'
@@ -59,8 +74,7 @@ export function BottomSheetKeyboardExpander({
         const inputHandle = TextInput.State.currentlyFocusedInput()
 
         if (!inputHandle) {
-          inputOverlap.value = null
-          initialInputBottom.value = null
+          cleanupInput()
           return
         }
 
@@ -90,11 +104,13 @@ export function BottomSheetKeyboardExpander({
       }, delay)
     },
     [
+      cleanupInput,
       clearCheckShouldExpandTimeout,
       initialInputBottom,
       inputOverlap,
       isCheckShouldExpandTimeoutSet,
       isEdgeToEdge,
+      isInputFocusedState,
       safeAreaHeight,
       trueBottom,
       trueTop,
@@ -140,6 +156,14 @@ export function BottomSheetKeyboardExpander({
       clearCheckShouldExpandTimeout()
     }
   }, [clearCheckShouldExpandTimeout])
+
+  // Effect: Listen to input focus changes
+  useEffect(() => {
+    if (!isInputFocusedState) {
+      clearCheckShouldExpandTimeout()
+      cleanupInput()
+    }
+  }, [cleanupInput, clearCheckShouldExpandTimeout, isInputFocusedState])
 
   // Effect: Listen to keyboard changes
   useAnimatedReaction(
