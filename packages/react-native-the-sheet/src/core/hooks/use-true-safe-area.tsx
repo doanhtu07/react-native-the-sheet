@@ -1,4 +1,4 @@
-import { StatusBar, useWindowDimensions } from 'react-native'
+import { useWindowDimensions } from 'react-native'
 import {
   useSafeAreaFrame,
   useSafeAreaInsets,
@@ -7,42 +7,61 @@ import { isApproxEqual } from '../../private/utils/approximately-equal'
 import { useMemo } from 'react'
 
 export const useTrueSafeArea = () => {
-  const safeAreaInsets = useSafeAreaInsets()
-  const safeAreaFrame = useSafeAreaFrame()
-  const windowDimensions = useWindowDimensions()
+  const insets = useSafeAreaInsets()
+  const frame = useSafeAreaFrame()
+  const window = useWindowDimensions()
 
-  const isEdgeToEdge = isApproxEqual(
-    safeAreaFrame.height,
-    windowDimensions.height,
-  )
+  const safeAreaHeight = frame.height
+  const safeAreaWidth = frame.width
 
-  const trueTop = isEdgeToEdge
-    ? safeAreaInsets.top
-    : safeAreaInsets.top || StatusBar.currentHeight || 0
+  const windowHeight = window.height
+  const windowWidth = window.width
 
-  const trueBottom = isEdgeToEdge
-    ? safeAreaInsets.bottom
-    : safeAreaInsets.bottom ||
-      windowDimensions.height - safeAreaFrame.height - trueTop
+  // Detect Edge-to-Edge purely by geometry
+  const isEdgeToEdge =
+    isApproxEqual(frame.height, window.height) &&
+    isApproxEqual(frame.width, window.width)
+
+  // Resolve insets:
+  // If library insets are 0 (buggy/blind), we derive them from the frame's position
+  // - frame.y = distance from top of window to top of app
+  // - frame.x = distance from left of window to left of app
+
+  const trueTop = insets.top || Math.max(0, frame.y)
+
+  const trueBottom =
+    insets.bottom || Math.max(0, window.height - frame.height - frame.y)
+
+  const trueLeft = insets.left || Math.max(0, frame.x)
+
+  const trueRight =
+    insets.right || Math.max(0, window.width - frame.width - frame.x)
 
   return useMemo(
     () => ({
       isEdgeToEdge,
-      safeAreaWidth: safeAreaFrame.width,
-      safeAreaHeight: safeAreaFrame.height,
-      windowWidth: windowDimensions.width,
-      windowHeight: windowDimensions.height,
+
       trueTop,
       trueBottom,
+      trueLeft,
+      trueRight,
+
+      safeAreaHeight,
+      safeAreaWidth,
+
+      windowHeight,
+      windowWidth,
     }),
     [
       isEdgeToEdge,
-      safeAreaFrame.height,
-      safeAreaFrame.width,
-      trueBottom,
       trueTop,
-      windowDimensions.height,
-      windowDimensions.width,
+      trueBottom,
+      trueLeft,
+      trueRight,
+      safeAreaHeight,
+      safeAreaWidth,
+      windowHeight,
+      windowWidth,
     ],
   )
 }
