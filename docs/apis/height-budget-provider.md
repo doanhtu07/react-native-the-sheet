@@ -4,10 +4,10 @@
 
 ## Props
 
-| Prop name   | Type        | Required | Default     | Description                                                              |
-| ----------- | ----------- | -------- | ----------- | ------------------------------------------------------------------------ |
-| `maxHeight` | `number`    | true     | N/A         | The maximum height budget that this provider can provide to its children |
-| `children`  | `ReactNode` | false    | `undefined` | The children of the provider                                             |
+| Prop name   | Type                  | Required | Default     | Description                                                              |
+| ----------- | --------------------- | -------- | ----------- | ------------------------------------------------------------------------ |
+| `maxHeight` | `SharedValue<number>` | true     | N/A         | The maximum height budget that this provider can provide to its children |
+| `children`  | `ReactNode`           | false    | `undefined` | The children of the provider                                             |
 
 ## Hook
 

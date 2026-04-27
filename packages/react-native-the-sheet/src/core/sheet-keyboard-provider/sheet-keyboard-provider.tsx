@@ -6,7 +6,7 @@ import type {
 import { Keyboard, Platform } from 'react-native'
 import { useAnimatedReaction, useSharedValue } from 'react-native-reanimated'
 import { useTrueSafeArea } from '../hooks'
-import { useBridgedValue } from '../../private/hooks/use-bridged-value'
+import { useToSharedValue } from '../../private/hooks/use-to-shared-value'
 import { isApproxEqual } from '../../private/utils/approximately-equal'
 
 const SheetKeyboardContext = createContext<
@@ -28,9 +28,9 @@ export const useSheetKeyboard = () => {
 export const SheetKeyboardProvider = ({
   children,
 }: SheetKeyboardProviderProps) => {
-  const { trueBottom } = useTrueSafeArea()
+  const { trueBottom: trueBottomValue } = useTrueSafeArea()
 
-  const trueBottomBridge = useBridgedValue(trueBottom)
+  const trueBottom = useToSharedValue(trueBottomValue)
 
   const keyboardVisible = useSharedValue(false)
   const keyboardFinalHeight = useSharedValue(0)
@@ -113,7 +113,7 @@ export const SheetKeyboardProvider = ({
   useAnimatedReaction(
     () => {
       return {
-        trueBottom: trueBottomBridge.value,
+        trueBottom: trueBottom.value,
         keyboardFinalHeight: keyboardFinalHeight.value,
       }
     },

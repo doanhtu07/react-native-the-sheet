@@ -1,5 +1,11 @@
 # Publish NPM Package
 
+## Review and update docs
+
+- docs/apis
+- docs/core
+- docs/getting-started
+
 ## Publish locally
 
 1. `npm login`

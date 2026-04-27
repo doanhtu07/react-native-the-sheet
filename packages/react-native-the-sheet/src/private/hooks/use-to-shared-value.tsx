@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useSharedValue } from 'react-native-reanimated'
 
-export function useBridgedValue<T>(value: T) {
+export function useToSharedValue<T>(value: T) {
   const shared = useSharedValue<T>(value)
 
   useEffect(() => {

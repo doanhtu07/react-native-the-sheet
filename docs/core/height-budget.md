@@ -212,8 +212,13 @@ I've created a height budget API to solve this problem, so you don't need to hav
 Congratulations! You've bypassed the limitations of Yoga and have dynamic sizing ScrollView work with indirect siblings
 
 ```tsx
+const maxHeight = 600
+const maxHeightShared = useSharedValue(maxHeight)
+
+// ...
+
 <BottomSheet styles={{ root: { maxHeight } }}>
-  <HeightBudgetProvider maxHeight={maxHeight}>
+  <HeightBudgetProvider maxHeight={maxHeightShared}>
     <HeightClaim>
       <BottomSheetHandle />
     </HeightClaim>

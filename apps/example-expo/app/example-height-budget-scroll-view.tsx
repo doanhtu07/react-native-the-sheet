@@ -1,5 +1,6 @@
 import { Fragment, useState } from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
+import { useSharedValue } from 'react-native-reanimated'
 import {
   Backdrop,
   BottomSheet,
@@ -20,6 +21,7 @@ export default function ExampleHeightBudgetScrollView() {
   // When using dynamic sizing, it's important to set a max height
   // to prevent content taking up the entire screen
   const maxHeight = 600
+  const maxHeightShared = useSharedValue(maxHeight)
 
   // MARK: Renderers
 
@@ -53,7 +55,7 @@ export default function ExampleHeightBudgetScrollView() {
 
           <BottomSheetPresenter>
             <BottomSheet styles={{ root: { maxHeight } }}>
-              <HeightBudgetProvider maxHeight={maxHeight}>
+              <HeightBudgetProvider maxHeight={maxHeightShared}>
                 <HeightClaim>
                   <BottomSheetHandle />
                 </HeightClaim>

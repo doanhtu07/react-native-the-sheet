@@ -1,14 +1,15 @@
+import { ManagedTextInput } from '@/features/example-bottom-sheet-with-keyboard/managed-text-input'
 import { Fragment, useState } from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 import {
-  Backdrop,
   BottomSheet,
   BottomSheetHandle,
   BottomSheetPresenter,
   BottomSheetScrollView,
   BottomSheetKeyboardExpander,
   SheetStackItem,
+  InputFocusProvider,
 } from 'react-native-the-sheet'
 import { Portal } from 'react-native-universe-portal'
 
@@ -33,6 +34,12 @@ export default function ExampleBottomSheetWithKeyboard() {
 
       <Button title="Open Sheet A" onPress={() => setIsOpenA(true)} />
 
+      <TextInput
+        style={styles.input}
+        placeholder="Type something..."
+        placeholderTextColor="#999"
+      />
+
       <Portal hostName="root">
         <SheetStackItem
           isOpen={isOpenA}
@@ -40,31 +47,31 @@ export default function ExampleBottomSheetWithKeyboard() {
           waitForFullyExit
           testID="sheetA"
         >
-          <Backdrop />
-
           <BottomSheetPresenter>
-            <BottomSheet snapPoints={[400, 800]}>
-              <BottomSheetHandle />
+            <InputFocusProvider>
+              <BottomSheet snapPoints={[400, 800]}>
+                <BottomSheetHandle />
 
-              <BottomSheetScrollView>
-                <Text>Sheet A</Text>
+                <BottomSheetScrollView>
+                  <Text>Sheet A</Text>
 
-                <Button
-                  title="Close Sheet A"
-                  onPress={() => setIsOpenA(false)}
-                />
+                  <Button
+                    title="Close Sheet A"
+                    onPress={() => setIsOpenA(false)}
+                  />
 
-                <TextInput
-                  style={styles.input}
-                  placeholder="Type something..."
-                  placeholderTextColor="#999"
-                />
+                  <ManagedTextInput
+                    style={styles.input}
+                    placeholder="Type something..."
+                    placeholderTextColor="#999"
+                  />
 
-                {renderContent()}
-              </BottomSheetScrollView>
-            </BottomSheet>
+                  {renderContent()}
+                </BottomSheetScrollView>
+              </BottomSheet>
 
-            <BottomSheetKeyboardExpander keyboardOffset={20} />
+              <BottomSheetKeyboardExpander keyboardOffset={20} />
+            </InputFocusProvider>
           </BottomSheetPresenter>
         </SheetStackItem>
       </Portal>

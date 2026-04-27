@@ -23,7 +23,7 @@ import {
   useImperativeHandle,
   useMemo,
 } from 'react'
-import { useBridgedValue } from '../../private/hooks/use-bridged-value'
+import { useToSharedValue } from '../../private/hooks/use-to-shared-value'
 import { usePanGesture } from './hooks/use-pan-gesture'
 import { useSyncedSharedValue } from '../../private/hooks/use-synced-shared-value'
 import { useBottomSheetPresenter } from '../bottom-sheet-presenter'
@@ -49,7 +49,7 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
     {
       snapPoints = [],
       enableFloat = false,
-      enableOverdrag = false,
+      enableOverdrag: propEnableOverdrag = false,
       disableDrag = false,
       fill = false,
       styles: propStyles,
@@ -59,7 +59,7 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
   ) {
     // MARK: Catch exceptions
 
-    if (enableOverdrag && snapPoints.length === 0) {
+    if (propEnableOverdrag && snapPoints.length === 0) {
       throw new Error(
         'react-native-the-sheet - src/bottom-sheet/bottom-sheet.tsx - enableOverdrag cannot be enabled without snap points',
       )
@@ -73,7 +73,7 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
     const { translateY: bottomSheetPresenterTranslateY } =
       useBottomSheetPresenter()
 
-    const enableOverdragBridge = useBridgedValue(enableOverdrag)
+    const enableOverdrag = useToSharedValue(propEnableOverdrag)
 
     const isDark = theme === 'dark'
     const backgroundColor = isDark ? '#1C1C1E' : '#FFFFFF'
@@ -83,7 +83,7 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
     const sheetVisibleRatio = useSharedValue(0)
 
     // Normalize snap points into numbers
-    const normalizedSnaps = useBridgedValue(
+    const normalizedSnaps = useToSharedValue(
       useMemo(() => {
         if (snapPoints.length === 0) return []
 
@@ -227,7 +227,7 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
           bottomSheetPresenterTranslateY: bottomSheetPresenterTranslateY.value,
           bottomSheetTranslateY: translateY.value,
           sheetHeight: sheetHeight.value,
-          enableOverdrag: enableOverdragBridge.value,
+          enableOverdrag: enableOverdrag.value,
         }
       },
       (prepared) => {

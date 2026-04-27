@@ -111,7 +111,7 @@ export function HeightFill({ children, ...rest }: HeightFillProps) {
       consumed += staticHeights.value[key]!
     }
 
-    return maxHeight - consumed
+    return maxHeight.value - consumed
   })
 
   const animatedStyle = useAnimatedStyle(() => ({

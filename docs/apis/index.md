@@ -38,6 +38,10 @@
 
 [BottomSheetFooter](./bottom-sheet-footer.md)
 
+---
+
+[InputFocusProvider](./input-focus-provider.md)
+
 [BottomSheetKeyboardExpander](./bottom-sheet-keyboard-expander.md)
 
 ---

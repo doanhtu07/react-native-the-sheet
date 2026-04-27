@@ -28,7 +28,7 @@ export type BottomSheetHandleProps = {
 type SnapPoint = number | `${number}%`
 
 export type BottomSheetContextType = {
-  enableOverdrag: boolean
+  enableOverdrag: SharedValue<boolean>
 
   sheetHeight: SharedValue<number>
   sheetVisibleHeight: SharedValue<number>
