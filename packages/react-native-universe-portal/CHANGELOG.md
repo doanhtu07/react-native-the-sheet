@@ -1,5 +1,12 @@
 # react-native-universe-portal
 
+## 2.0.10
+
+### Patch Changes
+
+- Calculate the true safe area more accurately using frame.x and frame.y
+- Also, expose `trueLeft` and `trueRight`
+
 ## 2.0.9
 
 ### Patch Changes
