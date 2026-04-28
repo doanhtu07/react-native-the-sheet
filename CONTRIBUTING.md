@@ -33,5 +33,11 @@ We use @changesets/cli for managing versioning and releases
   - There are 3 different cases we need to test
 
 - To enable `non-edge-to-edge` mode in Android, run `pnpm ete:disable && pnpm android:clean`
+  - Also need to delete `react-native-edge-to-edge` from `plugins` in `app.config.ts` for the example Expo app
 
 - To enable `edge-to-edge` mode in Android, run `pnpm ete:enable && pnpm android:clean`
+  - Also need to write `react-native-edge-to-edge` to `plugins` in `app.config.ts` for the example Expo app
+
+### Android keyboard mode testing
+
+- When updating keyboard mode for Android, don't forget to adjust `androidWindowSoftInputMode` in `apps/example-expo/app/_layout.tsx`

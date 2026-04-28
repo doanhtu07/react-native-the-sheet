@@ -3,9 +3,9 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated'
 import type { BottomSheetFooterProps } from './types'
-import { useBottomSheet } from './bottom-sheet'
 import { StyleSheet, type LayoutChangeEvent } from 'react-native'
 import { Fragment } from 'react'
+import { useBottomSheet } from './bottom-sheet-provider'
 
 export const BottomSheetFooter = ({
   styles: propStyles,

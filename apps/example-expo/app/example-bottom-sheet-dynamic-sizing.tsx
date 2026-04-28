@@ -7,6 +7,7 @@ import {
   BottomSheetApi,
   BottomSheetPresenter,
   SheetStackItem,
+  BottomSheetProvider,
 } from 'react-native-the-sheet'
 import { Portal } from 'react-native-universe-portal'
 
@@ -41,24 +42,29 @@ export default function ExampleBottomSheetDynamicSizing() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheet ref={botRefA}>
-              <BottomSheetHandle />
+            <BottomSheetProvider>
+              <BottomSheet ref={botRefA}>
+                <BottomSheetHandle />
 
-              <Text>Sheet A</Text>
-              <Button title="Close Sheet A" onPress={() => setIsOpenA(false)} />
+                <Text>Sheet A</Text>
+                <Button
+                  title="Close Sheet A"
+                  onPress={() => setIsOpenA(false)}
+                />
 
-              <Button
-                title="Snap to 50%"
-                onPress={() => botRefA.current?.snapToPosition('50%')}
-              />
+                <Button
+                  title="Snap to 50%"
+                  onPress={() => botRefA.current?.snapToPosition('50%')}
+                />
 
-              <Button
-                title="Snap to 70%"
-                onPress={() => botRefA.current?.snapToPosition('70%')}
-              />
+                <Button
+                  title="Snap to 70%"
+                  onPress={() => botRefA.current?.snapToPosition('70%')}
+                />
 
-              {renderContent()}
-            </BottomSheet>
+                {renderContent()}
+              </BottomSheet>
+            </BottomSheetProvider>
           </BottomSheetPresenter>
         </SheetStackItem>
       </Portal>

@@ -32,13 +32,14 @@ const config: ExpoConfig = {
     // softwareKeyboardLayoutMode: 'pan',
     // edgeToEdgeEnabled: false,
 
-    // Case 3: Edge to edge enabled
+    // Case 3: Edge to edge enabled + adjustResize
+    // softwareKeyboardLayoutMode: 'resize',
+    // edgeToEdgeEnabled: true,
+
+    // Case 4: Edge to edge enabled + adjustPan
+    // softwareKeyboardLayoutMode: 'pan',
     // edgeToEdgeEnabled: true,
   },
-  // "web": {
-  //   "output": "static",
-  //   "favicon": "./assets/images/favicon.png"
-  // },
   plugins: [
     'expo-router',
     [

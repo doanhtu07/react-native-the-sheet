@@ -1,28 +1,32 @@
 import React, { Fragment, useState } from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
-import { useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
+import { useAnimatedStyle } from 'react-native-reanimated'
 import {
   Backdrop,
   BottomSheet,
   BottomSheetHandle,
-  BottomSheetPositionTracker,
   BottomSheetPresenter,
+  BottomSheetProvider,
   BottomSheetView,
   SheetStackItem,
+  useBottomSheetRegistry,
 } from 'react-native-the-sheet'
 import { Portal } from 'react-native-universe-portal'
 
 export default function ExampleBackdropOpacity() {
-  const [isOpenA, setIsOpenA] = useState(false)
+  const { sheets } = useBottomSheetRegistry()
 
-  const bottomSheetVisibleRatio = useSharedValue(0)
+  const bottomSheetId = 'sheetA'
+  const sheetA = sheets[bottomSheetId]
+
+  const [isOpenA, setIsOpenA] = useState(false)
 
   const animatedBackdropStyle = useAnimatedStyle(() => {
     const maxOpacity = 0.5
 
     const opacity = Math.min(
       maxOpacity,
-      maxOpacity * bottomSheetVisibleRatio.value,
+      maxOpacity * (sheetA?.sheetVisibleRatio.value || 0),
     )
 
     return {
@@ -64,22 +68,24 @@ export default function ExampleBackdropOpacity() {
           />
 
           <BottomSheetPresenter>
-            <BottomSheet snapPoints={['60%']} enableOverdrag>
-              <BottomSheetPositionTracker
-                trackBottomSheetVisibleRatio={bottomSheetVisibleRatio}
-              />
+            <BottomSheetProvider
+              id={bottomSheetId}
+              snapPoints={['60%']}
+              enableOverdrag
+            >
+              <BottomSheet>
+                <BottomSheetHandle />
 
-              <BottomSheetHandle />
-
-              <BottomSheetView>
-                <Text>Sheet A</Text>
-                <Button
-                  title="Close Sheet A"
-                  onPress={() => setIsOpenA(false)}
-                />
-                {renderContent()}
-              </BottomSheetView>
-            </BottomSheet>
+                <BottomSheetView>
+                  <Text>Sheet A</Text>
+                  <Button
+                    title="Close Sheet A"
+                    onPress={() => setIsOpenA(false)}
+                  />
+                  {renderContent()}
+                </BottomSheetView>
+              </BottomSheet>
+            </BottomSheetProvider>
           </BottomSheetPresenter>
         </SheetStackItem>
       </Portal>

@@ -1,10 +1,11 @@
 import Animated, { type AnimatedRef } from 'react-native-reanimated'
-import { useBottomSheet } from './bottom-sheet'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import type { BottomSheetFlatListProps } from './types'
 import { StyleSheet } from 'react-native'
 import { useMemo } from 'react'
-import { useScrollViewUtils } from './hooks/use-scroll-view-utils'
+import { useBottomSheetScrollViewUtils } from './hooks/use-bottom-sheet-scroll-view-utils'
+import { useBottomSheetPanGesture } from './hooks/use-bottom-sheet-pan-gesture'
+import { useBottomSheet } from './bottom-sheet-provider'
 
 export function BottomSheetFlatList<T>({
   fill,
@@ -24,22 +25,25 @@ export function BottomSheetFlatList<T>({
 
   ...rest
 }: Readonly<BottomSheetFlatListProps<T>>) {
-  const { scrollViewRef, getPanGesture } = useBottomSheet()
+  const { scrollViewRef } = useBottomSheet()
+
+  const getPanGesture = useBottomSheetPanGesture()
 
   const panGesture = useMemo(() => {
     return getPanGesture()
   }, [getPanGesture])
 
-  const { onLayout, onTouchStart, onTouchEnd, onScroll } = useScrollViewUtils({
-    onLayout: propOnLayout,
-    onTouchStart: propOnTouchStart,
-    onTouchEnd: propOnTouchEnd,
-    onScroll: propOnScroll,
-    onBeginDrag: propOnBeginDrag,
-    onEndDrag: propOnEndDrag,
-    onMomentumBegin: propOnMomentumBegin,
-    onMomentumEnd: propOnMomentumEnd,
-  })
+  const { onLayout, onTouchStart, onTouchEnd, onScroll } =
+    useBottomSheetScrollViewUtils({
+      onLayout: propOnLayout,
+      onTouchStart: propOnTouchStart,
+      onTouchEnd: propOnTouchEnd,
+      onScroll: propOnScroll,
+      onBeginDrag: propOnBeginDrag,
+      onEndDrag: propOnEndDrag,
+      onMomentumBegin: propOnMomentumBegin,
+      onMomentumEnd: propOnMomentumEnd,
+    })
 
   return (
     <GestureDetector

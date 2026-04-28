@@ -5,6 +5,7 @@ import {
   BottomSheet,
   BottomSheetHandle,
   BottomSheetPresenter,
+  BottomSheetProvider,
   BottomSheetScrollView,
   BottomSheetView,
   SheetStackItem,
@@ -57,36 +58,38 @@ export default function ExampleBottomSheetDisableDrag() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheet
+            <BottomSheetProvider
               snapPoints={['60%']}
               disableDrag={disableDrag || disableClose}
             >
-              <BottomSheetHandle />
+              <BottomSheet>
+                <BottomSheetHandle />
 
-              <BottomSheetView fill>
-                <Text>Disable Drag: {disableDrag ? 'true' : 'false'}</Text>
-                <Text>Disable Close: {disableClose ? 'true' : 'false'}</Text>
+                <BottomSheetView fill>
+                  <Text>Disable Drag: {disableDrag ? 'true' : 'false'}</Text>
+                  <Text>Disable Close: {disableClose ? 'true' : 'false'}</Text>
 
-                <Text style={styles.instructions}>
-                  {disableDrag || disableClose
-                    ? 'Drag is disabled. You cannot drag the sheet.'
-                    : 'Drag is enabled. You can drag the sheet normally.'}
-                </Text>
+                  <Text style={styles.instructions}>
+                    {disableDrag || disableClose
+                      ? 'Drag is disabled. You cannot drag the sheet.'
+                      : 'Drag is enabled. You can drag the sheet normally.'}
+                  </Text>
 
-                <Button title="Close Sheet" onPress={close} />
+                  <Button title="Close Sheet" onPress={close} />
 
-                {disableClose && (
-                  <Button
-                    title="Enable Close (to close)"
-                    onPress={() => setDisableClose(false)}
-                  />
-                )}
+                  {disableClose && (
+                    <Button
+                      title="Enable Close (to close)"
+                      onPress={() => setDisableClose(false)}
+                    />
+                  )}
 
-                <BottomSheetScrollView fill>
-                  {renderContent()}
-                </BottomSheetScrollView>
-              </BottomSheetView>
-            </BottomSheet>
+                  <BottomSheetScrollView fill>
+                    {renderContent()}
+                  </BottomSheetScrollView>
+                </BottomSheetView>
+              </BottomSheet>
+            </BottomSheetProvider>
           </BottomSheetPresenter>
         </SheetStackItem>
       </Portal>

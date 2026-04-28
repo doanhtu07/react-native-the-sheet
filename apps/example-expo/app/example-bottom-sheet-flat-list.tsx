@@ -6,6 +6,7 @@ import {
   BottomSheetFlatList,
   BottomSheetHandle,
   BottomSheetPresenter,
+  BottomSheetProvider,
   BottomSheetView,
   SheetStackItem,
 } from 'react-native-the-sheet'
@@ -62,20 +63,26 @@ export default function ExampleBottomSheetFlatList() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheet fill styles={{ root: { maxHeight } }}>
-              <BottomSheetHandle />
+            <BottomSheetProvider>
+              <BottomSheet fill styles={{ root: { maxHeight } }}>
+                <BottomSheetHandle />
 
-              <BottomSheetView fill>
-                <Text>Sheet A</Text>
+                <BottomSheetView fill>
+                  <Text>Sheet A</Text>
 
-                <Button
-                  title="Close Sheet A"
-                  onPress={() => setIsOpenA(false)}
-                />
+                  <Button
+                    title="Close Sheet A"
+                    onPress={() => setIsOpenA(false)}
+                  />
 
-                <BottomSheetFlatList fill data={data} renderItem={renderItem} />
-              </BottomSheetView>
-            </BottomSheet>
+                  <BottomSheetFlatList
+                    fill
+                    data={data}
+                    renderItem={renderItem}
+                  />
+                </BottomSheetView>
+              </BottomSheet>
+            </BottomSheetProvider>
           </BottomSheetPresenter>
         </SheetStackItem>
       </Portal>
@@ -90,20 +97,26 @@ export default function ExampleBottomSheetFlatList() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheet snapPoints={['25%', '50%']}>
-              <BottomSheetHandle />
+            <BottomSheetProvider snapPoints={['25%', '50%']}>
+              <BottomSheet>
+                <BottomSheetHandle />
 
-              <BottomSheetView fill>
-                <Text>Sheet B</Text>
+                <BottomSheetView fill>
+                  <Text>Sheet B</Text>
 
-                <Button
-                  title="Close Sheet B"
-                  onPress={() => setIsOpenB(false)}
-                />
+                  <Button
+                    title="Close Sheet B"
+                    onPress={() => setIsOpenB(false)}
+                  />
 
-                <BottomSheetFlatList fill data={data} renderItem={renderItem} />
-              </BottomSheetView>
-            </BottomSheet>
+                  <BottomSheetFlatList
+                    fill
+                    data={data}
+                    renderItem={renderItem}
+                  />
+                </BottomSheetView>
+              </BottomSheet>
+            </BottomSheetProvider>
           </BottomSheetPresenter>
         </SheetStackItem>
       </Portal>

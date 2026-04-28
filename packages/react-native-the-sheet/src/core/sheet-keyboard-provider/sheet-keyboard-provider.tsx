@@ -1,10 +1,15 @@
 import { createContext, useContext, useEffect, useMemo } from 'react'
-import type {
-  SheetKeyboardContextType,
-  SheetKeyboardProviderProps,
+import {
+  ANDROID_WINDOW_SOFT_INPUT_MODES,
+  type SheetKeyboardContextType,
+  type SheetKeyboardProviderProps,
 } from './types'
 import { Keyboard, Platform } from 'react-native'
-import { useAnimatedReaction, useSharedValue } from 'react-native-reanimated'
+import {
+  useAnimatedReaction,
+  useDerivedValue,
+  useSharedValue,
+} from 'react-native-reanimated'
 import { useTrueSafeArea } from '../hooks'
 import { useToSharedValue } from '../../private/hooks/use-to-shared-value'
 import { isApproxEqual } from '../../private/utils/approximately-equal'
@@ -26,25 +31,55 @@ export const useSheetKeyboard = () => {
 }
 
 export const SheetKeyboardProvider = ({
+  androidWindowSoftInputMode: propAndroidWindowSoftInputMode,
   children,
 }: SheetKeyboardProviderProps) => {
-  const { trueBottom: trueBottomValue } = useTrueSafeArea()
+  const { isEdgeToEdge, trueBottom: trueBottomValue } = useTrueSafeArea()
 
   const trueBottom = useToSharedValue(trueBottomValue)
 
   const keyboardVisible = useSharedValue(false)
   const keyboardFinalHeight = useSharedValue(0)
 
-  const isAndroidKeyboardResizeMode = useSharedValue<boolean | null>(null)
+  const androidWindowSoftInputMode = useToSharedValue(
+    propAndroidWindowSoftInputMode,
+  )
+  const isVisuallyAndroidKeyboardResizeMode = useSharedValue<boolean | null>(
+    null,
+  )
+
+  const isAndroidKeyboardResizeMode = useDerivedValue(() => {
+    if (isVisuallyAndroidKeyboardResizeMode.value) {
+      return true
+    }
+
+    if (
+      !isEdgeToEdge &&
+      androidWindowSoftInputMode.value ===
+        ANDROID_WINDOW_SOFT_INPUT_MODES.adjustResize
+    ) {
+      return true
+    }
+
+    return false
+  })
 
   const contextValue = useMemo<SheetKeyboardContextType>(() => {
     return {
       keyboardVisible,
       keyboardFinalHeight,
 
+      androidWindowSoftInputMode,
+      isVisuallyAndroidKeyboardResizeMode,
       isAndroidKeyboardResizeMode,
     }
-  }, [keyboardVisible, keyboardFinalHeight, isAndroidKeyboardResizeMode])
+  }, [
+    keyboardVisible,
+    keyboardFinalHeight,
+    androidWindowSoftInputMode,
+    isVisuallyAndroidKeyboardResizeMode,
+    isAndroidKeyboardResizeMode,
+  ])
 
   // MARK: Effects
 
@@ -118,13 +153,13 @@ export const SheetKeyboardProvider = ({
       }
     },
     (prepared, previous) => {
-      if (isAndroidKeyboardResizeMode.value !== null) {
+      if (isVisuallyAndroidKeyboardResizeMode.value !== null) {
         // Already determined
         return
       }
 
       if (Platform.OS !== 'android') {
-        isAndroidKeyboardResizeMode.value = false
+        isVisuallyAndroidKeyboardResizeMode.value = false
         return
       }
 
@@ -136,9 +171,9 @@ export const SheetKeyboardProvider = ({
           prepared.trueBottom,
         )
       ) {
-        isAndroidKeyboardResizeMode.value = true
+        isVisuallyAndroidKeyboardResizeMode.value = true
       } else {
-        isAndroidKeyboardResizeMode.value = false
+        isVisuallyAndroidKeyboardResizeMode.value = false
       }
     },
   )

@@ -10,18 +10,21 @@ import {
   BottomSheetKeyboardExpander,
   SheetStackItem,
   InputFocusProvider,
+  BottomSheetProvider,
 } from 'react-native-the-sheet'
 import { Portal } from 'react-native-universe-portal'
 
 export default function ExampleBottomSheetWithKeyboard() {
   const [isOpenA, setIsOpenA] = useState(false)
+  const [isOpenB, setIsOpenB] = useState(false)
+  const [isOpenC, setIsOpenC] = useState(false)
 
   // MARK: Renderers
 
-  const renderContent = () => {
+  const renderContent = (length: number) => {
     return (
       <Fragment>
-        {Array.from({ length: 20 }).map((_, index) => (
+        {Array.from({ length }).map((_, index) => (
           <Text key={index}>Item {index + 1}</Text>
         ))}
       </Fragment>
@@ -32,7 +35,20 @@ export default function ExampleBottomSheetWithKeyboard() {
     <View style={styles.root}>
       <Text style={styles.header}>Example Bottom Sheet With Keyboard</Text>
 
-      <Button title="Open Sheet A" onPress={() => setIsOpenA(true)} />
+      <Button
+        title="Open Sheet A (Android refuses pan)"
+        onPress={() => setIsOpenA(true)}
+      />
+
+      <Button
+        title="Open Sheet B (Android will pan)"
+        onPress={() => setIsOpenB(true)}
+      />
+
+      <Button
+        title="Open Sheet C (Input inside scroll view)"
+        onPress={() => setIsOpenC(true)}
+      />
 
       <TextInput
         style={styles.input}
@@ -48,30 +64,110 @@ export default function ExampleBottomSheetWithKeyboard() {
           testID="sheetA"
         >
           <BottomSheetPresenter>
-            <InputFocusProvider>
-              <BottomSheet snapPoints={[400, 800]}>
-                <BottomSheetHandle />
+            <BottomSheetProvider snapPoints={[400, 800]}>
+              <InputFocusProvider>
+                <BottomSheet>
+                  <BottomSheetHandle />
 
-                <BottomSheetScrollView>
-                  <Text>Sheet A</Text>
+                  <BottomSheetScrollView>
+                    <Text>Sheet A</Text>
 
-                  <Button
-                    title="Close Sheet A"
-                    onPress={() => setIsOpenA(false)}
-                  />
+                    <Button
+                      title="Close Sheet A"
+                      onPress={() => setIsOpenA(false)}
+                    />
 
-                  <ManagedTextInput
-                    style={styles.input}
-                    placeholder="Type something..."
-                    placeholderTextColor="#999"
-                  />
+                    <ManagedTextInput
+                      style={styles.input}
+                      placeholder="Type something..."
+                      placeholderTextColor="#999"
+                    />
 
-                  {renderContent()}
-                </BottomSheetScrollView>
-              </BottomSheet>
+                    {renderContent(5)}
+                  </BottomSheetScrollView>
+                </BottomSheet>
 
-              <BottomSheetKeyboardExpander keyboardOffset={20} />
-            </InputFocusProvider>
+                <BottomSheetKeyboardExpander keyboardOffset={20} />
+              </InputFocusProvider>
+            </BottomSheetProvider>
+          </BottomSheetPresenter>
+        </SheetStackItem>
+      </Portal>
+
+      <Portal hostName="root">
+        <SheetStackItem
+          isOpen={isOpenB}
+          close={() => setIsOpenB(false)}
+          waitForFullyExit
+          testID="sheetB"
+        >
+          <BottomSheetPresenter>
+            <BottomSheetProvider snapPoints={[400]}>
+              <InputFocusProvider>
+                <BottomSheet>
+                  <BottomSheetHandle />
+
+                  <BottomSheetScrollView>
+                    <Text>Sheet B</Text>
+
+                    <Button
+                      title="Close Sheet B"
+                      onPress={() => setIsOpenB(false)}
+                    />
+
+                    <ManagedTextInput
+                      style={styles.input}
+                      placeholder="Type something..."
+                      placeholderTextColor="#999"
+                    />
+
+                    {renderContent(5)}
+                  </BottomSheetScrollView>
+                </BottomSheet>
+
+                <BottomSheetKeyboardExpander keyboardOffset={20} />
+              </InputFocusProvider>
+            </BottomSheetProvider>
+          </BottomSheetPresenter>
+        </SheetStackItem>
+      </Portal>
+
+      <Portal hostName="root">
+        <SheetStackItem
+          isOpen={isOpenC}
+          close={() => setIsOpenC(false)}
+          waitForFullyExit
+          testID="sheetC"
+        >
+          <BottomSheetPresenter>
+            <BottomSheetProvider snapPoints={[400]}>
+              <InputFocusProvider>
+                <BottomSheet>
+                  <BottomSheetHandle />
+
+                  <BottomSheetScrollView>
+                    <Text>Sheet C</Text>
+
+                    <Button
+                      title="Close Sheet C"
+                      onPress={() => setIsOpenC(false)}
+                    />
+
+                    {renderContent(20)}
+
+                    <ManagedTextInput
+                      style={styles.input}
+                      placeholder="Type something..."
+                      placeholderTextColor="#999"
+                    />
+
+                    {renderContent(20)}
+                  </BottomSheetScrollView>
+                </BottomSheet>
+
+                <BottomSheetKeyboardExpander keyboardOffset={20} />
+              </InputFocusProvider>
+            </BottomSheetProvider>
           </BottomSheetPresenter>
         </SheetStackItem>
       </Portal>

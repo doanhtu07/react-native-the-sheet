@@ -5,7 +5,6 @@ import type {
   StyleProp,
   ViewStyle,
 } from 'react-native'
-import type { PanGesture } from 'react-native-gesture-handler'
 import type Animated from 'react-native-reanimated'
 import type {
   AnimatedRef,
@@ -22,17 +21,31 @@ export type BottomSheetHandleProps = {
   }
 }
 
-// MARK: Bottom sheet
+// MARK: Bottom sheet registry provider
+
+export type BottomSheetRegistryContextType = {
+  sheets: Record<string, BottomSheetContextType>
+  registerSheet: (id: string, ctx: BottomSheetContextType) => void
+  unregisterSheet: (id: string) => void
+}
+
+export type BottomSheetRegistryProviderProps = PropsWithChildren
+
+// MARK: Bottom sheet provider
 
 /** Percentage is compared to the screen height */
 type SnapPoint = number | `${number}%`
 
 export type BottomSheetContextType = {
+  enableFloat: SharedValue<boolean>
   enableOverdrag: SharedValue<boolean>
+  disableDrag: SharedValue<boolean>
 
   sheetHeight: SharedValue<number>
   sheetVisibleHeight: SharedValue<number>
   sheetVisibleRatio: SharedValue<number>
+
+  normalizedSnaps: SharedValue<number[]>
   snapTranslateYs: SharedValue<number[]>
   translateY: SharedValue<number>
 
@@ -41,15 +54,22 @@ export type BottomSheetContextType = {
   isScrolling: SharedValue<0 | 1>
   scrollY: SharedValue<number>
 
-  getPanGesture: () => PanGesture
+  isPanGestureActive: SharedValue<boolean>
+  lockedScrollY: SharedValue<number>
+  isScrollLocked: SharedValue<boolean>
 }
 
-export type BottomSheetProps = PropsWithChildren & {
+export type BottomSheetProviderProps = PropsWithChildren & {
+  id?: string
   snapPoints?: SnapPoint[]
   enableFloat?: boolean
   enableOverdrag?: boolean
   disableDrag?: boolean
+}
 
+// MARK: Bottom sheet
+
+export type BottomSheetProps = PropsWithChildren & {
   fill?: boolean
 
   styles?: {

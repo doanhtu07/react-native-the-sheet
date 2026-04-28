@@ -54,13 +54,17 @@ import { PortalHost, PortalProvider } from 'react-native-universe-portal'
 export default function App() {
   return (
     <SafeAreaProvider>
-      <SheetKeyboardProvider>
+      <SheetKeyboardProvider
+        androidWindowSoftInputMode={/* Your app's Android window soft input mode */}
+      >
         <SheetStackProvider debug>
           <PortalProvider>
-            <GestureHandlerRootView>
-              {/* Your app content HERE */}
-              <PortalHost name="root" debug />
-            </GestureHandlerRootView>
+            <BottomSheetRegistryProvider>
+              <GestureHandlerRootView>
+                {/* Your app content */}
+                <PortalHost name="root" debug />
+              </GestureHandlerRootView>
+            </BottomSheetRegistryProvider>
           </PortalProvider>
         </SheetStackProvider>
       </SheetKeyboardProvider>
@@ -88,6 +92,7 @@ import {
   BottomSheet,
   BottomSheetHandle,
   BottomSheetPresenter,
+  BottomSheetProvider,
   BottomSheetView,
   SheetStackItem,
 } from 'react-native-the-sheet'
@@ -122,18 +127,20 @@ export default function ExampleBottomSheetView() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheet>
-              <BottomSheetHandle />
+            <BottomSheetProvider snapPoints={[200, 500]}>
+              <BottomSheet>
+                <BottomSheetHandle />
 
-              <BottomSheetView>
-                <Text>Sheet A</Text>
-                <Button
-                  title="Close Sheet A"
-                  onPress={() => setIsOpenA(false)}
-                />
-                {renderContent()}
-              </BottomSheetView>
-            </BottomSheet>
+                <BottomSheetView>
+                  <Text>Sheet A</Text>
+                  <Button
+                    title="Close Sheet A"
+                    onPress={() => setIsOpenA(false)}
+                  />
+                  {renderContent()}
+                </BottomSheetView>
+              </BottomSheet>
+            </BottomSheetProvider>
           </BottomSheetPresenter>
         </SheetStackItem>
       </Portal>

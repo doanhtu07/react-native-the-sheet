@@ -4,6 +4,8 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import {
   SheetStackProvider,
   SheetKeyboardProvider,
+  BottomSheetRegistryProvider,
+  ANDROID_WINDOW_SOFT_INPUT_MODES,
 } from 'react-native-the-sheet'
 import { PortalHost, PortalProvider } from 'react-native-universe-portal'
 import { CustomHeaderForKeyboardProvider } from '@/features/root-layout/custom-header-for-keyboard-provider'
@@ -13,16 +15,23 @@ export default function RootLayout() {
   // Need to rebuild (or at least restart) the app when toggling this
   const enableKeyboardProvider = false
 
+  const androidWindowSoftInputMode =
+    ANDROID_WINDOW_SOFT_INPUT_MODES.adjustResize
+
   if (!enableKeyboardProvider) {
     return (
       <SafeAreaProvider>
-        <SheetKeyboardProvider>
+        <SheetKeyboardProvider
+          androidWindowSoftInputMode={androidWindowSoftInputMode}
+        >
           <SheetStackProvider debug>
             <PortalProvider>
-              <GestureHandlerRootView>
-                <Stack />
-                <PortalHost name="root" debug />
-              </GestureHandlerRootView>
+              <BottomSheetRegistryProvider>
+                <GestureHandlerRootView>
+                  <Stack />
+                  <PortalHost name="root" debug />
+                </GestureHandlerRootView>
+              </BottomSheetRegistryProvider>
             </PortalProvider>
           </SheetStackProvider>
         </SheetKeyboardProvider>
@@ -33,18 +42,22 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <KeyboardProvider>
-        <SheetKeyboardProvider>
+        <SheetKeyboardProvider
+          androidWindowSoftInputMode={androidWindowSoftInputMode}
+        >
           <SheetStackProvider debug>
             <PortalProvider>
-              <GestureHandlerRootView>
-                <Stack
-                  screenOptions={{
-                    header: CustomHeaderForKeyboardProvider,
-                  }}
-                />
+              <BottomSheetRegistryProvider>
+                <GestureHandlerRootView>
+                  <Stack
+                    screenOptions={{
+                      header: CustomHeaderForKeyboardProvider,
+                    }}
+                  />
 
-                <PortalHost name="root" debug />
-              </GestureHandlerRootView>
+                  <PortalHost name="root" debug />
+                </GestureHandlerRootView>
+              </BottomSheetRegistryProvider>
             </PortalProvider>
           </SheetStackProvider>
         </SheetKeyboardProvider>

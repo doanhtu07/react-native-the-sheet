@@ -5,6 +5,7 @@ import {
   BottomSheet,
   BottomSheetHandle,
   BottomSheetPresenter,
+  BottomSheetProvider,
   BottomSheetScrollView,
   SheetStackItem,
 } from 'react-native-the-sheet'
@@ -46,20 +47,22 @@ export function DynamicSizingSheetA() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheet styles={{ root: { maxHeight } }}>
-              <BottomSheetHandle />
+            <BottomSheetProvider>
+              <BottomSheet styles={{ root: { maxHeight } }}>
+                <BottomSheetHandle />
 
-              <BottomSheetScrollView>
-                <Text>Sheet A</Text>
+                <BottomSheetScrollView>
+                  <Text>Sheet A</Text>
 
-                <Button
-                  title="Close Sheet A"
-                  onPress={() => setIsOpenA(false)}
-                />
+                  <Button
+                    title="Close Sheet A"
+                    onPress={() => setIsOpenA(false)}
+                  />
 
-                {renderContent()}
-              </BottomSheetScrollView>
-            </BottomSheet>
+                  {renderContent()}
+                </BottomSheetScrollView>
+              </BottomSheet>
+            </BottomSheetProvider>
           </BottomSheetPresenter>
         </SheetStackItem>
       </Portal>

@@ -1,5 +1,28 @@
 # react-native-the-sheet
 
+## 1.0.10
+
+### Patch Changes
+
+**Goal of this release**: First steps to hoist internal states of bottom sheet to a global provider, which allows new patterns and better DX
+
+- Export `useBottomSheetPanGesture`
+
+- Export `useBottomSheetScrollViewUtils`
+
+- Introduce required global provider for bottom sheet `BottomSheetRegistryProvider` (⚠️ **BREAKING**)
+
+- Introduce extra layer provider for bottom sheet `BottomSheetProvider` (⚠️ **BREAKING**)
+
+- Remove certain props from `BottomSheet` to `BottomSheetProvider` (⚠️ **BREAKING**)
+
+- Remove `BottomSheetPositionTracker` (⚠️ **BREAKING**)
+
+- `SheetKeyboardProvider` now requires `androidWindowSoftInputMode` to be explicitly set by user (⚠️ **BREAKING**)
+  - When using Android input mode `adjustResize` + `non-edge-to-edge` + `KeyboardProvider`, set `androidWindowSoftInputMode` of `SheetKeyboardProvider` to `adjustNothing`
+
+- Improve `BottomSheetKeyboardExpander` to work better with different combos of Android input modes, edge-to-edge, and `KeyboardProvider`
+
 ## 1.0.9
 
 ### Patch Changes

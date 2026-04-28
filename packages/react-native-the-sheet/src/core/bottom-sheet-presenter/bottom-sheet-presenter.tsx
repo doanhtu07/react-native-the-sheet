@@ -37,7 +37,9 @@ export function BottomSheetPresenter({
   children,
 }: Readonly<BottomSheetPresenterProps>) {
   const { isHidden, isCurrentlyInStack, onFullyExit } = useSheetStackItem()
+
   const { safeAreaHeight } = useTrueSafeArea()
+
   const onFullyExitRef = useSyncedRef(onFullyExit)
 
   const allowPresent = isCurrentlyInStack && !isHidden

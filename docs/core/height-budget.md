@@ -166,17 +166,19 @@ What if you want to have:
 Something that looks like this:
 
 ```tsx
-<BottomSheet styles={{ root: { maxHeight } }}>
-  <BottomSheetHandle />
+<BottomSheetProvider>
+  <BottomSheet styles={{ root: { maxHeight } }}>
+    <BottomSheetHandle />
 
-  <View>
-    <BottomSheetScrollView>
-      <Text>Sheet A</Text>
-      <Button title="Close Sheet A" onPress={() => setIsOpenA(false)} />
-      {renderContent()}
-    </BottomSheetScrollView>
-  </View>
-</BottomSheet>
+    <View>
+      <BottomSheetScrollView>
+        <Text>Sheet A</Text>
+        <Button title="Close Sheet A" onPress={() => setIsOpenA(false)} />
+        {renderContent()}
+      </BottomSheetScrollView>
+    </View>
+  </BottomSheet>
+</BottomSheetProvider>
 ```
 
 ### Solution
@@ -186,19 +188,21 @@ The good news is that it's possible. But the bad news is that it's not as trivia
 You need to measure the heights of all indirect siblings, sums them up, and manually pass down the remaining height until it reaches the direct parent of ScrollView
 
 ```tsx
-<BottomSheet styles={{ root: { maxHeight } }}>
-  <View onLayout={(e) => setStaticContentHeight(e.nativeEvent.layout.height)}>
-    <BottomSheetHandle />
-  </View>
+<BottomSheetProvider>
+  <BottomSheet styles={{ root: { maxHeight } }}>
+    <View onLayout={(e) => setStaticContentHeight(e.nativeEvent.layout.height)}>
+      <BottomSheetHandle />
+    </View>
 
-  <View style={{ maxHeight: maxHeight - staticContentHeight }}>
-    <BottomSheetScrollView>
-      <Text>Sheet A</Text>
-      <Button title="Close Sheet A" onPress={() => setIsOpenA(false)} />
-      {renderContent()}
-    </BottomSheetScrollView>
-  </View>
-</BottomSheet>
+    <View style={{ maxHeight: maxHeight - staticContentHeight }}>
+      <BottomSheetScrollView>
+        <Text>Sheet A</Text>
+        <Button title="Close Sheet A" onPress={() => setIsOpenA(false)} />
+        {renderContent()}
+      </BottomSheetScrollView>
+    </View>
+  </BottomSheet>
+</BottomSheetProvider>
 ```
 
 ### Height budget API
@@ -217,26 +221,28 @@ const maxHeightShared = useSharedValue(maxHeight)
 
 // ...
 
-<BottomSheet styles={{ root: { maxHeight } }}>
-  <HeightBudgetProvider maxHeight={maxHeightShared}>
-    <HeightClaim>
-      <BottomSheetHandle />
-    </HeightClaim>
-
-    <View>
+<BottomSheetProvider>
+  <BottomSheet styles={{ root: { maxHeight } }}>
+    <HeightBudgetProvider maxHeight={maxHeightShared}>
       <HeightClaim>
-        <BottomSheetView>
-          <Text>Sheet A</Text>
-          <Button title="Close Sheet A" onPress={() => setIsOpenA(false)} />
-        </BottomSheetView>
+        <BottomSheetHandle />
       </HeightClaim>
 
       <View>
-        <HeightFill>
-          <BottomSheetScrollView>{renderContent()}</BottomSheetScrollView>
-        </HeightFill>
+        <HeightClaim>
+          <BottomSheetView>
+            <Text>Sheet A</Text>
+            <Button title="Close Sheet A" onPress={() => setIsOpenA(false)} />
+          </BottomSheetView>
+        </HeightClaim>
+
+        <View>
+          <HeightFill>
+            <BottomSheetScrollView>{renderContent()}</BottomSheetScrollView>
+          </HeightFill>
+        </View>
       </View>
-    </View>
-  </HeightBudgetProvider>
-</BottomSheet>
+    </HeightBudgetProvider>
+  </BottomSheet>
+</BottomSheetProvider>
 ```
