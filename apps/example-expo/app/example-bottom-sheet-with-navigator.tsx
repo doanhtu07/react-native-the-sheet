@@ -12,6 +12,7 @@ import {
   BottomSheet,
   BottomSheetHandle,
   BottomSheetPresenter,
+  BottomSheetProvider,
   BottomSheetView,
   SheetStackItem,
 } from 'react-native-the-sheet'
@@ -49,28 +50,30 @@ export default function ExampleBottomSheetPresenter() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheet fill styles={{ root: { maxHeight: '75%' } }}>
-              <BottomSheetHandle />
+            <BottomSheetProvider>
+              <BottomSheet fill styles={{ root: { maxHeight: '75%' } }}>
+                <BottomSheetHandle />
 
-              <BottomSheetView fill>
-                <Text>Sheet A</Text>
-                <Button
-                  title="Close Sheet A"
-                  onPress={() => setIsOpenA(false)}
-                />
+                <BottomSheetView fill>
+                  <Text>Sheet A</Text>
+                  <Button
+                    title="Close Sheet A"
+                    onPress={() => setIsOpenA(false)}
+                  />
 
-                <EmbeddedStackNavigator<
-                  typeof screens,
-                  RouteParamList,
-                  'ScreenA'
-                >
-                  initialRouteName={'ScreenA'}
-                  initialParams={undefined}
-                  screens={screens}
-                  transitionType="fade"
-                />
-              </BottomSheetView>
-            </BottomSheet>
+                  <EmbeddedStackNavigator<
+                    typeof screens,
+                    RouteParamList,
+                    'ScreenA'
+                  >
+                    initialRouteName={'ScreenA'}
+                    initialParams={undefined}
+                    screens={screens}
+                    transitionType="fade"
+                  />
+                </BottomSheetView>
+              </BottomSheet>
+            </BottomSheetProvider>
           </BottomSheetPresenter>
         </SheetStackItem>
       </Portal>

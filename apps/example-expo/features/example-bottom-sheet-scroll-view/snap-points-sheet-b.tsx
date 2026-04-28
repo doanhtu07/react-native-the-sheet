@@ -5,6 +5,7 @@ import {
   BottomSheet,
   BottomSheetHandle,
   BottomSheetPresenter,
+  BottomSheetProvider,
   BottomSheetScrollView,
   SheetStackItem,
 } from 'react-native-the-sheet'
@@ -40,20 +41,22 @@ export function SnapPointsSheetB() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheet snapPoints={['25%', '50%']}>
-              <BottomSheetHandle />
+            <BottomSheetProvider snapPoints={['25%', '50%']}>
+              <BottomSheet>
+                <BottomSheetHandle />
 
-              <BottomSheetScrollView>
-                <Text>Sheet B</Text>
+                <BottomSheetScrollView>
+                  <Text>Sheet B</Text>
 
-                <Button
-                  title="Close Sheet B"
-                  onPress={() => setIsOpenB(false)}
-                />
+                  <Button
+                    title="Close Sheet B"
+                    onPress={() => setIsOpenB(false)}
+                  />
 
-                {renderContent()}
-              </BottomSheetScrollView>
-            </BottomSheet>
+                  {renderContent()}
+                </BottomSheetScrollView>
+              </BottomSheet>
+            </BottomSheetProvider>
           </BottomSheetPresenter>
         </SheetStackItem>
       </Portal>

@@ -6,6 +6,7 @@ import {
   BottomSheet,
   BottomSheetHandle,
   BottomSheetPresenter,
+  BottomSheetProvider,
   BottomSheetScrollView,
   SheetStackItem,
 } from 'react-native-the-sheet'
@@ -41,24 +42,26 @@ export function NestedScrollSheetC() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheet snapPoints={['50%', '75%']}>
-              <BottomSheetHandle />
+            <BottomSheetProvider snapPoints={['50%', '75%']}>
+              <BottomSheet>
+                <BottomSheetHandle />
 
-              <BottomSheetScrollView>
-                <Text>Sheet C</Text>
+                <BottomSheetScrollView>
+                  <Text>Sheet C</Text>
 
-                <Button
-                  title="Close Sheet C"
-                  onPress={() => setIsOpenC(false)}
-                />
+                  <Button
+                    title="Close Sheet C"
+                    onPress={() => setIsOpenC(false)}
+                  />
 
-                <GestureScrollView style={styles.nestedScrollView}>
+                  <GestureScrollView style={styles.nestedScrollView}>
+                    {renderContent()}
+                  </GestureScrollView>
+
                   {renderContent()}
-                </GestureScrollView>
-
-                {renderContent()}
-              </BottomSheetScrollView>
-            </BottomSheet>
+                </BottomSheetScrollView>
+              </BottomSheet>
+            </BottomSheetProvider>
           </BottomSheetPresenter>
         </SheetStackItem>
       </Portal>

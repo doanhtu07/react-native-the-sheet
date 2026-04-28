@@ -1,7 +1,6 @@
 export * from './core/backdrop'
 export * from './core/bottom-sheet'
 export * from './core/bottom-sheet-keyboard-expander'
-export * from './core/bottom-sheet-position-tracker'
 export * from './core/bottom-sheet-presenter'
 export * from './core/height-budget'
 export * from './core/hooks'

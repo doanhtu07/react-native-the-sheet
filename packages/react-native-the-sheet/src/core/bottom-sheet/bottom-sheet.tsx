@@ -3,68 +3,25 @@ import {
   useColorScheme,
   type LayoutChangeEvent,
 } from 'react-native'
-import type {
-  BottomSheetContextType,
-  BottomSheetApi,
-  BottomSheetProps,
-} from './types'
+import type { BottomSheetApi, BottomSheetProps } from './types'
 import Animated, {
   useAnimatedReaction,
-  useAnimatedRef,
   useAnimatedStyle,
-  useDerivedValue,
-  useSharedValue,
   withSpring,
 } from 'react-native-reanimated'
-import {
-  createContext,
-  forwardRef,
-  useContext,
-  useImperativeHandle,
-  useMemo,
-} from 'react'
+import { forwardRef, useImperativeHandle } from 'react'
 import { useToSharedValue } from '../../private/hooks/use-to-shared-value'
-import { usePanGesture } from './hooks/use-pan-gesture'
-import { useSyncedSharedValue } from '../../private/hooks/use-synced-shared-value'
 import { useBottomSheetPresenter } from '../bottom-sheet-presenter'
 import { SPRING_CONFIG } from '../../private/constants'
 import { useTrueSafeArea } from '../hooks'
-
-const BottomSheetContext = createContext<BottomSheetContextType | undefined>(
-  undefined,
-)
-
-export const useBottomSheet = () => {
-  const context = useContext(BottomSheetContext)
-
-  if (!context) {
-    throw new Error('useBottomSheet must be used within a BottomSheet')
-  }
-
-  return context
-}
+import { usePanGestureLockScroll } from './private/hooks/use-pan-gesture-lock-scroll'
+import { useBottomSheet } from './bottom-sheet-provider'
 
 export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
   function BottomSheetCore(
-    {
-      snapPoints = [],
-      enableFloat = false,
-      enableOverdrag: propEnableOverdrag = false,
-      disableDrag = false,
-      fill = false,
-      styles: propStyles,
-      children,
-    },
+    { fill: propFill = false, styles: propStyles, children },
     ref,
   ) {
-    // MARK: Catch exceptions
-
-    if (propEnableOverdrag && snapPoints.length === 0) {
-      throw new Error(
-        'react-native-the-sheet - src/bottom-sheet/bottom-sheet.tsx - enableOverdrag cannot be enabled without snap points',
-      )
-    }
-
     // MARK: Artifacts
 
     const theme = useColorScheme()
@@ -73,110 +30,25 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
     const { translateY: bottomSheetPresenterTranslateY } =
       useBottomSheetPresenter()
 
-    const enableOverdrag = useToSharedValue(propEnableOverdrag)
+    const {
+      enableOverdrag,
+      sheetHeight,
+      sheetVisibleHeight,
+      sheetVisibleRatio,
+      normalizedSnaps,
+      snapTranslateYs,
+      translateY,
+    } = useBottomSheet()
 
     const isDark = theme === 'dark'
     const backgroundColor = isDark ? '#1C1C1E' : '#FFFFFF'
 
-    const sheetHeight = useSharedValue(0)
-    const sheetVisibleHeight = useSharedValue(0)
-    const sheetVisibleRatio = useSharedValue(0)
-
-    // Normalize snap points into numbers
-    const normalizedSnaps = useToSharedValue(
-      useMemo(() => {
-        if (snapPoints.length === 0) return []
-
-        return snapPoints
-          .map((point) => {
-            if (typeof point === 'number') return point
-            const percentage = Number.parseFloat(point as string) / 100
-            return safeAreaHeight * percentage
-          })
-          .filter((point) => point > 0 && point <= safeAreaHeight)
-          .sort((a, b) => a - b)
-      }, [safeAreaHeight, snapPoints]),
-    )
-
-    // Convert snap points to translate ys (relative distance from fully open position)
-    // Naturally, snapTranslateYs is sorted in descending order (largest value = closest to fully closed)
-    const snapTranslateYs = useDerivedValue(() => {
-      const snaps = normalizedSnaps.value
-      if (snaps.length === 0) return [0]
-
-      // We have established snaps is not empty
-      const maxSnapPoint = snaps.at(-1)!
-
-      return snaps.map((point) => maxSnapPoint - point)
-    })
-
-    /**
-     * translateY = tracks relative position of bottom sheet to its rest point
-     * - = 0: Bottom sheet is fully visible inside bottom sheet presenter
-     * - > 0: Bottom sheet is being dragged down from rest point
-     * - < 0: Bottom sheet is being dragged up from rest point
-     */
-    const translateY = useSyncedSharedValue(0, () => {
-      'worklet'
-      return snapTranslateYs.value[0]!
-    })
+    const fill = useToSharedValue(propFill)
 
     const onLayout = (event: LayoutChangeEvent) => {
       'worklet'
       sheetHeight.value = event.nativeEvent.layout.height
     }
-
-    // MARK: Bottom sheet context
-
-    const scrollViewRef = useAnimatedRef<
-      Animated.ScrollView | Animated.FlatList
-    >()
-    const isScrollViewReady = useSharedValue(false)
-    const isScrolling = useSharedValue<0 | 1>(0)
-    const scrollY = useSharedValue(0)
-
-    const excludePanGestureContext = useMemo<
-      Omit<BottomSheetContextType, 'getPanGesture'>
-    >(() => {
-      return {
-        enableOverdrag,
-
-        sheetHeight,
-        sheetVisibleHeight,
-        sheetVisibleRatio,
-        snapTranslateYs,
-        translateY,
-
-        scrollViewRef,
-        isScrollViewReady,
-        isScrolling,
-        scrollY,
-      }
-    }, [
-      enableOverdrag,
-      sheetHeight,
-      sheetVisibleHeight,
-      sheetVisibleRatio,
-      snapTranslateYs,
-      translateY,
-      scrollViewRef,
-      isScrollViewReady,
-      isScrolling,
-      scrollY,
-    ])
-
-    const getPanGesture = usePanGesture({
-      excludePanGestureContext,
-      enableFloat,
-      disableDrag,
-    })
-
-    const contextValue = useMemo<BottomSheetContextType>(() => {
-      return {
-        ...excludePanGestureContext,
-        getPanGesture,
-      }
-    }, [excludePanGestureContext, getPanGesture])
 
     // MARK: Effects
 
@@ -244,6 +116,9 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
       },
     )
 
+    // Effect: Lock scroll
+    usePanGestureLockScroll()
+
     // MARK: Preparation
 
     const animatedStyle = useAnimatedStyle(() => {
@@ -270,29 +145,25 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
       const finalTranslateY = translateY.value
 
       return {
+        ...(fill.value ? { flex: 1 } : undefined),
         transform: [{ translateY: finalTranslateY }],
       }
     })
 
-    const applyFillStyle = fill && snapPoints.length === 0
-
     // MARK: Renderers
 
     return (
-      <BottomSheetContext.Provider value={contextValue}>
-        <Animated.View
-          onLayout={onLayout}
-          style={[
-            styles.root,
-            applyFillStyle && styles.fill,
-            { backgroundColor },
-            propStyles?.root,
-            animatedStyle,
-          ]}
-        >
-          {children}
-        </Animated.View>
-      </BottomSheetContext.Provider>
+      <Animated.View
+        onLayout={onLayout}
+        style={[
+          styles.root,
+          { backgroundColor },
+          propStyles?.root,
+          animatedStyle,
+        ]}
+      >
+        {children}
+      </Animated.View>
     )
   },
 )
@@ -300,9 +171,6 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
 // MARK: Styles
 
 const styles = StyleSheet.create({
-  fill: {
-    flex: 1,
-  },
   root: {
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,

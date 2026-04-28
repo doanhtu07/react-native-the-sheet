@@ -5,6 +5,7 @@ import {
   BottomSheet,
   BottomSheetHandle,
   BottomSheetPresenter,
+  BottomSheetProvider,
   BottomSheetScrollView,
   BottomSheetView,
   SheetStackItem,
@@ -43,21 +44,23 @@ export default function ExampleBottomSheetOverdragMode() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheet snapPoints={['60%']} enableOverdrag>
-              <BottomSheetHandle />
+            <BottomSheetProvider snapPoints={['60%']} enableOverdrag>
+              <BottomSheet>
+                <BottomSheetHandle />
 
-              <BottomSheetView fill>
-                <Text>Sheet A</Text>
-                <Button
-                  title="Close Sheet A"
-                  onPress={() => setIsOpenA(false)}
-                />
+                <BottomSheetView fill>
+                  <Text>Sheet A</Text>
+                  <Button
+                    title="Close Sheet A"
+                    onPress={() => setIsOpenA(false)}
+                  />
 
-                <BottomSheetScrollView fill>
-                  {renderContent()}
-                </BottomSheetScrollView>
-              </BottomSheetView>
-            </BottomSheet>
+                  <BottomSheetScrollView fill>
+                    {renderContent()}
+                  </BottomSheetScrollView>
+                </BottomSheetView>
+              </BottomSheet>
+            </BottomSheetProvider>
           </BottomSheetPresenter>
         </SheetStackItem>
       </Portal>

@@ -9,21 +9,15 @@ import {
 import { runOnJS } from 'react-native-worklets'
 import { useSyncedRef } from '../../../private/hooks/use-synced-ref'
 import { useSheetStackItem } from '../../sheet-stack'
-import type { BottomSheetContextType } from '../types'
-import { useToSharedValue } from '../../../private/hooks/use-to-shared-value'
 import { isApproxEqual } from '../../../private/utils/approximately-equal'
 import { SPRING_CONFIG } from '../../../private/constants'
-
-const TRANSLATE_Y_REST_THRESHOLD = 1
-const SCROLL_Y_TOP_THRESHOLD = 1
-const MICRO_FLICK_VELOCITY_THRESHOLD = 100
-const FLICK_VELOCITY_THRESHOLD = 500
-
-type Props = {
-  excludePanGestureContext: Omit<BottomSheetContextType, 'getPanGesture'>
-  enableFloat: boolean
-  disableDrag: boolean
-}
+import {
+  FLICK_VELOCITY_THRESHOLD,
+  MICRO_FLICK_VELOCITY_THRESHOLD,
+  SCROLL_Y_TOP_THRESHOLD,
+  TRANSLATE_Y_REST_THRESHOLD,
+} from '../private/constants'
+import { useBottomSheet } from '../bottom-sheet-provider'
 
 /**
   # Mental model
@@ -55,13 +49,11 @@ type Props = {
     - Lock scroll view
     - Move sheet
  */
-export const usePanGesture = ({
-  excludePanGestureContext,
-  enableFloat: propEnableFloat,
-  disableDrag: propDisableDrag,
-}: Props) => {
+export const useBottomSheetPanGesture = () => {
   const {
+    enableFloat,
     enableOverdrag,
+    disableDrag,
     sheetHeight,
     snapTranslateYs,
     translateY,
@@ -69,21 +61,16 @@ export const usePanGesture = ({
     isScrollViewReady,
     isScrolling,
     scrollY,
-  } = excludePanGestureContext
+    isPanGestureActive,
+    lockedScrollY,
+    isScrollLocked,
+  } = useBottomSheet()
 
   const { close } = useSheetStackItem()
   const closeRef = useSyncedRef(close)
 
-  const enableFloat = useToSharedValue(propEnableFloat)
-  const disableDrag = useToSharedValue(propDisableDrag)
-
-  const isGestureActive = useSharedValue(false)
-
   const snapshotTranslateY = useSharedValue(0)
   const lastTranslationY = useSharedValue(0)
-
-  const lockedScrollY = useSharedValue(0)
-  const isScrollLocked = useSharedValue(false)
 
   const lockScroll = () => {
     'worklet'
@@ -107,7 +94,7 @@ export const usePanGesture = ({
 
   const cleanupGesture = () => {
     'worklet'
-    isGestureActive.value = false
+    isPanGestureActive.value = false
     unlockScroll()
   }
   const cleanupGestureRef = useSyncedRef(cleanupGesture)
@@ -126,7 +113,7 @@ export const usePanGesture = ({
       .onStart(() => {
         'worklet'
 
-        isGestureActive.value = true
+        isPanGestureActive.value = true
 
         // Capture stuff at the moment pan gesture starts
         snapshotTranslateY.value = translateY.value
@@ -232,7 +219,7 @@ export const usePanGesture = ({
     lockScrollRef,
     unlockScrollRef,
     cleanupGestureRef,
-    isGestureActive,
+    isPanGestureActive,
     snapshotTranslateY,
     translateY,
     lastTranslationY,
@@ -258,7 +245,7 @@ export const usePanGesture = ({
       'worklet'
 
       // If gesture is active, we already handle scroll locking
-      if (isGestureActive.value) {
+      if (isPanGestureActive.value) {
         return
       }
 

@@ -6,6 +6,7 @@ import {
   BottomSheetFooter,
   BottomSheetHandle,
   BottomSheetPresenter,
+  BottomSheetProvider,
   BottomSheetScrollView,
   BottomSheetView,
   SheetStackItem,
@@ -49,22 +50,24 @@ export default function ExampleBottomSheetFooter() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheet snapPoints={[300, 600]} enableOverdrag>
-              <BottomSheetHandle />
+            <BottomSheetProvider snapPoints={[300, 600]} enableOverdrag>
+              <BottomSheet>
+                <BottomSheetHandle />
 
-              <BottomSheetView>
-                <Text>Sheet A</Text>
-                <Button
-                  title="Close Sheet A"
-                  onPress={() => setIsOpenA(false)}
-                />
-                {renderContent(20)}
-              </BottomSheetView>
+                <BottomSheetView>
+                  <Text>Sheet A</Text>
+                  <Button
+                    title="Close Sheet A"
+                    onPress={() => setIsOpenA(false)}
+                  />
+                  {renderContent(20)}
+                </BottomSheetView>
 
-              <BottomSheetFooter styles={{ root: styles.footer }}>
-                <Text style={styles.footerText}>Footer</Text>
-              </BottomSheetFooter>
-            </BottomSheet>
+                <BottomSheetFooter styles={{ root: styles.footer }}>
+                  <Text style={styles.footerText}>Footer</Text>
+                </BottomSheetFooter>
+              </BottomSheet>
+            </BottomSheetProvider>
           </BottomSheetPresenter>
         </SheetStackItem>
       </Portal>
@@ -79,22 +82,24 @@ export default function ExampleBottomSheetFooter() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheet snapPoints={[200, 500]} enableOverdrag>
-              <BottomSheetHandle />
+            <BottomSheetProvider snapPoints={[200, 500]} enableOverdrag>
+              <BottomSheet>
+                <BottomSheetHandle />
 
-              <BottomSheetScrollView>
-                <Text>Sheet B</Text>
-                <Button
-                  title="Close Sheet B"
-                  onPress={() => setIsOpenB(false)}
-                />
-                {renderContent(50)}
-              </BottomSheetScrollView>
+                <BottomSheetScrollView>
+                  <Text>Sheet B</Text>
+                  <Button
+                    title="Close Sheet B"
+                    onPress={() => setIsOpenB(false)}
+                  />
+                  {renderContent(50)}
+                </BottomSheetScrollView>
 
-              <BottomSheetFooter styles={{ root: styles.footer }}>
-                <Text style={styles.footerText}>Footer</Text>
-              </BottomSheetFooter>
-            </BottomSheet>
+                <BottomSheetFooter styles={{ root: styles.footer }}>
+                  <Text style={styles.footerText}>Footer</Text>
+                </BottomSheetFooter>
+              </BottomSheet>
+            </BottomSheetProvider>
           </BottomSheetPresenter>
         </SheetStackItem>
       </Portal>

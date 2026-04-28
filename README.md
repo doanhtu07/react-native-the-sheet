@@ -35,7 +35,7 @@ The library relies on a few core dependencies:
 
 - 📐 True dynamic sizing by default - snap points are opt-in, with full ScrollView support
 - 🪜 Built-in multi-sheet stacking - explicit, first-class support for sheet hierarchies
-- 📏 Constraint-based layout - predictable scroll behavior and no layout surprises
+- 📏 Full layout control - predictable scroll behavior and no layout surprises
 - 🧵 Composable primitives - no monolithic API
 - 🎯 Designed for real-world edge cases - keyboard, gestures, nested scroll, no quirks
 

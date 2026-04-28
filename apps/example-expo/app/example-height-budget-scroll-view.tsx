@@ -6,6 +6,7 @@ import {
   BottomSheet,
   BottomSheetHandle,
   BottomSheetPresenter,
+  BottomSheetProvider,
   BottomSheetScrollView,
   BottomSheetView,
   HeightBudgetProvider,
@@ -54,33 +55,35 @@ export default function ExampleHeightBudgetScrollView() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheet styles={{ root: { maxHeight } }}>
-              <HeightBudgetProvider maxHeight={maxHeightShared}>
-                <HeightClaim>
-                  <BottomSheetHandle />
-                </HeightClaim>
-
-                <View>
+            <BottomSheetProvider>
+              <BottomSheet styles={{ root: { maxHeight } }}>
+                <HeightBudgetProvider maxHeight={maxHeightShared}>
                   <HeightClaim>
-                    <BottomSheetView>
-                      <Text>Sheet A</Text>
-                      <Button
-                        title="Close Sheet A"
-                        onPress={() => setIsOpenA(false)}
-                      />
-                    </BottomSheetView>
+                    <BottomSheetHandle />
                   </HeightClaim>
 
                   <View>
-                    <HeightFill>
-                      <BottomSheetScrollView>
-                        {renderContent()}
-                      </BottomSheetScrollView>
-                    </HeightFill>
+                    <HeightClaim>
+                      <BottomSheetView>
+                        <Text>Sheet A</Text>
+                        <Button
+                          title="Close Sheet A"
+                          onPress={() => setIsOpenA(false)}
+                        />
+                      </BottomSheetView>
+                    </HeightClaim>
+
+                    <View>
+                      <HeightFill>
+                        <BottomSheetScrollView>
+                          {renderContent()}
+                        </BottomSheetScrollView>
+                      </HeightFill>
+                    </View>
                   </View>
-                </View>
-              </HeightBudgetProvider>
-            </BottomSheet>
+                </HeightBudgetProvider>
+              </BottomSheet>
+            </BottomSheetProvider>
           </BottomSheetPresenter>
         </SheetStackItem>
       </Portal>

@@ -6,20 +6,20 @@ This shows the full architecture of the library, how the providers and component
 
 ```
 SafeAreaProvider (Required) + KeyboardProvider (Recommended)
-└── SheetKeyboardProvider + SheetStackProvider + PortalProvider
+└── SheetKeyboardProvider + SheetStackProvider + PortalProvider + BottomSheetRegistryProvider
     └── PortalHost
         └── Portal
             └── SheetStackItem
                 └── Backdrop
                 └── BottomSheetPresenter
-                    └── InputFocusProvider (Only needed when using BottomSheetKeyboardExpander)
-                        └── BottomSheet
-                            └── BottomSheetPositionTracker (Effect component)
-                            └── BottomSheetHandle
-                            └── BottomSheetView
-                            └── BottomSheetScrollView, BottomSheetFlatList (Could be nested under BottomSheetView as well)
-                            └── BottomSheetFooter
-                        └── BottomSheetKeyboardExpander
+                    └── BottomSheetProvider
+                        └── InputFocusProvider (Only needed when using BottomSheetKeyboardExpander)
+                            └── BottomSheet
+                                └── BottomSheetHandle
+                                └── BottomSheetView
+                                └── BottomSheetScrollView / BottomSheetFlatList (Could be nested under BottomSheetView as well)
+                                └── BottomSheetFooter
+                            └── BottomSheetKeyboardExpander
 ```
 
 ## Concepts

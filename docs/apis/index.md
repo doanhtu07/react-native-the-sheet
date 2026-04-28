@@ -22,11 +22,13 @@
 
 ---
 
+[BottomSheetRegistryProvider](./bottom-sheet-registry-provider.md)
+
 [BottomSheetPresenter](./bottom-sheet-presenter.md)
 
-[BottomSheet](./bottom-sheet.md)
+[BottomSheetProvider](./bottom-sheet-provider.md)
 
-[BottomSheetPositionTracker](./bottom-sheet-position-tracker.md)
+[BottomSheet](./bottom-sheet.md)
 
 [BottomSheetHandle](./bottom-sheet-handle.md)
 
@@ -59,3 +61,9 @@
 ## Hooks
 
 [useTrueSafeArea](./use-true-safe-area.md)
+
+---
+
+[useBottomSheetPanGesture](./use-bottom-sheet-pan-gesture.md)
+
+[useBottomSheetScrollViewUtils](./use-bottom-sheet-scroll-view-utils.md)

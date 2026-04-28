@@ -1,17 +1,18 @@
 import { StyleSheet, useColorScheme, View } from 'react-native'
 import type { BottomSheetHandleProps } from './types'
 import { GestureDetector } from 'react-native-gesture-handler'
-import { useBottomSheet } from './bottom-sheet'
 import { useMemo } from 'react'
+import { useBottomSheetPanGesture } from './hooks/use-bottom-sheet-pan-gesture'
 
 export function BottomSheetHandle({
   styles: propStyles,
 }: Readonly<BottomSheetHandleProps>) {
   const theme = useColorScheme()
-  const { getPanGesture } = useBottomSheet()
 
   const isDark = theme === 'dark'
   const backgroundColor = isDark ? '#48484A' : '#E0E0E0'
+
+  const getPanGesture = useBottomSheetPanGesture()
 
   const panGesture = useMemo(() => {
     return getPanGesture()

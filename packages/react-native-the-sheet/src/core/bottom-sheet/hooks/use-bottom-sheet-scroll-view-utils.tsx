@@ -1,5 +1,4 @@
 import type { GestureResponderEvent, LayoutChangeEvent } from 'react-native'
-import { useBottomSheet } from '../bottom-sheet'
 import type { BottomSheetScrollViewProps } from '../types'
 import {
   cancelAnimation,
@@ -8,6 +7,7 @@ import {
   withTiming,
 } from 'react-native-reanimated'
 import { runOnUI } from 'react-native-worklets'
+import { useBottomSheet } from '../bottom-sheet-provider'
 
 const UNSET_SCROLLING_DELAY = 200
 
@@ -23,7 +23,7 @@ type Props = Pick<
   | 'onMomentumEnd'
 >
 
-export const useScrollViewUtils = ({
+export const useBottomSheetScrollViewUtils = ({
   onLayout: propOnLayout,
   onTouchStart: propOnTouchStart,
   onTouchEnd: propOnTouchEnd,

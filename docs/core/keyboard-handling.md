@@ -46,27 +46,32 @@ const ManagedTextInput = forwardRef<TextInput, TextInputProps>(
     testID="sheetA"
   >
     <BottomSheetPresenter>
-      <InputFocusProvider>
-        <BottomSheet snapPoints={[400, 800]}>
-          <BottomSheetHandle />
+      <BottomSheetProvider snapPoints={[400, 800]}>
+        <InputFocusProvider>
+          <BottomSheet>
+            <BottomSheetHandle />
 
-          <BottomSheetScrollView>
-            <Text>Sheet A</Text>
+            <BottomSheetScrollView>
+              <Text>Sheet A</Text>
 
-            <Button title="Close Sheet A" onPress={() => setIsOpenA(false)} />
+              <Button
+                title="Close Sheet A"
+                onPress={() => setIsOpenA(false)}
+              />
 
-            <ManagedTextInput
-              style={styles.input}
-              placeholder="Type something..."
-              placeholderTextColor="#999"
-            />
+              <ManagedTextInput
+                style={styles.input}
+                placeholder="Type something..."
+                placeholderTextColor="#999"
+              />
 
-            {renderContent()}
-          </BottomSheetScrollView>
-        </BottomSheet>
+              {renderContent()}
+            </BottomSheetScrollView>
+          </BottomSheet>
 
-        <BottomSheetKeyboardExpander keyboardOffset={20} />
-      </InputFocusProvider>
+          <BottomSheetKeyboardExpander keyboardOffset={20} />
+        </InputFocusProvider>
+      </BottomSheetProvider>
     </BottomSheetPresenter>
   </SheetStackItem>
 </Portal>
