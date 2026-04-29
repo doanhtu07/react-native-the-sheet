@@ -244,7 +244,6 @@ export function BottomSheetKeyboardExpander({
   useAnimatedReaction(
     () => {
       return {
-        androidWindowSoftInputMode: androidWindowSoftInputMode.value,
         isAndroidKeyboardResizeMode: isAndroidKeyboardResizeMode.value,
         isCheckShouldExpandTimeoutSet: isCheckShouldExpandTimeoutSet.value,
       }
