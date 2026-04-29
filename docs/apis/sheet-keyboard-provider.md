@@ -4,7 +4,7 @@ A simple provider that tracks some useful keyboard states:
 
 - `keyboardVisible`: A shared value that indicates whether the keyboard is visible or not
 - `keyboardFinalHeight`: A shared value that tracks the height of keyboard when it's fully open or fully closed
-- `androidWindowSoftInputMode`: Pass from props
+- `androidWindowSoftInputMode`: Passed from props
 - `isVisuallyAndroidKeyboardResizeMode`: A shared value that indicates whether the app is "truly" using Android keyboard resize mode
   - Where the root view of the app resizes when the keyboard opens
 - `isAndroidKeyboardResizeMode`: A shared value that combines `androidWindowSoftInputMode` and `isVisuallyAndroidKeyboardResizeMode`
