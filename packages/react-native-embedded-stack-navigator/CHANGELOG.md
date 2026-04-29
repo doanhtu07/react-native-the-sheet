@@ -1,5 +1,11 @@
 # react-native-embedded-stack-navigator
 
+## 2.0.12
+
+### Patch Changes
+
+- Fix a race condition in `BottomSheetKeyboardExpander` on iOS
+
 ## 2.0.11
 
 ### Patch Changes

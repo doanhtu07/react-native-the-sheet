@@ -49,6 +49,10 @@ export const SheetKeyboardProvider = ({
   )
 
   const isAndroidKeyboardResizeMode = useDerivedValue(() => {
+    if (Platform.OS !== 'android') {
+      return false
+    }
+
     if (isVisuallyAndroidKeyboardResizeMode.value) {
       return true
     }
