@@ -48,6 +48,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context'
 import {
   SheetStackProvider,
   SheetKeyboardProvider,
+  BottomSheetRegistryProvider,
 } from 'react-native-the-sheet'
 import { PortalHost, PortalProvider } from 'react-native-universe-portal'
 
