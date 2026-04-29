@@ -9,7 +9,7 @@ Then, you can install the corresponding version of our library
 For example, if you are using Reanimated v3, you would install v1 of our library like this:
 
 ```bash
-npm install react-native-the-sheet@1.0.9
+npm install react-native-the-sheet@1.0.11
 ```
 
 Required peer dependencies:
