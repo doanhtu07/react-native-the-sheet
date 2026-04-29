@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "clean": "expo prebuild --clean",
     "start": "expo start",
     "ete:disable": "pnpm uninstall react-native-edge-to-edge || true",
     "ete:enable": "expo install react-native-edge-to-edge",
