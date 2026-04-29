@@ -70,18 +70,18 @@ export function BottomSheetKeyboardExpander({
     (keyboardHeightValue: number) => {
       clearCheckShouldExpandTimeout()
 
-      if (!isInputFocused.value || isAndroidKeyboardResizeMode.value) {
-        cleanupInput()
-        return
-      }
-
       const delay =
         Platform.OS === 'android'
           ? KEYBOARD_EXPANDER_ANIMATION_DURATION / 3
           : KEYBOARD_EXPANDER_ANIMATION_DURATION / 2 / 3
 
-      // Delay slightly to ensure layout has settled before measuring
+      // Delay slightly to ensure layout, input, and keyboard states have settled before measuring
       checkShouldExpandTimeout.current = setTimeout(() => {
+        if (!isInputFocused.value || isAndroidKeyboardResizeMode.value) {
+          cleanupInput()
+          return
+        }
+
         isCheckShouldExpandTimeoutSet.value = true
 
         const inputHandle = TextInput.State.currentlyFocusedInput()

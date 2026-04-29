@@ -1,5 +1,11 @@
 # react-native-the-sheet
 
+## 1.0.11
+
+### Patch Changes
+
+- Fix a race condition in `BottomSheetKeyboardExpander` on iOS
+
 ## 1.0.10
 
 ### Patch Changes
