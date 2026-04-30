@@ -6,9 +6,25 @@
 - [x] Fix styling prop interface for ScrollView and FlatList
   - `styles`, `style`, and `contentContainerStyle` are not consistent
 
-- [ ] Optimize global providers to not have any React states
-  - Use shared values instead
-  - Avoid re-render when changing the state of the provider
+- [x] Note a rule for component design
+  - Make all props to be like in Skia (except the ones related directly to render conditions, such as those in `SheetStackItem`)
+
+```tsx
+type AnimatedProp<T> = T | { value: T }
+
+type AnimatedProps<T, O extends keyof T | never = never> = {
+  [K in keyof T]: K extends 'children'
+    ? T[K]
+    : K extends O
+      ? T[K]
+      : AnimatedProp<T[K]>
+}
+
+type SkiaProps<P = object, O extends keyof P | never = never> = AnimatedProps<
+  P,
+  O
+>
+```
 
 - [ ] Template patterns
   - Encourage users to create a reusable template for their sheets

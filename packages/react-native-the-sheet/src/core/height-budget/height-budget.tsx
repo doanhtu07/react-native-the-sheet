@@ -19,6 +19,7 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated'
 import type { LayoutChangeEvent } from 'react-native'
+import { useToSharedValue } from '../private/hooks/use-to-shared-value'
 
 const HeightBudgetContext = createContext<HeightBudgetContextType>(null!)
 
@@ -35,9 +36,10 @@ export const useHeightBudget = () => {
 }
 
 export function HeightBudgetProvider({
-  maxHeight,
+  maxHeight: propMaxHeight,
   children,
 }: HeightBudgetProviderProps) {
+  const maxHeight = useToSharedValue(propMaxHeight)
   const staticHeights = useSharedValue<Record<string, number>>({})
 
   const contextValue = useMemo<HeightBudgetContextType>(() => {

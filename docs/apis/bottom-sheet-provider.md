@@ -8,14 +8,14 @@ This provides a more flexible way to orchestrate the bottom sheet system, as you
 
 ## Props
 
-| Prop name        | Type          | Required | Default         | Description                                                                                                                                       |
-| ---------------- | ------------- | -------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`             | `string`      | false    | `React.useId()` | The id of the bottom sheet provider. If you want to easily access the bottom sheet state from the global registry, consider define a good id here |
-| `snapPoints`     | `SnapPoint[]` | false    | `[]`            | The snap points of the bottom sheet. Bottom sheet will snap to these heights                                                                      |
-| `enableFloat`    | `boolean`     | false    | `false`         | Bottom sheet doesn't need to snap to provided snap points                                                                                         |
-| `enableOverdrag` | `boolean`     | false    | `false`         | Dragging beyond the highest snap point                                                                                                            |
-| `disableDrag`    | `boolean`     | false    | `false`         | Disable dragging the bottom sheet (but can still be controlled programmatically)                                                                  |
-| `children`       | `ReactNode`   | false    | `undefined`     | The children of the bottom sheet provider                                                                                                         |
+| Prop name        | Type                        | Required | Default         | Description                                                                                                                                       |
+| ---------------- | --------------------------- | -------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`             | `string`                    | false    | `React.useId()` | The id of the bottom sheet provider. If you want to easily access the bottom sheet state from the global registry, consider define a good id here |
+| `snapPoints`     | `AnimatedProp<SnapPoint[]>` | false    | `[]`            | The snap points of the bottom sheet. Bottom sheet will snap to these heights                                                                      |
+| `enableFloat`    | `AnimatedProp<boolean>`     | false    | `false`         | Bottom sheet doesn't need to snap to provided snap points                                                                                         |
+| `enableOverdrag` | `AnimatedProp<boolean>`     | false    | `false`         | Dragging beyond the highest snap point                                                                                                            |
+| `disableDrag`    | `AnimatedProp<boolean>`     | false    | `false`         | Disable dragging the bottom sheet (but can still be controlled programmatically)                                                                  |
+| `children`       | `ReactNode`                 | false    | `undefined`     | The children of the bottom sheet provider                                                                                                         |
 
 ### SnapPoint
 

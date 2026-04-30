@@ -11,8 +11,8 @@ import {
   useSharedValue,
 } from 'react-native-reanimated'
 import { useTrueSafeArea } from '../hooks'
-import { useToSharedValue } from '../../private/hooks/use-to-shared-value'
-import { isApproxEqual } from '../../private/utils/approximately-equal'
+import { useToSharedValue } from '../private/hooks/use-to-shared-value'
+import { isApproxEqual } from '../private/utils/approximately-equal'
 
 const SheetKeyboardContext = createContext<
   SheetKeyboardContextType | undefined
@@ -44,6 +44,7 @@ export const SheetKeyboardProvider = ({
   const androidWindowSoftInputMode = useToSharedValue(
     propAndroidWindowSoftInputMode,
   )
+
   const isVisuallyAndroidKeyboardResizeMode = useSharedValue<boolean | null>(
     null,
   )

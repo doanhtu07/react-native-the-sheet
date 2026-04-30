@@ -1,3 +1,5 @@
+import type { AnimatedProp } from '../private/types'
+
 export type BottomSheetKeyboardExpanderProps = {
-  keyboardOffset?: number
+  keyboardOffset?: AnimatedProp<number>
 }

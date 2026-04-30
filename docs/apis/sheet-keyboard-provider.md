@@ -11,10 +11,10 @@ A simple provider that tracks some useful keyboard states:
 
 ## Props
 
-| Prop name                    | Type                                             | Required | Default     | Description                                                                |
-| ---------------------------- | ------------------------------------------------ | -------- | ----------- | -------------------------------------------------------------------------- |
-| `androidWindowSoftInputMode` | `adjustResize` \| `adjustPan` \| `adjustNothing` | true     | N/A         | The Android window soft input mode you defined in your AndroidManifest.xml |
-| `children`                   | `ReactNode`                                      | false    | `undefined` | The children of the provider                                               |
+| Prop name                    | Type                                                       | Required | Default     | Description                                                                |
+| ---------------------------- | ---------------------------------------------------------- | -------- | ----------- | -------------------------------------------------------------------------- |
+| `androidWindowSoftInputMode` | `AnimatedProp<adjustResize \| adjustPan \| adjustNothing>` | true     | N/A         | The Android window soft input mode you defined in your AndroidManifest.xml |
+| `children`                   | `ReactNode`                                                | false    | `undefined` | The children of the provider                                               |
 
 ### androidWindowSoftInputMode
 

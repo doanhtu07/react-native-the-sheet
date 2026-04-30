@@ -8,7 +8,7 @@ Inherits all props of `Animated.FlatList`, except for the following overriden pr
 
 | Prop name         | Type                                 | Required | Default     | Description                                                                                                      |
 | ----------------- | ------------------------------------ | -------- | ----------- | ---------------------------------------------------------------------------------------------------------------- |
-| `fill`            | `boolean`                            | false    | `undefined` | Whether the bottom sheet scroll view should fill the available height (applies `flex: 1`)                        |
+| `fill`            | `AnimatedProp<boolean>`              | false    | `false`     | Whether the bottom sheet scroll view should fill the available height (applies `flex: 1`)                        |
 | `onLayout`        | `(e: LayoutChangeEvent) => void`     | false    | `undefined` | The onLayout callback of the bottom sheet scroll view                                                            |
 | `onTouchStart`    | `(e: GestureResponderEvent) => void` | false    | `undefined` | The onTouchStart callback of the bottom sheet scroll view                                                        |
 | `onTouchEnd`      | `(e: GestureResponderEvent) => void` | false    | `undefined` | The onTouchEnd callback of the bottom sheet scroll view                                                          |

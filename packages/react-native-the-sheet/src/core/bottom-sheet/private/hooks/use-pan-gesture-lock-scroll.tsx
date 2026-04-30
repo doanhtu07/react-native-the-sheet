@@ -1,5 +1,5 @@
 import { scrollTo, useAnimatedReaction } from 'react-native-reanimated'
-import { isApproxEqual } from '../../../../private/utils/approximately-equal'
+import { isApproxEqual } from '../../../private/utils/approximately-equal'
 import { TRANSLATE_Y_REST_THRESHOLD } from '../constants'
 import { useBottomSheet } from '../../bottom-sheet-provider'
 

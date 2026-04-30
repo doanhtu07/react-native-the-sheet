@@ -22,7 +22,7 @@ export const BottomSheetFooter = ({
 
   // MARK: Renderers
 
-  const rootAnimatedStyle = useAnimatedStyle(() => {
+  const animatedRootStyle = useAnimatedStyle(() => {
     let totalOffset = 0
 
     // Offset footer by the same amount as we drag the sheet down (not up)
@@ -41,7 +41,7 @@ export const BottomSheetFooter = ({
     }
   })
 
-  const placeholderAnimatedStyle = useAnimatedStyle(() => {
+  const animatedPlaceholderStyle = useAnimatedStyle(() => {
     return {
       height: footerHeight.value,
     }
@@ -51,14 +51,14 @@ export const BottomSheetFooter = ({
     <Fragment>
       {/* Actual footer */}
       <Animated.View
-        style={[styles.root, propStyles?.root, rootAnimatedStyle]}
+        style={[styles.root, propStyles?.root, animatedRootStyle]}
         onLayout={onLayout}
       >
         {children}
       </Animated.View>
 
       {/* Placeholder view to keep content above footer */}
-      <Animated.View style={placeholderAnimatedStyle} collapsable={false} />
+      <Animated.View style={animatedPlaceholderStyle} collapsable={false} />
     </Fragment>
   )
 }

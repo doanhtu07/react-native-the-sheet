@@ -7,10 +7,10 @@ import {
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated'
-import { useSyncedRef } from '../../../private/hooks/use-synced-ref'
+import { useSyncedRef } from '../../private/hooks/use-synced-ref'
 import { useSheetStackItem } from '../../sheet-stack'
-import { isApproxEqual } from '../../../private/utils/approximately-equal'
-import { SPRING_CONFIG } from '../../../private/constants'
+import { isApproxEqual } from '../../private/utils/approximately-equal'
+import { SPRING_CONFIG } from '../../private/constants'
 import {
   FLICK_VELOCITY_THRESHOLD,
   MICRO_FLICK_VELOCITY_THRESHOLD,

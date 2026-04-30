@@ -41,9 +41,9 @@ The library relies on a few core dependencies:
 
 ## NPM packages
 
-- Embedded Stack Navigator: https://www.npmjs.com/package/react-native-embedded-stack-navigator/v/1.0.11
-- Universe Portal: https://www.npmjs.com/package/react-native-universe-portal/v/1.0.11
-- The Sheet: https://www.npmjs.com/package/react-native-the-sheet/v/1.0.11
+- Embedded Stack Navigator: https://www.npmjs.com/package/react-native-embedded-stack-navigator/v/1.0.12
+- Universe Portal: https://www.npmjs.com/package/react-native-universe-portal/v/1.0.12
+- The Sheet: https://www.npmjs.com/package/react-native-the-sheet/v/1.0.12
 
 ## Mental model
 
@@ -96,7 +96,8 @@ I don't plan to support Web for a couple of reasons:
 
 Thank you to all the open source projects that inspired this project:
 
-- https://github.com/gorhom/react-native-bottom-sheet
+- https://github.com/gorhom/react-native-bottom-sheet (For the original motivation)
+- https://github.com/shopify/react-native-skia (For Reanimated API design inspiration)
 
 ## Contributing
 

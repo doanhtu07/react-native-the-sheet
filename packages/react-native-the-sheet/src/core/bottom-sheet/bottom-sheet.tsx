@@ -10,9 +10,9 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated'
 import { forwardRef, useImperativeHandle } from 'react'
-import { useToSharedValue } from '../../private/hooks/use-to-shared-value'
+import { useToSharedValue } from '../private/hooks/use-to-shared-value'
 import { useBottomSheetPresenter } from '../bottom-sheet-presenter'
-import { SPRING_CONFIG } from '../../private/constants'
+import { SPRING_CONFIG } from '../private/constants'
 import { useTrueSafeArea } from '../hooks'
 import { usePanGestureLockScroll } from './private/hooks/use-pan-gesture-lock-scroll'
 import { useBottomSheet } from './bottom-sheet-provider'
@@ -145,7 +145,7 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
       const finalTranslateY = translateY.value
 
       return {
-        ...(fill.value ? { flex: 1 } : undefined),
+        ...(fill.value ? styles.fill : undefined),
         transform: [{ translateY: finalTranslateY }],
       }
     })
@@ -171,6 +171,9 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
 // MARK: Styles
 
 const styles = StyleSheet.create({
+  fill: {
+    flex: 1,
+  },
   root: {
     borderTopLeftRadius: 16,
     borderTopRightRadius: 16,
