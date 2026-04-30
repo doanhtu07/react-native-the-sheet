@@ -1,5 +1,43 @@
 # react-native-the-sheet
 
+## 2.0.13
+
+### Patch Changes
+
+- Introduce AnimatedProp => T | { value: T }
+
+`BottomSheetProviderProps`
+
+- Make `snapPoints`, `enableFloat`, `enableOverdrag`, `disableDrag` as AnimatedProp
+
+`BottomSheetProps`
+
+- Make `fill` as AnimatedProp
+
+`BottomSheetViewProps`
+
+- Make `fill` as AnimatedProp
+
+`BottomSheetScrollViewProps`
+
+- Make `fill` as AnimatedProp
+
+`BottomSheetFlatListProps`
+
+- Make `fill` as AnimatedProp
+
+`BottomSheetKeyboardExpanderProps`
+
+- Make `keyboardOffset` as AnimatedProp
+
+`HeightBudgetProviderProps`
+
+- Make `maxHeight` as AnimatedProp
+
+`SheetKeyboardProviderProps`
+
+- Make `androidWindowSoftInputMode` as AnimatedProp
+
 ## 2.0.12
 
 ### Patch Changes

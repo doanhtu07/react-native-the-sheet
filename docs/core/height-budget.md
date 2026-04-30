@@ -217,13 +217,12 @@ Congratulations! You've bypassed the limitations of Yoga and have dynamic sizing
 
 ```tsx
 const maxHeight = 600
-const maxHeightShared = useSharedValue(maxHeight)
 
 // ...
 
 <BottomSheetProvider>
   <BottomSheet styles={{ root: { maxHeight } }}>
-    <HeightBudgetProvider maxHeight={maxHeightShared}>
+    <HeightBudgetProvider maxHeight={maxHeight}>
       <HeightClaim>
         <BottomSheetHandle />
       </HeightClaim>

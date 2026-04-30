@@ -1,18 +1,11 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useId,
-  useMemo,
-  useRef,
-} from 'react'
+import { createContext, useContext, useEffect, useId, useRef } from 'react'
 import Animated, {
   useSharedValue,
   useDerivedValue,
   useAnimatedRef,
 } from 'react-native-reanimated'
-import { useSyncedSharedValue } from '../../private/hooks/use-synced-shared-value'
-import { useToSharedValue } from '../../private/hooks/use-to-shared-value'
+import { useSyncedSharedValue } from '../private/hooks/use-synced-shared-value'
+import { useToSharedValue } from '../private/hooks/use-to-shared-value'
 import { useTrueSafeArea } from '../hooks'
 import type { BottomSheetContextType, BottomSheetProviderProps } from './types'
 import { useBottomSheetRegistry } from './bottom-sheet-registry-provider'
@@ -33,28 +26,19 @@ export const useBottomSheet = () => {
 
 export function BottomSheetProvider({
   id,
-  snapPoints = [],
+  snapPoints: propSnapPoints = [],
   enableFloat: propEnableFloat = false,
   enableOverdrag: propEnableOverdrag = false,
   disableDrag: propDisableDrag = false,
   children,
 }: BottomSheetProviderProps) {
-  // MARK: Catch exceptions
-
-  if (propEnableOverdrag && snapPoints.length === 0) {
-    throw new Error(
-      'react-native-the-sheet - src/bottom-sheet/bottom-sheet-provider.tsx - enableOverdrag cannot be enabled without snap points',
-    )
-  }
-
-  // MARK: Artifacts
-
   const { registerSheet, unregisterSheet } = useBottomSheetRegistry()
-
   const autoGenBottomSheetProviderId = useId()
+  const { safeAreaHeight: safeAreaHeightValue } = useTrueSafeArea()
 
-  const { safeAreaHeight } = useTrueSafeArea()
+  const safeAreaHeight = useToSharedValue(safeAreaHeightValue)
 
+  const snapPoints = useToSharedValue(propSnapPoints)
   const enableFloat = useToSharedValue(propEnableFloat)
   const enableOverdrag = useToSharedValue(propEnableOverdrag)
   const disableDrag = useToSharedValue(propDisableDrag)
@@ -64,22 +48,19 @@ export function BottomSheetProvider({
   const sheetVisibleRatio = useSharedValue(0)
 
   // Normalize snap points into numbers
-  const normalizedSnaps = useToSharedValue(
-    useMemo(() => {
-      if (snapPoints.length === 0) return []
+  const normalizedSnaps = useDerivedValue(() => {
+    if (snapPoints.value.length === 0) return []
 
-      const filteredSnapPoints = snapPoints
-        .map((point) => {
-          if (typeof point === 'number') return point
-          const percentage = Number.parseFloat(point as string) / 100
-          return safeAreaHeight * percentage
-        })
-        .filter((point) => point > 0 && point <= safeAreaHeight)
-        .sort((a, b) => a - b)
+    const sorted = snapPoints.value
+      .map((point) => {
+        if (typeof point === 'number') return point
+        const percentage = Number.parseFloat(point as string) / 100
+        return safeAreaHeight.value * percentage
+      })
+      .sort((a, b) => a - b)
 
-      return filteredSnapPoints
-    }, [safeAreaHeight, snapPoints]),
-  )
+    return sorted
+  })
 
   // Convert snap points to translate ys (relative distance from fully open position)
   // Naturally, snapTranslateYs is sorted in descending order (largest value = closest to fully closed)

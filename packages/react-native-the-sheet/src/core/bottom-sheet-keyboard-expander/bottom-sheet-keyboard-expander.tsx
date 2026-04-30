@@ -10,7 +10,7 @@ import Animated, {
 } from 'react-native-reanimated'
 import type { BottomSheetKeyboardExpanderProps } from './types'
 import { useTrueSafeArea } from '../hooks'
-import { isApproxEqual } from '../../private/utils/approximately-equal'
+import { isApproxEqual } from '../private/utils/approximately-equal'
 import { runOnJS, runOnUI } from 'react-native-worklets'
 import {
   ANDROID_WINDOW_SOFT_INPUT_MODES,
@@ -22,9 +22,10 @@ import {
   KEYBOARD_EXPANDER_ANIMATION_DURATION,
   KEYBOARD_EXPANDER_ANIMATION_EASING,
 } from './private/constants'
+import { useToSharedValue } from '../private/hooks/use-to-shared-value'
 
 export function BottomSheetKeyboardExpander({
-  keyboardOffset,
+  keyboardOffset: propKeyboardOffset = 0,
 }: Readonly<BottomSheetKeyboardExpanderProps>) {
   const { sheetHeight, sheetVisibleHeight } = useBottomSheet()
 
@@ -43,6 +44,8 @@ export function BottomSheetKeyboardExpander({
   })
 
   const { isInputFocused } = useInputFocus()
+
+  const keyboardOffset = useToSharedValue(propKeyboardOffset)
 
   const inputOverlap = useSharedValue<number | null>(null)
   const initialInputBottom = useSharedValue<number | null>(null)
@@ -155,7 +158,7 @@ export function BottomSheetKeyboardExpander({
     const targetHeight =
       inputOverlap.value === null
         ? 0
-        : inputOverlap.value + (keyboardOffset || 0)
+        : inputOverlap.value + keyboardOffset.value
 
     if (Platform.OS === 'android') {
       if (keyboardVisible.value) {

@@ -9,7 +9,7 @@ It's responsible for handling the gestures, animations, and interactions of the 
 | Prop name  | Type                                | Required | Default     | Description                                                                   |
 | ---------- | ----------------------------------- | -------- | ----------- | ----------------------------------------------------------------------------- |
 | `ref`      | `RefObject<BottomSheetApi \| null>` | false    | `undefined` | The ref of the bottom sheet to use BottomSheetApi                             |
-| `fill`     | `boolean`                           | false    | `false`     | Whether the bottom sheet should fill the available height (applies `flex: 1`) |
+| `fill`     | `AnimatedProp<boolean>`             | false    | `false`     | Whether the bottom sheet should fill the available height (applies `flex: 1`) |
 | `styles`   | object                              | false    | `undefined` | The styles of the bottom sheet                                                |
 | `children` | `ReactNode`                         | false    | `undefined` | The children of the bottom sheet                                              |
 

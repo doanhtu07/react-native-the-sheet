@@ -8,6 +8,6 @@ You need to use this component together with `InputFocusProvider`, so that it on
 
 ## Props
 
-| Prop name        | Type   | Required | Default     | Description                                            |
-| ---------------- | ------ | -------- | ----------- | ------------------------------------------------------ |
-| `keyboardOffset` | number | false    | `undefined` | The offset added to expander when the keyboard is open |
+| Prop name        | Type                   | Required | Default | Description                                            |
+| ---------------- | ---------------------- | -------- | ------- | ------------------------------------------------------ |
+| `keyboardOffset` | `AnimatedProp<number>` | false    | `0`     | The offset added to expander when the keyboard is open |

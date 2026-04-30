@@ -1,4 +1,7 @@
-import Animated, { type AnimatedRef } from 'react-native-reanimated'
+import Animated, {
+  useAnimatedStyle,
+  type AnimatedRef,
+} from 'react-native-reanimated'
 import type { BottomSheetScrollViewProps } from './types'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import { StyleSheet } from 'react-native'
@@ -6,9 +9,10 @@ import { useMemo } from 'react'
 import { useBottomSheetScrollViewUtils } from './hooks/use-bottom-sheet-scroll-view-utils'
 import { useBottomSheetPanGesture } from './hooks/use-bottom-sheet-pan-gesture'
 import { useBottomSheet } from './bottom-sheet-provider'
+import { useToSharedValue } from '../private/hooks/use-to-shared-value'
 
 export function BottomSheetScrollView({
-  fill,
+  fill: propFill = false,
 
   onLayout: propOnLayout,
   onTouchStart: propOnTouchStart,
@@ -30,6 +34,8 @@ export function BottomSheetScrollView({
 
   const getPanGesture = useBottomSheetPanGesture()
 
+  const fill = useToSharedValue(propFill)
+
   const panGesture = useMemo(() => {
     return getPanGesture()
   }, [getPanGesture])
@@ -46,6 +52,12 @@ export function BottomSheetScrollView({
       onMomentumEnd: propOnMomentumEnd,
     })
 
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      ...(fill.value ? styles.fill : undefined),
+    }
+  })
+
   return (
     <GestureDetector
       gesture={Gesture.Simultaneous(panGesture, Gesture.Native())}
@@ -53,7 +65,7 @@ export function BottomSheetScrollView({
       <Animated.ScrollView
         {...rest}
         ref={scrollViewRef as AnimatedRef<Animated.ScrollView>}
-        style={[styles.root, fill && styles.fill, style]}
+        style={[styles.root, style, animatedStyle]}
         contentContainerStyle={contentContainerStyle}
         bounces={false} // iOS bounce ruins the scrollY <= 0 check
         onLayout={onLayout}
@@ -66,6 +78,8 @@ export function BottomSheetScrollView({
     </GestureDetector>
   )
 }
+
+// MARK: Styles
 
 const styles = StyleSheet.create({
   fill: {

@@ -11,6 +11,7 @@ import type {
   ScrollHandler,
   SharedValue,
 } from 'react-native-reanimated'
+import type { AnimatedProp } from '../private/types'
 
 // MARK: Bottom sheet handle
 
@@ -61,16 +62,16 @@ export type BottomSheetContextType = {
 
 export type BottomSheetProviderProps = PropsWithChildren & {
   id?: string
-  snapPoints?: SnapPoint[]
-  enableFloat?: boolean
-  enableOverdrag?: boolean
-  disableDrag?: boolean
+  snapPoints?: AnimatedProp<SnapPoint[]>
+  enableFloat?: AnimatedProp<boolean>
+  enableOverdrag?: AnimatedProp<boolean>
+  disableDrag?: AnimatedProp<boolean>
 }
 
 // MARK: Bottom sheet
 
 export type BottomSheetProps = PropsWithChildren & {
-  fill?: boolean
+  fill?: AnimatedProp<boolean>
 
   styles?: {
     root?: StyleProp<ViewStyle>
@@ -85,7 +86,8 @@ export type BottomSheetApi = {
 // MARK: Bottom sheet view
 
 export type BottomSheetViewProps = PropsWithChildren & {
-  fill?: boolean
+  fill?: AnimatedProp<boolean>
+
   styles?: {
     root?: StyleProp<ViewStyle>
   }
@@ -106,7 +108,7 @@ export type BottomSheetScrollViewProps = Omit<
   | 'onMomentumBegin'
   | 'onMomentumEnd'
 > & {
-  fill?: boolean
+  fill?: AnimatedProp<boolean>
 
   onLayout?: (e: LayoutChangeEvent) => void
   onTouchStart?: (e: GestureResponderEvent) => void
@@ -134,7 +136,7 @@ export type BottomSheetFlatListProps<T> = Omit<
   | 'onMomentumBegin'
   | 'onMomentumEnd'
 > & {
-  fill?: boolean
+  fill?: AnimatedProp<boolean>
 
   onLayout?: (e: LayoutChangeEvent) => void
   onTouchStart?: (e: GestureResponderEvent) => void
