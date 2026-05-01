@@ -1,5 +1,6 @@
+import { ThemedText } from '@/components/text'
 import { useMemo, useState } from 'react'
-import { Button, ListRenderItem, StyleSheet, Text, View } from 'react-native'
+import { Button, ListRenderItem, StyleSheet, View } from 'react-native'
 import {
   Backdrop,
   BottomSheet,
@@ -34,14 +35,16 @@ export default function ExampleBottomSheetFlatList() {
   }) => {
     return (
       <View style={styles.item}>
-        <Text>{item.text}</Text>
+        <ThemedText>{item.text}</ThemedText>
       </View>
     )
   }
 
   return (
     <View style={styles.root}>
-      <Text style={styles.header}>Example Bottom Sheet Flat List</Text>
+      <ThemedText style={styles.header}>
+        Example Bottom Sheet Flat List
+      </ThemedText>
 
       <Button
         title="Open Sheet A (Dynamic sizing + Wrapped with BottomSheetView)"
@@ -68,7 +71,7 @@ export default function ExampleBottomSheetFlatList() {
                 <BottomSheetHandle />
 
                 <BottomSheetView fill>
-                  <Text>Sheet A</Text>
+                  <ThemedText>Sheet A</ThemedText>
 
                   <Button
                     title="Close Sheet A"
@@ -102,7 +105,7 @@ export default function ExampleBottomSheetFlatList() {
                 <BottomSheetHandle />
 
                 <BottomSheetView fill>
-                  <Text>Sheet B</Text>
+                  <ThemedText>Sheet B</ThemedText>
 
                   <Button
                     title="Close Sheet B"

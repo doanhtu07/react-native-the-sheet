@@ -1,5 +1,6 @@
+import { ThemedText } from '@/components/text'
 import { useState } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, View } from 'react-native'
 import {
   Backdrop,
   BottomSheetPresenter,
@@ -14,9 +15,9 @@ export default function ExampleBottomSheetPresenterMultiple() {
 
   return (
     <View style={styles.root}>
-      <Text style={styles.header}>
+      <ThemedText style={styles.header}>
         Example Bottom Sheet Presenter (Multiple)
-      </Text>
+      </ThemedText>
 
       <Button title="Open Sheet A" onPress={() => setIsOpenA(true)} />
 
@@ -31,7 +32,7 @@ export default function ExampleBottomSheetPresenterMultiple() {
 
           <BottomSheetPresenter testID="sheetAPresenter">
             <View style={styles.boxA}>
-              <Text>Sheet A</Text>
+              <ThemedText>Sheet A</ThemedText>
               <Button title="Close Sheet A" onPress={() => setIsOpenA(false)} />
               <Button title="Open Sheet B" onPress={() => setIsOpenB(true)} />
             </View>
@@ -49,7 +50,7 @@ export default function ExampleBottomSheetPresenterMultiple() {
         >
           <BottomSheetPresenter testID="sheetBPresenter">
             <View style={styles.boxB}>
-              <Text>Sheet B</Text>
+              <ThemedText>Sheet B</ThemedText>
               <Button title="Close Sheet B" onPress={() => setIsOpenB(false)} />
               <Button title="Open Sheet C" onPress={() => setIsOpenC(true)} />
             </View>
@@ -66,7 +67,7 @@ export default function ExampleBottomSheetPresenterMultiple() {
         >
           <BottomSheetPresenter testID="sheetCPresenter">
             <View style={styles.boxC}>
-              <Text>Sheet C</Text>
+              <ThemedText>Sheet C</ThemedText>
               <Button title="Close Sheet C" onPress={() => setIsOpenC(false)} />
             </View>
           </BottomSheetPresenter>

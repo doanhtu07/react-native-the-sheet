@@ -1,5 +1,11 @@
 # react-native-embedded-stack-navigator
 
+## 2.0.14
+
+### Patch Changes
+
+- Make `AnimatedProp` + `SnapPoint` types public
+
 ## 2.0.13
 
 ### Patch Changes

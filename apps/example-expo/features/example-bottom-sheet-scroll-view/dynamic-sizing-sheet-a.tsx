@@ -1,5 +1,6 @@
+import { ThemedText } from '@/components/text'
 import { Fragment, useState } from 'react'
-import { Button, Text } from 'react-native'
+import { Button } from 'react-native'
 import {
   Backdrop,
   BottomSheet,
@@ -24,7 +25,7 @@ export function DynamicSizingSheetA() {
     return (
       <Fragment>
         {Array.from({ length: 50 }).map((_, index) => (
-          <Text key={index}>Item {index + 1}</Text>
+          <ThemedText key={index}>Item {index + 1}</ThemedText>
         ))}
       </Fragment>
     )
@@ -52,7 +53,7 @@ export function DynamicSizingSheetA() {
                 <BottomSheetHandle />
 
                 <BottomSheetScrollView>
-                  <Text>Sheet A</Text>
+                  <ThemedText>Sheet A</ThemedText>
 
                   <Button
                     title="Close Sheet A"

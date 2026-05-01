@@ -1,5 +1,6 @@
+import { ThemedText } from '@/components/text'
 import { Fragment, useState } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, View } from 'react-native'
 import {
   Backdrop,
   BottomSheet,
@@ -28,7 +29,7 @@ export default function ExampleHeightBudgetScrollView() {
     return (
       <Fragment>
         {Array.from({ length: 100 }).map((_, index) => (
-          <Text key={index}>Item {index + 1}</Text>
+          <ThemedText key={index}>Item {index + 1}</ThemedText>
         ))}
       </Fragment>
     )
@@ -36,7 +37,9 @@ export default function ExampleHeightBudgetScrollView() {
 
   return (
     <View style={styles.root}>
-      <Text style={styles.header}>Example Height Budget Scroll View</Text>
+      <ThemedText style={styles.header}>
+        Example Height Budget Scroll View
+      </ThemedText>
 
       <Button
         title="Open Sheet A (Dynamic sizing)"
@@ -63,7 +66,8 @@ export default function ExampleHeightBudgetScrollView() {
                   <View>
                     <HeightClaim>
                       <BottomSheetView>
-                        <Text>Sheet A</Text>
+                        <ThemedText>Sheet A</ThemedText>
+
                         <Button
                           title="Close Sheet A"
                           onPress={() => setIsOpenA(false)}

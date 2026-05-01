@@ -2,7 +2,7 @@ import type { ComponentProps, PropsWithChildren } from 'react'
 import type { LayoutChangeEvent } from 'react-native'
 import type Animated from 'react-native-reanimated'
 import type { SharedValue } from 'react-native-reanimated'
-import type { AnimatedProp } from '../private/types'
+import type { AnimatedProp } from '../types'
 
 export type HeightBudgetContextType = {
   maxHeight: SharedValue<number>

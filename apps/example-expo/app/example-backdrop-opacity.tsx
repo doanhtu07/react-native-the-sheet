@@ -1,5 +1,6 @@
+import { ThemedText } from '@/components/text'
 import React, { Fragment, useState } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, View } from 'react-native'
 import { useAnimatedStyle } from 'react-native-reanimated'
 import {
   Backdrop,
@@ -40,7 +41,7 @@ export default function ExampleBackdropOpacity() {
     return (
       <Fragment>
         {Array.from({ length: 20 }).map((_, index) => (
-          <Text key={index}>Item {index + 1}</Text>
+          <ThemedText key={index}>Item {index + 1}</ThemedText>
         ))}
       </Fragment>
     )
@@ -48,7 +49,7 @@ export default function ExampleBackdropOpacity() {
 
   return (
     <View style={styles.root}>
-      <Text style={styles.header}>Example Backdrop Opacity</Text>
+      <ThemedText style={styles.header}>Example Backdrop Opacity</ThemedText>
 
       <Button title="Open Sheet A" onPress={() => setIsOpenA(true)} />
 
@@ -77,11 +78,13 @@ export default function ExampleBackdropOpacity() {
                 <BottomSheetHandle />
 
                 <BottomSheetView>
-                  <Text>Sheet A</Text>
+                  <ThemedText>Sheet A</ThemedText>
+
                   <Button
                     title="Close Sheet A"
                     onPress={() => setIsOpenA(false)}
                   />
+
                   {renderContent()}
                 </BottomSheetView>
               </BottomSheet>

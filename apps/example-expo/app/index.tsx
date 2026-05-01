@@ -197,6 +197,17 @@ export default function Index() {
           router.push('/example-backdrop-opacity')
         }}
       />
+
+      {/* MARK: Templates */}
+
+      <Text style={styles.header}>Templates</Text>
+
+      <Button
+        title="Example Bottom Sheet Templates"
+        onPress={() => {
+          router.push('/example-bottom-sheet-templates')
+        }}
+      />
     </ScrollView>
   )
 }

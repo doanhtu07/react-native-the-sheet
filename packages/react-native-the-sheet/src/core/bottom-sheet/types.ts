@@ -11,7 +11,7 @@ import type {
   ScrollHandler,
   SharedValue,
 } from 'react-native-reanimated'
-import type { AnimatedProp } from '../private/types'
+import type { AnimatedProp } from '../types'
 
 // MARK: Bottom sheet handle
 
@@ -35,7 +35,7 @@ export type BottomSheetRegistryProviderProps = PropsWithChildren
 // MARK: Bottom sheet provider
 
 /** Percentage is compared to the screen height */
-type SnapPoint = number | `${number}%`
+export type SnapPoint = number | `${number}%`
 
 export type BottomSheetContextType = {
   enableFloat: SharedValue<boolean>

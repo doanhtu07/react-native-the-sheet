@@ -1,13 +1,14 @@
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, View } from 'react-native'
 import { RouteParamList } from './types'
 import { useEmbeddedStackNavigation } from 'react-native-embedded-stack-navigator'
+import { ThemedText } from '@/components/text'
 
 export function ScreenB() {
   const navigation = useEmbeddedStackNavigation<RouteParamList>()
 
   return (
     <View style={styles.root}>
-      <Text>Screen B</Text>
+      <ThemedText>Screen B</ThemedText>
       <Button title="Back" onPress={() => navigation.pop()} />
     </View>
   )
