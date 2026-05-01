@@ -1,5 +1,6 @@
+import { ThemedText } from '@/components/text'
 import { Fragment, useState } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, View } from 'react-native'
 import {
   Backdrop,
   BottomSheet,
@@ -26,7 +27,7 @@ export default function ExampleBottomSheetDisableDrag() {
     return (
       <Fragment>
         {Array.from({ length: 50 }).map((_, index) => (
-          <Text key={index}>Item {index + 1}</Text>
+          <ThemedText key={index}>Item {index + 1}</ThemedText>
         ))}
       </Fragment>
     )
@@ -34,7 +35,9 @@ export default function ExampleBottomSheetDisableDrag() {
 
   return (
     <View style={styles.root}>
-      <Text style={styles.header}>Example Bottom Sheet (Disable Drag)</Text>
+      <ThemedText style={styles.header}>
+        Example Bottom Sheet (Disable Drag)
+      </ThemedText>
 
       <Button
         title={disableDrag ? 'Enable Drag' : 'Disable Drag'}
@@ -66,14 +69,19 @@ export default function ExampleBottomSheetDisableDrag() {
                 <BottomSheetHandle />
 
                 <BottomSheetView fill>
-                  <Text>Disable Drag: {disableDrag ? 'true' : 'false'}</Text>
-                  <Text>Disable Close: {disableClose ? 'true' : 'false'}</Text>
+                  <ThemedText>
+                    Disable Drag: {disableDrag ? 'true' : 'false'}
+                  </ThemedText>
 
-                  <Text style={styles.instructions}>
+                  <ThemedText>
+                    Disable Close: {disableClose ? 'true' : 'false'}
+                  </ThemedText>
+
+                  <ThemedText style={styles.instructions}>
                     {disableDrag || disableClose
                       ? 'Drag is disabled. You cannot drag the sheet.'
                       : 'Drag is enabled. You can drag the sheet normally.'}
-                  </Text>
+                  </ThemedText>
 
                   <Button title="Close Sheet" onPress={close} />
 

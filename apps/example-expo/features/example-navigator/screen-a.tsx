@@ -1,13 +1,14 @@
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, View } from 'react-native'
 import { RouteParamList } from './types'
 import { useEmbeddedStackNavigation } from 'react-native-embedded-stack-navigator'
+import { ThemedText } from '@/components/text'
 
 export function ScreenA() {
   const navigation = useEmbeddedStackNavigation<RouteParamList>()
 
   return (
     <View style={styles.root}>
-      <Text>Screen A</Text>
+      <ThemedText>Screen A</ThemedText>
 
       <Button
         title="Go to Screen B"

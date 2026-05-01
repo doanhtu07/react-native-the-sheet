@@ -1,8 +1,9 @@
+import { ThemedText } from '@/components/text'
 import { ScreenA } from '@/features/example-navigator/screen-a'
 import { ScreenB } from '@/features/example-navigator/screen-b'
 import { RouteParamList } from '@/features/example-navigator/types'
 import { useCallback, useMemo, useState } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, View } from 'react-native'
 import {
   EmbeddedStackNavigator,
   ScreenRenderer,
@@ -36,7 +37,9 @@ export default function ExampleBottomSheetPresenter() {
 
   return (
     <View style={styles.root}>
-      <Text style={styles.header}>Example Bottom Sheet With Navigator</Text>
+      <ThemedText style={styles.header}>
+        Example Bottom Sheet With Navigator
+      </ThemedText>
 
       <Button title="Open Sheet A" onPress={() => setIsOpenA(true)} />
 
@@ -55,7 +58,8 @@ export default function ExampleBottomSheetPresenter() {
                 <BottomSheetHandle />
 
                 <BottomSheetView fill>
-                  <Text>Sheet A</Text>
+                  <ThemedText>Sheet A</ThemedText>
+
                   <Button
                     title="Close Sheet A"
                     onPress={() => setIsOpenA(false)}

@@ -1,6 +1,7 @@
+import { ThemedText } from '@/components/text'
 import { ManagedTextInput } from '@/features/example-bottom-sheet-with-keyboard/managed-text-input'
 import { Fragment, useState } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, View } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 import {
   BottomSheet,
@@ -25,7 +26,7 @@ export default function ExampleBottomSheetWithKeyboard() {
     return (
       <Fragment>
         {Array.from({ length }).map((_, index) => (
-          <Text key={index}>Item {index + 1}</Text>
+          <ThemedText key={index}>Item {index + 1}</ThemedText>
         ))}
       </Fragment>
     )
@@ -33,7 +34,9 @@ export default function ExampleBottomSheetWithKeyboard() {
 
   return (
     <View style={styles.root}>
-      <Text style={styles.header}>Example Bottom Sheet With Keyboard</Text>
+      <ThemedText style={styles.header}>
+        Example Bottom Sheet With Keyboard
+      </ThemedText>
 
       <Button
         title="Open Sheet A (Android refuses pan)"
@@ -70,7 +73,7 @@ export default function ExampleBottomSheetWithKeyboard() {
                   <BottomSheetHandle />
 
                   <BottomSheetScrollView>
-                    <Text>Sheet A</Text>
+                    <ThemedText>Sheet A</ThemedText>
 
                     <Button
                       title="Close Sheet A"
@@ -108,7 +111,7 @@ export default function ExampleBottomSheetWithKeyboard() {
                   <BottomSheetHandle />
 
                   <BottomSheetScrollView>
-                    <Text>Sheet B</Text>
+                    <ThemedText>Sheet B</ThemedText>
 
                     <Button
                       title="Close Sheet B"
@@ -146,7 +149,7 @@ export default function ExampleBottomSheetWithKeyboard() {
                   <BottomSheetHandle />
 
                   <BottomSheetScrollView>
-                    <Text>Sheet C</Text>
+                    <ThemedText>Sheet C</ThemedText>
 
                     <Button
                       title="Close Sheet C"

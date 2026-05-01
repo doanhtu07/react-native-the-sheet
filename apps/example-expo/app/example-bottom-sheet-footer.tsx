@@ -1,5 +1,6 @@
+import { ThemedText } from '@/components/text'
 import { Fragment, useState } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, View } from 'react-native'
 import {
   Backdrop,
   BottomSheet,
@@ -23,7 +24,7 @@ export default function ExampleBottomSheetFooter() {
     return (
       <Fragment>
         {Array.from({ length }).map((_, index) => (
-          <Text key={index}>Item {index + 1}</Text>
+          <ThemedText key={index}>Item {index + 1}</ThemedText>
         ))}
       </Fragment>
     )
@@ -31,7 +32,7 @@ export default function ExampleBottomSheetFooter() {
 
   return (
     <View style={styles.root}>
-      <Text style={styles.header}>Example Bottom Sheet Footer</Text>
+      <ThemedText style={styles.header}>Example Bottom Sheet Footer</ThemedText>
 
       <Button title="Open Sheet A (View)" onPress={() => setIsOpenA(true)} />
 
@@ -55,16 +56,18 @@ export default function ExampleBottomSheetFooter() {
                 <BottomSheetHandle />
 
                 <BottomSheetView>
-                  <Text>Sheet A</Text>
+                  <ThemedText>Sheet A</ThemedText>
+
                   <Button
                     title="Close Sheet A"
                     onPress={() => setIsOpenA(false)}
                   />
+
                   {renderContent(20)}
                 </BottomSheetView>
 
                 <BottomSheetFooter styles={{ root: styles.footer }}>
-                  <Text style={styles.footerText}>Footer</Text>
+                  <ThemedText style={styles.footerText}>Footer</ThemedText>
                 </BottomSheetFooter>
               </BottomSheet>
             </BottomSheetProvider>
@@ -87,16 +90,18 @@ export default function ExampleBottomSheetFooter() {
                 <BottomSheetHandle />
 
                 <BottomSheetScrollView>
-                  <Text>Sheet B</Text>
+                  <ThemedText>Sheet B</ThemedText>
+
                   <Button
                     title="Close Sheet B"
                     onPress={() => setIsOpenB(false)}
                   />
+
                   {renderContent(50)}
                 </BottomSheetScrollView>
 
                 <BottomSheetFooter styles={{ root: styles.footer }}>
-                  <Text style={styles.footerText}>Footer</Text>
+                  <ThemedText style={styles.footerText}>Footer</ThemedText>
                 </BottomSheetFooter>
               </BottomSheet>
             </BottomSheetProvider>

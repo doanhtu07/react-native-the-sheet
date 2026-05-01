@@ -52,7 +52,13 @@ export default [
   // React Native
   {
     rules: {
-      'react-native/no-raw-text': 'error',
+      'react-native/no-raw-text': [
+        'error',
+        {
+          skip: ['ThemedText'],
+        },
+      ],
+
       'react-native/sort-styles': 'warn',
       'react-native/no-unused-styles': 'warn',
     },

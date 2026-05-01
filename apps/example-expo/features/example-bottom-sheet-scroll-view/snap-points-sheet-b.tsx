@@ -1,5 +1,6 @@
+import { ThemedText } from '@/components/text'
 import { Fragment, useState } from 'react'
-import { Button, Text } from 'react-native'
+import { Button } from 'react-native'
 import {
   Backdrop,
   BottomSheet,
@@ -18,7 +19,7 @@ export function SnapPointsSheetB() {
     return (
       <Fragment>
         {Array.from({ length: 50 }).map((_, index) => (
-          <Text key={index}>Item {index + 1}</Text>
+          <ThemedText key={index}>Item {index + 1}</ThemedText>
         ))}
       </Fragment>
     )
@@ -46,7 +47,7 @@ export function SnapPointsSheetB() {
                 <BottomSheetHandle />
 
                 <BottomSheetScrollView>
-                  <Text>Sheet B</Text>
+                  <ThemedText>Sheet B</ThemedText>
 
                   <Button
                     title="Close Sheet B"

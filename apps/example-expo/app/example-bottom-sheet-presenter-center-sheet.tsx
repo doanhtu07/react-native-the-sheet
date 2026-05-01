@@ -1,5 +1,6 @@
+import { ThemedText } from '@/components/text'
 import { useState } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, View } from 'react-native'
 import {
   Backdrop,
   BottomSheetPresenter,
@@ -12,9 +13,9 @@ export default function ExampleBottomSheetPresenterCenterSheet() {
 
   return (
     <View style={styles.root}>
-      <Text style={styles.header}>
+      <ThemedText style={styles.header}>
         Example Bottom Sheet Presenter (Center Sheet)
-      </Text>
+      </ThemedText>
 
       <Button title="Open Sheet A" onPress={() => setIsOpenA(true)} />
 
@@ -30,36 +31,37 @@ export default function ExampleBottomSheetPresenterCenterSheet() {
           <BottomSheetPresenter>
             <View style={styles.boxWrapper}>
               <View style={styles.boxA}>
-                <Text>Sheet A</Text>
+                <ThemedText>Sheet A</ThemedText>
+
                 <Button
                   title="Close Sheet A"
                   onPress={() => setIsOpenA(false)}
                 />
 
-                <Text>
+                <ThemedText>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </Text>
-                <Text>
+                </ThemedText>
+
+                <ThemedText>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </Text>
-                <Text>
+                </ThemedText>
+
+                <ThemedText>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </Text>
-                <Text>
+                </ThemedText>
+
+                <ThemedText>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </Text>
-                <Text>
+                </ThemedText>
+
+                <ThemedText>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </Text>
-                <Text>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </Text>
+                </ThemedText>
               </View>
             </View>
           </BottomSheetPresenter>

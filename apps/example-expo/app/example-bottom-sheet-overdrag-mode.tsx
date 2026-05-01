@@ -1,5 +1,6 @@
+import { ThemedText } from '@/components/text'
 import { Fragment, useState } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, View } from 'react-native'
 import {
   Backdrop,
   BottomSheet,
@@ -19,7 +20,7 @@ export default function ExampleBottomSheetOverdragMode() {
     return (
       <Fragment>
         {Array.from({ length: 50 }).map((_, index) => (
-          <Text key={index}>Item {index + 1}</Text>
+          <ThemedText key={index}>Item {index + 1}</ThemedText>
         ))}
       </Fragment>
     )
@@ -27,7 +28,9 @@ export default function ExampleBottomSheetOverdragMode() {
 
   return (
     <View style={styles.root}>
-      <Text style={styles.header}>Example Bottom Sheet (Overdrag Mode)</Text>
+      <ThemedText style={styles.header}>
+        Example Bottom Sheet (Overdrag Mode)
+      </ThemedText>
 
       <Button
         title="Open Sheet A (Snap points)"
@@ -49,7 +52,8 @@ export default function ExampleBottomSheetOverdragMode() {
                 <BottomSheetHandle />
 
                 <BottomSheetView fill>
-                  <Text>Sheet A</Text>
+                  <ThemedText>Sheet A</ThemedText>
+
                   <Button
                     title="Close Sheet A"
                     onPress={() => setIsOpenA(false)}

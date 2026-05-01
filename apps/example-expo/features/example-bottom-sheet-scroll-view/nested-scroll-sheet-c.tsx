@@ -1,5 +1,6 @@
+import { ThemedText } from '@/components/text'
 import { Fragment, useState } from 'react'
-import { Button, StyleSheet, Text } from 'react-native'
+import { Button, StyleSheet } from 'react-native'
 import { ScrollView as GestureScrollView } from 'react-native-gesture-handler'
 import {
   Backdrop,
@@ -19,7 +20,7 @@ export function NestedScrollSheetC() {
     return (
       <Fragment>
         {Array.from({ length: 50 }).map((_, index) => (
-          <Text key={index}>Item {index + 1}</Text>
+          <ThemedText key={index}>Item {index + 1}</ThemedText>
         ))}
       </Fragment>
     )
@@ -47,7 +48,7 @@ export function NestedScrollSheetC() {
                 <BottomSheetHandle />
 
                 <BottomSheetScrollView>
-                  <Text>Sheet C</Text>
+                  <ThemedText>Sheet C</ThemedText>
 
                   <Button
                     title="Close Sheet C"

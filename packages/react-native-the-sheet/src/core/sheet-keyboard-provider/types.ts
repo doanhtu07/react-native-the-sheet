@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from 'react'
 import type { DerivedValue, SharedValue } from 'react-native-reanimated'
-import type { AnimatedProp } from '../private/types'
+import type { AnimatedProp } from '../types'
 
 export const ANDROID_WINDOW_SOFT_INPUT_MODES = {
   adjustResize: 'adjustResize',

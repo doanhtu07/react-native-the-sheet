@@ -1,5 +1,6 @@
+import { ThemedText } from '@/components/text'
 import { Fragment, useState } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, View } from 'react-native'
 import {
   Backdrop,
   BottomSheet,
@@ -18,7 +19,7 @@ export default function ExampleBottomSheetView() {
     return (
       <Fragment>
         {Array.from({ length: 20 }).map((_, index) => (
-          <Text key={index}>Item {index + 1}</Text>
+          <ThemedText key={index}>Item {index + 1}</ThemedText>
         ))}
       </Fragment>
     )
@@ -26,7 +27,7 @@ export default function ExampleBottomSheetView() {
 
   return (
     <View style={styles.root}>
-      <Text style={styles.header}>Example Bottom Sheet View</Text>
+      <ThemedText style={styles.header}>Example Bottom Sheet View</ThemedText>
 
       <Button title="Open Sheet A" onPress={() => setIsOpenA(true)} />
 
@@ -45,11 +46,13 @@ export default function ExampleBottomSheetView() {
                 <BottomSheetHandle />
 
                 <BottomSheetView>
-                  <Text>Sheet A</Text>
+                  <ThemedText>Sheet A</ThemedText>
+
                   <Button
                     title="Close Sheet A"
                     onPress={() => setIsOpenA(false)}
                   />
+
                   {renderContent()}
                 </BottomSheetView>
               </BottomSheet>

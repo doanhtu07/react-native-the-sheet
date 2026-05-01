@@ -1,5 +1,6 @@
+import { ThemedText } from '@/components/text'
 import { useRef, useState } from 'react'
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, View } from 'react-native'
 import {
   Backdrop,
   SheetStackItem,
@@ -16,7 +17,7 @@ export default function ExampleSheetStack() {
 
   return (
     <View style={styles.root}>
-      <Text style={styles.header}>Example Sheet Stack</Text>
+      <ThemedText style={styles.header}>Example Sheet Stack</ThemedText>
 
       <Button title="Open Sheet A" onPress={() => setIsOpenA(true)} />
 
@@ -36,7 +37,8 @@ export default function ExampleSheetStack() {
 
           <View style={styles.boxContainer}>
             <View style={styles.boxA}>
-              <Text>Sheet A</Text>
+              <ThemedText>Sheet A</ThemedText>
+
               <Button title="Close Sheet A" onPress={() => setIsOpenA(false)} />
 
               <Button
@@ -59,7 +61,7 @@ export default function ExampleSheetStack() {
         >
           <View style={styles.boxContainer}>
             <View style={styles.boxB}>
-              <Text>Sheet B</Text>
+              <ThemedText>Sheet B</ThemedText>
               <Button title="Close Sheet B" onPress={() => setIsOpenB(false)} />
               <Button title="Open Sheet C" onPress={() => setIsOpenC(true)} />
             </View>
@@ -75,7 +77,7 @@ export default function ExampleSheetStack() {
         >
           <View style={styles.boxContainer}>
             <View style={styles.boxC}>
-              <Text>Sheet C</Text>
+              <ThemedText>Sheet C</ThemedText>
               <Button title="Close Sheet C" onPress={() => setIsOpenC(false)} />
             </View>
           </View>

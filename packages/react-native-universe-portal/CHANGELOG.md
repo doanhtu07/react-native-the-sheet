@@ -1,5 +1,11 @@
 # react-native-universe-portal
 
+## 1.0.13
+
+### Patch Changes
+
+- Make `AnimatedProp` + `SnapPoint` types public
+
 ## 1.0.12
 
 ### Patch Changes
