@@ -128,7 +128,7 @@ export default function ExampleBottomSheetView() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheetProvider snapPoints={[200, 500]}>
+            <BottomSheetProvider>
               <BottomSheet>
                 <BottomSheetHandle />
 
