@@ -45,7 +45,7 @@
     "react-native-keyboard-controller": "1.20.7",
     "react-native-reanimated": "~4.2.1",
     "react-native-safe-area-context": "~5.6.2",
-    "react-native-screens": "~4.23.0",
+    "react-native-screens": "~4.24.0",
     "react-native-the-sheet": "workspace:*",
     "react-native-universe-portal": "workspace:*",
     "react-native-web": "~0.21.0",
