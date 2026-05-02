@@ -157,7 +157,7 @@ function printReport(
   const loose = results.filter((r) => r.status === 'loose')
   const ok = results.filter((r) => r.status === 'ok')
 
-  console.log(`\nExpo SDK ${sdkKey} — React Native ${reactNativeVersion}\n`)
+  console.log(`\nExpo SDK ${sdkKey} — React Native ${reactNativeVersion}`)
 
   if (missing.length) {
     console.log('\n⚠️  Not tracked by Expo API:')
@@ -167,7 +167,7 @@ function printReport(
   }
 
   if (outdated.length) {
-    console.log('❌ Outdated:')
+    console.log('\n❌ Outdated:')
     for (const r of outdated) {
       console.log(`  ${r.package}`)
       console.log(`    installed: ${r.actual}`)
