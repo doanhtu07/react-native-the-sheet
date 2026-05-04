@@ -1,5 +1,11 @@
 # react-native-universe-portal
 
+## 2.0.15
+
+### Patch Changes
+
+- `onMomentumBegin` in `useBottomSheetScrollViewUtils` no longer sets scrolling, which blocks bottom sheet panning
+
 ## 2.0.14
 
 ### Patch Changes
