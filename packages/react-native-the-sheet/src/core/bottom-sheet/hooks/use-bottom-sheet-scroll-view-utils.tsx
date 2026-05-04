@@ -96,12 +96,10 @@ export const useBottomSheetScrollViewUtils = ({
     onMomentumBegin: (event, context) => {
       'worklet'
       propOnMomentumBegin?.(event, context)
-      setScrolling()
     },
     onMomentumEnd: (event, context) => {
       'worklet'
       propOnMomentumEnd?.(event, context)
-      unsetScrolling()
     },
   })
 

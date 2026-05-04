@@ -18,6 +18,7 @@ import { Portal } from 'react-native-universe-portal'
 
 export default function ExampleHeightBudgetScrollView() {
   const [isOpenA, setIsOpenA] = useState(false)
+  const [numElements, setNumElements] = useState(300)
 
   // When using dynamic sizing, it's important to set a max height
   // to prevent content taking up the entire screen
@@ -28,7 +29,7 @@ export default function ExampleHeightBudgetScrollView() {
   const renderContent = () => {
     return (
       <Fragment>
-        {Array.from({ length: 100 }).map((_, index) => (
+        {Array.from({ length: numElements }).map((_, index) => (
           <ThemedText key={index}>Item {index + 1}</ThemedText>
         ))}
       </Fragment>
@@ -67,6 +68,16 @@ export default function ExampleHeightBudgetScrollView() {
                     <HeightClaim>
                       <BottomSheetView>
                         <ThemedText>Sheet A</ThemedText>
+
+                        <Button
+                          title="Set elements to 10"
+                          onPress={() => setNumElements(10)}
+                        />
+
+                        <Button
+                          title="Set elements to 300"
+                          onPress={() => setNumElements(300)}
+                        />
 
                         <Button
                           title="Close Sheet A"

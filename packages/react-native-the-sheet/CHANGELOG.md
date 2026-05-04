@@ -1,5 +1,11 @@
 # react-native-the-sheet
 
+## 1.0.14
+
+### Patch Changes
+
+- `onMomentumBegin` in `useBottomSheetScrollViewUtils` no longer sets scrolling, which blocks bottom sheet panning
+
 ## 1.0.13
 
 ### Patch Changes
