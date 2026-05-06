@@ -26,7 +26,7 @@ type SkiaProps<P = object, O extends keyof P | never = never> = AnimatedProps<
 >
 ```
 
-- [ ] Template patterns
+- [x] Template patterns
   - Encourage users to create a reusable template for their sheets
   - Easier to maintain, migrate, and update what features they want to use
 
