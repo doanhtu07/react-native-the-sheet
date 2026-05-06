@@ -74,6 +74,12 @@ For more details on the props, check out the API docs
 
 [Read more](./docs/apis/index.md)
 
+## Best practices
+
+To get the best experience out of the library, check out the best practices
+
+[Read more](./docs/best-practices.md)
+
 ## Compatibility
 
 Reanimated has really strict rules for versioning, so our library follows the major versions of Reanimated to avoid confusion
