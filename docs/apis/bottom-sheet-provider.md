@@ -52,16 +52,29 @@ It provides:
   - `= 0`: Bottom sheet is fully visible inside bottom sheet presenter
   - `> 0`: Bottom sheet is being dragged down from rest point
   - `< 0`: Bottom sheet is being dragged up from rest point
+- `isTranslateYAnimating`: A shared value that tracks whether translateY is currently being animated with `withSpring` or some other animation functions
 
 ---
 
 - `scrollViewRef`: A ref to the scroll view that is mainly responsible handling the intersection of pan and scroll gestures
 - `isScrollViewReady`: A boolean that tracks whether the scroll view is ready to handle gestures (Whether it mounts and has its layout measured yet)
-- `isScrolling`: A shared value of 0 or 1 that tracks whether the scroll view is currently scrolling
+- `isScrollViewInteracting`: A shared value of 0 or 1 that tracks whether the scroll view is currently scrolling
 - `scrollY`: A shared value that tracks the scroll position of the scroll view
+- `scrollViewHeight`: A shared value that tracks the height of the scroll view
+- `scrollViewContentHeight`: A shared value that tracks the content height of the scroll view
 
 ---
 
 - `isPanGestureActive`: A shared value to track whether there is currently an active bottom sheet pan gesture
 - `lockedScrollY`: A shared value to store the scroll y position of scroll view when we want to temporarily force the scroll view to stay at that position
 - `isScrollLocked`: A shared value to track whether the scroll view is currently locked to a specific scroll y position
+
+---
+
+- `keyboardExpanderTargetHeight`: A shared value that tracks the target height of the keyboard expander when the keyboard is open/close
+- `keyboardExpanderCurrentHeight`: A shared value that tracks the current height of the keyboard expander
+- `keyboardExpanderHeightRatio`: A shared value that tracks the height ratio of the keyboard expander
+
+Note that with Android non-edge-to-edge mode + adjustResize, keyboard expander height will not involved
+
+As the system will already resize the bottom sheet when keyboard is open

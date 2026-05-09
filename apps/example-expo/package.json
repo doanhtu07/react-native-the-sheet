@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
+    "@faker-js/faker": "^10.4.0",
     "@react-navigation/bottom-tabs": "^7.4.0",
     "@react-navigation/elements": "^2.6.3",
     "@react-navigation/native": "^7.1.8",

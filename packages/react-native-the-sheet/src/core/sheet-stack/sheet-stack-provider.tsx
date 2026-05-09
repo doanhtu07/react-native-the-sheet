@@ -9,7 +9,7 @@ import {
   type FC,
 } from 'react'
 import {
-  SheetStackItemPushBehavior,
+  SHEET_STACK_ITEM_PUSH_BEHAVIOR,
   type SheetStackContextType,
   type SheetStackItemDataWrapper,
   type SheetStackProviderProps,
@@ -77,7 +77,7 @@ export const SheetStackProvider: FC<SheetStackProviderProps> = ({
 
         zIndexCounter.current++
 
-        if (item.pushBehavior === SheetStackItemPushBehavior.replace) {
+        if (item.pushBehavior === SHEET_STACK_ITEM_PUSH_BEHAVIOR.replace) {
           return [
             ...prevStack.slice(0, -1),
             { item, assignedZIndex: zIndexCounter.current },

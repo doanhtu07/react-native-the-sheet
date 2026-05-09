@@ -6,10 +6,11 @@ When you press on the backdrop, it will trigger `close` function of the current 
 
 ## Props
 
-| Prop name | Type     | Required | Default     | Description                                        |
-| --------- | -------- | -------- | ----------- | -------------------------------------------------- |
-| `styles`  | object   | false    | `undefined` | The styles of the backdrop                         |
-| `testID`  | `string` | false    | `undefined` | The test ID of the backdrop (for testing purposes) |
+| Prop name  | Type                    | Required | Default     | Description                                             |
+| ---------- | ----------------------- | -------- | ----------- | ------------------------------------------------------- |
+| `disabled` | `AnimatedProp<boolean>` | false    | `false`     | Whether backdrop onPress and pointerEvents are disabled |
+| `styles`   | object                  | false    | `undefined` | The styles of the backdrop                              |
+| `testID`   | `string`                | false    | `undefined` | The test ID of the backdrop (for testing purposes)      |
 
 ## Styles
 

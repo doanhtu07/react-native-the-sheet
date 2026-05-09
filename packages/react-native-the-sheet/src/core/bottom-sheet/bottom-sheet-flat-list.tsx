@@ -9,12 +9,14 @@ import { useMemo } from 'react'
 import { useBottomSheetScrollViewUtils } from './hooks/use-bottom-sheet-scroll-view-utils'
 import { useBottomSheetPanGesture } from './hooks/use-bottom-sheet-pan-gesture'
 import { useBottomSheet } from './bottom-sheet-provider'
-import { useToSharedValue } from '../private/hooks/use-to-shared-value'
+import { useToSharedValue } from '../hooks/use-to-shared-value'
 
 export function BottomSheetFlatList<T>({
   fill: propFill = false,
+  getPanGesture: propGetPanGesture,
 
   onLayout: propOnLayout,
+  onContentSizeChange: propOnContentSizeChange,
   onTouchStart: propOnTouchStart,
   onTouchEnd: propOnTouchEnd,
 
@@ -35,21 +37,33 @@ export function BottomSheetFlatList<T>({
 
   const fill = useToSharedValue(propFill)
 
-  const panGesture = useMemo(() => {
-    return getPanGesture()
-  }, [getPanGesture])
+  const {
+    unsetScrollViewInteracting,
+    onLayout,
+    onContentSizeChange,
+    onTouchStart,
+    onTouchEnd,
+    onScroll,
+  } = useBottomSheetScrollViewUtils({
+    onLayout: propOnLayout,
+    onContentSizeChange: propOnContentSizeChange,
+    onTouchStart: propOnTouchStart,
+    onTouchEnd: propOnTouchEnd,
+    onScroll: propOnScroll,
+    onBeginDrag: propOnBeginDrag,
+    onEndDrag: propOnEndDrag,
+    onMomentumBegin: propOnMomentumBegin,
+    onMomentumEnd: propOnMomentumEnd,
+  })
 
-  const { onLayout, onTouchStart, onTouchEnd, onScroll } =
-    useBottomSheetScrollViewUtils({
-      onLayout: propOnLayout,
-      onTouchStart: propOnTouchStart,
-      onTouchEnd: propOnTouchEnd,
-      onScroll: propOnScroll,
-      onBeginDrag: propOnBeginDrag,
-      onEndDrag: propOnEndDrag,
-      onMomentumBegin: propOnMomentumBegin,
-      onMomentumEnd: propOnMomentumEnd,
+  const panGesture = useMemo(() => {
+    const corePanGesture = propGetPanGesture?.() || getPanGesture()
+
+    return corePanGesture.onFinalize(() => {
+      'worklet'
+      unsetScrollViewInteracting()
     })
+  }, [getPanGesture, propGetPanGesture, unsetScrollViewInteracting])
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -68,6 +82,7 @@ export function BottomSheetFlatList<T>({
         contentContainerStyle={contentContainerStyle}
         bounces={false} // iOS bounce ruins the scrollY <= 0 check
         onLayout={onLayout}
+        onContentSizeChange={onContentSizeChange}
         onScroll={onScroll}
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}

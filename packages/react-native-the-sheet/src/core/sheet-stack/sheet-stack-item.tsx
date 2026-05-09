@@ -13,12 +13,12 @@ import {
 import { StyleSheet, View } from 'react-native'
 import { useSheetStack } from './sheet-stack-provider'
 import {
-  SheetStackItemPushBehavior,
+  SHEET_STACK_ITEM_PUSH_BEHAVIOR,
   type SheetStackItemContextType,
   type SheetStackItemApi,
   type SheetStackItemProps,
 } from './types'
-import { useSyncedRef } from '../private/hooks/use-synced-ref'
+import { useSyncedRef } from '../hooks/use-synced-ref'
 
 const SheetStackItemContext = createContext<
   SheetStackItemContextType | undefined
@@ -41,7 +41,7 @@ export const SheetStackItem = forwardRef<
   {
     isOpen,
     close,
-    pushBehavior = SheetStackItemPushBehavior.push,
+    pushBehavior = SHEET_STACK_ITEM_PUSH_BEHAVIOR.push,
     waitForFullyExit = false,
     testID,
     children,
@@ -153,7 +153,7 @@ export const SheetStackItem = forwardRef<
   useEffect(() => {
     if (
       isCurrentlyInStack &&
-      nextSheetPushBehavior === SheetStackItemPushBehavior.switch &&
+      nextSheetPushBehavior === SHEET_STACK_ITEM_PUSH_BEHAVIOR.switch &&
       !isTop
     ) {
       setIsHiddenByStack(true)

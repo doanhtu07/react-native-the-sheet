@@ -19,7 +19,7 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated'
 import type { LayoutChangeEvent } from 'react-native'
-import { useToSharedValue } from '../private/hooks/use-to-shared-value'
+import { useToSharedValue } from '../hooks/use-to-shared-value'
 
 const HeightBudgetContext = createContext<HeightBudgetContextType>(null!)
 

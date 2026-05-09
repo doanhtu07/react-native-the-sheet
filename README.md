@@ -80,6 +80,10 @@ To get the best experience out of the library, check out the best practices
 
 [Read more](./docs/best-practices.md)
 
+## Cool examples
+
+- [YouTube clone](./apps/example-expo/app/example-youtube-clone.tsx)
+
 ## Compatibility
 
 Reanimated has really strict rules for versioning, so our library follows the major versions of Reanimated to avoid confusion

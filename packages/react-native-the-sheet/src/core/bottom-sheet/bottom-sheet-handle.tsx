@@ -5,7 +5,9 @@ import { useMemo } from 'react'
 import { useBottomSheetPanGesture } from './hooks/use-bottom-sheet-pan-gesture'
 
 export function BottomSheetHandle({
+  getPanGesture: propGetPanGesture,
   styles: propStyles,
+  testID,
 }: Readonly<BottomSheetHandleProps>) {
   const theme = useColorScheme()
 
@@ -15,14 +17,14 @@ export function BottomSheetHandle({
   const getPanGesture = useBottomSheetPanGesture()
 
   const panGesture = useMemo(() => {
-    return getPanGesture()
-  }, [getPanGesture])
+    return propGetPanGesture?.() || getPanGesture()
+  }, [getPanGesture, propGetPanGesture])
 
   // MARK: Renderers
 
   return (
     <GestureDetector gesture={panGesture}>
-      <View style={[styles.root, propStyles?.root]}>
+      <View style={[styles.root, propStyles?.root]} testID={testID}>
         <View
           style={[styles.indicator, { backgroundColor }, propStyles?.indicator]}
         />

@@ -11,8 +11,8 @@ import {
   useSharedValue,
 } from 'react-native-reanimated'
 import { useTrueSafeArea } from '../hooks'
-import { useToSharedValue } from '../private/hooks/use-to-shared-value'
-import { isApproxEqual } from '../private/utils/approximately-equal'
+import { useToSharedValue } from '../hooks/use-to-shared-value'
+import { isApproxEqual } from '../utils/approximately-equal'
 
 const SheetKeyboardContext = createContext<
   SheetKeyboardContextType | undefined

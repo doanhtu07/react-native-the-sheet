@@ -1,17 +1,21 @@
 import { useCallback } from 'react'
 import { Gesture } from 'react-native-gesture-handler'
 import { runOnJS, useSharedValue, withSpring } from 'react-native-reanimated'
-import { useSyncedRef } from '../../hooks/use-synced-ref'
-import { useSheetStackItem } from '../../sheet-stack'
-import { isApproxEqual } from '../../utils/approximately-equal'
-import { SPRING_CONFIG } from '../../constants'
 import {
   FLICK_VELOCITY_THRESHOLD,
+  isApproxEqual,
   MICRO_FLICK_VELOCITY_THRESHOLD,
   SCROLL_Y_TOP_THRESHOLD,
+  SPRING_CONFIG,
   TRANSLATE_Y_REST_THRESHOLD,
-} from '../constants'
-import { useBottomSheet } from '../bottom-sheet-provider'
+  useBottomSheetRegistry,
+  useSyncedRef,
+} from 'react-native-the-sheet'
+
+type Props = {
+  close: () => void
+  sheetId: string
+}
 
 /**
   # Mental model
@@ -43,7 +47,11 @@ import { useBottomSheet } from '../bottom-sheet-provider'
     - Lock scroll view
     - Move sheet
  */
-export const useBottomSheetPanGesture = () => {
+export const useBottomSheetYoutubePanGesture = ({ close, sheetId }: Props) => {
+  const { sheets } = useBottomSheetRegistry()
+
+  const commentSheet = sheets[sheetId] || {}
+
   const {
     enableFloat,
     enableOverdrag,
@@ -54,10 +62,10 @@ export const useBottomSheetPanGesture = () => {
     isTranslateYAnimating,
     isScrollViewInteracting,
     scrollY,
+    scrollViewHeight,
+    scrollViewContentHeight,
     isPanGestureActive,
-  } = useBottomSheet()
-
-  const { close } = useSheetStackItem()
+  } = commentSheet
 
   const closeRef = useSyncedRef(close)
 
@@ -104,6 +112,10 @@ export const useBottomSheetPanGesture = () => {
 
         const isScrollAtTop = scrollY.value <= SCROLL_Y_TOP_THRESHOLD
 
+        const isScrollAtBottom =
+          scrollY.value >=
+          scrollViewContentHeight.value - scrollViewHeight.value
+
         // If we are moving UP fast (velocityY < -MICRO_FLICK_VELOCITY_THRESHOLD)
         // and we are already at or above the rest point,
         // FORCE translateY to 0 and let the ScrollView handle everything
@@ -116,12 +128,20 @@ export const useBottomSheetPanGesture = () => {
           return
         }
 
-        if (
-          !disableDrag.value &&
-          (!isSheetAtRest || // Sheet not at rest
-            isScrollViewInteracting.value === 0 || // No scroll mode
-            (isScrollViewInteracting.value > 0 && isScrollAtTop && deltaY > 0)) // Scroll mode + Pan down
-        ) {
+        const isSheetLowerThanFirstSnap =
+          translateY.value > snapTranslateYs.value[0]!
+
+        const noScrollMode =
+          isScrollViewInteracting.value === 0 &&
+          (!isSheetAtRest || enableOverdrag.value)
+
+        const scrollMode =
+          isScrollViewInteracting.value > 0 &&
+          ((isScrollAtTop && deltaY > 0) || // If scroll view at top and we are panning down to close
+            (isScrollAtTop && deltaY <= 0 && isSheetLowerThanFirstSnap) || // If scroll view is at top and we are panning up to open (lower than first snap)
+            (isScrollAtTop && isScrollAtBottom)) // If scroll view is both at top and bottom (content smaller than scroll view)
+
+        if (!disableDrag.value && (noScrollMode || scrollMode)) {
           let nextValue = translateY.value + deltaY
 
           // If we ARE scrolling, prevent the sheet from going into the overdrag zone
@@ -196,10 +216,12 @@ export const useBottomSheetPanGesture = () => {
     translateY,
     scrollY,
     lastTranslationY,
+    scrollViewContentHeight,
+    scrollViewHeight,
     isScrollViewInteracting,
-    disableDrag,
-    enableOverdrag,
     snapTranslateYs,
+    enableOverdrag,
+    disableDrag,
     sheetHeight,
     enableFloat,
     isTranslateYAnimating,

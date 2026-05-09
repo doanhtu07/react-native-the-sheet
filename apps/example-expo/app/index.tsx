@@ -208,6 +208,17 @@ export default function Index() {
           router.push('/example-bottom-sheet-templates')
         }}
       />
+
+      {/* MARK: YouTube */}
+
+      <Text style={styles.header}>YouTube Clone</Text>
+
+      <Button
+        title="Example YouTube Clone"
+        onPress={() => {
+          router.push('/example-youtube-clone')
+        }}
+      />
     </ScrollView>
   )
 }

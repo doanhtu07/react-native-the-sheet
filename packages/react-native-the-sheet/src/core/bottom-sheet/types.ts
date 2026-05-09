@@ -12,14 +12,19 @@ import type {
   SharedValue,
 } from 'react-native-reanimated'
 import type { AnimatedProp } from '../types'
+import type { PanGesture } from 'react-native-gesture-handler'
 
 // MARK: Bottom sheet handle
 
 export type BottomSheetHandleProps = {
+  getPanGesture?: () => PanGesture
+
   styles?: {
     root?: StyleProp<ViewStyle>
     indicator?: StyleProp<ViewStyle>
   }
+
+  testID?: string
 }
 
 // MARK: Bottom sheet registry provider
@@ -49,15 +54,22 @@ export type BottomSheetContextType = {
   normalizedSnaps: SharedValue<number[]>
   snapTranslateYs: SharedValue<number[]>
   translateY: SharedValue<number>
+  isTranslateYAnimating: SharedValue<boolean>
 
   scrollViewRef: AnimatedRef<Animated.ScrollView | Animated.FlatList<unknown>>
   isScrollViewReady: SharedValue<boolean>
-  isScrolling: SharedValue<0 | 1>
+  isScrollViewInteracting: SharedValue<0 | 1>
   scrollY: SharedValue<number>
+  scrollViewHeight: SharedValue<number>
+  scrollViewContentHeight: SharedValue<number>
 
   isPanGestureActive: SharedValue<boolean>
   lockedScrollY: SharedValue<number>
   isScrollLocked: SharedValue<boolean>
+
+  keyboardExpanderTargetHeight: SharedValue<number>
+  keyboardExpanderCurrentHeight: SharedValue<number>
+  keyboardExpanderHeightRatio: SharedValue<number>
 }
 
 export type BottomSheetProviderProps = PropsWithChildren & {
@@ -87,10 +99,13 @@ export type BottomSheetApi = {
 
 export type BottomSheetViewProps = PropsWithChildren & {
   fill?: AnimatedProp<boolean>
+  getPanGesture?: () => PanGesture
 
   styles?: {
     root?: StyleProp<ViewStyle>
   }
+
+  testID?: string
 }
 
 // MARK: Bottom sheet scroll view
@@ -100,6 +115,7 @@ type AnimatedScrollViewProps = ComponentProps<typeof Animated.ScrollView>
 export type BottomSheetScrollViewProps = Omit<
   AnimatedScrollViewProps,
   | 'onLayout'
+  | 'onContentSizeChange'
   | 'onTouchStart'
   | 'onTouchEnd'
   | 'onScroll'
@@ -109,8 +125,10 @@ export type BottomSheetScrollViewProps = Omit<
   | 'onMomentumEnd'
 > & {
   fill?: AnimatedProp<boolean>
+  getPanGesture?: () => PanGesture
 
   onLayout?: (e: LayoutChangeEvent) => void
+  onContentSizeChange?: (w: number, h: number) => void
   onTouchStart?: (e: GestureResponderEvent) => void
   onTouchEnd?: (e: GestureResponderEvent) => void
 
@@ -128,6 +146,7 @@ type AnimatedFlatListProps<T> = ComponentProps<typeof Animated.FlatList<T>>
 export type BottomSheetFlatListProps<T> = Omit<
   AnimatedFlatListProps<T>,
   | 'onLayout'
+  | 'onContentSizeChange'
   | 'onTouchStart'
   | 'onTouchEnd'
   | 'onScroll'
@@ -137,8 +156,10 @@ export type BottomSheetFlatListProps<T> = Omit<
   | 'onMomentumEnd'
 > & {
   fill?: AnimatedProp<boolean>
+  getPanGesture?: () => PanGesture
 
   onLayout?: (e: LayoutChangeEvent) => void
+  onContentSizeChange?: (w: number, h: number) => void
   onTouchStart?: (e: GestureResponderEvent) => void
   onTouchEnd?: (e: GestureResponderEvent) => void
 

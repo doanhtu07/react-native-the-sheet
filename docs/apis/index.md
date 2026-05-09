@@ -64,6 +64,10 @@
 
 ---
 
+[useBottomSheetPanGestureWithLockScroll](./use-bottom-sheet-pan-gesture-with-lock-scroll.md)
+
 [useBottomSheetPanGesture](./use-bottom-sheet-pan-gesture.md)
 
 [useBottomSheetScrollViewUtils](./use-bottom-sheet-scroll-view-utils.md)
+
+[usePanGestureLockScroll](./use-pan-gesture-lock-scroll.md)
