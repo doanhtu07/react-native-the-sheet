@@ -8,12 +8,14 @@ import {
 } from 'react-native-reanimated'
 import { runOnUI } from 'react-native-worklets'
 import { useBottomSheet } from '../bottom-sheet-provider'
+import { useCallback } from 'react'
 
 const UNSET_SCROLLING_DELAY = 200
 
 type Props = Pick<
   BottomSheetScrollViewProps,
   | 'onLayout'
+  | 'onContentSizeChange'
   | 'onTouchStart'
   | 'onTouchEnd'
   | 'onScroll'
@@ -25,6 +27,7 @@ type Props = Pick<
 
 export const useBottomSheetScrollViewUtils = ({
   onLayout: propOnLayout,
+  onContentSizeChange: propOnContentSizeChange,
   onTouchStart: propOnTouchStart,
   onTouchEnd: propOnTouchEnd,
   onScroll: propOnScroll,
@@ -33,48 +36,47 @@ export const useBottomSheetScrollViewUtils = ({
   onMomentumBegin: propOnMomentumBegin,
   onMomentumEnd: propOnMomentumEnd,
 }: Props) => {
-  const { isScrollViewReady, isScrolling, scrollY } = useBottomSheet()
+  const {
+    isScrollViewReady,
+    isScrollViewInteracting,
+    scrollY,
+    scrollViewHeight,
+    scrollViewContentHeight,
+  } = useBottomSheet()
 
-  const setScrolling = () => {
+  const setScrollViewInteracting = useCallback(() => {
     'worklet'
-    cancelAnimation(isScrolling)
-    isScrolling.value = 1
-  }
+    cancelAnimation(isScrollViewInteracting)
+    isScrollViewInteracting.value = 1
+  }, [isScrollViewInteracting])
 
-  const unsetScrolling = () => {
+  const unsetScrollViewInteracting = useCallback(() => {
     'worklet'
-
-    isScrolling.value = withDelay(
+    isScrollViewInteracting.value = withDelay(
       UNSET_SCROLLING_DELAY,
       withTiming(0, { duration: 0 }),
     )
-  }
+  }, [isScrollViewInteracting])
 
   const onLayout = (event: LayoutChangeEvent) => {
     propOnLayout?.(event)
+    isScrollViewReady.value = true
+    scrollViewHeight.value = event.nativeEvent.layout.height
+  }
 
-    runOnUI(() => {
-      'worklet'
-      isScrollViewReady.value = true
-    })()
+  const onContentSizeChange = (w: number, h: number) => {
+    propOnContentSizeChange?.(w, h)
+    scrollViewContentHeight.value = h
   }
 
   const onTouchStart = (event: GestureResponderEvent) => {
     propOnTouchStart?.(event)
-
-    runOnUI(() => {
-      'worklet'
-      setScrolling()
-    })()
+    runOnUI(setScrollViewInteracting)()
   }
 
   const onTouchEnd = (event: GestureResponderEvent) => {
     propOnTouchEnd?.(event)
-
-    runOnUI(() => {
-      'worklet'
-      unsetScrolling()
-    })()
+    runOnUI(unsetScrollViewInteracting)()
   }
 
   const onScroll = useAnimatedScrollHandler({
@@ -86,12 +88,12 @@ export const useBottomSheetScrollViewUtils = ({
     onBeginDrag: (event, context) => {
       'worklet'
       propOnBeginDrag?.(event, context)
-      setScrolling()
+      setScrollViewInteracting()
     },
     onEndDrag: (event, context) => {
       'worklet'
       propOnEndDrag?.(event, context)
-      unsetScrolling()
+      unsetScrollViewInteracting()
     },
     onMomentumBegin: (event, context) => {
       'worklet'
@@ -104,7 +106,11 @@ export const useBottomSheetScrollViewUtils = ({
   })
 
   return {
+    setScrollViewInteracting,
+    unsetScrollViewInteracting,
+
     onLayout,
+    onContentSizeChange,
     onTouchStart,
     onTouchEnd,
     onScroll,

@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from 'react'
 
-export const SheetStackItemPushBehavior = {
+export const SHEET_STACK_ITEM_PUSH_BEHAVIOR = {
   push: 'push',
   switch: 'switch',
   replace: 'replace',
@@ -10,7 +10,7 @@ export const SheetStackItemPushBehavior = {
 
 export type SheetStackItemData = {
   id: string
-  pushBehavior: keyof typeof SheetStackItemPushBehavior
+  pushBehavior: keyof typeof SHEET_STACK_ITEM_PUSH_BEHAVIOR
   testID?: string
 }
 
@@ -54,7 +54,7 @@ export type SheetStackItemProps = PropsWithChildren & {
   isOpen: boolean
   close: () => void
 
-  pushBehavior?: keyof typeof SheetStackItemPushBehavior
+  pushBehavior?: keyof typeof SHEET_STACK_ITEM_PUSH_BEHAVIOR
   waitForFullyExit?: boolean
 
   testID?: string

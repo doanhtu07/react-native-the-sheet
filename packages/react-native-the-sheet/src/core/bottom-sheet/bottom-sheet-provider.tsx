@@ -4,8 +4,8 @@ import Animated, {
   useDerivedValue,
   useAnimatedRef,
 } from 'react-native-reanimated'
-import { useSyncedSharedValue } from '../private/hooks/use-synced-shared-value'
-import { useToSharedValue } from '../private/hooks/use-to-shared-value'
+import { useSyncedSharedValue } from '../hooks/use-synced-shared-value'
+import { useToSharedValue } from '../hooks/use-to-shared-value'
 import { useTrueSafeArea } from '../hooks'
 import type { BottomSheetContextType, BottomSheetProviderProps } from './types'
 import { useBottomSheetRegistry } from './bottom-sheet-registry-provider'
@@ -85,18 +85,26 @@ export function BottomSheetProvider({
     return snapTranslateYs.value[0]!
   })
 
+  const isTranslateYAnimating = useSharedValue(false)
+
   // MARK: Bottom sheet context
 
   const scrollViewRef = useAnimatedRef<
     Animated.ScrollView | Animated.FlatList<unknown>
   >()
   const isScrollViewReady = useSharedValue(false)
-  const isScrolling = useSharedValue<0 | 1>(0)
+  const isScrollViewInteracting = useSharedValue<0 | 1>(0)
   const scrollY = useSharedValue(0)
+  const scrollViewHeight = useSharedValue(0)
+  const scrollViewContentHeight = useSharedValue(0)
 
   const isPanGestureActive = useSharedValue(false)
   const lockedScrollY = useSharedValue(0)
   const isScrollLocked = useSharedValue(false)
+
+  const keyboardExpanderTargetHeight = useSharedValue(0)
+  const keyboardExpanderCurrentHeight = useSharedValue(0)
+  const keyboardExpanderHeightRatio = useSharedValue(0)
 
   const contextValue = useRef<BottomSheetContextType>({
     enableFloat,
@@ -110,15 +118,22 @@ export function BottomSheetProvider({
     normalizedSnaps,
     snapTranslateYs,
     translateY,
+    isTranslateYAnimating,
 
     scrollViewRef,
     isScrollViewReady,
-    isScrolling,
+    isScrollViewInteracting,
     scrollY,
+    scrollViewHeight,
+    scrollViewContentHeight,
 
     isPanGestureActive,
     lockedScrollY,
     isScrollLocked,
+
+    keyboardExpanderTargetHeight,
+    keyboardExpanderCurrentHeight,
+    keyboardExpanderHeightRatio,
   })
 
   // MARK: Effects

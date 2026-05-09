@@ -1,7 +1,11 @@
 import { useCallback } from 'react'
 import { Gesture } from 'react-native-gesture-handler'
-import { useSharedValue, withSpring } from 'react-native-reanimated'
-import { runOnJS } from 'react-native-worklets'
+import {
+  runOnJS,
+  scrollTo,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated'
 import { useSyncedRef } from '../../hooks/use-synced-ref'
 import { useSheetStackItem } from '../../sheet-stack'
 import { isApproxEqual } from '../../utils/approximately-equal'
@@ -44,7 +48,7 @@ import { useBottomSheet } from '../bottom-sheet-provider'
     - Lock scroll view
     - Move sheet
  */
-export const useBottomSheetPanGesture = () => {
+export const useBottomSheetPanGestureWithLockScroll = () => {
   const {
     enableFloat,
     enableOverdrag,
@@ -53,9 +57,13 @@ export const useBottomSheetPanGesture = () => {
     snapTranslateYs,
     translateY,
     isTranslateYAnimating,
+    scrollViewRef,
+    isScrollViewReady,
     isScrollViewInteracting,
     scrollY,
     isPanGestureActive,
+    lockedScrollY,
+    isScrollLocked,
   } = useBottomSheet()
 
   const { close } = useSheetStackItem()
@@ -66,9 +74,30 @@ export const useBottomSheetPanGesture = () => {
 
   const lastTranslationY = useSharedValue(0)
 
+  const lockScroll = () => {
+    'worklet'
+
+    if (isScrollViewReady.value) {
+      if (!isScrollLocked.value) {
+        lockedScrollY.value = scrollY.value
+        isScrollLocked.value = true
+      }
+
+      scrollTo(scrollViewRef, 0, lockedScrollY.value, false)
+    }
+  }
+  const lockScrollRef = useSyncedRef(lockScroll)
+
+  const unlockScroll = () => {
+    'worklet'
+    isScrollLocked.value = false
+  }
+  const unlockScrollRef = useSyncedRef(unlockScroll)
+
   const cleanupGesture = () => {
     'worklet'
     isPanGestureActive.value = false
+    unlockScroll()
   }
   const cleanupGestureRef = useSyncedRef(cleanupGesture)
 
@@ -77,6 +106,8 @@ export const useBottomSheetPanGesture = () => {
   const getPanGesture = useCallback(() => {
     // Snapshot refs for worklet
     const closeRefCurrent = closeRef.current
+    const lockScrollRefCurrent = lockScrollRef.current
+    const unlockScrollRefCurrent = unlockScrollRef.current
     const cleanupGestureRefCurrent = cleanupGestureRef.current
 
     return Gesture.Pan()
@@ -114,6 +145,7 @@ export const useBottomSheetPanGesture = () => {
           isSheetAtRest
         ) {
           translateY.value = 0
+          unlockScrollRefCurrent()
           return
         }
 
@@ -123,6 +155,8 @@ export const useBottomSheetPanGesture = () => {
             isScrollViewInteracting.value === 0 || // No scroll mode
             (isScrollViewInteracting.value > 0 && isScrollAtTop && deltaY > 0)) // Scroll mode + Pan down
         ) {
+          lockScrollRefCurrent()
+
           let nextValue = translateY.value + deltaY
 
           // If we ARE scrolling, prevent the sheet from going into the overdrag zone
@@ -133,6 +167,8 @@ export const useBottomSheetPanGesture = () => {
           translateY.value = enableOverdrag.value
             ? nextValue
             : Math.max(0, nextValue) // Prevent overdrag if enableOverdrag is disabled
+        } else {
+          unlockScrollRefCurrent()
         }
       })
       .onEnd((event) => {
@@ -191,6 +227,8 @@ export const useBottomSheetPanGesture = () => {
       })
   }, [
     closeRef,
+    lockScrollRef,
+    unlockScrollRef,
     cleanupGestureRef,
     isPanGestureActive,
     snapshotTranslateY,

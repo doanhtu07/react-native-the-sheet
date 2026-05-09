@@ -10,8 +10,8 @@ import Animated, {
 } from 'react-native-reanimated'
 import type { BottomSheetKeyboardExpanderProps } from './types'
 import { useTrueSafeArea } from '../hooks'
-import { isApproxEqual } from '../private/utils/approximately-equal'
 import { runOnJS, runOnUI } from 'react-native-worklets'
+import { isApproxEqual } from '../utils/approximately-equal'
 import {
   ANDROID_WINDOW_SOFT_INPUT_MODES,
   useSheetKeyboard,
@@ -22,12 +22,18 @@ import {
   KEYBOARD_EXPANDER_ANIMATION_DURATION,
   KEYBOARD_EXPANDER_ANIMATION_EASING,
 } from './private/constants'
-import { useToSharedValue } from '../private/hooks/use-to-shared-value'
+import { useToSharedValue } from '../hooks/use-to-shared-value'
 
 export function BottomSheetKeyboardExpander({
   keyboardOffset: propKeyboardOffset = 0,
 }: Readonly<BottomSheetKeyboardExpanderProps>) {
-  const { sheetHeight, sheetVisibleHeight } = useBottomSheet()
+  const {
+    sheetHeight,
+    sheetVisibleHeight,
+    keyboardExpanderTargetHeight,
+    keyboardExpanderCurrentHeight,
+    keyboardExpanderHeightRatio,
+  } = useBottomSheet()
 
   const {
     keyboardVisible,
@@ -49,6 +55,7 @@ export function BottomSheetKeyboardExpander({
 
   const inputOverlap = useSharedValue<number | null>(null)
   const initialInputBottom = useSharedValue<number | null>(null)
+  const lastNonZeroTargetHeight = useSharedValue(0)
 
   const checkShouldExpandTimeout = useRef<ReturnType<typeof setTimeout> | null>(
     null,
@@ -154,37 +161,6 @@ export function BottomSheetKeyboardExpander({
     ],
   )
 
-  const animatedHeight = useDerivedValue(() => {
-    const targetHeight =
-      inputOverlap.value === null
-        ? 0
-        : inputOverlap.value + keyboardOffset.value
-
-    if (Platform.OS === 'android') {
-      if (keyboardVisible.value) {
-        // Delay the animation on Android to avoid squeezing content
-        // before the keyboard has fully settled
-        return withDelay(
-          KEYBOARD_EXPANDER_ANIMATION_DURATION / 2,
-          withTiming(targetHeight, {
-            duration: KEYBOARD_EXPANDER_ANIMATION_DURATION / 2,
-            easing: KEYBOARD_EXPANDER_ANIMATION_EASING,
-          }),
-        )
-      }
-
-      return withTiming(targetHeight, {
-        duration: KEYBOARD_EXPANDER_ANIMATION_DURATION / 2,
-        easing: KEYBOARD_EXPANDER_ANIMATION_EASING,
-      })
-    }
-
-    return withTiming(targetHeight, {
-      duration: KEYBOARD_EXPANDER_ANIMATION_DURATION,
-      easing: KEYBOARD_EXPANDER_ANIMATION_EASING,
-    })
-  })
-
   // MARK: Effects
 
   // Effect: Unmount
@@ -261,11 +237,92 @@ export function BottomSheetKeyboardExpander({
     },
   )
 
+  // Effect: Update target height when keyboard offset changes
+  useAnimatedReaction(
+    () => {
+      return {
+        inputOverlap: inputOverlap.value,
+        keyboardOffset: keyboardOffset.value,
+      }
+    },
+    (prepared) => {
+      const targetHeight =
+        prepared.inputOverlap === null
+          ? 0
+          : prepared.inputOverlap + prepared.keyboardOffset
+
+      keyboardExpanderTargetHeight.value = targetHeight
+    },
+  )
+
+  // Effect: Update current height
+  useAnimatedReaction(
+    () => {
+      return {
+        keyboardExpanderTargetHeight: keyboardExpanderTargetHeight.value,
+        keyboardVisible: keyboardVisible.value,
+      }
+    },
+    (prepared) => {
+      if (Platform.OS === 'android') {
+        if (prepared.keyboardVisible) {
+          // Delay the animation on Android to avoid squeezing content
+          // before the keyboard has fully settled
+          keyboardExpanderCurrentHeight.value = withDelay(
+            KEYBOARD_EXPANDER_ANIMATION_DURATION / 2,
+            withTiming(prepared.keyboardExpanderTargetHeight, {
+              duration: KEYBOARD_EXPANDER_ANIMATION_DURATION / 2,
+              easing: KEYBOARD_EXPANDER_ANIMATION_EASING,
+            }),
+          )
+
+          return
+        }
+
+        keyboardExpanderCurrentHeight.value = withTiming(
+          prepared.keyboardExpanderTargetHeight,
+          {
+            duration: KEYBOARD_EXPANDER_ANIMATION_DURATION / 2,
+            easing: KEYBOARD_EXPANDER_ANIMATION_EASING,
+          },
+        )
+
+        return
+      }
+
+      keyboardExpanderCurrentHeight.value = withTiming(
+        prepared.keyboardExpanderTargetHeight,
+        {
+          duration: KEYBOARD_EXPANDER_ANIMATION_DURATION,
+          easing: KEYBOARD_EXPANDER_ANIMATION_EASING,
+        },
+      )
+    },
+  )
+
+  // Effect: Update height ratio
+  useAnimatedReaction(
+    () => {
+      return {
+        keyboardExpanderCurrentHeight: keyboardExpanderCurrentHeight.value,
+        keyboardExpanderTargetHeight: keyboardExpanderTargetHeight.value,
+      }
+    },
+    (prepared) => {
+      if (prepared.keyboardExpanderTargetHeight > 0) {
+        lastNonZeroTargetHeight.value = prepared.keyboardExpanderTargetHeight
+      }
+
+      keyboardExpanderHeightRatio.value =
+        prepared.keyboardExpanderCurrentHeight / lastNonZeroTargetHeight.value
+    },
+  )
+
   // MARK: Renderers
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
-      height: animatedHeight.value,
+      height: keyboardExpanderCurrentHeight.value,
     }
   })
 

@@ -10,11 +10,10 @@ import Animated, {
   withSpring,
 } from 'react-native-reanimated'
 import { forwardRef, useImperativeHandle } from 'react'
-import { useToSharedValue } from '../private/hooks/use-to-shared-value'
+import { useToSharedValue } from '../hooks/use-to-shared-value'
 import { useBottomSheetPresenter } from '../bottom-sheet-presenter'
-import { SPRING_CONFIG } from '../private/constants'
+import { SPRING_CONFIG } from '../constants'
 import { useTrueSafeArea } from '../hooks'
-import { usePanGestureLockScroll } from './private/hooks/use-pan-gesture-lock-scroll'
 import { useBottomSheet } from './bottom-sheet-provider'
 
 export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
@@ -38,6 +37,7 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
       normalizedSnaps,
       snapTranslateYs,
       translateY,
+      isTranslateYAnimating,
     } = useBottomSheet()
 
     const isDark = theme === 'dark'
@@ -61,7 +61,13 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
 
         if (index >= 0 && index < targets.length) {
           const targetY = targets[index]!
-          translateY.value = withSpring(targetY, SPRING_CONFIG)
+
+          isTranslateYAnimating.value = true
+          translateY.value = withSpring(targetY, SPRING_CONFIG, (finished) => {
+            if (finished) {
+              isTranslateYAnimating.value = false
+            }
+          })
         } else {
           console.warn(
             `react-native-the-sheet - src/bottom-sheet/bottom-sheet.tsx - Index ${index} out of bounds`,
@@ -83,11 +89,31 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
           // Basis: The largest snap point is our translateY = 0
           const maxSnapPoint = snaps.at(-1)!
           const targetTranslateY = maxSnapPoint - normalizedPosition
-          translateY.value = withSpring(targetTranslateY, SPRING_CONFIG)
+
+          isTranslateYAnimating.value = true
+          translateY.value = withSpring(
+            targetTranslateY,
+            SPRING_CONFIG,
+            (finished) => {
+              if (finished) {
+                isTranslateYAnimating.value = false
+              }
+            },
+          )
         } else {
           // Fallback: If dynamic/no snaps, we use the measured sheetHeight
           const targetTranslateY = sheetHeight.value - normalizedPosition
-          translateY.value = withSpring(targetTranslateY, SPRING_CONFIG)
+
+          isTranslateYAnimating.value = true
+          translateY.value = withSpring(
+            targetTranslateY,
+            SPRING_CONFIG,
+            (finished) => {
+              if (finished) {
+                isTranslateYAnimating.value = false
+              }
+            },
+          )
         }
       },
     }))
@@ -115,9 +141,6 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
         sheetVisibleRatio.value = sheetVisibleHeight.value / total
       },
     )
-
-    // Effect: Lock scroll
-    usePanGestureLockScroll()
 
     // MARK: Preparation
 

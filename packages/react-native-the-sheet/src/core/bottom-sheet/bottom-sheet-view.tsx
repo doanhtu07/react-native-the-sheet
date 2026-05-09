@@ -4,20 +4,22 @@ import { GestureDetector } from 'react-native-gesture-handler'
 import { StyleSheet } from 'react-native'
 import { useMemo } from 'react'
 import { useBottomSheetPanGesture } from './hooks/use-bottom-sheet-pan-gesture'
-import { useToSharedValue } from '../private/hooks/use-to-shared-value'
+import { useToSharedValue } from '../hooks/use-to-shared-value'
 
 export function BottomSheetView({
   fill: propFill = false,
+  getPanGesture: propGetPanGesture,
   styles: propStyles,
   children,
+  testID,
 }: Readonly<BottomSheetViewProps>) {
   const getPanGesture = useBottomSheetPanGesture()
 
   const fill = useToSharedValue(propFill)
 
   const panGesture = useMemo(() => {
-    return getPanGesture()
-  }, [getPanGesture])
+    return propGetPanGesture?.() || getPanGesture()
+  }, [getPanGesture, propGetPanGesture])
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -27,7 +29,10 @@ export function BottomSheetView({
 
   return (
     <GestureDetector gesture={panGesture}>
-      <Animated.View style={[styles.root, propStyles?.root, animatedStyle]}>
+      <Animated.View
+        style={[styles.root, propStyles?.root, animatedStyle]}
+        testID={testID}
+      >
         {children}
       </Animated.View>
     </GestureDetector>

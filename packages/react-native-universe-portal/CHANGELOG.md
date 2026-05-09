@@ -1,5 +1,91 @@
 # react-native-universe-portal
 
+## 2.0.16
+
+### Patch Changes
+
+**Examples**:
+
+- Add example `YouTube Clone` to `example-expo` app
+
+**Backdrop**:
+
+- Change default background color of backdrop to #000000
+- Add disabled state to backdrop (default to false)
+
+**Hooks**:
+
+- Export hooks:
+  - `useSyncedRef`
+  - `useSyncedSharedValue`
+  - `useToSharedValue`
+  - `useToStateValue`
+
+**Utils**:
+
+- Export util `isApproxEqual`
+
+**Constants**:
+
+- Export `SPRING_CONFIG`
+
+**Types**:
+
+- Rename `SheetStackItemPushBehavior` to `SHEET_STACK_ITEM_PUSH_BEHAVIOR` (⚠️ **BREAKING**)
+
+**Bottom Sheet Hooks**:
+
+You can use these two hooks together to lock scroll when bottom sheet is translating:
+
+- Export hook `usePanGestureLockScroll`
+- Export hook `useBottomSheetPanGestureWithLockScroll`
+
+- Add `onContentSizeChange` to props of `useBottomSheetScrollViewUtils`
+
+- `useBottomSheetScrollViewUtils` returns new properties:
+  - `setScrollViewInteracting`
+  - `unsetScrollViewInteracting`
+  - `onContentSizeChange`
+
+**Bottom Sheet Constants**:
+
+- Export:
+  - `TRANSLATE_Y_REST_THRESHOLD`
+  - `SCROLL_Y_TOP_THRESHOLD`
+  - `MICRO_FLICK_VELOCITY_THRESHOLD`
+  - `FLICK_VELOCITY_THRESHOLD`
+
+**BottomSheetProvider**:
+
+- Rename `isScrolling` to `isScrollViewInteracting` (⚠️ **BREAKING**)
+
+- Add states
+  - `isTranslateYAnimating`
+  - `scrollViewHeight`
+  - `scrollViewContentHeight`
+  - `keyboardExpanderTargetHeight`
+  - `keyboardExpanderCurrentHeight`
+  - `keyboardExpanderHeightRatio`
+
+**BottomSheet**:
+
+- No longer use effect `usePanGestureLockScroll` at this level
+  - Instead, we export `usePanGestureLockScroll` and `useBottomSheetPanGestureWithLockScroll` hooks so you can use them if you want
+  - `useBottomSheetPanGesture` will NOT lock scroll when translating
+
+**BottomSheetFlatList + BottomSheetScrollView**:
+
+- Add prop `getPanGesture`
+- Take control of `onContentSizeChange`
+
+**BottomSheetHandle + BottomSheetView**:
+
+- Add prop `getPanGesture`, `testID`
+
+**BottomSheetKeyboardExpander**:
+
+- Report back `keyboardExpanderTargetHeight`, `keyboardExpanderCurrentHeight`, `keyboardExpanderHeightRatio` to context
+
 ## 2.0.15
 
 ### Patch Changes
