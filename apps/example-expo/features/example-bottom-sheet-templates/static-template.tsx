@@ -1,5 +1,5 @@
 import { BottomSheetTemplate } from '@/components/bottom-sheet-template/bottom-sheet-template'
-import { ThemedText } from '@/components/text'
+import { ThemedText } from '@/components/themed-text'
 import { Fragment, useState } from 'react'
 import { View, Pressable, Button, StyleSheet } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'

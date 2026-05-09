@@ -1,4 +1,4 @@
-import { ThemedText } from '@/components/text'
+import { ThemedText } from '@/components/themed-text'
 import { Fragment, useState } from 'react'
 import { Button, StyleSheet } from 'react-native'
 import { ScrollView as GestureScrollView } from 'react-native-gesture-handler'

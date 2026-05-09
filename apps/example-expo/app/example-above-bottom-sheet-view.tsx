@@ -1,4 +1,4 @@
-import { ThemedText } from '@/components/text'
+import { ThemedText } from '@/components/themed-text'
 import React, { Fragment, useState } from 'react'
 import { Button, StyleSheet, View } from 'react-native'
 import Animated, { useAnimatedStyle } from 'react-native-reanimated'

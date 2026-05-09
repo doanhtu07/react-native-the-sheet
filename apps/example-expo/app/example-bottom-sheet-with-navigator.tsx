@@ -1,4 +1,4 @@
-import { ThemedText } from '@/components/text'
+import { ThemedText } from '@/components/themed-text'
 import { ScreenA } from '@/features/example-navigator/screen-a'
 import { ScreenB } from '@/features/example-navigator/screen-b'
 import { RouteParamList } from '@/features/example-navigator/types'
