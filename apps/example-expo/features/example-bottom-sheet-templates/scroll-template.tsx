@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react'
 import { Button, Pressable, StyleSheet, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import { ThemedText } from '@/components/text'
+import { ThemedText } from '@/components/themed-text'
 import {
   BottomSheetScrollView,
   HeightClaim,

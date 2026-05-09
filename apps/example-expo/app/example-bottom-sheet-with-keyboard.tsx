@@ -1,4 +1,4 @@
-import { ThemedText } from '@/components/text'
+import { ThemedText } from '@/components/themed-text'
 import { ManagedTextInput } from '@/features/example-bottom-sheet-with-keyboard/managed-text-input'
 import { Fragment, useState } from 'react'
 import { Button, StyleSheet, View } from 'react-native'

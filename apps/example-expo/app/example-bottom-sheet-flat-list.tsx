@@ -1,4 +1,4 @@
-import { ThemedText } from '@/components/text'
+import { ThemedText } from '@/components/themed-text'
 import { useMemo, useState } from 'react'
 import { Button, ListRenderItem, StyleSheet, View } from 'react-native'
 import {

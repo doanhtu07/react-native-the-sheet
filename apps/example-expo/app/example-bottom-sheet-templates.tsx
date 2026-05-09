@@ -1,5 +1,5 @@
 import { StyleSheet, View } from 'react-native'
-import { ThemedText } from '@/components/text'
+import { ThemedText } from '@/components/themed-text'
 import StaticTemplate from '@/features/example-bottom-sheet-templates/static-template'
 import ScrollTemplate from '@/features/example-bottom-sheet-templates/scroll-template'
 
