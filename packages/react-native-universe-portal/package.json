@@ -69,7 +69,7 @@
     "@react-native/jest-preset": "0.85.2",
     "@types/react": "^19.2.0",
     "del-cli": "^7.0.0",
-    "eslint": "^10.2.0",
+    "eslint": "^10.3.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-ft-flow": "^3.0.11",
     "eslint-plugin-prettier": "^5.5.5",
