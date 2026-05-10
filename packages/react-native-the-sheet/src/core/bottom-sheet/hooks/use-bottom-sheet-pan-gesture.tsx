@@ -225,7 +225,6 @@ export const useBottomSheetPanGesture = () => {
         // Snap back to rest state
         if (!enableFloat.value) {
           isTranslateYAnimating.value = true
-          lockScrollRefCurrent()
 
           translateY.value = withSpring(
             closestSnap,
@@ -233,12 +232,9 @@ export const useBottomSheetPanGesture = () => {
             (finished) => {
               if (finished) {
                 isTranslateYAnimating.value = false
-                cleanupGestureRefCurrent()
               }
             },
           )
-
-          return
         }
 
         // Cleanup
