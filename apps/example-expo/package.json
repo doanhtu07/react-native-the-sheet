@@ -24,7 +24,7 @@
     "@faker-js/faker": "^10.4.0",
     "@react-navigation/bottom-tabs": "^7.4.0",
     "@react-navigation/elements": "^2.6.3",
-    "@react-navigation/native": "^7.1.8",
+    "@react-navigation/native": "^7.2.4",
     "expo": "~53.0.27",
     "expo-constants": "~17.1.8",
     "expo-dev-client": "~5.2.4",
