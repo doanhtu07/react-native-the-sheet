@@ -1,4 +1,6 @@
 import Animated, {
+  scrollTo,
+  useAnimatedReaction,
   useAnimatedStyle,
   type AnimatedRef,
 } from 'react-native-reanimated'
@@ -10,6 +12,7 @@ import { useBottomSheetScrollViewUtils } from './hooks/use-bottom-sheet-scroll-v
 import { useBottomSheetPanGesture } from './hooks/use-bottom-sheet-pan-gesture'
 import { useBottomSheet } from './bottom-sheet-provider'
 import { useToSharedValue } from '../hooks/use-to-shared-value'
+import { runOnJS } from 'react-native-worklets'
 
 export function BottomSheetFlatList<T>({
   fill: propFill = false,
@@ -31,7 +34,8 @@ export function BottomSheetFlatList<T>({
 
   ...rest
 }: Readonly<BottomSheetFlatListProps<T>>) {
-  const { scrollViewRef } = useBottomSheet()
+  const { scrollViewRef, scrollY, lockedScrollY, isScrollLocked } =
+    useBottomSheet()
 
   const getPanGesture = useBottomSheetPanGesture()
 
@@ -61,15 +65,40 @@ export function BottomSheetFlatList<T>({
 
     return corePanGesture.onFinalize(() => {
       'worklet'
-      unsetScrollViewInteracting()
+      runOnJS(unsetScrollViewInteracting)()
     })
   }, [getPanGesture, propGetPanGesture, unsetScrollViewInteracting])
+
+  // MARK: Effects
+
+  useAnimatedReaction(
+    () => ({
+      isScrollLocked: isScrollLocked.value,
+      lockedScrollY: lockedScrollY.value,
+      scrollY: scrollY.value,
+    }),
+    (prepared) => {
+      // If we are locked but the current scroll doesn't match the target
+      // might be due to momentum)
+      // force it back immediately
+      if (
+        prepared.isScrollLocked &&
+        prepared.scrollY !== prepared.lockedScrollY
+      ) {
+        scrollTo(scrollViewRef, 0, prepared.lockedScrollY, false)
+      }
+    },
+  )
+
+  // MARK: Preparation
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
       ...(fill.value ? styles.fill : undefined),
     }
   })
+
+  // MARK: Renderers
 
   return (
     <GestureDetector

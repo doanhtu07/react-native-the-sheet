@@ -58,7 +58,7 @@ export type BottomSheetContextType = {
 
   scrollViewRef: AnimatedRef<Animated.ScrollView | Animated.FlatList>
   isScrollViewReady: SharedValue<boolean>
-  isScrollViewInteracting: SharedValue<0 | 1>
+  isScrollViewInteracting: SharedValue<boolean>
   scrollY: SharedValue<number>
   scrollViewHeight: SharedValue<number>
   scrollViewContentHeight: SharedValue<number>
