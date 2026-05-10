@@ -93,7 +93,7 @@ export function BottomSheetProvider({
     Animated.ScrollView | Animated.FlatList<unknown>
   >()
   const isScrollViewReady = useSharedValue(false)
-  const isScrollViewInteracting = useSharedValue<0 | 1>(0)
+  const isScrollViewInteracting = useSharedValue(false)
   const scrollY = useSharedValue(0)
   const scrollViewHeight = useSharedValue(0)
   const scrollViewContentHeight = useSharedValue(0)

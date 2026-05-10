@@ -1,4 +1,7 @@
 import Animated, {
+  runOnJS,
+  scrollTo,
+  useAnimatedReaction,
   useAnimatedStyle,
   type AnimatedRef,
 } from 'react-native-reanimated'
@@ -32,7 +35,8 @@ export function BottomSheetScrollView({
   children,
   ...rest
 }: Readonly<BottomSheetScrollViewProps>) {
-  const { scrollViewRef } = useBottomSheet()
+  const { scrollViewRef, scrollY, lockedScrollY, isScrollLocked } =
+    useBottomSheet()
 
   const getPanGesture = useBottomSheetPanGesture()
 
@@ -62,15 +66,40 @@ export function BottomSheetScrollView({
 
     return corePanGesture.onFinalize(() => {
       'worklet'
-      unsetScrollViewInteracting()
+      runOnJS(unsetScrollViewInteracting)()
     })
   }, [getPanGesture, propGetPanGesture, unsetScrollViewInteracting])
+
+  // MARK: Effects
+
+  useAnimatedReaction(
+    () => ({
+      isScrollLocked: isScrollLocked.value,
+      lockedScrollY: lockedScrollY.value,
+      scrollY: scrollY.value,
+    }),
+    (prepared) => {
+      // If we are locked but the current scroll doesn't match the target
+      // might be due to momentum)
+      // force it back immediately
+      if (
+        prepared.isScrollLocked &&
+        prepared.scrollY !== prepared.lockedScrollY
+      ) {
+        scrollTo(scrollViewRef, 0, prepared.lockedScrollY, false)
+      }
+    },
+  )
+
+  // MARK: Preparation
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
       ...(fill.value ? styles.fill : undefined),
     }
   })
+
+  // MARK: Renderers
 
   return (
     <GestureDetector

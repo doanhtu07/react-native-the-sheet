@@ -58,7 +58,7 @@ It provides:
 
 - `scrollViewRef`: A ref to the scroll view that is mainly responsible handling the intersection of pan and scroll gestures
 - `isScrollViewReady`: A boolean that tracks whether the scroll view is ready to handle gestures (Whether it mounts and has its layout measured yet)
-- `isScrollViewInteracting`: A shared value of 0 or 1 that tracks whether the scroll view is currently scrolling
+- `isScrollViewInteracting`: A shared value that tracks whether the scroll view is currently scrolling
 - `scrollY`: A shared value that tracks the scroll position of the scroll view
 - `scrollViewHeight`: A shared value that tracks the height of the scroll view
 - `scrollViewContentHeight`: A shared value that tracks the content height of the scroll view

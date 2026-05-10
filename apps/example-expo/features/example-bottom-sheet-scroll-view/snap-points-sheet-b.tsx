@@ -18,7 +18,7 @@ export function SnapPointsSheetB() {
   const renderContent = () => {
     return (
       <Fragment>
-        {Array.from({ length: 50 }).map((_, index) => (
+        {Array.from({ length: 200 }).map((_, index) => (
           <ThemedText key={index}>Item {index + 1}</ThemedText>
         ))}
       </Fragment>
@@ -42,7 +42,7 @@ export function SnapPointsSheetB() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheetProvider snapPoints={['25%', '50%']}>
+            <BottomSheetProvider snapPoints={['50%', '70%']}>
               <BottomSheet>
                 <BottomSheetHandle />
 

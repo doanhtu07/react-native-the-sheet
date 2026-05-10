@@ -17,7 +17,7 @@ type Props = {
   sheetId: string
 }
 
-/**
+/*
   # Mental model
 
   Two explicit exclusive modes:
@@ -46,7 +46,7 @@ type Props = {
   - Bottom sheet at rest:
     - Lock scroll view
     - Move sheet
- */
+*/
 export const useBottomSheetYoutubePanGesture = ({ close, sheetId }: Props) => {
   const { sheets } = useBottomSheetRegistry()
 
@@ -121,7 +121,7 @@ export const useBottomSheetYoutubePanGesture = ({ close, sheetId }: Props) => {
         // FORCE translateY to 0 and let the ScrollView handle everything
         if (
           event.velocityY < -MICRO_FLICK_VELOCITY_THRESHOLD &&
-          isScrollViewInteracting.value > 0 &&
+          isScrollViewInteracting.value &&
           isSheetAtRest
         ) {
           translateY.value = 0
@@ -132,11 +132,11 @@ export const useBottomSheetYoutubePanGesture = ({ close, sheetId }: Props) => {
           translateY.value > snapTranslateYs.value[0]!
 
         const noScrollMode =
-          isScrollViewInteracting.value === 0 &&
+          !isScrollViewInteracting.value &&
           (!isSheetAtRest || enableOverdrag.value)
 
         const scrollMode =
-          isScrollViewInteracting.value > 0 &&
+          isScrollViewInteracting.value &&
           ((isScrollAtTop && deltaY > 0) || // If scroll view at top and we are panning down to close
             (isScrollAtTop && deltaY <= 0 && isSheetLowerThanFirstSnap) || // If scroll view is at top and we are panning up to open (lower than first snap)
             (isScrollAtTop && isScrollAtBottom)) // If scroll view is both at top and bottom (content smaller than scroll view)
@@ -145,7 +145,7 @@ export const useBottomSheetYoutubePanGesture = ({ close, sheetId }: Props) => {
           let nextValue = translateY.value + deltaY
 
           // If we ARE scrolling, prevent the sheet from going into the overdrag zone
-          if (isScrollViewInteracting.value > 0 && nextValue < 0) {
+          if (isScrollViewInteracting.value && nextValue < 0) {
             nextValue = 0
           }
 
@@ -188,12 +188,16 @@ export const useBottomSheetYoutubePanGesture = ({ close, sheetId }: Props) => {
         const maxSnap = snaps[0]!
         const maxSnapPlusHalf = maxSnap + (sheetHeight.value - maxSnap) * 0.5
 
+        // If the bottom sheet is close to closed position, snap more than halfway
         if (curTranslateY > maxSnapPlusHalf) {
-          // If the bottom sheet is close to closed position, snap more than halfway
           runOnJS(closeRefCurrent)()
-        } else if (!enableFloat.value) {
-          // Snap back to rest state
+          return
+        }
+
+        // Snap back to rest state
+        if (!enableFloat.value) {
           isTranslateYAnimating.value = true
+
           translateY.value = withSpring(
             closestSnap,
             SPRING_CONFIG,

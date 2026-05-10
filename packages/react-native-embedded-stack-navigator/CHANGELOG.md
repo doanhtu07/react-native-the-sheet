@@ -37,9 +37,6 @@
 
 You can use these two hooks together to lock scroll when bottom sheet is translating:
 
-- Export hook `usePanGestureLockScroll`
-- Export hook `useBottomSheetPanGestureWithLockScroll`
-
 - Add `onContentSizeChange` to props of `useBottomSheetScrollViewUtils`
 
 - `useBottomSheetScrollViewUtils` returns new properties:
@@ -58,6 +55,7 @@ You can use these two hooks together to lock scroll when bottom sheet is transla
 **BottomSheetProvider**:
 
 - Rename `isScrolling` to `isScrollViewInteracting` (⚠️ **BREAKING**)
+- Change type of `isScrollViewInteracting` back to boolean (⚠️ **BREAKING**)
 
 - Add states
   - `isTranslateYAnimating`
@@ -70,8 +68,7 @@ You can use these two hooks together to lock scroll when bottom sheet is transla
 **BottomSheet**:
 
 - No longer use effect `usePanGestureLockScroll` at this level
-  - Instead, we export `usePanGestureLockScroll` and `useBottomSheetPanGestureWithLockScroll` hooks so you can use them if you want
-  - `useBottomSheetPanGesture` will NOT lock scroll when translating
+- Lock scrolling is purely controlled by `useBottomSheetPanGesture` together with `BottomSheetScrollView` or `BottomSheetFlatList` using `useAnimatedReaction`
 
 **BottomSheetFlatList + BottomSheetScrollView**:
 
