@@ -6,7 +6,11 @@ import {
   BottomSheetFlatList,
   useBottomSheetRegistry,
 } from 'react-native-the-sheet'
-import { useAnimatedStyle, useSharedValue } from 'react-native-reanimated'
+import {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated'
 import { AddCommentBottomSheet } from './add-comment-bottom-sheet'
 import { useBottomSheetYoutubePanGesture } from '../../components/bottom-sheet-template/bottom-sheet-youtube-template/hooks/use-bottom-sheet-youtube-pan-gesture'
 import { BottomSheetYouTubeTemplate } from '@/components/bottom-sheet-template/bottom-sheet-youtube-template/bottom-sheet-youtube-template'
@@ -27,12 +31,13 @@ export const CommentBottomSheet = ({
   const { sheets } = useBottomSheetRegistry()
 
   const commentSheet = sheets[sheetId]
-  const prevMarginBottom = useSharedValue(0)
 
   const getYoutubeCommentPanGesture = useBottomSheetYoutubePanGesture({
     close,
     sheetId,
   })
+
+  const prevMarginBottom = useSharedValue(0)
 
   const [comments] = useState(new Array(100).fill(0))
   const [addCommentSheetHeight, setAddCommentSheetHeight] = useState(0)
@@ -46,21 +51,28 @@ export const CommentBottomSheet = ({
       }
     }
 
-    if (commentSheet.isTranslateYAnimating.value) {
+    const sheetHiddenHeight = Math.max(
+      0,
+      commentSheet.sheetHeight.value - commentSheet.sheetVisibleHeight.value,
+    )
+
+    if (
+      (commentSheet.isTranslateYAnimating.value ||
+        commentSheet.isPanGestureActive.value) &&
+      prevMarginBottom.value < sheetHiddenHeight
+    ) {
       return {
         marginBottom: prevMarginBottom.value,
       }
     }
 
-    const sheetHiddenHeight = commentSheet
-      ? Math.max(
-          0,
-          commentSheet.sheetHeight.value -
-            commentSheet.sheetVisibleHeight.value,
-        )
-      : 0
-
-    prevMarginBottom.value = sheetHiddenHeight
+    if (commentSheet.isTranslateYAnimating.value) {
+      // When translateY is animating withSpring, somehow we need to use animate marginBottom as well
+      // Or else, translateY will not animate smoothly and instead suddenly jump
+      prevMarginBottom.value = withTiming(sheetHiddenHeight, { duration: 1 })
+    } else {
+      prevMarginBottom.value = sheetHiddenHeight
+    }
 
     return {
       marginBottom: prevMarginBottom.value,
