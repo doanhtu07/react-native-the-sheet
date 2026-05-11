@@ -23,10 +23,7 @@ The library relies on a few core dependencies:
 <table>
   <tr>
     <td width="50%">
-      <video src="https://github.com/user-attachments/assets/9201cc74-8e23-427d-a076-36c0bb299a3c" controls width="100%"></video>
-    </td>
-    <td width="50%">
-      <video src="https://github.com/user-attachments/assets/9b6ae67f-4171-44db-a620-56f90c5cd632" controls width="100%"></video>
+      <video src="https://github.com/user-attachments/assets/07d82dad-c771-4962-9d72-fad92909d409" controls width="100%"></video>
     </td>
   </tr>
 </table>
