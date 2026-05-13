@@ -30,7 +30,12 @@ type SkiaProps<P = object, O extends keyof P | never = never> = AnimatedProps<
   - Encourage users to create a reusable template for their sheets
   - Easier to maintain, migrate, and update what features they want to use
 
-- [ ] Create more examples: YouTube + Instagram
+- [ ] Create more examples: YouTube + Google + Instagram
+  - [x] YouTube
+  - [ ] Google
+  - [ ] Instagram
+
+- [ ] Example with iOS glass effect
 
 - [ ] Support for FlashList + LegendList
 
