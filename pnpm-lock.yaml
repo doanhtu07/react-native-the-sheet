@@ -96,8 +96,8 @@ importers:
         specifier: ~2.24.0
         version: 2.24.0(react-native@0.79.6(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
       react-native-keyboard-controller:
-        specifier: ^1.21.6
-        version: 1.21.6(react-native-reanimated@3.17.5(@babel/core@7.29.0)(react-native@0.79.6(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
+        specifier: ^1.21.7
+        version: 1.21.7(react-native-reanimated@3.17.5(@babel/core@7.29.0)(react-native@0.79.6(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
       react-native-reanimated:
         specifier: ~3.17.5
         version: 3.17.5(@babel/core@7.29.0)(react-native@0.79.6(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
@@ -118,8 +118,8 @@ importers:
         version: 0.20.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     devDependencies:
       '@eslint/compat':
-        specifier: ^2.0.5
-        version: 2.0.5(eslint@10.3.0(jiti@2.6.1))
+        specifier: ^2.1.0
+        version: 2.1.0(eslint@10.3.0(jiti@2.6.1))
       '@react-native/eslint-config':
         specifier: ^0.85.3
         version: 0.85.3(eslint@10.3.0(jiti@2.6.1))(jest@30.3.0(@types/node@25.6.0))(prettier@3.8.3)(typescript@5.8.3)
@@ -1398,6 +1398,15 @@ packages:
 
   '@eslint/compat@2.0.5':
     resolution: {integrity: sha512-IbHDbHJfkVNv6xjlET8AIVo/K1NQt7YT4Rp6ok/clyBGcpRx1l6gv0Rq3vBvYfPJIZt6ODf66Zq08FJNDpnzgg==}
+    engines: {node: ^20.19.0 || ^22.13.0 || >=24}
+    peerDependencies:
+      eslint: ^8.40 || 9 || 10
+    peerDependenciesMeta:
+      eslint:
+        optional: true
+
+  '@eslint/compat@2.1.0':
+    resolution: {integrity: sha512-LgaSCymEpw7tF53xvDw9SNsraPb1IBHxpdABIOM0hW8UAlP8znrjYtuxfR58FSJ3L9BhwD+FaPRFQpZq84Nh6g==}
     engines: {node: ^20.19.0 || ^22.13.0 || >=24}
     peerDependencies:
       eslint: ^8.40 || 9 || 10
@@ -5020,8 +5029,8 @@ packages:
       react: '*'
       react-native: '*'
 
-  react-native-keyboard-controller@1.21.6:
-    resolution: {integrity: sha512-nAXCmar/W8Gn4iQV7O5fAVuTh57JszCsqTS+cfR95WFOLR/AfbwfPz/+sWyz/q2SOIe2VpyQzq6hzYiwErhqqw==}
+  react-native-keyboard-controller@1.21.7:
+    resolution: {integrity: sha512-gs+8nI8HYnRdDt4NWbk1iVuS6kDLf2taJvp+h/TjM1FBdtnQmlYLJ6buNiUqSnkIH4OFEAxdNr3/GOOYdLfkUQ==}
     peerDependencies:
       react: '*'
       react-native: '*'
@@ -7180,6 +7189,12 @@ snapshots:
   '@eslint-community/regexpp@4.12.2': {}
 
   '@eslint/compat@2.0.5(eslint@10.3.0(jiti@2.6.1))':
+    dependencies:
+      '@eslint/core': 1.2.1
+    optionalDependencies:
+      eslint: 10.3.0(jiti@2.6.1)
+
+  '@eslint/compat@2.1.0(eslint@10.3.0(jiti@2.6.1))':
     dependencies:
       '@eslint/core': 1.2.1
     optionalDependencies:
@@ -11815,7 +11830,7 @@ snapshots:
       react: 19.0.0
       react-native: 0.79.6(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0)
 
-  react-native-keyboard-controller@1.21.6(react-native-reanimated@3.17.5(@babel/core@7.29.0)(react-native@0.79.6(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0):
+  react-native-keyboard-controller@1.21.7(react-native-reanimated@3.17.5(@babel/core@7.29.0)(react-native@0.79.6(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0):
     dependencies:
       react: 19.0.0
       react-native: 0.79.6(@babel/core@7.29.0)(@types/react@19.0.14)(react@19.0.0)
