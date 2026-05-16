@@ -30,10 +30,21 @@ type SkiaProps<P = object, O extends keyof P | never = never> = AnimatedProps<
   - Encourage users to create a reusable template for their sheets
   - Easier to maintain, migrate, and update what features they want to use
 
-- [ ] Create more examples: YouTube + Google + Instagram
-  - [x] YouTube
-  - [ ] Google
-  - [ ] Instagram
+- [ ] Create YouTube clone
+
+Need to handle image scaling a little differently (Support for both vertically fit and horizontally fit)
+
+To support that, we need:
+
+maxTranslate = initialImageTop - topInset
+dockSheetTop = topInset + imageHeight
+requiredSheetTravel = collapsedSheetTop - dockSheetTop
+
+progress = clamp(sheetTravel / requiredSheetTravel, 0, 1)
+translateY = -progress \* maxTranslate
+
+- [ ] Create Google clone
+- [ ] Create Instagram clone
 
 - [ ] Example with iOS glass effect
 
