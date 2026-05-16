@@ -60,7 +60,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
-    "@eslint/compat": "^2.0.3",
+    "@eslint/compat": "^2.1.0",
     "@eslint/eslintrc": "^3.3.5",
     "@eslint/js": "^10.0.1",
     "@jest/globals": "^30.0.0",
