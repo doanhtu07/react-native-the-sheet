@@ -23,7 +23,7 @@
     "@expo/vector-icons": "^15.0.3",
     "@faker-js/faker": "^10.4.0",
     "@react-navigation/bottom-tabs": "^7.15.10",
-    "@react-navigation/elements": "^2.6.3",
+    "@react-navigation/elements": "^2.9.18",
     "@react-navigation/native": "^7.2.4",
     "expo": "~55.0.15",
     "expo-constants": "~55.0.16",
