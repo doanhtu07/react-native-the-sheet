@@ -36,12 +36,12 @@ Need to handle image scaling a little differently (Support for both vertically f
 
 To support that, we need:
 
-maxTranslate = initialImageTop - topInset
-dockSheetTop = topInset + imageHeight
-requiredSheetTravel = collapsedSheetTop - dockSheetTop
+- maxTranslate = initialImageTop - topInset
+- dockSheetTop = topInset + imageHeight
+- requiredSheetTravel = collapsedSheetTop - dockSheetTop
 
-progress = clamp(sheetTravel / requiredSheetTravel, 0, 1)
-translateY = -progress \* maxTranslate
+- progress = clamp(sheetTravel / requiredSheetTravel, 0, 1)
+- translateY = -progress \* maxTranslate
 
 - [ ] Example with iOS glass effect
 
