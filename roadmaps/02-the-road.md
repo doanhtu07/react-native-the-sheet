@@ -30,7 +30,7 @@ type SkiaProps<P = object, O extends keyof P | never = never> = AnimatedProps<
   - Encourage users to create a reusable template for their sheets
   - Easier to maintain, migrate, and update what features they want to use
 
-- [ ] Create YouTube clone
+- [x] Create YouTube clone
 
 Need to handle image scaling a little differently (Support for both vertically fit and horizontally fit)
 
@@ -43,12 +43,12 @@ requiredSheetTravel = collapsedSheetTop - dockSheetTop
 progress = clamp(sheetTravel / requiredSheetTravel, 0, 1)
 translateY = -progress \* maxTranslate
 
-- [ ] Create Google clone
-- [ ] Create Instagram clone
-
 - [ ] Example with iOS glass effect
 
 - [ ] Support for FlashList + LegendList
+
+- [ ] Create Google clone
+- [ ] Create Instagram clone
 
 - [ ] A different type of keyboard expander that works based on `react-native-keyboard-controller`
   - Why? Because on Android, this will provide a more accurate behavior for keyboard expander, especially if the keyboard changes height due to emoji, GIF, or other panels

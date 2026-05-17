@@ -1,30 +1,44 @@
 import { useNavigation } from 'expo-router'
-import { Pressable, View, StyleSheet, Image } from 'react-native'
-import { useEffect, useId, useState } from 'react'
+import {
+  Pressable,
+  View,
+  StyleSheet,
+  StyleProp,
+  ImageStyle,
+} from 'react-native'
+import { useEffect, useId, useMemo, useState } from 'react'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import { useBottomSheetRegistry, useTrueSafeArea } from 'react-native-the-sheet'
-import Animated, { useAnimatedStyle } from 'react-native-reanimated'
+import Animated, {
+  clamp,
+  interpolate,
+  useAnimatedStyle,
+} from 'react-native-reanimated'
 import { BottomNavbar } from '@/features/example-youtube-clone/bottom-navbar'
 import { CommentBottomSheet } from '@/features/example-youtube-clone/comment-bottom-sheet'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-
-const IMAGE_RATIO = 336 / 480 // width / height
 
 export default function ExampleYouTubeClone() {
   const navigation = useNavigation()
   const { sheets } = useBottomSheetRegistry()
   const insets = useSafeAreaInsets()
-  const { safeAreaHeight } = useTrueSafeArea()
+  const { safeAreaHeight, safeAreaWidth } = useTrueSafeArea()
   const reactId = useId()
+
+  const isLandscape = safeAreaWidth > safeAreaHeight
 
   const commentSheetId = `${reactId}.commentSheet`
   const commentSheet = sheets[commentSheetId]
 
+  const maxSheetHeight = safeAreaHeight - insets.top
+
   const [isCommentSheetOpen, setIsCommentSheetOpen] = useState(false)
-  const [imageHeight, setImageHeight] = useState(0)
+
   const [bottomNavbarHeight, setBottomNavbarHeight] = useState(0)
 
-  const maxSheetHeight = safeAreaHeight - insets.top
+  const [imageHeight, setImageHeight] = useState(0)
+  const [imageLocalTop, setImageLocalTop] = useState(0)
+  const [aspectRatio, setAspectRatio] = useState(1)
 
   // MARK: Effects
 
@@ -36,19 +50,60 @@ export default function ExampleYouTubeClone() {
 
   // MARK: Preparation
 
+  const imageStyle = useMemo<StyleProp<ImageStyle>>(() => {
+    if (isLandscape) {
+      return {
+        width: 320,
+        aspectRatio,
+      }
+    }
+
+    return {
+      width: '100%',
+      aspectRatio,
+    }
+  }, [aspectRatio, isLandscape])
+
   const animatedImageStyle = useAnimatedStyle(() => {
-    const paddingBottom = commentSheet
-      ? Math.max(0, commentSheet.sheetVisibleHeight.value - bottomNavbarHeight)
-      : 0
+    if (!commentSheet) {
+      return {
+        transform: [{ translateY: 0 }],
+      }
+    }
 
-    const halfPaddingBottom = paddingBottom / 2
+    const sheetVisibleHeight = commentSheet.sheetVisibleHeight.value
 
-    // paddingBottom ≈ imageHeight * (1 - scale) / 2
-    // => scale ≈ 1 - (paddingBottom / (imageHeight / 2))
-    const scale = 1 - halfPaddingBottom / (imageHeight / 2)
+    const maxTranslate = imageLocalTop
+    const dockSheetTop = insets.top + imageHeight
+    const dockSheetVisibleHeight = safeAreaHeight - dockSheetTop
 
-    // Translate up by another half of padding bottom
-    const translateY = -halfPaddingBottom
+    const translateProgress = clamp(
+      sheetVisibleHeight / dockSheetVisibleHeight,
+      0,
+      1,
+    )
+
+    const remainingSheetProgress =
+      (sheetVisibleHeight - dockSheetVisibleHeight) /
+      (maxSheetHeight - dockSheetVisibleHeight)
+
+    const scaleProgress = clamp(remainingSheetProgress, 0, 1)
+
+    let translateY: number
+    let scale: number
+
+    // Stage 1: translateY only until the image touches the top of the screen
+    if (translateProgress < 1) {
+      translateY = -translateProgress * maxTranslate
+      scale = 1
+    }
+    // Stage 2: image scales down, and translateY compensates to keep the image at the top
+    else {
+      scale = interpolate(scaleProgress, [0, 1], [1, 0])
+      const missingHeight = imageHeight * (1 - scale) // includes top and bottom, since scaling works from the center
+      const topCompensation = missingHeight / 2
+      translateY = -maxTranslate - topCompensation
+    }
 
     return {
       transform: [{ translateY }, { scale }],
@@ -59,18 +114,25 @@ export default function ExampleYouTubeClone() {
 
   return (
     <View style={styles.container}>
+      <View style={{ height: insets.top }} />
+
       {/* Image */}
-      <Animated.View
-        style={[styles.imageContainer, animatedImageStyle]}
-        onLayout={(e) => setImageHeight(e.nativeEvent.layout.height)}
-      >
-        <Image
+      <View style={[styles.imageContainer]}>
+        <Animated.Image
           source={{
             uri: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmFqaXpqZWZpcnd2dGNoYTBpbmZsajkybDg3ZzExN2t1NTF5czVndCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ILnrzp5uo1LfG/giphy.gif',
           }}
-          style={styles.image}
+          style={[styles.image, imageStyle, animatedImageStyle]}
+          onLayout={(event) => {
+            setImageHeight(event.nativeEvent.layout.height)
+            setImageLocalTop(event.nativeEvent.layout.y)
+          }}
+          onLoad={(event) => {
+            const { width, height } = event.nativeEvent.source
+            setAspectRatio(width / height)
+          }}
         />
-      </Animated.View>
+      </View>
 
       {/* Comment button */}
       <Pressable
@@ -115,11 +177,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   image: {
-    aspectRatio: IMAGE_RATIO,
-    height: '100%',
+    backgroundColor: 'blue',
+    maxHeight: '100%',
     resizeMode: 'contain',
   },
   imageContainer: {
+    alignItems: 'center',
+    backgroundColor: 'red',
     flex: 1,
+    justifyContent: 'center',
+    width: '100%',
   },
 })

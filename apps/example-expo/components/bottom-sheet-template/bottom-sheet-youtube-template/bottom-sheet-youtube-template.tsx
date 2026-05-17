@@ -5,10 +5,8 @@ import {
   useColorScheme,
   View,
 } from 'react-native'
-import { useAnimatedStyle } from 'react-native-reanimated'
 import {
   AnimatedProp,
-  Backdrop,
   BottomSheet,
   BottomSheetFooter,
   BottomSheetHandle,
@@ -19,7 +17,6 @@ import {
   InputFocusProvider,
   SheetStackItem,
   SnapPoint,
-  useBottomSheetRegistry,
 } from 'react-native-the-sheet'
 import { Portal } from 'react-native-universe-portal'
 import AntDesign from '@expo/vector-icons/AntDesign'
@@ -50,10 +47,7 @@ export const BottomSheetYouTubeTemplate = ({
   content,
   footer,
 }: Props) => {
-  const { sheets } = useBottomSheetRegistry()
   const theme = useColorScheme()
-
-  const sheetData = sheets[sheetId]
 
   const isDark = theme === 'dark'
   const borderColor = isDark ? '#3A3A3C' : '#D1D1D6'
@@ -62,21 +56,6 @@ export const BottomSheetYouTubeTemplate = ({
   const getYoutubeCommentPanGesture = useBottomSheetYoutubePanGesture({
     close,
     sheetId,
-  })
-
-  // MARK: Preparation
-
-  const animatedBackdropStyle = useAnimatedStyle(() => {
-    const maxOpacity = 0.6
-
-    const opacity = Math.min(
-      maxOpacity,
-      maxOpacity * (sheetData?.sheetVisibleRatio.value || 0),
-    )
-
-    return {
-      opacity,
-    }
   })
 
   // MARK: Renderers
@@ -116,8 +95,6 @@ export const BottomSheetYouTubeTemplate = ({
   return (
     <Portal hostName="root">
       <SheetStackItem isOpen={isOpen} close={close} waitForFullyExit>
-        <Backdrop styles={{ root: animatedBackdropStyle }} />
-
         <BottomSheetPresenter>
           <BottomSheetProvider
             id={sheetId}
