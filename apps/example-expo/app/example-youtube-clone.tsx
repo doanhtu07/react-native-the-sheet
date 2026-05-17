@@ -1,12 +1,6 @@
 import { useNavigation } from 'expo-router'
-import {
-  Pressable,
-  View,
-  StyleSheet,
-  StyleProp,
-  ImageStyle,
-} from 'react-native'
-import { useEffect, useId, useMemo, useState } from 'react'
+import { Pressable, View, StyleSheet } from 'react-native'
+import { useEffect, useId, useState } from 'react'
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
 import { useBottomSheetRegistry, useTrueSafeArea } from 'react-native-the-sheet'
 import Animated, {
@@ -22,10 +16,8 @@ export default function ExampleYouTubeClone() {
   const navigation = useNavigation()
   const { sheets } = useBottomSheetRegistry()
   const insets = useSafeAreaInsets()
-  const { safeAreaHeight, safeAreaWidth } = useTrueSafeArea()
+  const { safeAreaHeight } = useTrueSafeArea()
   const reactId = useId()
-
-  const isLandscape = safeAreaWidth > safeAreaHeight
 
   const commentSheetId = `${reactId}.commentSheet`
   const commentSheet = sheets[commentSheetId]
@@ -49,20 +41,6 @@ export default function ExampleYouTubeClone() {
   }, [navigation])
 
   // MARK: Preparation
-
-  const imageStyle = useMemo<StyleProp<ImageStyle>>(() => {
-    if (isLandscape) {
-      return {
-        width: 320,
-        aspectRatio,
-      }
-    }
-
-    return {
-      width: '100%',
-      aspectRatio,
-    }
-  }, [aspectRatio, isLandscape])
 
   const animatedImageStyle = useAnimatedStyle(() => {
     if (!commentSheet) {
@@ -122,7 +100,7 @@ export default function ExampleYouTubeClone() {
           source={{
             uri: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmFqaXpqZWZpcnd2dGNoYTBpbmZsajkybDg3ZzExN2t1NTF5czVndCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ILnrzp5uo1LfG/giphy.gif',
           }}
-          style={[styles.image, imageStyle, animatedImageStyle]}
+          style={[styles.image, { aspectRatio }, animatedImageStyle]}
           onLayout={(event) => {
             setImageHeight(event.nativeEvent.layout.height)
             setImageLocalTop(event.nativeEvent.layout.y)
@@ -180,6 +158,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     maxHeight: '100%',
     resizeMode: 'contain',
+    width: '100%',
   },
   imageContainer: {
     alignItems: 'center',
