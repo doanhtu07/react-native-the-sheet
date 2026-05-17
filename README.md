@@ -22,11 +22,14 @@ The library relies on a few core dependencies:
 
 <table>
   <tr>
-    <td width="50%">
+    <td width="calc(100% / 3)">
       <video src="https://github.com/user-attachments/assets/d2f2b93b-c535-4a41-bfd1-5451ace78468" controls width="100%"></video>
     </td>
-    <td width="50%">
+    <td width="calc(100% / 3)">
       <video src="https://github.com/user-attachments/assets/b0deb1b4-24c6-4d5c-ae6d-0ee272ddafc6" controls width="100%"></video>
+    </td>
+    <td width="calc(100% / 3)">
+      <video src="https://github.com/user-attachments/assets/36331cde-ca0d-4323-9938-ea8c45445257" controls width="100%"></video>
     </td>
   </tr>
 </table>
