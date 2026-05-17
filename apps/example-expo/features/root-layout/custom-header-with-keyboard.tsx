@@ -3,9 +3,7 @@ import { Platform } from 'react-native'
 import { useTrueSafeArea } from 'react-native-the-sheet'
 import { NativeStackHeaderProps } from '@react-navigation/native-stack'
 
-export const CustomHeaderForKeyboardProvider = (
-  props: NativeStackHeaderProps,
-) => {
+export const CustomHeaderWithKeyboard = (props: NativeStackHeaderProps) => {
   const { isEdgeToEdge } = useTrueSafeArea()
 
   return (
