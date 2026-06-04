@@ -1,5 +1,11 @@
 # react-native-the-sheet
 
+## 2.0.17
+
+### Patch Changes
+
+- Update type of `BackdropProps.styles.root` to `StyleProp<AnimatedStyle<ViewStyle>>`
+
 ## 2.0.16
 
 ### Patch Changes
