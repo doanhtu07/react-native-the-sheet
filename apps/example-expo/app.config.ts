@@ -39,6 +39,8 @@ const config: ExpoConfig = {
     ],
     'expo-font',
     'expo-web-browser',
+    'expo-image',
+    'expo-status-bar',
   ],
   experiments: {
     typedRoutes: true,

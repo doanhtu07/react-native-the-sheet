@@ -55,7 +55,7 @@ If confused, check `apps/example-expo/package.json` to see the versions of the c
 Note: You can use `apps/example-expo/scripts/expo-packages-check.ts` to check the packages Expo manages
 
 - Go to `apps/example-expo`
-- Run `pnpm epc <expo-sdk-version>` (e.g. `pnpm epc 55`)
+- Run `pnpm epc <expo-sdk-version>` (e.g. `pnpm epc 56`)
 
 ---
 
