@@ -1,5 +1,11 @@
 # react-native-embedded-stack-navigator
 
+## 1.0.16
+
+### Patch Changes
+
+- Update type of `BackdropProps.styles.root` to `StyleProp<AnimatedStyle<ViewStyle>>`
+
 ## 1.0.15
 
 ### Patch Changes
