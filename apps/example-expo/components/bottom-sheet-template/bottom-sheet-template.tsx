@@ -21,7 +21,7 @@ import {
   useBottomSheetRegistry,
 } from 'react-native-the-sheet'
 import { Portal } from 'react-native-universe-portal'
-import AntDesign from '@expo/vector-icons/AntDesign'
+import AntDesign from '@react-native-vector-icons/ant-design/static'
 import { HeightBudgetConditional } from './height-budget-conditional'
 
 type Props = {

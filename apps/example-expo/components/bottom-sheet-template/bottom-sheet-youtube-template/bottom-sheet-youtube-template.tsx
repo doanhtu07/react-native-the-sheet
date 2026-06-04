@@ -19,7 +19,7 @@ import {
   SnapPoint,
 } from 'react-native-the-sheet'
 import { Portal } from 'react-native-universe-portal'
-import AntDesign from '@expo/vector-icons/AntDesign'
+import AntDesign from '@react-native-vector-icons/ant-design/static'
 import { useBottomSheetYoutubePanGesture } from '@/components/bottom-sheet-template/bottom-sheet-youtube-template/hooks/use-bottom-sheet-youtube-pan-gesture'
 
 type Props = {

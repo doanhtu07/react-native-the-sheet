@@ -1,7 +1,7 @@
 import { useNavigation } from 'expo-router'
 import { Pressable, View, StyleSheet } from 'react-native'
 import { useEffect, useId, useState } from 'react'
-import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons'
+import MaterialCommunityIcons from '@react-native-vector-icons/material-design-icons/static'
 import { useBottomSheetRegistry, useTrueSafeArea } from 'react-native-the-sheet'
 import Animated, {
   clamp,

@@ -41,6 +41,9 @@ const config: ExpoConfig = {
     'expo-web-browser',
     'expo-image',
     'expo-status-bar',
+
+    '@react-native-vector-icons/ant-design',
+    '@react-native-vector-icons/material-design-icons',
   ],
   experiments: {
     typedRoutes: true,

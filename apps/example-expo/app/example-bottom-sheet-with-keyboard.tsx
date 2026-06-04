@@ -1,7 +1,7 @@
 import { ThemedText } from '@/components/themed-text'
 import { ManagedTextInput } from '@/features/example-bottom-sheet-with-keyboard/managed-text-input'
 import { Fragment, useState } from 'react'
-import { Button, StyleSheet, View } from 'react-native'
+import { Button, Keyboard, StyleSheet, View } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 import {
   BottomSheet,
@@ -53,11 +53,15 @@ export default function ExampleBottomSheetWithKeyboard() {
         onPress={() => setIsOpenC(true)}
       />
 
-      <TextInput
-        style={styles.input}
-        placeholder="Type something..."
-        placeholderTextColor="#999"
-      />
+      <View style={styles.inputWrapper}>
+        <TextInput
+          style={styles.input}
+          placeholder="Type something..."
+          placeholderTextColor="#999"
+        />
+
+        <Button title="Done" onPress={() => Keyboard.dismiss()} />
+      </View>
 
       <Portal hostName="root">
         <SheetStackItem
@@ -190,9 +194,15 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderWidth: 1,
     color: '#000',
+    flex: 1,
     fontSize: 16,
     height: 44,
     paddingHorizontal: 12,
+  },
+  inputWrapper: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 8,
   },
   root: {
     flex: 1,
