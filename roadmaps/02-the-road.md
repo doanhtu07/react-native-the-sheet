@@ -43,12 +43,14 @@ To support that, we need:
 - progress = clamp(sheetTravel / requiredSheetTravel, 0, 1)
 - translateY = -progress \* maxTranslate
 
-- [ ] Example with iOS glass effect
-
-- [ ] Support for FlashList + LegendList
-
-- [ ] Create Google clone
-- [ ] Create Instagram clone
+- [ ] Support for VirtualizedList + SectionList
+- [ ] Support for FlashLish
+- [ ] Support for LegendList
 
 - [ ] A different type of keyboard expander that works based on `react-native-keyboard-controller`
   - Why? Because on Android, this will provide a more accurate behavior for keyboard expander, especially if the keyboard changes height due to emoji, GIF, or other panels
+
+- [ ] Example with iOS glass effect
+
+- [ ] Create Google clone
+- [ ] Create Instagram clone
