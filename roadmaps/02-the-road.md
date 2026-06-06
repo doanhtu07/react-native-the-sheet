@@ -44,7 +44,7 @@ To support that, we need:
 - translateY = -progress \* maxTranslate
 
 - [ ] Support for VirtualizedList + SectionList
-- [ ] Support for FlashLish
+- [ ] Support for FlashList
 - [ ] Support for LegendList
 
 - [ ] A different type of keyboard expander that works based on `react-native-keyboard-controller`

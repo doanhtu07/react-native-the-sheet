@@ -12,6 +12,7 @@
     "android:clean": "rm -rf .expo && rm -rf android && pnpm android",
     "ios": "expo run:ios",
     "ios:clean": "rm -rf .expo && rm -rf ios && pnpm ios",
+    "ios:deep-clean": "source ./scripts/deep-clean-ios.sh",
     "reset-project": "node ./scripts/reset-project.js",
     "typecheck": "tsc",
     "lint": "expo lint && eslint",
