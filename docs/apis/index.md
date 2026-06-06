@@ -38,6 +38,10 @@
 
 [BottomSheetFlatList](./bottom-sheet-flat-list.md)
 
+[BottomSheetSectionList](./bottom-sheet-section-list.md)
+
+[BottomSheetVirtualizedList](./bottom-sheet-virtualized-list.md)
+
 [BottomSheetFooter](./bottom-sheet-footer.md)
 
 ---

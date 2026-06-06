@@ -1,5 +1,11 @@
 # react-native-the-sheet
 
+## 2.0.18
+
+### Patch Changes
+
+- Add `BottomSheetSectionList` and `BottomSheetVirtualizedList` components
+
 ## 2.0.17
 
 ### Patch Changes

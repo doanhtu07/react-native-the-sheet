@@ -2,17 +2,28 @@ import type { ComponentProps, PropsWithChildren } from 'react'
 import type {
   GestureResponderEvent,
   LayoutChangeEvent,
+  SectionListProps,
   StyleProp,
   ViewStyle,
 } from 'react-native'
 import type Animated from 'react-native-reanimated'
 import type {
+  AnimatedProps,
   AnimatedRef,
   ScrollHandler,
   SharedValue,
 } from 'react-native-reanimated'
 import type { AnimatedProp } from '../types'
 import type { PanGesture } from 'react-native-gesture-handler'
+import type { AnimatedVirtualizedList } from './bottom-sheet-virtualized-list'
+import type { AnimatedSectionList } from './bottom-sheet-section-list'
+import type { VirtualizedListProps } from '../virtualized-list/types'
+
+// MARK: Utility types
+
+export type DefaultSectionT = {
+  [key: string]: any
+}
 
 // MARK: Bottom sheet handle
 
@@ -42,6 +53,12 @@ export type BottomSheetRegistryProviderProps = PropsWithChildren
 /** Percentage is compared to the screen height */
 export type SnapPoint = number | `${number}%`
 
+export type ScrollViewRefCore =
+  | Animated.ScrollView
+  | Animated.FlatList<unknown>
+  | typeof AnimatedVirtualizedList
+  | typeof AnimatedSectionList
+
 export type BottomSheetContextType = {
   enableFloat: SharedValue<boolean>
   enableOverdrag: SharedValue<boolean>
@@ -56,7 +73,7 @@ export type BottomSheetContextType = {
   translateY: SharedValue<number>
   isTranslateYAnimating: SharedValue<boolean>
 
-  scrollViewRef: AnimatedRef<Animated.ScrollView | Animated.FlatList>
+  scrollViewRef: AnimatedRef<ScrollViewRefCore>
   isScrollViewReady: SharedValue<boolean>
   isScrollViewInteracting: SharedValue<boolean>
   scrollY: SharedValue<number>
@@ -145,6 +162,74 @@ type AnimatedFlatListProps<T> = ComponentProps<typeof Animated.FlatList<T>>
 
 export type BottomSheetFlatListProps<T> = Omit<
   AnimatedFlatListProps<T>,
+  | 'onLayout'
+  | 'onContentSizeChange'
+  | 'onTouchStart'
+  | 'onTouchEnd'
+  | 'onScroll'
+  | 'onBeginDrag'
+  | 'onEndDrag'
+  | 'onMomentumBegin'
+  | 'onMomentumEnd'
+> & {
+  fill?: AnimatedProp<boolean>
+  getPanGesture?: () => PanGesture
+
+  onLayout?: (e: LayoutChangeEvent) => void
+  onContentSizeChange?: (w: number, h: number) => void
+  onTouchStart?: (e: GestureResponderEvent) => void
+  onTouchEnd?: (e: GestureResponderEvent) => void
+
+  onScroll?: ScrollHandler
+  onBeginDrag?: ScrollHandler
+  onEndDrag?: ScrollHandler
+  onMomentumBegin?: ScrollHandler
+  onMomentumEnd?: ScrollHandler
+}
+
+// MARK: Bottom sheet virtualized list
+
+type AnimatedVirtualizedListProps = AnimatedProps<VirtualizedListProps>
+
+export type BottomSheetVirtualizedListProps = Omit<
+  AnimatedVirtualizedListProps,
+  | 'onLayout'
+  | 'onContentSizeChange'
+  | 'onTouchStart'
+  | 'onTouchEnd'
+  | 'onScroll'
+  | 'onBeginDrag'
+  | 'onEndDrag'
+  | 'onMomentumBegin'
+  | 'onMomentumEnd'
+> & {
+  fill?: AnimatedProp<boolean>
+  getPanGesture?: () => PanGesture
+
+  onLayout?: (e: LayoutChangeEvent) => void
+  onContentSizeChange?: (w: number, h: number) => void
+  onTouchStart?: (e: GestureResponderEvent) => void
+  onTouchEnd?: (e: GestureResponderEvent) => void
+
+  onScroll?: ScrollHandler
+  onBeginDrag?: ScrollHandler
+  onEndDrag?: ScrollHandler
+  onMomentumBegin?: ScrollHandler
+  onMomentumEnd?: ScrollHandler
+}
+
+// MARK: Bottom sheet section list
+
+type AnimatedSectionListProps<
+  ItemT,
+  SectionT = DefaultSectionT,
+> = AnimatedProps<SectionListProps<ItemT, SectionT>>
+
+export type BottomSheetSectionListProps<
+  ItemT,
+  SectionT = DefaultSectionT,
+> = Omit<
+  AnimatedSectionListProps<ItemT, SectionT>,
   | 'onLayout'
   | 'onContentSizeChange'
   | 'onTouchStart'
