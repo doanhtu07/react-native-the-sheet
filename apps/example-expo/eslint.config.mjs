@@ -5,6 +5,7 @@ import reactNativeConfig from '@react-native/eslint-config/flat'
 import expoConfig from 'eslint-config-expo/flat.js'
 import { globalIgnores } from 'eslint/config'
 import prettier from 'eslint-plugin-prettier'
+import * as espree from 'espree'
 
 /** @param {import('eslint').Linter.Config[]} configs */
 function dedupePlugins(configs) {
@@ -27,12 +28,24 @@ function dedupePlugins(configs) {
 }
 
 export default [
+  globalIgnores(['eslint.config.js', 'prettier.config.js', 'app.json', 'dist']),
+
   ...dedupePlugins([
     ...fixupConfigRules(expoConfig),
     ...fixupConfigRules(reactNativeConfig),
   ]),
 
-  globalIgnores(['eslint.config.js', 'prettier.config.js', 'app.json', 'dist']),
+  // Expo plugins
+  {
+    files: ['./plugins/**/*.js'],
+    languageOptions: {
+      // Override parser @babel/eslint-parser from reactNativeConfig, which causes issues with eslint v10
+      parser: espree,
+      parserOptions: {
+        requireConfigFile: false,
+      },
+    },
+  },
 
   // Prettier
   {

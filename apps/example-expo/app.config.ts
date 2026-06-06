@@ -56,6 +56,9 @@ const config: ExpoConfig = {
     ],
     'expo-font',
     'expo-web-browser',
+
+    // Custom plugins
+    './plugins/ios/fix-fmt-xcode26.js',
   ],
   experiments: {
     typedRoutes: true,
