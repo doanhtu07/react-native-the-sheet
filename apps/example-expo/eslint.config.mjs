@@ -27,12 +27,12 @@ function dedupePlugins(configs) {
 }
 
 export default [
+  globalIgnores(['eslint.config.js', 'prettier.config.js', 'app.json', 'dist']),
+
   ...dedupePlugins([
     ...fixupConfigRules(expoConfig),
     ...fixupConfigRules(reactNativeConfig),
   ]),
-
-  globalIgnores(['eslint.config.js', 'prettier.config.js', 'app.json', 'dist']),
 
   // Prettier
   {
