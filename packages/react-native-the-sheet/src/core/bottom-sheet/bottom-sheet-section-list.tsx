@@ -5,6 +5,7 @@ import Animated, {
   useAnimatedStyle,
   type AnimatedProps,
   type AnimatedRef,
+  type AnimateProps,
 } from 'react-native-reanimated'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import {
@@ -13,14 +14,20 @@ import {
   type DefaultSectionT,
   type SectionListProps,
 } from 'react-native'
-import { useMemo, type ComponentRef } from 'react'
+import { useMemo, type ComponentClass } from 'react'
 import { useBottomSheetScrollViewUtils } from './hooks/use-bottom-sheet-scroll-view-utils'
 import { useBottomSheetPanGesture } from './hooks/use-bottom-sheet-pan-gesture'
 import { useBottomSheet } from './bottom-sheet-provider'
 import { useToSharedValue } from '../hooks/use-to-shared-value'
-import type { BottomSheetSectionListProps } from './types'
+import type {
+  AnimatedSectionListComplement,
+  BottomSheetSectionListProps,
+} from './types'
 
-export const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)
+export const AnimatedSectionList = Animated.createAnimatedComponent(
+  SectionList,
+) as ComponentClass<AnimateProps<SectionListProps<unknown, unknown>>, any> &
+  AnimatedSectionListComplement<unknown, unknown>
 
 export function BottomSheetSectionList<ItemT, SectionT = DefaultSectionT>({
   fill: propFill = false,
@@ -114,9 +121,7 @@ export function BottomSheetSectionList<ItemT, SectionT = DefaultSectionT>({
     >
       <AnimatedSectionList
         {...(rest as AnimatedProps<SectionListProps<unknown, unknown>>)}
-        ref={
-          scrollViewRef as AnimatedRef<ComponentRef<typeof AnimatedSectionList>>
-        }
+        ref={scrollViewRef as AnimatedRef<typeof AnimatedSectionList>}
         style={[styles.root, style, animatedStyle]}
         contentContainerStyle={contentContainerStyle}
         bounces={false} // iOS bounce ruins the scrollY <= 0 check

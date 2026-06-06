@@ -1,11 +1,13 @@
-import type { ComponentProps, ComponentRef, PropsWithChildren } from 'react'
+import type { ComponentProps, PropsWithChildren } from 'react'
 import type {
   DefaultSectionT,
   GestureResponderEvent,
   LayoutChangeEvent,
+  SectionList,
   SectionListProps,
   StyleProp,
   ViewStyle,
+  VirtualizedList,
   VirtualizedListProps,
 } from 'react-native'
 import type Animated from 'react-native-reanimated'
@@ -19,6 +21,21 @@ import type { AnimatedProp } from '../types'
 import type { PanGesture } from 'react-native-gesture-handler'
 import type { AnimatedVirtualizedList } from './bottom-sheet-virtualized-list'
 import type { AnimatedSectionList } from './bottom-sheet-section-list'
+
+// MARK: Utility types
+
+export interface AnimatedVirtualizedListComplement<
+  T,
+> extends VirtualizedList<T> {
+  getNode(): VirtualizedList<T>
+}
+
+export interface AnimatedSectionListComplement<
+  ItemT,
+  SectionT = DefaultSectionT,
+> extends SectionList<ItemT, SectionT> {
+  getNode(): SectionList<ItemT, SectionT>
+}
 
 // MARK: Bottom sheet handle
 
@@ -51,8 +68,8 @@ export type SnapPoint = number | `${number}%`
 export type ScrollViewRefCore =
   | Animated.ScrollView
   | Animated.FlatList<unknown>
-  | ComponentRef<typeof AnimatedVirtualizedList>
-  | ComponentRef<typeof AnimatedSectionList>
+  | typeof AnimatedVirtualizedList
+  | typeof AnimatedSectionList
 
 export type BottomSheetContextType = {
   enableFloat: SharedValue<boolean>

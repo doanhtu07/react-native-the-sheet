@@ -5,22 +5,28 @@ import Animated, {
   useAnimatedStyle,
   type AnimatedProps,
   type AnimatedRef,
+  type AnimateProps,
 } from 'react-native-reanimated'
-import type { BottomSheetVirtualizedListProps } from './types'
+import type {
+  AnimatedVirtualizedListComplement,
+  BottomSheetVirtualizedListProps,
+} from './types'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import {
   StyleSheet,
   VirtualizedList,
   type VirtualizedListProps,
 } from 'react-native'
-import { useMemo, type ComponentRef } from 'react'
+import { useMemo, type ComponentClass } from 'react'
 import { useBottomSheetScrollViewUtils } from './hooks/use-bottom-sheet-scroll-view-utils'
 import { useBottomSheetPanGesture } from './hooks/use-bottom-sheet-pan-gesture'
 import { useBottomSheet } from './bottom-sheet-provider'
 import { useToSharedValue } from '../hooks/use-to-shared-value'
 
-export const AnimatedVirtualizedList =
-  Animated.createAnimatedComponent(VirtualizedList)
+export const AnimatedVirtualizedList = Animated.createAnimatedComponent(
+  VirtualizedList,
+) as ComponentClass<AnimateProps<VirtualizedListProps<unknown>>, any> &
+  AnimatedVirtualizedListComplement<unknown>
 
 export function BottomSheetVirtualizedList<T>({
   fill: propFill = false,
@@ -114,11 +120,7 @@ export function BottomSheetVirtualizedList<T>({
     >
       <AnimatedVirtualizedList
         {...(rest as AnimatedProps<VirtualizedListProps<unknown>>)}
-        ref={
-          scrollViewRef as AnimatedRef<
-            ComponentRef<typeof AnimatedVirtualizedList>
-          >
-        }
+        ref={scrollViewRef as AnimatedRef<typeof AnimatedVirtualizedList>}
         style={[styles.root, style, animatedStyle]}
         contentContainerStyle={contentContainerStyle}
         bounces={false} // iOS bounce ruins the scrollY <= 0 check
