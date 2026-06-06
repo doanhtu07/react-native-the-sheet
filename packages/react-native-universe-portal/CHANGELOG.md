@@ -1,5 +1,11 @@
 # react-native-universe-portal
 
+## 1.0.17
+
+### Patch Changes
+
+- Add `BottomSheetSectionList` and `BottomSheetVirtualizedList` components
+
 ## 1.0.16
 
 ### Patch Changes

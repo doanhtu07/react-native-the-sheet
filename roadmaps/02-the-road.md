@@ -43,7 +43,7 @@ To support that, we need:
 - progress = clamp(sheetTravel / requiredSheetTravel, 0, 1)
 - translateY = -progress \* maxTranslate
 
-- [ ] Support for VirtualizedList + SectionList
+- [x] Support for VirtualizedList + SectionList
 - [ ] Support for FlashList
 - [ ] Support for LegendList
 

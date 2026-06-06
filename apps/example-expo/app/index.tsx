@@ -141,6 +141,20 @@ export default function Index() {
       />
 
       <Button
+        title="Example Bottom Sheet Virtualized List"
+        onPress={() => {
+          router.push('/example-bottom-sheet-virtualized-list')
+        }}
+      />
+
+      <Button
+        title="Example Bottom Sheet Section List"
+        onPress={() => {
+          router.push('/example-bottom-sheet-section-list')
+        }}
+      />
+
+      <Button
         title="Example Bottom Sheet Footer"
         onPress={() => {
           router.push('/example-bottom-sheet-footer')
