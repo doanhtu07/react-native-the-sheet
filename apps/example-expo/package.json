@@ -31,7 +31,7 @@
     "expo-router": "~56.2.8",
     "expo-splash-screen": "~56.0.10",
     "expo-status-bar": "~56.0.4",
-    "expo-symbols": "~56.0.5",
+    "expo-symbols": "~56.0.6",
     "expo-system-ui": "~56.0.5",
     "expo-web-browser": "~56.0.5",
     "react": "19.2.3",
