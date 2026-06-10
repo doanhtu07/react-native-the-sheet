@@ -2,8 +2,8 @@
 nodeLinker: hoisted
 
 packages:
-  - "apps/*"
-  - "packages/*"
+  - 'apps/*'
+  - 'packages/*'
 
 allowBuilds:
   esbuild: true
