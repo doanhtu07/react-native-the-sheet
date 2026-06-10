@@ -81,7 +81,7 @@
     "react-native-gesture-handler": "~2.31.2",
     "react-native-reanimated": "4.3.1",
     "react-native-safe-area-context": "~5.7.0",
-    "react-native-worklets": "0.8.3",
+    "react-native-worklets": "0.9.1",
     "turbo": "^2.8.21",
     "typescript": "~6.0.3"
   },

@@ -47,7 +47,7 @@
     "react-native-the-sheet": "workspace:*",
     "react-native-universe-portal": "workspace:*",
     "react-native-web": "~0.21.0",
-    "react-native-worklets": "0.8.3",
+    "react-native-worklets": "0.9.1",
     "@react-native-vector-icons/ant-design": "^13.1.2",
     "@react-native-vector-icons/material-design-icons": "^13.1.2"
   },
