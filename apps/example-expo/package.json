@@ -60,7 +60,7 @@
     "eslint": "^10.3.0",
     "eslint-config-expo": "~56.0.4",
     "eslint-plugin-prettier": "^5.5.5",
-    "prettier": "^3.8.2",
+    "prettier": "^3.8.4",
     "semver": "^7.8.3",
     "tsx": "^4.22.3",
     "typescript": "~6.0.3"
