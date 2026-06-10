@@ -6,9 +6,12 @@
 version: 2
 
 updates:
+  # MARK: "main"
+
   # pnpm root workspace
   - package-ecosystem: 'npm'
     directory: '/'
+    target-branch: 'main'
     schedule:
       interval: 'weekly'
       day: 'saturday'
@@ -16,5 +19,23 @@ updates:
   # GitHub Actions
   - package-ecosystem: 'github-actions'
     directory: '/'
+    target-branch: 'main'
+    schedule:
+      interval: 'monthly'
+
+  # MARK: "v1"
+
+  # pnpm root workspace
+  - package-ecosystem: 'npm'
+    directory: '/'
+    target-branch: 'v1'
+    schedule:
+      interval: 'weekly'
+      day: 'saturday'
+
+  # GitHub Actions
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    target-branch: 'v1'
     schedule:
       interval: 'monthly'
