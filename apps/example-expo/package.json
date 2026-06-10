@@ -41,7 +41,7 @@
     "react-native-embedded-stack-navigator": "workspace:*",
     "react-native-gesture-handler": "~2.31.2",
     "react-native-keyboard-controller": "1.21.6",
-    "react-native-reanimated": "4.3.1",
+    "react-native-reanimated": "4.4.1",
     "react-native-safe-area-context": "~5.7.0",
     "react-native-screens": "4.25.2",
     "react-native-the-sheet": "workspace:*",
