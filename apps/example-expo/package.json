@@ -23,7 +23,7 @@
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
     "@faker-js/faker": "^10.4.0",
-    "@react-navigation/bottom-tabs": "^7.16.1",
+    "@react-navigation/bottom-tabs": "^7.17.2",
     "@react-navigation/elements": "^2.9.18",
     "@react-navigation/native": "^7.2.4",
     "expo": "~53.0.27",
