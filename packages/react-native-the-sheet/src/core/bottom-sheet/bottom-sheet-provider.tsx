@@ -7,11 +7,7 @@ import {
 import { useSyncedSharedValue } from '../hooks/use-synced-shared-value'
 import { useToSharedValue } from '../hooks/use-to-shared-value'
 import { useTrueSafeArea } from '../hooks'
-import type {
-  BottomSheetContextType,
-  BottomSheetProviderProps,
-  ScrollViewRefCore,
-} from './types'
+import type { BottomSheetContextType, BottomSheetProviderProps } from './types'
 import { useBottomSheetRegistry } from './bottom-sheet-registry-provider'
 
 const BottomSheetContext = createContext<BottomSheetContextType | undefined>(
@@ -93,7 +89,7 @@ export function BottomSheetProvider({
 
   // MARK: Bottom sheet context
 
-  const scrollViewRef = useAnimatedRef<ScrollViewRefCore>()
+  const scrollViewRef = useAnimatedRef<any>()
   const isScrollViewReady = useSharedValue(false)
   const isScrollViewInteracting = useSharedValue(false)
   const scrollY = useSharedValue(0)

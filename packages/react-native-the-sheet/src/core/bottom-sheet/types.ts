@@ -19,23 +19,6 @@ import type {
 } from 'react-native-reanimated'
 import type { AnimatedProp } from '../types'
 import type { PanGesture } from 'react-native-gesture-handler'
-import type { AnimatedVirtualizedList } from './bottom-sheet-virtualized-list'
-import type { AnimatedSectionList } from './bottom-sheet-section-list'
-
-// MARK: Utility types
-
-export interface AnimatedVirtualizedListComplement<
-  T,
-> extends VirtualizedList<T> {
-  getNode(): VirtualizedList<T>
-}
-
-export interface AnimatedSectionListComplement<
-  ItemT,
-  SectionT = DefaultSectionT,
-> extends SectionList<ItemT, SectionT> {
-  getNode(): SectionList<ItemT, SectionT>
-}
 
 // MARK: Bottom sheet handle
 
@@ -65,12 +48,6 @@ export type BottomSheetRegistryProviderProps = PropsWithChildren
 /** Percentage is compared to the screen height */
 export type SnapPoint = number | `${number}%`
 
-export type ScrollViewRefCore =
-  | Animated.ScrollView
-  | Animated.FlatList<unknown>
-  | typeof AnimatedVirtualizedList
-  | typeof AnimatedSectionList
-
 export type BottomSheetContextType = {
   enableFloat: SharedValue<boolean>
   enableOverdrag: SharedValue<boolean>
@@ -85,7 +62,7 @@ export type BottomSheetContextType = {
   translateY: SharedValue<number>
   isTranslateYAnimating: SharedValue<boolean>
 
-  scrollViewRef: AnimatedRef<ScrollViewRefCore>
+  scrollViewRef: AnimatedRef<any>
   isScrollViewReady: SharedValue<boolean>
   isScrollViewInteracting: SharedValue<boolean>
   scrollY: SharedValue<number>
@@ -201,6 +178,12 @@ export type BottomSheetFlatListProps<T> = Omit<
 
 // MARK: Bottom sheet virtualized list
 
+export interface AnimatedVirtualizedListComplement<
+  T,
+> extends VirtualizedList<T> {
+  getNode(): VirtualizedList<T>
+}
+
 type AnimatedVirtualizedListProps<T> = AnimatedProps<VirtualizedListProps<T>>
 
 export type BottomSheetVirtualizedListProps<T> = Omit<
@@ -231,6 +214,13 @@ export type BottomSheetVirtualizedListProps<T> = Omit<
 }
 
 // MARK: Bottom sheet section list
+
+export interface AnimatedSectionListComplement<
+  ItemT,
+  SectionT = DefaultSectionT,
+> extends SectionList<ItemT, SectionT> {
+  getNode(): SectionList<ItemT, SectionT>
+}
 
 type AnimatedSectionListProps<
   ItemT,
