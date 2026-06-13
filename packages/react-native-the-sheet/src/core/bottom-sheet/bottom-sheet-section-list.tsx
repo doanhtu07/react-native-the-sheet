@@ -3,7 +3,6 @@ import Animated, {
   useAnimatedReaction,
   useAnimatedStyle,
   type AnimatedProps,
-  type AnimatedRef,
 } from 'react-native-reanimated'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 import { SectionList, StyleSheet, type SectionListProps } from 'react-native'
@@ -109,7 +108,7 @@ export function BottomSheetSectionList<ItemT, SectionT = DefaultSectionT>({
     >
       <AnimatedSectionList
         {...(rest as AnimatedProps<SectionListProps<unknown, unknown>>)}
-        ref={scrollViewRef as AnimatedRef<typeof AnimatedSectionList>}
+        ref={scrollViewRef}
         style={[styles.root, style, animatedStyle]}
         contentContainerStyle={contentContainerStyle}
         bounces={false} // iOS bounce ruins the scrollY <= 0 check

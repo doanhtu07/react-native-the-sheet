@@ -2,7 +2,6 @@ import Animated, {
   scrollTo,
   useAnimatedReaction,
   useAnimatedStyle,
-  type AnimatedRef,
 } from 'react-native-reanimated'
 import type { BottomSheetScrollViewProps } from './types'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
@@ -107,7 +106,7 @@ export function BottomSheetScrollView({
     >
       <Animated.ScrollView
         {...rest}
-        ref={scrollViewRef as AnimatedRef<Animated.ScrollView>}
+        ref={scrollViewRef}
         style={[styles.root, style, animatedStyle]}
         contentContainerStyle={contentContainerStyle}
         bounces={false} // iOS bounce ruins the scrollY <= 0 check

@@ -3,7 +3,6 @@ import Animated, {
   useAnimatedReaction,
   useAnimatedStyle,
   type AnimatedProps,
-  type AnimatedRef,
 } from 'react-native-reanimated'
 import type { BottomSheetVirtualizedListProps } from './types'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
@@ -116,7 +115,7 @@ export function BottomSheetVirtualizedList({
     >
       <AnimatedVirtualizedList
         {...(rest as AnimatedProps<VirtualizedListProps>)}
-        ref={scrollViewRef as AnimatedRef<typeof AnimatedVirtualizedList>}
+        ref={scrollViewRef}
         style={[styles.root, style, animatedStyle]}
         contentContainerStyle={contentContainerStyle}
         bounces={false} // iOS bounce ruins the scrollY <= 0 check

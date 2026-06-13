@@ -15,15 +15,7 @@ import type {
 } from 'react-native-reanimated'
 import type { AnimatedProp } from '../types'
 import type { PanGesture } from 'react-native-gesture-handler'
-import type { AnimatedVirtualizedList } from './bottom-sheet-virtualized-list'
-import type { AnimatedSectionList } from './bottom-sheet-section-list'
 import type { VirtualizedListProps } from '../virtualized-list/types'
-
-// MARK: Utility types
-
-export type DefaultSectionT = {
-  [key: string]: any
-}
 
 // MARK: Bottom sheet handle
 
@@ -53,12 +45,6 @@ export type BottomSheetRegistryProviderProps = PropsWithChildren
 /** Percentage is compared to the screen height */
 export type SnapPoint = number | `${number}%`
 
-export type ScrollViewRefCore =
-  | Animated.ScrollView
-  | Animated.FlatList<unknown>
-  | typeof AnimatedVirtualizedList
-  | typeof AnimatedSectionList
-
 export type BottomSheetContextType = {
   enableFloat: SharedValue<boolean>
   enableOverdrag: SharedValue<boolean>
@@ -73,7 +59,7 @@ export type BottomSheetContextType = {
   translateY: SharedValue<number>
   isTranslateYAnimating: SharedValue<boolean>
 
-  scrollViewRef: AnimatedRef<ScrollViewRefCore>
+  scrollViewRef: AnimatedRef<any>
   isScrollViewReady: SharedValue<boolean>
   isScrollViewInteracting: SharedValue<boolean>
   scrollY: SharedValue<number>
@@ -219,6 +205,10 @@ export type BottomSheetVirtualizedListProps = Omit<
 }
 
 // MARK: Bottom sheet section list
+
+export type DefaultSectionT = {
+  [key: string]: any
+}
 
 type AnimatedSectionListProps<
   ItemT,
