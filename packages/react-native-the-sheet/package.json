@@ -91,12 +91,12 @@
     "typescript": "~5.8.3"
   },
   "peerDependencies": {
+    "@shopify/flash-list": "*",
     "react": "*",
     "react-native": "*",
     "react-native-gesture-handler": "*",
     "react-native-reanimated": "*",
-    "react-native-safe-area-context": "*",
-    "@shopify/flash-list": "*"
+    "react-native-safe-area-context": "*"
   },
   "react-native-builder-bob": {
     "source": "src",
