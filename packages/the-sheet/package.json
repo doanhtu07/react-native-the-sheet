@@ -57,7 +57,8 @@
   },
   "homepage": "https://github.com/doanhtu07/react-native-the-sheet#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "devDependencies": {
     "@eslint/compat": "^2.1.0",
