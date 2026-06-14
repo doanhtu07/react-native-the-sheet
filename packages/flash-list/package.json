@@ -87,7 +87,7 @@
     "typescript": "~5.8.3"
   },
   "peerDependencies": {
-    "@shopify/flash-list": "*",
+    "@shopify/flash-list": "^1.0.0",
     "react": "*",
     "react-native": "*"
   },
