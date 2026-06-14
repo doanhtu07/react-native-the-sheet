@@ -9,4 +9,4 @@ allowBuilds:
   esbuild: true
   unrs-resolver: true
 
-publishBranch: main|v1
+publishBranch: v1
