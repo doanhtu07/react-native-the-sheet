@@ -10,7 +10,7 @@ import {
   useBottomSheet,
   useBottomSheetPanGesture,
   useBottomSheetScrollViewUtils,
-} from '../../core/bottom-sheet'
+} from '@the-sheet/the-sheet'
 import type { BottomSheetFlashListScrollComponentProps } from './types'
 
 export function BottomSheetFlashListScrollComponent({

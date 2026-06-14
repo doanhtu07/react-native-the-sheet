@@ -1,0 +1,10 @@
+{
+  "codegenConfig": {
+    "name": "FlashListV2Spec",
+    "type": "modules",
+    "jsSrcsDir": "src",
+    "android": {
+      "javaPackageName": "com.flashlistv2"
+    }
+  }
+}
