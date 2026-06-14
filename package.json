@@ -1,6 +1,7 @@
 {
   "name": "react-native-the-sheet-monorepo",
   "version": "1.0.0",
+  "private": true,
   "description": "",
   "keywords": [],
   "author": "",
