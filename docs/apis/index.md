@@ -38,6 +38,8 @@
 
 [BottomSheetFlatList](./bottom-sheet-flat-list.md)
 
+[BottomSheetFlashList](./bottom-sheet-flash-list.md)
+
 [BottomSheetSectionList](./bottom-sheet-section-list.md)
 
 [BottomSheetVirtualizedList](./bottom-sheet-virtualized-list.md)

@@ -144,6 +144,9 @@ To make it easier, I've exposed prop `fill` for:
 - `BottomSheetView`
 - `BottomSheetScrollView`
 - `BottomSheetFlatList`
+- `BottomSheetFlashList`
+- `BottomSheetSectionList`
+- `BottomSheetVirtualizedList`
 
 Which essentially applies `flex: 1` to the component
 

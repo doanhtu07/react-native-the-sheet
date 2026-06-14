@@ -10,6 +10,11 @@
       "types": "./lib/typescript/src/index.d.ts",
       "default": "./lib/module/index.js"
     },
+    "./flash-list": {
+      "source": "./src/flash-list/index.ts",
+      "types": "./lib/typescript/src/flash-list/index.d.ts",
+      "default": "./lib/module/flash-list/index.js"
+    },
     "./package.json": "./package.json"
   },
   "files": [
@@ -67,6 +72,7 @@
     "@react-native/babel-preset": "0.85.3",
     "@react-native/eslint-config": "0.85.3",
     "@react-native/jest-preset": "0.85.3",
+    "@shopify/flash-list": "1.7.6",
     "@types/react": "~19.0.14",
     "del-cli": "^7.0.0",
     "eslint": "^10.3.0",
@@ -89,7 +95,8 @@
     "react-native": "*",
     "react-native-gesture-handler": "*",
     "react-native-reanimated": "*",
-    "react-native-safe-area-context": "*"
+    "react-native-safe-area-context": "*",
+    "@shopify/flash-list": "*"
   },
   "react-native-builder-bob": {
     "source": "src",

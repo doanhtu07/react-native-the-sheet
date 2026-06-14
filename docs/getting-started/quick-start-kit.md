@@ -28,6 +28,10 @@ Required peer dependencies:
 
 `react-native-embedded-stack-navigator`: Install if you want a pure React navigator to work within the bottom sheet
 
+---
+
+`@shopify/flash-list`: Install if you want to use `BottomSheetFlashList` for performant lists with the bottom sheet
+
 ### 🧪 Experimental
 
 While the library is stable enough for use, it is currently in a rapid experimentation phase regarding its API
