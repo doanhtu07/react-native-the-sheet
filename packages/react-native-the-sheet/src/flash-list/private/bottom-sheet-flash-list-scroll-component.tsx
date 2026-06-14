@@ -2,7 +2,6 @@ import Animated, {
   runOnJS,
   scrollTo,
   useAnimatedReaction,
-  type AnimatedProps,
   type ScrollHandler,
 } from 'react-native-reanimated'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
@@ -12,7 +11,6 @@ import {
   useBottomSheetPanGesture,
   useBottomSheetScrollViewUtils,
 } from '../../core/bottom-sheet'
-import { type FlashListProps } from '@shopify/flash-list'
 import type { BottomSheetFlashListScrollComponentProps } from './types'
 
 export function BottomSheetFlashListScrollComponent({
@@ -133,7 +131,7 @@ export function BottomSheetFlashListScrollComponent({
       gesture={Gesture.Simultaneous(panGesture, Gesture.Native())}
     >
       <Animated.ScrollView
-        {...(rest as AnimatedProps<FlashListProps<unknown>>)}
+        {...rest}
         ref={scrollViewRef}
         bounces={false} // iOS bounce ruins the scrollY <= 0 check
         onLayout={onLayout}
