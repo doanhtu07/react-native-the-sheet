@@ -29,7 +29,7 @@
     "@the-sheet/flash-list-v2": "workspace:*",
     "@the-sheet/the-sheet": "workspace:*",
     "@the-sheet/universe-portal": "workspace:*",
-    "expo": "^56.0.0",
+    "expo": "^56.0.11",
     "expo-constants": "~56.0.17",
     "expo-dev-client": "~56.0.19",
     "expo-font": "~56.0.5",
