@@ -11,7 +11,7 @@ import {
   BottomSheetView,
   SheetStackItem,
 } from 'react-native-the-sheet'
-import { BottomSheetFlashList } from 'react-native-the-sheet/flash-list'
+import { BottomSheetFlashList } from 'react-native-the-sheet/flash-list-v1'
 import { Portal } from 'react-native-universe-portal'
 
 export default function ExampleBottomSheetFlashList() {

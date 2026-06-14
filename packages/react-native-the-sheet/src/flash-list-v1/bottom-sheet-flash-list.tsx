@@ -4,7 +4,7 @@ import Animated, {
 } from 'react-native-reanimated'
 import { StyleSheet } from 'react-native'
 import { useToSharedValue } from '../core/hooks'
-import { type FlashListProps, FlashList } from '@shopify/flash-list'
+import { type FlashListProps, FlashList } from 'flash-list-v1'
 import type { BottomSheetFlashListProps } from './types'
 import { BottomSheetFlashListScrollComponent } from './private/bottom-sheet-flash-list-scroll-component'
 

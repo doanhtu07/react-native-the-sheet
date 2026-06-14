@@ -2,14 +2,23 @@
 
 BottomSheetFlashList is a [FlashList](https://github.com/Shopify/flash-list) that is wrapped by a gesture detector to work with the bottom sheet's pan gesture
 
-This component is available via the `react-native-the-sheet/flash-list` subpath:
+This component is available via the `react-native-the-sheet/flash-list-v1` and `react-native-the-sheet/flash-list-v2` subpaths:
 
 ```tsx
-import { BottomSheetFlashList } from 'react-native-the-sheet/flash-list'
+import { BottomSheetFlashList } from 'react-native-the-sheet/flash-list-v1'
+import { BottomSheetFlashList } from 'react-native-the-sheet/flash-list-v2'
 ```
 
+| Subpath         | Required `@shopify/flash-list` version |
+| --------------- | -------------------------------------- |
+| `flash-list-v1` | `1.x`                                  |
+| `flash-list-v2` | `2.x`                                  |
+
 > [!IMPORTANT]
-> You need to install `@shopify/flash-list` as a dependency in your project to use this component
+> You need to install `@shopify/flash-list` as a dependency in your project to use this component. Choose the version that matches your project's needs:
+>
+> - Install `@shopify/flash-list@1.x` for `react-native-the-sheet/flash-list-v1`
+> - Install `@shopify/flash-list@2.x` for `react-native-the-sheet/flash-list-v2`
 
 ## Props
 
