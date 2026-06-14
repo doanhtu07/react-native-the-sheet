@@ -31,7 +31,7 @@
     "@the-sheet/universe-portal": "workspace:*",
     "expo": "^56.0.0",
     "expo-constants": "~56.0.17",
-    "expo-dev-client": "~56.0.19",
+    "expo-dev-client": "~56.0.20",
     "expo-font": "~56.0.5",
     "expo-haptics": "~56.0.3",
     "expo-image": "~56.0.10",
