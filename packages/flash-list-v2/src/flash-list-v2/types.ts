@@ -1,6 +1,6 @@
-import type { FlashListProps } from 'flash-list-v1'
+import type { FlashListProps } from '@shopify/flash-list'
 import type { AnimatedProps, ScrollHandler } from 'react-native-reanimated'
-import type { AnimatedProp } from '../core/types'
+import type { AnimatedProp } from '@the-sheet/the-sheet'
 import type { PanGesture } from 'react-native-gesture-handler'
 import type { GestureResponderEvent, LayoutChangeEvent } from 'react-native'
 

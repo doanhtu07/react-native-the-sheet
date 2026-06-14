@@ -5,14 +5,14 @@ import Animated, {
   scrollTo,
 } from 'react-native-reanimated'
 import { StyleSheet } from 'react-native'
-import { useToSharedValue } from '../core/hooks'
-import { type FlashListProps, FlashList } from 'flash-list-v2'
-import type { BottomSheetFlashListProps } from './types'
 import {
+  useToSharedValue,
   useBottomSheet,
   useBottomSheetPanGesture,
   useBottomSheetScrollViewUtils,
-} from '../core/bottom-sheet'
+} from '@the-sheet/the-sheet'
+import { type FlashListProps, FlashList } from '@shopify/flash-list'
+import type { BottomSheetFlashListProps } from './types'
 import { useMemo } from 'react'
 import { runOnJS } from 'react-native-worklets'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'

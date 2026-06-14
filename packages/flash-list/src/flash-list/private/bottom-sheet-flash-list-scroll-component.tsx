@@ -9,7 +9,7 @@ import {
   useBottomSheet,
   useBottomSheetPanGesture,
   useBottomSheetScrollViewUtils,
-} from '../../core/bottom-sheet'
+} from '@the-sheet/the-sheet'
 import type { BottomSheetFlashListScrollComponentProps } from './types'
 import { runOnJS } from 'react-native-worklets'
 

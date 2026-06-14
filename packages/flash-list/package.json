@@ -1,7 +1,7 @@
 {
-  "name": "@the-sheet/the-sheet",
-  "version": "2.0.18",
-  "description": "This is the sheet for React Native!",
+  "name": "@the-sheet/flash-list",
+  "version": "1.0.17",
+  "description": "@shopify/flash-list v1 support for The Sheet",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
   "exports": {
@@ -59,6 +59,9 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
+  "dependencies": {
+    "@the-sheet/the-sheet": "workspace:*"
+  },
   "devDependencies": {
     "@eslint/compat": "^2.1.0",
     "@eslint/eslintrc": "^3.3.5",
@@ -74,25 +77,17 @@
     "eslint-plugin-ft-flow": "^3.0.11",
     "eslint-plugin-prettier": "^5.5.5",
     "jest": "^30.3.0",
+    "nodemon": "^3.1.14",
     "prettier": "^3.8.2",
     "react": "19.2.3",
     "react-native": "0.85.3",
     "react-native-builder-bob": "^0.41.0",
-    "react-native-gesture-handler": "~2.31.2",
-    "react-native-reanimated": "4.3.1",
-    "react-native-safe-area-context": "~5.7.0",
-    "react-native-worklets": "0.8.3",
     "turbo": "^2.8.21",
     "typescript": "~6.0.3"
   },
   "peerDependencies": {
-    "@shopify/flash-list": "*",
     "react": "*",
-    "react-native": "*",
-    "react-native-gesture-handler": "*",
-    "react-native-reanimated": "*",
-    "react-native-safe-area-context": "*",
-    "react-native-worklets": "*"
+    "react-native": "*"
   },
   "react-native-builder-bob": {
     "source": "src",
@@ -126,6 +121,6 @@
       "eslint",
       "jest"
     ],
-    "version": "0.62.0"
+    "version": "0.61.0"
   }
 }

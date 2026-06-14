@@ -11,7 +11,7 @@ import {
   BottomSheetView,
   SheetStackItem,
 } from '@the-sheet/the-sheet'
-import { BottomSheetFlashList } from '@the-sheet/the-sheet/flash-list-v2'
+import { BottomSheetFlashList } from '@the-sheet/flash-list-v2'
 import { Portal } from '@the-sheet/universe-portal'
 
 export default function ExampleBottomSheetFlashList() {
