@@ -7,7 +7,7 @@ import {
   HeightClaim,
   HeightFill,
   useTrueSafeArea,
-} from 'react-native-the-sheet'
+} from '@the-sheet/the-sheet'
 import { BottomSheetTemplate } from '@/components/bottom-sheet-template/bottom-sheet-template'
 
 export default function ScrollTemplate() {

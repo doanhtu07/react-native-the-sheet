@@ -10,7 +10,7 @@ import {
   TRANSLATE_Y_REST_THRESHOLD,
   useBottomSheetRegistry,
   useSyncedRef,
-} from 'react-native-the-sheet'
+} from '@the-sheet/the-sheet'
 
 type Props = {
   close: () => void

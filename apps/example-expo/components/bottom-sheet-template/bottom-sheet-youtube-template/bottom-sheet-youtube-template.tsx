@@ -17,8 +17,8 @@ import {
   InputFocusProvider,
   SheetStackItem,
   SnapPoint,
-} from 'react-native-the-sheet'
-import { Portal } from 'react-native-universe-portal'
+} from '@the-sheet/the-sheet'
+import { Portal } from '@the-sheet/universe-portal'
 import AntDesign from '@expo/vector-icons/AntDesign'
 import { useBottomSheetYoutubePanGesture } from '@/components/bottom-sheet-template/bottom-sheet-youtube-template/hooks/use-bottom-sheet-youtube-pan-gesture'
 

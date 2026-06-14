@@ -5,7 +5,7 @@ import { Fragment, useCallback, useState } from 'react'
 import {
   BottomSheetFlatList,
   useBottomSheetRegistry,
-} from 'react-native-the-sheet'
+} from '@the-sheet/the-sheet'
 import {
   useAnimatedStyle,
   useSharedValue,

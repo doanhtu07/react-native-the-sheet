@@ -1,7 +1,7 @@
 {
-  "name": "react-native-embedded-stack-navigator",
+  "name": "@the-sheet/universe-portal",
   "version": "1.0.17",
-  "description": "A stack navigator that can be embedded anywhere",
+  "description": "Portals that transport your components to a different universe",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
   "exports": {

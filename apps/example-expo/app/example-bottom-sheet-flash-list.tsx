@@ -10,9 +10,9 @@ import {
   BottomSheetProvider,
   BottomSheetView,
   SheetStackItem,
-} from 'react-native-the-sheet'
-import { BottomSheetFlashList } from 'react-native-the-sheet/flash-list-v1'
-import { Portal } from 'react-native-universe-portal'
+} from '@the-sheet/the-sheet'
+import { BottomSheetFlashList } from '@the-sheet/the-sheet/flash-list-v1'
+import { Portal } from '@the-sheet/universe-portal'
 
 export default function ExampleBottomSheetFlashList() {
   const [isOpenA, setIsOpenA] = useState(false)

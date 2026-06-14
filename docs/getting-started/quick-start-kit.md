@@ -9,7 +9,7 @@ Then, you can install the corresponding version of our library
 For example, if you are using Reanimated v3, you would install v1 of our library like this:
 
 ```bash
-npm install react-native-the-sheet@1.0.17
+npm install @the-sheet/the-sheet@1.0.17
 ```
 
 Required peer dependencies:
@@ -20,13 +20,13 @@ Required peer dependencies:
 
 ### Optional dependencies
 
-`react-native-universe-portal`: Install if you need portal features and don't have a library of your own yet
+`@the-sheet/universe-portal`: Install if you need portal features and don't have a library of your own yet
 
 - What are React Portals? https://www.w3schools.com/react/react_portals.asp
 
 ---
 
-`react-native-embedded-stack-navigator`: Install if you want a pure React navigator to work within the bottom sheet
+`@the-sheet/embedded-stack-navigator`: Install if you want a pure React navigator to work within the bottom sheet
 
 ---
 
@@ -53,8 +53,8 @@ import {
   SheetStackProvider,
   SheetKeyboardProvider,
   BottomSheetRegistryProvider,
-} from 'react-native-the-sheet'
-import { PortalHost, PortalProvider } from 'react-native-universe-portal'
+} from '@the-sheet/the-sheet'
+import { PortalHost, PortalProvider } from '@the-sheet/universe-portal'
 
 export default function App() {
   return (
@@ -100,8 +100,8 @@ import {
   BottomSheetProvider,
   BottomSheetView,
   SheetStackItem,
-} from 'react-native-the-sheet'
-import { Portal } from 'react-native-universe-portal'
+} from '@the-sheet/the-sheet'
+import { Portal } from '@the-sheet/universe-portal'
 
 export default function ExampleBottomSheetView() {
   const [isOpenA, setIsOpenA] = useState(false)

@@ -52,9 +52,9 @@ The library relies on a few core dependencies:
 
 ## NPM packages
 
-- Embedded Stack Navigator: https://www.npmjs.com/package/react-native-embedded-stack-navigator/v/1.0.17
-- Universe Portal: https://www.npmjs.com/package/react-native-universe-portal/v/1.0.17
-- The Sheet: https://www.npmjs.com/package/react-native-the-sheet/v/1.0.17
+- Embedded Stack Navigator: https://www.npmjs.com/package/@the-sheet/embedded-stack-navigator/v/1.0.17
+- Universe Portal: https://www.npmjs.com/package/@the-sheet/universe-portal/v/1.0.17
+- The Sheet: https://www.npmjs.com/package/@the-sheet/the-sheet/v/1.0.17
 
 ## Mental model
 

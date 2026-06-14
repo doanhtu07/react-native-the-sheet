@@ -1,5 +1,5 @@
 import { ManagedTextInput } from '../example-bottom-sheet-with-keyboard/managed-text-input'
-import { Portal } from 'react-native-universe-portal'
+import { Portal } from '@the-sheet/universe-portal'
 import {
   Backdrop,
   BottomSheet,
@@ -9,7 +9,7 @@ import {
   InputFocusProvider,
   SheetStackItem,
   useBottomSheetRegistry,
-} from 'react-native-the-sheet'
+} from '@the-sheet/the-sheet'
 import { useColorScheme, View, StyleSheet, Keyboard } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useAnimatedStyle, useDerivedValue } from 'react-native-reanimated'

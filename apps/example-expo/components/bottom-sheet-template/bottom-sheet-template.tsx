@@ -19,8 +19,8 @@ import {
   SheetStackItem,
   SnapPoint,
   useBottomSheetRegistry,
-} from 'react-native-the-sheet'
-import { Portal } from 'react-native-universe-portal'
+} from '@the-sheet/the-sheet'
+import { Portal } from '@the-sheet/universe-portal'
 import AntDesign from '@expo/vector-icons/AntDesign'
 import { HeightBudgetConditional } from './height-budget-conditional'
 

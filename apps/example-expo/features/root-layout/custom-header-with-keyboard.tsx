@@ -1,6 +1,6 @@
 import { Header } from '@react-navigation/elements'
 import { Platform } from 'react-native'
-import { useTrueSafeArea } from 'react-native-the-sheet'
+import { useTrueSafeArea } from '@the-sheet/the-sheet'
 import { NativeStackHeaderProps } from '@react-navigation/native-stack'
 
 export const CustomHeaderWithKeyboard = (props: NativeStackHeaderProps) => {

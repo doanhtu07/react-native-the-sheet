@@ -4,9 +4,9 @@
   "commit": false,
   "fixed": [
     [
-      "react-native-embedded-stack-navigator",
-      "react-native-the-sheet",
-      "react-native-universe-portal"
+      "@the-sheet/embedded-stack-navigator",
+      "@the-sheet/the-sheet",
+      "@the-sheet/universe-portal"
     ]
   ],
   "linked": [],
