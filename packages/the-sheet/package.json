@@ -86,7 +86,6 @@
     "typescript": "~6.0.3"
   },
   "peerDependencies": {
-    "@shopify/flash-list": "*",
     "react": "*",
     "react-native": "*",
     "react-native-gesture-handler": "*",
