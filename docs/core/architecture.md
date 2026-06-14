@@ -17,7 +17,8 @@ SafeAreaProvider (Required) + KeyboardProvider (Recommended)
                             └── BottomSheet
                                 └── BottomSheetHandle
                                 └── BottomSheetView
-                                └── BottomSheetScrollView / BottomSheetFlatList (Could be nested under BottomSheetView as well)
+                                └── BottomSheetScrollView / BottomSheetFlatList / BottomSheetFlashList / BottomSheetSectionList / BottomSheetVirtualizedList
+                                    (Could be nested under BottomSheetView as well)
                                 └── BottomSheetFooter
                             └── BottomSheetKeyboardExpander
 ```

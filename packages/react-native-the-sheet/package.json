@@ -10,6 +10,16 @@
       "types": "./lib/typescript/src/index.d.ts",
       "default": "./lib/module/index.js"
     },
+    "./flash-list-v1": {
+      "source": "./src/flash-list-v1/index.ts",
+      "types": "./lib/typescript/src/flash-list-v1/index.d.ts",
+      "default": "./lib/module/flash-list-v1/index.js"
+    },
+    "./flash-list-v2": {
+      "source": "./src/flash-list-v2/index.ts",
+      "types": "./lib/typescript/src/flash-list-v2/index.d.ts",
+      "default": "./lib/module/flash-list-v2/index.js"
+    },
     "./package.json": "./package.json"
   },
   "files": [
@@ -67,6 +77,8 @@
     "@react-native/babel-preset": "0.85.3",
     "@react-native/eslint-config": "0.85.3",
     "@react-native/jest-preset": "0.85.3",
+    "flash-list-v1": "npm:@shopify/flash-list@1.7.6",
+    "flash-list-v2": "npm:@shopify/flash-list@2.0.2",
     "@types/react": "^19.2.3",
     "del-cli": "^7.0.0",
     "eslint": "^10.3.0",
@@ -86,6 +98,7 @@
     "typescript": "~6.0.3"
   },
   "peerDependencies": {
+    "@shopify/flash-list": "*",
     "react": "*",
     "react-native": "*",
     "react-native-gesture-handler": "*",

@@ -22,6 +22,9 @@
   },
   "dependencies": {
     "@faker-js/faker": "^10.4.0",
+    "@react-native-vector-icons/ant-design": "^13.1.2",
+    "@react-native-vector-icons/material-design-icons": "^13.1.2",
+    "@shopify/flash-list": "2.0.2",
     "expo": "^56.0.0",
     "expo-constants": "~56.0.17",
     "expo-dev-client": "~56.0.19",
@@ -47,9 +50,7 @@
     "react-native-the-sheet": "workspace:*",
     "react-native-universe-portal": "workspace:*",
     "react-native-web": "~0.21.0",
-    "react-native-worklets": "0.8.3",
-    "@react-native-vector-icons/ant-design": "^13.1.2",
-    "@react-native-vector-icons/material-design-icons": "^13.1.2"
+    "react-native-worklets": "0.8.3"
   },
   "devDependencies": {
     "@eslint/compat": "^2.1.0",

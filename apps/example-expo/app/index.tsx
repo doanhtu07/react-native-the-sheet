@@ -155,6 +155,13 @@ export default function Index() {
       />
 
       <Button
+        title="Example Bottom Sheet Flash List"
+        onPress={() => {
+          router.push('/example-bottom-sheet-flash-list')
+        }}
+      />
+
+      <Button
         title="Example Bottom Sheet Footer"
         onPress={() => {
           router.push('/example-bottom-sheet-footer')

@@ -1,0 +1,34 @@
+import type { FlashListProps } from 'flash-list-v1'
+import type { AnimatedProps, ScrollHandler } from 'react-native-reanimated'
+import type { AnimatedProp } from '../core/types'
+import type { PanGesture } from 'react-native-gesture-handler'
+import type { GestureResponderEvent, LayoutChangeEvent } from 'react-native'
+
+type AnimatedFlashListProps<T> = AnimatedProps<FlashListProps<T>>
+
+export type BottomSheetFlashListProps<T> = Omit<
+  AnimatedFlashListProps<T>,
+  | 'onLayout'
+  | 'onContentSizeChange'
+  | 'onTouchStart'
+  | 'onTouchEnd'
+  | 'onScroll'
+  | 'onBeginDrag'
+  | 'onEndDrag'
+  | 'onMomentumBegin'
+  | 'onMomentumEnd'
+> & {
+  fill?: AnimatedProp<boolean>
+  getPanGesture?: () => PanGesture
+
+  onLayout?: (e: LayoutChangeEvent) => void
+  onContentSizeChange?: (w: number, h: number) => void
+  onTouchStart?: (e: GestureResponderEvent) => void
+  onTouchEnd?: (e: GestureResponderEvent) => void
+
+  onScroll?: ScrollHandler
+  onBeginDrag?: ScrollHandler
+  onEndDrag?: ScrollHandler
+  onMomentumBegin?: ScrollHandler
+  onMomentumEnd?: ScrollHandler
+}
