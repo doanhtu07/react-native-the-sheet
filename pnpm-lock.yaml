@@ -90,8 +90,8 @@ importers:
         specifier: ~0.4.5
         version: 0.4.5(expo@53.0.27(@babel/core@7.29.7)(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))(react@19.0.0)(supports-color@5.5.0))(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))
       expo-system-ui:
-        specifier: ~5.0.11
-        version: 5.0.11(expo@53.0.27(@babel/core@7.29.7)(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))(react@19.0.0)(supports-color@5.5.0))(react-native-web@0.20.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))(supports-color@5.5.0)
+        specifier: ~56.0.5
+        version: 56.0.5(expo@53.0.27(@babel/core@7.29.7)(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))(react@19.0.0)(supports-color@5.5.0))(react-native-web@0.20.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))
       expo-web-browser:
         specifier: ~14.2.0
         version: 14.2.0(expo@53.0.27(@babel/core@7.29.7)(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))(react@19.0.0)(supports-color@5.5.0))(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))
@@ -2003,6 +2003,9 @@ packages:
   '@react-native/normalize-colors@0.79.6':
     resolution: {integrity: sha512-0v2/ruY7eeKun4BeKu+GcfO+SHBdl0LJn4ZFzTzjHdWES0Cn+ONqKljYaIv8p9MV2Hx/kcdEvbY4lWI34jC/mQ==}
 
+  '@react-native/normalize-colors@0.85.3':
+    resolution: {integrity: sha512-hj0PScZEhIbcOvQV5yMKX3ha4XEIOy/SVE1Rrpp0beW0dpNLOgSC7KDxGewmDnIHK9YdQUXGY9eMEfShUMIaZw==}
+
   '@react-native/virtualized-lists@0.79.6':
     resolution: {integrity: sha512-khA/Hrbb+rB68YUHrLubfLgMOD9up0glJhw25UE3Kntj32YDyuO0Tqc81ryNTcCekFKJ8XrAaEjcfPg81zBGPw==}
     engines: {node: '>=18'}
@@ -3545,8 +3548,8 @@ packages:
       expo: '*'
       react-native: '*'
 
-  expo-system-ui@5.0.11:
-    resolution: {integrity: sha512-PG5VdaG5cwBe1Rj02mJdnsihKl9Iw/w/a6+qh2mH3f2K/IvQ+Hf7aG2kavSADtkGNCNj7CEIg7Rn4DQz/SE5rQ==}
+  expo-system-ui@56.0.5:
+    resolution: {integrity: sha512-n1MmnUArV4cc3gVed9fGtluPme00PE9axKVx+NHbKxHFMam5l4GcOI7PxbYKFNx8o7WA1LRD7eLW33agmZrxGg==}
     peerDependencies:
       expo: '*'
       react-native: '*'
@@ -8290,6 +8293,8 @@ snapshots:
 
   '@react-native/normalize-colors@0.79.6': {}
 
+  '@react-native/normalize-colors@0.85.3': {}
+
   '@react-native/virtualized-lists@0.79.6(@types/react@19.0.14)(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))(react@19.0.0)':
     dependencies:
       invariant: 2.2.4
@@ -10280,9 +10285,9 @@ snapshots:
       react-native: 0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0)
       sf-symbols-typescript: 2.2.0
 
-  expo-system-ui@5.0.11(expo@53.0.27(@babel/core@7.29.7)(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))(react@19.0.0)(supports-color@5.5.0))(react-native-web@0.20.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))(supports-color@5.5.0):
+  expo-system-ui@56.0.5(expo@53.0.27(@babel/core@7.29.7)(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))(react@19.0.0)(supports-color@5.5.0))(react-native-web@0.20.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0)):
     dependencies:
-      '@react-native/normalize-colors': 0.79.6
+      '@react-native/normalize-colors': 0.85.3
       debug: 4.4.3(supports-color@5.5.0)
       expo: 53.0.27(@babel/core@7.29.7)(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))(react@19.0.0)(supports-color@5.5.0)
       react-native: 0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0)
