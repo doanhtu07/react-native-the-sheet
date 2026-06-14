@@ -10,4 +10,4 @@ allowBuilds:
   msgpackr-extract: true
   unrs-resolver: true
 
-publishBranch: main|v1
+publishBranch: main
