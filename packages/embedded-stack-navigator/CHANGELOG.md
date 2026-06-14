@@ -1,3 +1,28 @@
+# @the-sheet/embedded-stack-navigator
+
+## 2.0.19
+
+### Patch Changes
+
+- Rename `react-native-embedded-stack-navigator` to `@the-sheet/embedded-stack-navigator` (⚠️ **BREAKING**)
+
+- Rename `react-native-universe-portal` to `@the-sheet/universe-portal` (⚠️ **BREAKING**)
+
+- Rename `react-native-the-sheet` to `@the-sheet/the-sheet` (⚠️ **BREAKING**)
+
+---
+
+- Remove `ScrollViewRefCore` (⚠️ **BREAKING**)
+
+- Make type of `scrollViewRef` more general: `AnimatedRef<any>`
+  - Users can cast it to more specific types when used
+
+---
+
+- Add support for `@shopify/flash-list` - `BottomSheetFlashList`
+  - `@the-sheet/flash-list` for `@shopify/flash-list@1.x`
+  - `@the-sheet/flash-list-v2` for `@shopify/flash-list@2.x`
+
 # react-native-embedded-stack-navigator
 
 ## 2.0.18

@@ -52,9 +52,9 @@ The library relies on a few core dependencies:
 
 ## NPM packages
 
-- Embedded Stack Navigator: https://www.npmjs.com/package/@the-sheet/embedded-stack-navigator/v/2.0.18
-- Universe Portal: https://www.npmjs.com/package/@the-sheet/universe-portal/v/2.0.18
-- The Sheet: https://www.npmjs.com/package/@the-sheet/the-sheet/v/2.0.18
+- Embedded Stack Navigator: https://www.npmjs.com/package/@the-sheet/embedded-stack-navigator/v/2.0.19
+- Universe Portal: https://www.npmjs.com/package/@the-sheet/universe-portal/v/2.0.19
+- The Sheet: https://www.npmjs.com/package/@the-sheet/the-sheet/v/2.0.19
 
 ## Mental model
 
