@@ -1,4 +1,4 @@
-import { ANDROID_WINDOW_SOFT_INPUT_MODES } from 'react-native-the-sheet'
+import { ANDROID_WINDOW_SOFT_INPUT_MODES } from '@the-sheet/the-sheet'
 import { KeyboardProvider } from 'react-native-keyboard-controller'
 import { BaseProviders } from '@/features/root-layout/base-providers'
 

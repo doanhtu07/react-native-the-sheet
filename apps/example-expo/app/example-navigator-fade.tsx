@@ -6,7 +6,7 @@ import { StyleSheet, View } from 'react-native'
 import {
   EmbeddedStackNavigator,
   ScreenRenderer,
-} from 'react-native-embedded-stack-navigator'
+} from '@the-sheet/embedded-stack-navigator'
 
 export default function ExampleNavigatorFade() {
   const renderScreenA = useCallback(() => <ScreenA />, [])

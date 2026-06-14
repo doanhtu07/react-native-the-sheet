@@ -1,5 +1,5 @@
-# react-native-embedded-stack-navigator
+# @the-sheet/the-sheet
 
-A stack navigator that can be embedded anywhere
+This is the sheet for React Native!
 
 Please refer to README.md at https://github.com/doanhtu07/react-native-the-sheet for more details and documentation

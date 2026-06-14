@@ -6,8 +6,8 @@ import {
   BottomSheetPresenter,
   SheetStackItem,
   SheetStackItemApi,
-} from 'react-native-the-sheet'
-import { Portal } from 'react-native-universe-portal'
+} from '@the-sheet/the-sheet'
+import { Portal } from '@the-sheet/universe-portal'
 
 export default function ExampleBottomSheetPresenter() {
   const [isOpenA, setIsOpenA] = useState(true)

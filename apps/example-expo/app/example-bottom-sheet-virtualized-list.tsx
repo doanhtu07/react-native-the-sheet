@@ -10,8 +10,8 @@ import {
   BottomSheetView,
   BottomSheetVirtualizedList,
   SheetStackItem,
-} from 'react-native-the-sheet'
-import { Portal } from 'react-native-universe-portal'
+} from '@the-sheet/the-sheet'
+import { Portal } from '@the-sheet/universe-portal'
 
 export default function ExampleBottomSheetVirtualizedList() {
   const [isOpenA, setIsOpenA] = useState(false)

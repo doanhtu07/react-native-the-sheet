@@ -3,7 +3,7 @@ import {
   AnimatedProp,
   HeightBudgetProvider,
   HeightClaim,
-} from 'react-native-the-sheet'
+} from '@the-sheet/the-sheet'
 
 type Props = PropsWithChildren & {
   type: 'provider' | 'claim'

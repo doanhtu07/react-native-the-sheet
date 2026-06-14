@@ -70,7 +70,7 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
           })
         } else {
           console.warn(
-            `react-native-the-sheet - src/bottom-sheet/bottom-sheet.tsx - Index ${index} out of bounds`,
+            `@the-sheet/the-sheet - src/bottom-sheet/bottom-sheet.tsx - Index ${index} out of bounds`,
           )
         }
       },

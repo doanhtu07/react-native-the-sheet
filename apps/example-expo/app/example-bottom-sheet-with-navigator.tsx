@@ -7,7 +7,7 @@ import { Button, StyleSheet, View } from 'react-native'
 import {
   EmbeddedStackNavigator,
   ScreenRenderer,
-} from 'react-native-embedded-stack-navigator'
+} from '@the-sheet/embedded-stack-navigator'
 import {
   Backdrop,
   BottomSheet,
@@ -16,8 +16,8 @@ import {
   BottomSheetProvider,
   BottomSheetView,
   SheetStackItem,
-} from 'react-native-the-sheet'
-import { Portal } from 'react-native-universe-portal'
+} from '@the-sheet/the-sheet'
+import { Portal } from '@the-sheet/universe-portal'
 
 export default function ExampleBottomSheetPresenter() {
   const [isOpenA, setIsOpenA] = useState(false)

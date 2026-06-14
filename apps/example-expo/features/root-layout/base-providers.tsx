@@ -7,8 +7,8 @@ import {
   BottomSheetRegistryProvider,
   AnimatedProp,
   ANDROID_WINDOW_SOFT_INPUT_MODES,
-} from 'react-native-the-sheet'
-import { PortalProvider, PortalHost } from 'react-native-universe-portal'
+} from '@the-sheet/the-sheet'
+import { PortalProvider, PortalHost } from '@the-sheet/universe-portal'
 
 type Props = {
   androidWindowSoftInputMode: AnimatedProp<

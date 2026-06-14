@@ -1,5 +1,5 @@
 import { Platform } from 'react-native'
-import { useTrueSafeArea } from 'react-native-the-sheet'
+import { useTrueSafeArea } from '@the-sheet/the-sheet'
 import { NativeStackHeaderProps } from 'expo-router'
 import { Header } from 'expo-router/build/react-navigation'
 

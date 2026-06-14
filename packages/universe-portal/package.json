@@ -1,7 +1,7 @@
 {
-  "name": "react-native-the-sheet",
+  "name": "@the-sheet/universe-portal",
   "version": "2.0.18",
-  "description": "This is the sheet for React Native!",
+  "description": "Portals that transport your components to a different universe",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
   "exports": {
@@ -9,16 +9,6 @@
       "source": "./src/index.tsx",
       "types": "./lib/typescript/src/index.d.ts",
       "default": "./lib/module/index.js"
-    },
-    "./flash-list-v1": {
-      "source": "./src/flash-list-v1/index.ts",
-      "types": "./lib/typescript/src/flash-list-v1/index.d.ts",
-      "default": "./lib/module/flash-list-v1/index.js"
-    },
-    "./flash-list-v2": {
-      "source": "./src/flash-list-v2/index.ts",
-      "types": "./lib/typescript/src/flash-list-v2/index.d.ts",
-      "default": "./lib/module/flash-list-v2/index.js"
     },
     "./package.json": "./package.json"
   },
@@ -77,8 +67,6 @@
     "@react-native/babel-preset": "0.85.3",
     "@react-native/eslint-config": "0.85.3",
     "@react-native/jest-preset": "0.85.3",
-    "flash-list-v1": "npm:@shopify/flash-list@1.7.6",
-    "flash-list-v2": "npm:@shopify/flash-list@2.0.2",
     "@types/react": "^19.2.3",
     "del-cli": "^7.0.0",
     "eslint": "^10.3.0",
@@ -86,25 +74,17 @@
     "eslint-plugin-ft-flow": "^3.0.11",
     "eslint-plugin-prettier": "^5.5.5",
     "jest": "^30.3.0",
+    "nodemon": "^3.1.14",
     "prettier": "^3.8.2",
     "react": "19.2.3",
     "react-native": "0.85.3",
     "react-native-builder-bob": "^0.41.0",
-    "react-native-gesture-handler": "~2.31.2",
-    "react-native-reanimated": "4.3.1",
-    "react-native-safe-area-context": "~5.7.0",
-    "react-native-worklets": "0.8.3",
     "turbo": "^2.8.21",
     "typescript": "~6.0.3"
   },
   "peerDependencies": {
-    "@shopify/flash-list": "*",
     "react": "*",
-    "react-native": "*",
-    "react-native-gesture-handler": "*",
-    "react-native-reanimated": "*",
-    "react-native-safe-area-context": "*",
-    "react-native-worklets": "*"
+    "react-native": "*"
   },
   "react-native-builder-bob": {
     "source": "src",
@@ -138,6 +118,6 @@
       "eslint",
       "jest"
     ],
-    "version": "0.62.0"
+    "version": "0.61.0"
   }
 }

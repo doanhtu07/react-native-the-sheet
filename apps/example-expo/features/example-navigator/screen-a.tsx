@@ -1,6 +1,6 @@
 import { Button, StyleSheet, View } from 'react-native'
 import { RouteParamList } from './types'
-import { useEmbeddedStackNavigation } from 'react-native-embedded-stack-navigator'
+import { useEmbeddedStackNavigation } from '@the-sheet/embedded-stack-navigator'
 import { ThemedText } from '@/components/themed-text'
 
 export function ScreenA() {

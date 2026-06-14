@@ -1,4 +1,4 @@
-# react-native-universe-portal
+# @the-sheet/universe-portal
 
 Portals that transport your components to a different universe
 

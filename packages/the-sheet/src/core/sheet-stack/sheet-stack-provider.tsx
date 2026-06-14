@@ -165,7 +165,7 @@ export const SheetStackProvider: FC<SheetStackProviderProps> = ({
   useEffect(() => {
     if (debug) {
       console.debug(
-        'react-native-the-sheet - src/sheet-stack/sheet-stack-provider.tsx - stack:',
+        '@the-sheet/the-sheet - src/sheet-stack/sheet-stack-provider.tsx - stack:',
         { stack },
       )
     }

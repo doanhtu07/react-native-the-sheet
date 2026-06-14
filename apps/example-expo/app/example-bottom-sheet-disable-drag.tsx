@@ -10,8 +10,8 @@ import {
   BottomSheetScrollView,
   BottomSheetView,
   SheetStackItem,
-} from 'react-native-the-sheet'
-import { Portal } from 'react-native-universe-portal'
+} from '@the-sheet/the-sheet'
+import { Portal } from '@the-sheet/universe-portal'
 
 export default function ExampleBottomSheetDisableDrag() {
   const [isOpen, setIsOpen] = useState(false)

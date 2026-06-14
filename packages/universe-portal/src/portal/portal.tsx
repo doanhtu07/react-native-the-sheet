@@ -58,7 +58,7 @@ export function PortalHost({ name, debug }: Readonly<PortalHostProps>) {
   useEffect(() => {
     if (debug) {
       console.debug(
-        `react-native-universe-portal - src/portal/portal.tsx - PortalHost "${name}" portals:`,
+        `@the-sheet/universe-portal - src/portal/portal.tsx - PortalHost "${name}" portals:`,
         Object.keys(portals),
       )
     }
