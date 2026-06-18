@@ -103,12 +103,16 @@ export const SheetStackItem = forwardRef<
     show: () => setIsManuallyHidden(false),
   }))
 
-  // Effect: Clear allowShow on unmount
-  useEffect(() => {
-    return () => {
-      setAllowShow(false)
-    }
-  }, [testID])
+  // Effect: Unmount cleanup
+  useEffect(
+    () => {
+      return () => {
+        remove({ item: { id, pushBehavior, testID } })
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [],
+  )
 
   // Effect: Reset allowShow when sheet becomes isOpen and not hidden
   useEffect(() => {
