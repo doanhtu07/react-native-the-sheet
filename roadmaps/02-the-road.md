@@ -58,10 +58,6 @@ To support that, we need:
 
 ---
 
-- [ ] Fix bug in scroll template on Android. I just noticed that it opens to the roof
-
----
-
 - [ ] Add a mechanism to swap a sheet stack item to the top and re-present (like on YouTube iPad)
 
 ---

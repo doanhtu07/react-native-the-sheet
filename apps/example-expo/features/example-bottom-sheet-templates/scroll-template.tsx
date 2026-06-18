@@ -12,7 +12,7 @@ import { BottomSheetTemplate } from '@/components/bottom-sheet-template/bottom-s
 
 export default function ScrollTemplate() {
   const { top, bottom } = useSafeAreaInsets()
-  const { windowHeight } = useTrueSafeArea()
+  const { isEdgeToEdge, windowHeight, safeAreaHeight } = useTrueSafeArea()
 
   const [isOpen, setIsOpen] = useState(false)
 
@@ -73,7 +73,7 @@ export default function ScrollTemplate() {
       <BottomSheetTemplate
         isOpen={isOpen}
         close={() => setIsOpen(false)}
-        maxHeight={windowHeight - top}
+        maxHeight={isEdgeToEdge ? windowHeight - top : safeAreaHeight}
         headerCenter={renderHeaderCenter()}
         showClose
         content={renderContent()}
