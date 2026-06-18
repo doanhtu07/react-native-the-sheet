@@ -1,5 +1,16 @@
 # @the-sheet/flash-list
 
+## 2.0.20
+
+### Patch Changes
+
+- Updated dependencies
+  - @the-sheet/the-sheet@2.0.20
+
+---
+
+- Fix bug: Remove stack item from stack provider when stack item unmounts, so it does not cause memory leak
+
 ## 2.0.19
 
 ### Patch Changes
