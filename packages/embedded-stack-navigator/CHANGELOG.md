@@ -1,5 +1,11 @@
 # @the-sheet/embedded-stack-navigator
 
+## 1.0.19
+
+### Patch Changes
+
+- Fix bug: Remove stack item from stack provider when stack item unmounts, so it does not cause memory leak
+
 ## 1.0.18
 
 ### Patch Changes
