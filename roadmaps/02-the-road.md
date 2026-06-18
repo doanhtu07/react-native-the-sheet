@@ -58,6 +58,10 @@ To support that, we need:
 
 ---
 
+- [ ] Add a mechanism to swap a sheet stack item to the top and re-present (like on YouTube iPad)
+
+---
+
 - [ ] A different type of keyboard expander that works based on `react-native-keyboard-controller`
   - Why? Because on Android, this will provide a more accurate behavior for keyboard expander, especially if the keyboard changes height due to emoji, GIF, or other panels
 
