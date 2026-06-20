@@ -69,8 +69,8 @@ importers:
         specifier: ~13.3.2
         version: 13.3.2(expo@53.0.27(@babel/core@7.29.7)(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))(react@19.0.0)(supports-color@5.5.0))(react@19.0.0)
       expo-haptics:
-        specifier: ~14.1.4
-        version: 14.1.4(expo@53.0.27(@babel/core@7.29.7)(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))(react@19.0.0)(supports-color@5.5.0))
+        specifier: ~56.0.3
+        version: 56.0.3(expo@53.0.27(@babel/core@7.29.7)(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))(react@19.0.0)(supports-color@5.5.0))
       expo-image:
         specifier: ~2.4.1
         version: 2.4.1(expo@53.0.27(@babel/core@7.29.7)(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))(react@19.0.0)(supports-color@5.5.0))(react-native-web@0.20.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))(react@19.0.0)
@@ -128,7 +128,7 @@ importers:
         version: 2.1.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))
       '@react-native/eslint-config':
         specifier: ^0.86.0
-        version: 0.86.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.4.2(@types/node@25.9.3))(prettier@3.8.4)(typescript@5.8.3)
+        version: 0.86.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.4.2(@types/node@25.9.3))(prettier@3.8.4)(supports-color@5.5.0)(typescript@5.8.3)
       '@types/node':
         specifier: ^25.6.0
         version: 25.9.3
@@ -3472,8 +3472,8 @@ packages:
       expo: '*'
       react: '*'
 
-  expo-haptics@14.1.4:
-    resolution: {integrity: sha512-QZdE3NMX74rTuIl82I+n12XGwpDWKb8zfs5EpwsnGi/D/n7O2Jd4tO5ivH+muEG/OCJOMq5aeaVDqqaQOhTkcA==}
+  expo-haptics@56.0.3:
+    resolution: {integrity: sha512-ycoahZJnR9tWAVh/0mJYxbETtHRYaWjiWS8cHlP6aDGU6Q6Y8rZ5NKsuBwWw6HR2Pe30mfVFgbF2HrBR6gtYmw==}
     peerDependencies:
       expo: '*'
 
@@ -8233,18 +8233,18 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@react-native/eslint-config@0.86.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.4.2(@types/node@25.9.3))(prettier@3.8.4)(typescript@5.8.3)':
+  '@react-native/eslint-config@0.86.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.4.2(@types/node@25.9.3))(prettier@3.8.4)(supports-color@5.5.0)(typescript@5.8.3)':
     dependencies:
       '@babel/core': 7.29.7
       '@babel/eslint-parser': 7.29.7(@babel/core@7.29.7)(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))
       '@react-native/eslint-plugin': 0.86.0
-      '@typescript-eslint/eslint-plugin': 8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3))(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3)
+      '@typescript-eslint/eslint-plugin': 8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3))(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3)
       '@typescript-eslint/parser': 8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3)
       eslint: 10.5.0(jiti@2.6.1)(supports-color@5.5.0)
       eslint-config-prettier: 8.10.2(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))
       eslint-plugin-eslint-comments: 3.2.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))
       eslint-plugin-ft-flow: 2.0.3(@babel/eslint-parser@7.29.7(@babel/core@7.29.7)(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0)))(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))
-      eslint-plugin-jest: 29.15.2(@typescript-eslint/eslint-plugin@8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3))(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3))(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.4.2(@types/node@25.9.3))(typescript@5.8.3)
+      eslint-plugin-jest: 29.15.2(@typescript-eslint/eslint-plugin@8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3))(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3))(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.4.2(@types/node@25.9.3))(typescript@5.8.3)
       eslint-plugin-react: 7.37.5(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))
       eslint-plugin-react-hooks: 7.1.1(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))
       eslint-plugin-react-native: 5.0.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))
@@ -8518,12 +8518,12 @@ snapshots:
     dependencies:
       '@types/yargs-parser': 21.0.3
 
-  '@typescript-eslint/eslint-plugin@8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3))(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3)':
+  '@typescript-eslint/eslint-plugin@8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3))(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.2
       '@typescript-eslint/parser': 8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3)
       '@typescript-eslint/scope-manager': 8.61.0
-      '@typescript-eslint/type-utils': 8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3)
+      '@typescript-eslint/type-utils': 8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3)
       '@typescript-eslint/utils': 8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3)
       '@typescript-eslint/visitor-keys': 8.61.0
       eslint: 10.5.0(jiti@2.6.1)(supports-color@5.5.0)
@@ -8592,7 +8592,7 @@ snapshots:
     dependencies:
       typescript: 5.8.3
 
-  '@typescript-eslint/type-utils@8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3)':
+  '@typescript-eslint/type-utils@8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3)':
     dependencies:
       '@typescript-eslint/types': 8.61.0
       '@typescript-eslint/typescript-estree': 8.61.0(typescript@5.8.3)
@@ -9713,7 +9713,7 @@ snapshots:
 
   eslint-config-expo@9.2.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3))(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3)
+      '@typescript-eslint/eslint-plugin': 8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3))(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3)
       '@typescript-eslint/parser': 8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3)
       eslint: 10.5.0(jiti@2.6.1)(supports-color@5.5.0)
       eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3))(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0)))(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)
@@ -9850,12 +9850,12 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-plugin-jest@29.15.2(@typescript-eslint/eslint-plugin@8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3))(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3))(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.4.2(@types/node@25.9.3))(typescript@5.8.3):
+  eslint-plugin-jest@29.15.2(@typescript-eslint/eslint-plugin@8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3))(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3))(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.4.2(@types/node@25.9.3))(typescript@5.8.3):
     dependencies:
       '@typescript-eslint/utils': 8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3)
       eslint: 10.5.0(jiti@2.6.1)(supports-color@5.5.0)
     optionalDependencies:
-      '@typescript-eslint/eslint-plugin': 8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3))(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3)
+      '@typescript-eslint/eslint-plugin': 8.61.0(@typescript-eslint/parser@8.61.0(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(typescript@5.8.3))(eslint@10.5.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3)
       jest: 30.4.2(@types/node@25.9.3)
       typescript: 5.8.3
     transitivePeerDependencies:
@@ -10195,7 +10195,7 @@ snapshots:
       fontfaceobserver: 2.3.0
       react: 19.0.0
 
-  expo-haptics@14.1.4(expo@53.0.27(@babel/core@7.29.7)(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))(react@19.0.0)(supports-color@5.5.0)):
+  expo-haptics@56.0.3(expo@53.0.27(@babel/core@7.29.7)(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))(react@19.0.0)(supports-color@5.5.0)):
     dependencies:
       expo: 53.0.27(@babel/core@7.29.7)(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))(react@19.0.0)(supports-color@5.5.0)
 
