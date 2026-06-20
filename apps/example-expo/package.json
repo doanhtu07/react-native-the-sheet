@@ -25,7 +25,7 @@
     "@faker-js/faker": "^10.4.0",
     "@react-navigation/bottom-tabs": "^7.17.2",
     "@react-navigation/elements": "^2.9.18",
-    "@react-navigation/native": "^7.3.0",
+    "@react-navigation/native": "^7.3.3",
     "@shopify/flash-list": "1.7.6",
     "@the-sheet/embedded-stack-navigator": "workspace:*",
     "@the-sheet/flash-list": "workspace:*",
