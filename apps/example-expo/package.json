@@ -23,9 +23,9 @@
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
     "@faker-js/faker": "^10.4.0",
-    "@react-navigation/bottom-tabs": "^7.17.2",
+    "@react-navigation/bottom-tabs": "^7.18.2",
     "@react-navigation/elements": "^2.9.18",
-    "@react-navigation/native": "^7.3.0",
+    "@react-navigation/native": "^7.3.3",
     "@shopify/flash-list": "1.7.6",
     "@the-sheet/embedded-stack-navigator": "workspace:*",
     "@the-sheet/flash-list": "workspace:*",
@@ -65,7 +65,7 @@
     "eslint-config-expo": "~9.2.0",
     "eslint-plugin-prettier": "^5.5.5",
     "prettier": "^3.8.3",
-    "semver": "^7.8.3",
+    "semver": "^7.8.5",
     "tsx": "^4.22.4",
     "typescript": "~5.8.3"
   }
