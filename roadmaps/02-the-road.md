@@ -62,6 +62,12 @@ To support that, we need:
 
 ---
 
+- [ ] Introduce bottom sheet presenter registry
+- [ ] Introduce bottom sheet presenter: presenterVisibleHeight, presenterVisibleRatio
+- [ ] Make registry providers optional
+
+---
+
 - [ ] A different type of keyboard expander that works based on `react-native-keyboard-controller`
   - Why? Because on Android, this will provide a more accurate behavior for keyboard expander, especially if the keyboard changes height due to emoji, GIF, or other panels
 
