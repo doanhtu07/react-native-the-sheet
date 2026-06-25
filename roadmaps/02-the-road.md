@@ -58,7 +58,7 @@ To support that, we need:
 
 ---
 
-- [ ] Add a mechanism to swap a sheet stack item to the top and re-present (like on YouTube iPad)
+- [x] Add a mechanism to swap a sheet stack item to the top and re-present (like on YouTube iPad)
 
 ---
 
