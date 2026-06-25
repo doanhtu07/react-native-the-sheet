@@ -1,5 +1,12 @@
 # @the-sheet/embedded-stack-navigator
 
+## 2.0.21
+
+### Patch Changes
+
+- Expose API `putOnTop` on `SheetStackItem`
+- Expose API `reshow` on `BottomSheetPresenter`
+
 ## 2.0.20
 
 ### Patch Changes

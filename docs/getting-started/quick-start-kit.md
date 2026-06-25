@@ -9,7 +9,7 @@ Then, you can install the corresponding version of our library
 For example, if you are using Reanimated v4, you would install v2 of our library like this:
 
 ```bash
-npm install @the-sheet/the-sheet@2.0.20
+npm install @the-sheet/the-sheet@2.0.21
 ```
 
 Required peer dependencies:
