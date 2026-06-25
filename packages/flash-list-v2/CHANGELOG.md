@@ -1,5 +1,17 @@
 # @the-sheet/flash-list-v2
 
+## 1.0.20
+
+### Patch Changes
+
+- Updated dependencies
+  - @the-sheet/the-sheet@1.0.20
+
+---
+
+- Expose API `putOnTop` on `SheetStackItem`
+- Expose API `reshow` on `BottomSheetPresenter`
+
 ## 1.0.19
 
 ### Patch Changes

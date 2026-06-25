@@ -1,5 +1,12 @@
 # @the-sheet/the-sheet
 
+## 1.0.20
+
+### Patch Changes
+
+- Expose API `putOnTop` on `SheetStackItem`
+- Expose API `reshow` on `BottomSheetPresenter`
+
 ## 1.0.19
 
 ### Patch Changes
