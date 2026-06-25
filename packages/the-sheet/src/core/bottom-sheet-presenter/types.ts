@@ -13,3 +13,7 @@ export type BottomSheetPresenterProps = PropsWithChildren & {
 
   testID?: string
 }
+
+export type BottomSheetPresenterApi = {
+  reshow: () => void
+}

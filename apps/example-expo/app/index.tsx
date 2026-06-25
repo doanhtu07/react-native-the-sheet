@@ -76,6 +76,13 @@ export default function Index() {
         }}
       />
 
+      <Button
+        title="Example Bottom Sheet Presenter (Reshow + PutOnTop)"
+        onPress={() => {
+          router.push('/example-bottom-sheet-presenter-reshow-putontop')
+        }}
+      />
+
       {/* MARK: Bottom Sheet */}
 
       <Text style={styles.header}>Bottom Sheet</Text>

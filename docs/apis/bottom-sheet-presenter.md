@@ -6,11 +6,12 @@ When `SheetStackItem` wants to close, BottomSheetPresenter will call `onFullyExi
 
 ## Props
 
-| Prop name  | Type        | Required | Default     | Description                                                      |
-| ---------- | ----------- | -------- | ----------- | ---------------------------------------------------------------- |
-| `styles`   | object      | false    | `undefined` | The styles of the bottom sheet presenter                         |
-| `testID`   | string      | false    | `undefined` | The test ID of the bottom sheet presenter (for testing purposes) |
-| `children` | `ReactNode` | false    | `undefined` | The children of the bottom sheet presenter                       |
+| Prop name  | Type                                         | Required | Default     | Description                                                          |
+| ---------- | -------------------------------------------- | -------- | ----------- | -------------------------------------------------------------------- |
+| `ref`      | `RefObject<BottomSheetPresenterApi \| null>` | false    | `undefined` | The ref of the bottom sheet presenter to use BottomSheetPresenterApi |
+| `styles`   | object                                       | false    | `undefined` | The styles of the bottom sheet presenter                             |
+| `testID`   | string                                       | false    | `undefined` | The test ID of the bottom sheet presenter (for testing purposes)     |
+| `children` | `ReactNode`                                  | false    | `undefined` | The children of the bottom sheet presenter                           |
 
 ## Styles
 
@@ -29,3 +30,9 @@ It provides:
 - `translateY`: A shared value that tracks the offset of the bottom sheet presenter from the bottom of the screen
   - `= 0`: Bottom sheet presenter is fully visible
   - `> 0`: Bottom sheet presenter is going below the bottom of the screen
+
+## Ref methods (BottomSheetPresenterApi)
+
+- `reshow()`:
+  - Re-animates the bottom sheet presenter from hidden to fully visible
+  - Useful when a sheet has been buried in the stack and needs to appear back on top via `SheetStackItemApi.putOnTop()`

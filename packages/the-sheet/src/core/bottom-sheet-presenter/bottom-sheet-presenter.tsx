@@ -1,6 +1,14 @@
-import { createContext, useContext, useEffect, useMemo } from 'react'
+import {
+  createContext,
+  forwardRef,
+  useContext,
+  useEffect,
+  useImperativeHandle,
+  useMemo,
+} from 'react'
 import { StyleSheet } from 'react-native'
 import type {
+  BottomSheetPresenterApi,
   BottomSheetPresenterContextType,
   BottomSheetPresenterProps,
 } from './types'
@@ -31,11 +39,13 @@ export const useBottomSheetPresenter = () => {
   return context
 }
 
-export function BottomSheetPresenter({
-  styles: propStyles,
-  testID,
-  children,
-}: Readonly<BottomSheetPresenterProps>) {
+export const BottomSheetPresenter = forwardRef<
+  BottomSheetPresenterApi,
+  BottomSheetPresenterProps
+>(function BottomSheetPresenterCore(
+  { styles: propStyles, testID, children },
+  ref,
+) {
   const { isHidden, isCurrentlyInStack, onFullyExit } = useSheetStackItem()
 
   const { safeAreaHeight } = useTrueSafeArea()
@@ -67,6 +77,17 @@ export function BottomSheetPresenter({
 
   // MARK: Effects
 
+  // Effect: Expose API
+  useImperativeHandle(ref, () => ({
+    reshow: () => {
+      if (allowPresent) {
+        translateY.value = safeAreaHeight // start from hidden (below the screen)
+        translateY.value = withSpring(0, SPRING_CONFIG) // finish at fully visible (0)
+      }
+    },
+  }))
+
+  // Effect: Animate translateY on allowPresent change
   useEffect(() => {
     if (allowPresent) {
       translateY.value = safeAreaHeight
@@ -104,7 +125,7 @@ export function BottomSheetPresenter({
       </Animated.View>
     </BottomSheetPresenterContext.Provider>
   )
-}
+})
 
 // MARK: Styles
 
