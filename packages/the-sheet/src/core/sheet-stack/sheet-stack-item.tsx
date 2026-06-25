@@ -99,8 +99,17 @@ export const SheetStackItem = forwardRef<
 
   // Effect: Expose API
   useImperativeHandle(ref, () => ({
-    hide: () => setIsManuallyHidden(true),
-    show: () => setIsManuallyHidden(false),
+    hide: () => {
+      setIsManuallyHidden(true)
+    },
+    show: () => {
+      setIsManuallyHidden(false)
+    },
+    putOnTop: () => {
+      if (!isOpen) return
+      remove({ item: { id, pushBehavior, testID } })
+      push({ item: { id, pushBehavior, testID } })
+    },
   }))
 
   // Effect: Unmount cleanup

@@ -1,20 +1,20 @@
 import type { ExpoConfig } from 'expo/config'
 
 const config: ExpoConfig = {
-  name: 'expo-template',
-  slug: 'expo-template',
+  name: 'the-sheet-v2',
+  slug: 'the-sheet-v2',
   version: '1.0.0',
   orientation: 'portrait',
   icon: './assets/images/icon.png',
-  scheme: 'expotemplate',
+  scheme: 'thesheetv2',
   userInterfaceStyle: 'automatic',
   platforms: ['ios', 'android'],
   ios: {
-    bundleIdentifier: 'com.reactnativethesheet.exampleexpo',
+    bundleIdentifier: 'com.thesheetv2.exampleexpo',
     supportsTablet: true,
   },
   android: {
-    package: 'com.reactnativethesheet.exampleexpo',
+    package: 'com.thesheetv2.exampleexpo',
     adaptiveIcon: {
       backgroundColor: '#E6F4FE',
       foregroundImage: './assets/images/android-icon-foreground.png',

@@ -166,7 +166,7 @@ export const SheetStackProvider: FC<SheetStackProviderProps> = ({
     if (debug) {
       console.debug(
         '@the-sheet/the-sheet - src/sheet-stack/sheet-stack-provider.tsx - stack:',
-        { stack },
+        { stack: JSON.stringify(stack, null, 2) },
       )
     }
   }, [debug, stack])

@@ -28,3 +28,4 @@ When it closes, it will unregister itself from the sheet stack
 
 - `hide()`: Temporarily hides the stack item (without unmounting)
 - `show()`: Shows the stack item if it's hidden
+- `putOnTop()`: Moves the stack item to the top of the stack (by removing and re-inserting it)
