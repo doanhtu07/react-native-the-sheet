@@ -10,11 +10,11 @@ const config: ExpoConfig = {
   userInterfaceStyle: 'automatic',
   platforms: ['ios', 'android'],
   ios: {
-    bundleIdentifier: 'com.reactnativethesheet.exampleexpo',
+    bundleIdentifier: 'com.thesheetv1.exampleexpo',
     supportsTablet: true,
   },
   android: {
-    package: 'com.reactnativethesheet.exampleexpo',
+    package: 'com.thesheetv1.exampleexpo',
     adaptiveIcon: {
       backgroundColor: '#E6F4FE',
       foregroundImage: './assets/images/android-icon-foreground.png',
