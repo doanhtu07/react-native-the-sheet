@@ -2,6 +2,11 @@
 
 [![Reanimated v4 version](https://img.shields.io/github/package-json/v/doanhtu07/react-native-the-sheet/main?filename=packages/the-sheet/package.json&label=Reanimated%20v4&style=flat-square)](https://github.com/doanhtu07/react-native-the-sheet) [![Reanimated v3 version](https://img.shields.io/github/package-json/v/doanhtu07/react-native-the-sheet/v1?filename=packages/the-sheet/package.json&label=Reanimated%20v3&style=flat-square)](https://github.com/doanhtu07/react-native-the-sheet/tree/v1) [![license](https://img.shields.io/npm/l/@gorhom/bottom-sheet?style=flat-square)]()
 
+## GitBook docs
+
+- V1: https://the-sheet.gitbook.io/the-sheet-v1/
+- V2: https://the-sheet.gitbook.io/the-sheet-v2/
+
 ## Overview
 
 React Native bottom sheets are harder than they should be
