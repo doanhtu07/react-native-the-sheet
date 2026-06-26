@@ -20,27 +20,15 @@ The library relies on a few core dependencies:
 - React Native Gesture Handler
 - React Native Safe Area Context
 
-<table>
-  <tr>
-    <td width="calc(100% / 2)">
-      <video src="https://github.com/user-attachments/assets/d2f2b93b-c535-4a41-bfd1-5451ace78468" controls width="100%"></video>
-    </td>
-    <td width="calc(100% / 2)">
-      <video src="https://github.com/user-attachments/assets/b0deb1b4-24c6-4d5c-ae6d-0ee272ddafc6" controls width="100%"></video>
-    </td>
-  </tr>
-</table>
+## Demos
 
-<table>
-  <tr>
-    <td width="calc(100% / 2)">
-      <video src="https://github.com/user-attachments/assets/36331cde-ca0d-4323-9938-ea8c45445257" controls width="100%"></video>
-    </td>
-    <td width="calc(100% / 2)">
-      <video src="https://github.com/user-attachments/assets/06e966a2-1c85-4012-a3be-485e70adb140" controls width="100%"></video>
-    </td>
-  </tr>
-</table>
+- [youtube comment sheet clone - ios](https://youtube.com/shorts/yyhItpbegak)
+
+- [youtube comment sheet clone - android - adjust resize](https://youtube.com/shorts/z-mvhAlWQic)
+
+- [youtube comment sheet clone - android - adjust pan](https://youtube.com/shorts/wWQgLr3PRsQ)
+
+- [youtube comment sheet clone - android - adjust resize with keyboard provider](https://youtube.com/shorts/tBw6lPjeIR0)
 
 ## Features
 
