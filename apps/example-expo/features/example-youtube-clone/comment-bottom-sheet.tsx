@@ -4,7 +4,7 @@ import { Comment } from './comment'
 import { Fragment, useCallback, useState } from 'react'
 import {
   BottomSheetFlatList,
-  useBottomSheetRegistry,
+  useBottomSheetRegistryDangerously,
 } from '@the-sheet/the-sheet'
 import {
   useAnimatedStyle,
@@ -28,9 +28,10 @@ export const CommentBottomSheet = ({
   maxHeight,
   sheetId,
 }: Props) => {
-  const { sheets } = useBottomSheetRegistry()
+  const bottomSheetRegistry = useBottomSheetRegistryDangerously()
+  const sheets = bottomSheetRegistry?.sheets
 
-  const commentSheet = sheets[sheetId]
+  const commentSheet = sheets?.[sheetId]
 
   const getYoutubeCommentPanGesture = useBottomSheetYoutubePanGesture({
     close,

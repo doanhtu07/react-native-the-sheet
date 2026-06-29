@@ -6,13 +6,38 @@ import {
   BottomSheetPresenter,
   SheetStackItem,
   SheetStackItemApi,
+  useBottomSheetPresenterRegistryDangerously,
 } from '@the-sheet/the-sheet'
 import { Portal } from '@the-sheet/universe-portal'
+import { useAnimatedReaction } from 'react-native-reanimated'
 
 export default function ExampleBottomSheetPresenter() {
+  const bottomSheetPresenterRegistry =
+    useBottomSheetPresenterRegistryDangerously()
+  const presenters = bottomSheetPresenterRegistry?.presenters
+
+  const presenterId = 'presenterA'
+  const presenterA = presenters?.[presenterId]
+
   const [isOpenA, setIsOpenA] = useState(true)
 
   const refA = useRef<SheetStackItemApi>(null)
+
+  // MARK: Effects
+
+  useAnimatedReaction(
+    () => {
+      return {
+        presenterHeight: presenterA?.presenterHeight.value,
+        presenterVisibleRatio: presenterA?.presenterVisibleRatio.value,
+      }
+    },
+    (prepared) => {
+      console.log('example-bottom-sheet-presenter', JSON.stringify(prepared))
+    },
+  )
+
+  // MARK: Renderers
 
   return (
     <View style={styles.root}>
@@ -37,7 +62,7 @@ export default function ExampleBottomSheetPresenter() {
         >
           <Backdrop />
 
-          <BottomSheetPresenter>
+          <BottomSheetPresenter id={presenterId}>
             <View style={styles.boxA}>
               <ThemedText>Sheet A</ThemedText>
               <Button title="Close Sheet A" onPress={() => setIsOpenA(false)} />

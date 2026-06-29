@@ -10,6 +10,14 @@ It provides:
 - `registerSheet`: A function to register a bottom sheet with its id and internal state
 - `unregisterSheet`: A function to unregister a bottom sheet with its id
 
+## Optional provider
+
+BottomSheetRegistryProvider is optional, and you can use `useBottomSheetRegistryDangerously` to access the registry state without throwing error when the provider is not available
+
 ## Hook
 
 Use `useBottomSheetRegistry` to access the bottom sheet registry state
+
+Use `useBottomSheetRegistryDangerously` to access the bottom sheet registry state without throwing error when the provider is not available
+
+- It returns `undefined` when the provider is not available, instead of throwing error

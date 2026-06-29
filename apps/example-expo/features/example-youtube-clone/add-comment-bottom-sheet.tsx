@@ -8,7 +8,7 @@ import {
   BottomSheetProvider,
   InputFocusProvider,
   SheetStackItem,
-  useBottomSheetRegistry,
+  useBottomSheetRegistryDangerously,
 } from '@the-sheet/the-sheet'
 import { useColorScheme, View, StyleSheet, Keyboard } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -25,11 +25,13 @@ export const AddCommentBottomSheet = ({
   sheetId,
   reportHeight,
 }: Props) => {
-  const { sheets } = useBottomSheetRegistry()
   const { bottom } = useSafeAreaInsets()
   const theme = useColorScheme()
 
-  const addCommentSheet = sheets[sheetId]
+  const bottomSheetRegistry = useBottomSheetRegistryDangerously()
+  const sheets = bottomSheetRegistry?.sheets
+
+  const addCommentSheet = sheets?.[sheetId]
 
   const isDark = theme === 'dark'
   const backgroundColor = isDark ? '#1C1C1E' : '#FFFFFF'
