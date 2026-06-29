@@ -62,13 +62,13 @@ To support that, we need:
 
 ---
 
-- [ ] Export https://benji.org/family-values. See if we can re-create something similar
+- [x] Introduce bottom sheet presenter registry
+- [x] Introduce bottom sheet presenter: presenterVisibleHeight, presenterVisibleRatio
+- [x] Make registry providers optional
 
 ---
 
-- [ ] Introduce bottom sheet presenter registry
-- [ ] Introduce bottom sheet presenter: presenterVisibleHeight, presenterVisibleRatio
-- [ ] Make registry providers optional
+- [ ] Export https://benji.org/family-values. See if we can re-create something similar
 
 ---
 

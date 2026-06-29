@@ -130,6 +130,11 @@ export const BottomSheet = forwardRef<BottomSheetApi, BottomSheetProps>(
       },
       (prepared) => {
         const total = prepared.sheetHeight
+
+        if (total === 0) {
+          return
+        }
+
         const pY = prepared.bottomSheetPresenterTranslateY
 
         const bY = prepared.enableOverdrag

@@ -78,3 +78,9 @@ It provides:
 Note that with Android non-edge-to-edge mode + adjustResize, keyboard expander height will not involved
 
 As the system will already resize the bottom sheet when keyboard is open
+
+## Registry
+
+BottomSheetProvider is automatically registered to the global registry when it mounts and unregistered when it unmounts if the global registry is available (via `BottomSheetRegistryProvider`)
+
+You can control the registered id via the `id` prop, which defaults to `React.useId()`

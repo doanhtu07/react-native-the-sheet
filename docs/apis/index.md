@@ -22,6 +22,8 @@
 
 ---
 
+[BottomSheetPresenterRegistryProvider](./bottom-sheet-presenter-registry-provider.md)
+
 [BottomSheetRegistryProvider](./bottom-sheet-registry-provider.md)
 
 [BottomSheetPresenter](./bottom-sheet-presenter.md)

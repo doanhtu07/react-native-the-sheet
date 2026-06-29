@@ -3,10 +3,11 @@ import {
   forwardRef,
   useContext,
   useEffect,
+  useId,
   useImperativeHandle,
-  useMemo,
+  useRef,
 } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, type LayoutChangeEvent } from 'react-native'
 import type {
   BottomSheetPresenterApi,
   BottomSheetPresenterContextType,
@@ -15,6 +16,7 @@ import type {
 import { useSheetStackItem } from '../sheet-stack'
 import Animated, {
   runOnJS,
+  useAnimatedReaction,
   useAnimatedStyle,
   useSharedValue,
   withSpring,
@@ -22,6 +24,7 @@ import Animated, {
 import { useSyncedRef } from '../hooks/use-synced-ref'
 import { SPRING_CONFIG } from '../constants'
 import { useTrueSafeArea } from '../hooks'
+import { useBottomSheetPresenterRegistryDangerously } from './bottom-sheet-presenter-registry-provider'
 
 const BottomSheetPresenterContext = createContext<
   BottomSheetPresenterContextType | undefined
@@ -43,16 +46,25 @@ export const BottomSheetPresenter = forwardRef<
   BottomSheetPresenterApi,
   BottomSheetPresenterProps
 >(function BottomSheetPresenterCore(
-  { styles: propStyles, testID, children },
+  { id, styles: propStyles, testID, children },
   ref,
 ) {
-  const { isHidden, isCurrentlyInStack, onFullyExit } = useSheetStackItem()
-
+  const autoGenBottomSheetPresenterId = useId()
   const { safeAreaHeight } = useTrueSafeArea()
+
+  const bottomSheetPresenterRegistry =
+    useBottomSheetPresenterRegistryDangerously()
+  const registerPresenter = bottomSheetPresenterRegistry?.registerPresenter
+  const unregisterPresenter = bottomSheetPresenterRegistry?.unregisterPresenter
+
+  const { isHidden, isCurrentlyInStack, onFullyExit } = useSheetStackItem()
+  const allowPresent = isCurrentlyInStack && !isHidden
 
   const onFullyExitRef = useSyncedRef(onFullyExit)
 
-  const allowPresent = isCurrentlyInStack && !isHidden
+  const presenterHeight = useSharedValue(0)
+  const presenterVisibleHeight = useSharedValue(0)
+  const presenterVisibleRatio = useSharedValue(0)
 
   /**
    * translateY = tracks the offset of the bottom sheet presenter from the bottom of the screen
@@ -61,19 +73,20 @@ export const BottomSheetPresenter = forwardRef<
    */
   const translateY = useSharedValue(safeAreaHeight)
 
-  const animatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ translateY: translateY.value }],
-    }
-  })
+  const onLayout = (event: LayoutChangeEvent) => {
+    'worklet'
+    presenterHeight.value = event.nativeEvent.layout.height
+  }
 
   // MARK: Bottom sheet presenter context
 
-  const contextValue = useMemo<BottomSheetPresenterContextType>(() => {
-    return {
-      translateY,
-    }
-  }, [translateY])
+  const contextValue = useRef<BottomSheetPresenterContextType>({
+    presenterHeight,
+    presenterVisibleHeight,
+    presenterVisibleRatio,
+
+    translateY,
+  })
 
   // MARK: Effects
 
@@ -86,6 +99,26 @@ export const BottomSheetPresenter = forwardRef<
       }
     },
   }))
+
+  // Effect: Register presenter in registry
+  useEffect(() => {
+    if (!registerPresenter || !unregisterPresenter) {
+      return
+    }
+
+    const bottomSheetProviderId = id || autoGenBottomSheetPresenterId
+
+    registerPresenter(bottomSheetProviderId, contextValue.current)
+
+    return () => {
+      unregisterPresenter(bottomSheetProviderId)
+    }
+  }, [
+    autoGenBottomSheetPresenterId,
+    id,
+    registerPresenter,
+    unregisterPresenter,
+  ])
 
   // Effect: Animate translateY on allowPresent change
   useEffect(() => {
@@ -108,10 +141,38 @@ export const BottomSheetPresenter = forwardRef<
     )
   }, [allowPresent, onFullyExitRef, safeAreaHeight, translateY])
 
+  // Effect: Track presenter visible height and ratio
+  useAnimatedReaction(
+    () => {
+      return {
+        translateY: translateY.value,
+        presenterHeight: presenterHeight.value,
+      }
+    },
+    (prepared) => {
+      const total = prepared.presenterHeight
+
+      if (total === 0) {
+        return
+      }
+
+      presenterVisibleHeight.value = total - prepared.translateY
+      presenterVisibleRatio.value = presenterVisibleHeight.value / total
+    },
+  )
+
+  // MARK: Preparation
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateY: translateY.value }],
+    }
+  })
+
   // MARK: Renderers
 
   return (
-    <BottomSheetPresenterContext.Provider value={contextValue}>
+    <BottomSheetPresenterContext.Provider value={contextValue.current}>
       <Animated.View
         style={[
           styles.root,
@@ -119,6 +180,7 @@ export const BottomSheetPresenter = forwardRef<
           { height: safeAreaHeight },
           animatedStyle,
         ]}
+        onLayout={onLayout}
         testID={testID}
       >
         {children}

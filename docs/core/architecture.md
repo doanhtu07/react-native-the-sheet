@@ -6,7 +6,7 @@ This shows the full architecture of the library, how the providers and component
 
 ```
 SafeAreaProvider (Required) + KeyboardProvider (Recommended)
-└── SheetKeyboardProvider + SheetStackProvider + PortalProvider + BottomSheetRegistryProvider
+└── SheetKeyboardProvider + SheetStackProvider + PortalProvider + BottomSheetPresenterRegistryProvider (Optional) + BottomSheetRegistryProvider (Optional)
     └── PortalHost
         └── Portal
             └── SheetStackItem
@@ -73,3 +73,10 @@ This component does not depend on external dependencies like React Navigation, a
 - `EmbeddedStackNavigator`
 
 [Read more](./embedded-stack-navigator.md)
+
+### Registry provider
+
+A pattern to provide a global registry for sheets and presenters, so you can easily access shared values for animation from global context from anywhere
+
+- `BottomSheetPresenterRegistryProvider`
+- `BottomSheetRegistryProvider`

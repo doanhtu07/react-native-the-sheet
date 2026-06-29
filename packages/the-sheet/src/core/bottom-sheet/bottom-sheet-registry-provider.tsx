@@ -26,6 +26,11 @@ export const useBottomSheetRegistry = () => {
   return context
 }
 
+export const useBottomSheetRegistryDangerously = () => {
+  const context = useContext(BottomSheetRegistryContext)
+  return context
+}
+
 export function BottomSheetRegistryProvider({
   children,
 }: Readonly<BottomSheetRegistryProviderProps>) {

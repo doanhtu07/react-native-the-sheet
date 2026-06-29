@@ -7,6 +7,7 @@ import {
   BottomSheetRegistryProvider,
   AnimatedProp,
   ANDROID_WINDOW_SOFT_INPUT_MODES,
+  BottomSheetPresenterRegistryProvider,
 } from '@the-sheet/the-sheet'
 import { PortalProvider, PortalHost } from '@the-sheet/universe-portal'
 
@@ -24,12 +25,14 @@ export const BaseProviders = ({ androidWindowSoftInputMode }: Props) => {
       >
         <SheetStackProvider debug>
           <PortalProvider>
-            <BottomSheetRegistryProvider>
-              <GestureHandlerRootView>
-                <Stack />
-                <PortalHost name="root" debug />
-              </GestureHandlerRootView>
-            </BottomSheetRegistryProvider>
+            <BottomSheetPresenterRegistryProvider>
+              <BottomSheetRegistryProvider>
+                <GestureHandlerRootView>
+                  <Stack />
+                  <PortalHost name="root" debug />
+                </GestureHandlerRootView>
+              </BottomSheetRegistryProvider>
+            </BottomSheetPresenterRegistryProvider>
           </PortalProvider>
         </SheetStackProvider>
       </SheetKeyboardProvider>

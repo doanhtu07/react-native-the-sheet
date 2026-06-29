@@ -18,7 +18,7 @@ import {
   InputFocusProvider,
   SheetStackItem,
   SnapPoint,
-  useBottomSheetRegistry,
+  useBottomSheetRegistryDangerously,
 } from '@the-sheet/the-sheet'
 import { Portal } from '@the-sheet/universe-portal'
 import AntDesign from '@expo/vector-icons/AntDesign'
@@ -58,13 +58,15 @@ export const BottomSheetTemplate = ({
   actions,
 }: Props) => {
   const reactId = useId()
-  const { sheets } = useBottomSheetRegistry()
   const theme = useColorScheme()
+
+  const bottomSheetRegistry = useBottomSheetRegistryDangerously()
+  const sheets = bottomSheetRegistry?.sheets
 
   const showLeftRightHeaders = !!headerLeft || !!headerRight || !!showClose
 
   const resolvedSheetId = sheetId || reactId
-  const sheetData = sheets[resolvedSheetId]
+  const sheetData = sheets?.[resolvedSheetId]
 
   const isDark = theme === 'dark'
   const borderColor = isDark ? '#3A3A3C' : '#D1D1D6'

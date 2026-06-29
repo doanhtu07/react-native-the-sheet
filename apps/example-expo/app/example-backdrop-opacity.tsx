@@ -10,15 +10,16 @@ import {
   BottomSheetProvider,
   BottomSheetView,
   SheetStackItem,
-  useBottomSheetRegistry,
+  useBottomSheetRegistryDangerously,
 } from '@the-sheet/the-sheet'
 import { Portal } from '@the-sheet/universe-portal'
 
 export default function ExampleBackdropOpacity() {
-  const { sheets } = useBottomSheetRegistry()
+  const bottomSheetRegistry = useBottomSheetRegistryDangerously()
+  const sheets = bottomSheetRegistry?.sheets
 
   const bottomSheetId = 'sheetA'
-  const sheetA = sheets[bottomSheetId]
+  const sheetA = sheets?.[bottomSheetId]
 
   const [isOpenA, setIsOpenA] = useState(false)
 

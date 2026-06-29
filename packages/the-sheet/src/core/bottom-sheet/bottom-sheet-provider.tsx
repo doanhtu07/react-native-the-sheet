@@ -8,7 +8,7 @@ import { useSyncedSharedValue } from '../hooks/use-synced-shared-value'
 import { useToSharedValue } from '../hooks/use-to-shared-value'
 import { useTrueSafeArea } from '../hooks'
 import type { BottomSheetContextType, BottomSheetProviderProps } from './types'
-import { useBottomSheetRegistry } from './bottom-sheet-registry-provider'
+import { useBottomSheetRegistryDangerously } from './bottom-sheet-registry-provider'
 
 const BottomSheetContext = createContext<BottomSheetContextType | undefined>(
   undefined,
@@ -32,9 +32,12 @@ export function BottomSheetProvider({
   disableDrag: propDisableDrag = false,
   children,
 }: BottomSheetProviderProps) {
-  const { registerSheet, unregisterSheet } = useBottomSheetRegistry()
   const autoGenBottomSheetProviderId = useId()
   const { safeAreaHeight: safeAreaHeightValue } = useTrueSafeArea()
+
+  const bottomSheetRegistry = useBottomSheetRegistryDangerously()
+  const registerSheet = bottomSheetRegistry?.registerSheet
+  const unregisterSheet = bottomSheetRegistry?.unregisterSheet
 
   const safeAreaHeight = useToSharedValue(safeAreaHeightValue)
 
@@ -137,6 +140,10 @@ export function BottomSheetProvider({
   // MARK: Effects
 
   useEffect(() => {
+    if (!registerSheet || !unregisterSheet) {
+      return
+    }
+
     const bottomSheetProviderId = id || autoGenBottomSheetProviderId
 
     registerSheet(bottomSheetProviderId, contextValue.current)
@@ -144,7 +151,7 @@ export function BottomSheetProvider({
     return () => {
       unregisterSheet(bottomSheetProviderId)
     }
-  }, [id, registerSheet, unregisterSheet, autoGenBottomSheetProviderId])
+  }, [autoGenBottomSheetProviderId, id, registerSheet, unregisterSheet])
 
   // MARK: Renderers
 

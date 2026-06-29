@@ -8,7 +8,7 @@ import {
   SCROLL_Y_TOP_THRESHOLD,
   SPRING_CONFIG,
   TRANSLATE_Y_REST_THRESHOLD,
-  useBottomSheetRegistry,
+  useBottomSheetRegistryDangerously,
   useSyncedRef,
 } from '@the-sheet/the-sheet'
 
@@ -17,40 +17,12 @@ type Props = {
   sheetId: string
 }
 
-/*
-  # Mental model
-
-  Two explicit exclusive modes:
-
-  - Scrolling: Gesture starts on scroll view
-  - Panning: Gesture starts outside scroll view
-
-  ## Scrolling
-
-  - Bottom sheet not at rest:
-    - Lock scroll view
-    - Move sheet
-
-  - Bottom sheet at rest:
-    - Pan down + Scroll at top: 
-      - Lock scroll view
-      - Move sheet
-    - Else: Scroll
-
-  ## Panning
-
-  - Bottom sheet not at rest:
-    - Lock scroll view
-    - Move sheet
-
-  - Bottom sheet at rest:
-    - Lock scroll view
-    - Move sheet
-*/
 export const useBottomSheetYoutubePanGesture = ({ close, sheetId }: Props) => {
-  const { sheets } = useBottomSheetRegistry()
+  const bottomSheetRegistry = useBottomSheetRegistryDangerously()
+  const sheets = bottomSheetRegistry?.sheets
 
-  const commentSheet = sheets[sheetId] || {}
+  const commentSheet = sheets?.[sheetId] || {}
+  const isCommentSheetAvailable = !!sheets?.[sheetId]
 
   const {
     enableFloat,
@@ -70,13 +42,18 @@ export const useBottomSheetYoutubePanGesture = ({ close, sheetId }: Props) => {
   const closeRef = useSyncedRef(close)
 
   const snapshotTranslateY = useSharedValue(0)
-
   const lastTranslationY = useSharedValue(0)
 
   const cleanupGesture = () => {
     'worklet'
+
+    if (!isCommentSheetAvailable) {
+      return
+    }
+
     isPanGestureActive.value = false
   }
+
   const cleanupGestureRef = useSyncedRef(cleanupGesture)
 
   // MARK: Pan gesture
@@ -85,6 +62,10 @@ export const useBottomSheetYoutubePanGesture = ({ close, sheetId }: Props) => {
     // Snapshot refs for worklet
     const closeRefCurrent = closeRef.current
     const cleanupGestureRefCurrent = cleanupGestureRef.current
+
+    if (!isCommentSheetAvailable) {
+      return Gesture.Pan()
+    }
 
     return Gesture.Pan()
       .maxPointers(1)
@@ -215,11 +196,12 @@ export const useBottomSheetYoutubePanGesture = ({ close, sheetId }: Props) => {
   }, [
     closeRef,
     cleanupGestureRef,
+    isCommentSheetAvailable,
     isPanGestureActive,
     snapshotTranslateY,
     translateY,
-    scrollY,
     lastTranslationY,
+    scrollY,
     scrollViewContentHeight,
     scrollViewHeight,
     isScrollViewInteracting,
