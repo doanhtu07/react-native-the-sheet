@@ -1,5 +1,20 @@
 # @the-sheet/embedded-stack-navigator
 
+## 1.0.21
+
+### Patch Changes
+
+- Make `BottomSheetRegistryProvider` optional
+- Add `useBottomSheetRegistryDangerously`
+
+- Add `BottomSheetPresenterRegistryProvider` (also optional)
+- Add `useBottomSheetPresenterRegistry` and `useBottomSheetPresenterRegistryDangerously`
+
+- Add `id` prop to `BottomSheetPresenter` for registry lookups
+- Add `presenterHeight`, `presenterVisibleHeight`, and `presenterVisibleRatio` to `BottomSheetPresenterContextType`
+
+- Skips sheet/presenter's visible height and ratio computation when sheet/presenter's height is 0, which prevents NaN cases
+
 ## 1.0.20
 
 ### Patch Changes
