@@ -1,6 +1,6 @@
 {
   "name": "@the-sheet/flash-list",
-  "version": "2.0.21",
+  "version": "2.0.22",
   "description": "@shopify/flash-list v1 support for The Sheet",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
