@@ -69,6 +69,8 @@ To support that, we need:
 ---
 
 - [ ] Export https://benji.org/family-values. See if we can re-create something similar
+  - **Simple case**: Dynamic tray that has content inside + background that can animates height separately from the content inside (to avoid re-laying out)
+  - **Hard case**: Think how we can morph background shape and button position like one example in the link above
 
 ---
 
