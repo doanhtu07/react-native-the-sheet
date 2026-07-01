@@ -4,11 +4,11 @@ import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withTiming,
-  runOnJS,
 } from 'react-native-reanimated'
 import type { EmbeddedStackScreenProps } from './types'
 import { FADE_DURATION_MS } from './config'
 import { EmbeddedStackRouteContext } from './context'
+import { runOnJS } from 'react-native-worklets'
 
 export const EmbeddedStackScreen: FC<EmbeddedStackScreenProps> = ({
   screens,

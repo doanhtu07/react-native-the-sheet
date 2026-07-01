@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { StyleSheet, View } from 'react-native'
-import { useSharedValue, runOnJS, withSpring } from 'react-native-reanimated'
+import { useSharedValue, withSpring } from 'react-native-reanimated'
 import type {
   EmbeddedStackNavigationApi,
   EmbeddedStackNavigatorProps,
@@ -10,6 +10,7 @@ import type {
 import { SPRING_CONFIG } from './config'
 import { EmbeddedStackNavigationContext } from './context'
 import { EmbeddedStackContainer } from './stack-container'
+import { runOnJS } from 'react-native-worklets'
 
 export const EmbeddedStackNavigator = function <
   Screens extends Record<string, ScreenRenderer>,

@@ -217,8 +217,11 @@ importers:
         specifier: ^0.43.0
         version: 0.43.0
       react-native-reanimated:
-        specifier: ~3.17.5
-        version: 3.17.5(@babel/core@7.29.7)(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
+        specifier: 4.3.1
+        version: 4.3.1(react-native-worklets@0.8.3(@babel/core@7.29.7)(@react-native/metro-config@0.85.3(@babel/core@7.29.7))(react-native@0.85.3(@babel/core@7.29.7)(@react-native/jest-preset@0.86.0(@babel/core@7.29.7)(react@19.2.3))(@react-native/metro-config@0.85.3(@babel/core@7.29.7))(@types/react@19.2.16)(react@19.2.3))(react@19.2.3))(react-native@0.85.3(@babel/core@7.29.7)(@react-native/jest-preset@0.86.0(@babel/core@7.29.7)(react@19.2.3))(@react-native/metro-config@0.85.3(@babel/core@7.29.7))(@types/react@19.2.16)(react@19.2.3))(react@19.2.3)
+      react-native-worklets:
+        specifier: 0.8.3
+        version: 0.8.3(@babel/core@7.29.7)(@react-native/metro-config@0.85.3(@babel/core@7.29.7))(react-native@0.85.3(@babel/core@7.29.7)(@react-native/jest-preset@0.86.0(@babel/core@7.29.7)(react@19.2.3))(@react-native/metro-config@0.85.3(@babel/core@7.29.7))(@types/react@19.2.16)(react@19.2.3))(react@19.2.3)
       turbo:
         specifier: ^2.10.0
         version: 2.10.0

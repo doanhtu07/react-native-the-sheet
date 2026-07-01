@@ -80,14 +80,16 @@
     "react": "19.2.3",
     "react-native": "0.85.3",
     "react-native-builder-bob": "^0.43.0",
-    "react-native-reanimated": "~3.17.5",
+    "react-native-reanimated": "4.3.1",
+    "react-native-worklets": "0.8.3",
     "turbo": "^2.10.0",
     "typescript": "~6.0.3"
   },
   "peerDependencies": {
     "react": "*",
     "react-native": "*",
-    "react-native-reanimated": "*"
+    "react-native-reanimated": "*",
+    "react-native-worklets": "*"
   },
   "react-native-builder-bob": {
     "source": "src",
