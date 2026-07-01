@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router'
-import { Button, ScrollView, StyleSheet, Text } from 'react-native'
+import { Button, ScrollView, StyleSheet, Text, View } from 'react-native'
 
 export default function Index() {
   const router = useRouter()
@@ -16,6 +16,13 @@ export default function Index() {
       <Text style={styles.header}>Navigator</Text>
 
       <Button
+        title="Example Navigator Slide"
+        onPress={() => {
+          router.push('/example-navigator-slide')
+        }}
+      />
+
+      <Button
         title="Example Navigator Fade"
         onPress={() => {
           router.push('/example-navigator-fade')
@@ -23,11 +30,13 @@ export default function Index() {
       />
 
       <Button
-        title="Example Navigator Slide"
+        title="Example Navigator None"
         onPress={() => {
-          router.push('/example-navigator-slide')
+          router.push('/example-navigator-none')
         }}
       />
+
+      <View style={styles.divider} />
 
       {/* MARK: Portal */}
 
@@ -39,6 +48,8 @@ export default function Index() {
           router.push('/example-portal')
         }}
       />
+
+      <View style={styles.divider} />
 
       {/* MARK: Sheet Stack */}
 
@@ -247,6 +258,20 @@ export default function Index() {
           router.push('/example-youtube-clone')
         }}
       />
+
+      <View style={styles.divider} />
+
+      {/* MARK: Dynamic Tray */}
+
+      <Text style={styles.header}>Dynamic Tray</Text>
+      <Text selectable>https://benji.org/family-values</Text>
+
+      <Button
+        title="Example Dynamic Tray"
+        onPress={() => {
+          router.push('/example-simple-dynamic-tray')
+        }}
+      />
     </ScrollView>
   )
 }
@@ -258,6 +283,11 @@ const styles = StyleSheet.create({
     gap: 8,
     padding: 16,
     paddingBottom: 64,
+  },
+  divider: {
+    backgroundColor: 'lightgray',
+    height: 1,
+    marginVertical: 12,
   },
   header: {
     fontSize: 20,

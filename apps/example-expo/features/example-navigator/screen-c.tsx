@@ -8,7 +8,7 @@ type Props = {
   fill?: boolean
 }
 
-export function ScreenA({ fill = false }: Readonly<Props>) {
+export function ScreenC({ fill = false }: Readonly<Props>) {
   const navigation = useEmbeddedStackNavigation<RouteParamList>()
 
   const [items, setItems] = useState<number[]>([])
@@ -25,14 +25,9 @@ export function ScreenA({ fill = false }: Readonly<Props>) {
 
   return (
     <View style={[styles.root, fill && styles.fill]}>
-      <ThemedText>Screen A</ThemedText>
+      <ThemedText>Screen C</ThemedText>
 
-      <Button
-        title="Go to Screen B"
-        onPress={() =>
-          navigation.navigate({ name: 'ScreenB', params: undefined })
-        }
-      />
+      <Button title="Back" onPress={() => navigation.pop()} />
 
       <Button title="Spawn Item" onPress={spawnItem} />
 

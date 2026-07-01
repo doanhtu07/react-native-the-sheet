@@ -1,10 +1,11 @@
-import { type FC, useEffect, useMemo, useRef } from 'react'
-import {
-  Animated,
-  type StyleProp,
-  StyleSheet,
-  type ViewStyle,
-} from 'react-native'
+import { type FC, useEffect, useMemo } from 'react'
+import { StyleSheet } from 'react-native'
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+  runOnJS,
+} from 'react-native-reanimated'
 import type { EmbeddedStackScreenProps } from './types'
 import { FADE_DURATION_MS } from './config'
 import { EmbeddedStackRouteContext } from './context'
@@ -12,16 +13,17 @@ import { EmbeddedStackRouteContext } from './context'
 export const EmbeddedStackScreen: FC<EmbeddedStackScreenProps> = ({
   screens,
   transitionType,
+  fill,
   route,
   idx,
   stackLength,
-  rootWidth,
-  removingScreenName,
+  navigatorWidth,
+  removingFadeScreenName,
+  onFadeComplete,
+  onHeightChange,
 }) => {
-  const renderScreen = screens[route.name]
-
-  const isRemoving = removingScreenName === route.name
-  const isFocused = idx === stackLength - 1 && !isRemoving
+  const isFadeRemoving = removingFadeScreenName === route.name
+  const isFocused = idx === stackLength - 1 && !isFadeRemoving
   const canGoBack = idx > 0
 
   const routeContext = useMemo(
@@ -29,57 +31,79 @@ export const EmbeddedStackScreen: FC<EmbeddedStackScreenProps> = ({
     [route, isFocused, canGoBack],
   )
 
-  const opacity = useRef(new Animated.Value(0)).current
-
-  const screenStyle = useMemo<
-    Animated.WithAnimatedValue<StyleProp<ViewStyle>>
-  >(() => {
-    if (transitionType === 'slide') {
-      // Slide mode: screens are in a row and we translate the row
-      return [styles.root, { width: rootWidth }]
-    } else {
-      // Fade mode: stack screens on top of each other
-      return [
-        styles.root,
-        styles.fadeScreen,
-        {
-          opacity,
-          pointerEvents: isFocused ? 'auto' : 'none',
-        },
-      ]
-    }
-  }, [transitionType, rootWidth, opacity, isFocused])
+  const opacity = useSharedValue(0)
 
   // MARK: Effects
 
-  useEffect(
-    () => {
-      return () => {
-        opacity.removeAllListeners()
-      }
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  )
-
+  // Effect: Handle fade animation
   useEffect(() => {
-    if (transitionType === 'fade') {
-      Animated.timing(opacity, {
-        toValue: isFocused ? 1 : 0,
-        duration: FADE_DURATION_MS,
-        useNativeDriver: true,
-      }).start()
+    if (transitionType !== 'fade') return
+
+    const target = isFocused ? 1 : 0
+
+    opacity.value = withTiming(
+      target,
+      { duration: FADE_DURATION_MS },
+      (finished) => {
+        if (finished && isFadeRemoving) {
+          runOnJS(onFadeComplete)()
+        }
+      },
+    )
+  }, [isFadeRemoving, isFocused, onFadeComplete, opacity, transitionType])
+
+  // MARK: Preparation
+
+  const slideStyle = useAnimatedStyle(() => {
+    return {
+      ...styles.slideScreen,
+      ...(fill && styles.screenFill),
+      left: idx * navigatorWidth,
+      width: navigatorWidth,
     }
-  }, [transitionType, opacity, isFocused])
+  })
+
+  const fadeStyle = useAnimatedStyle(() => {
+    return {
+      ...styles.fadeScreen,
+      ...(fill && styles.screenFill),
+      opacity: opacity.value,
+      pointerEvents: isFocused ? 'auto' : 'none',
+    }
+  })
+
+  const noneStyle = useAnimatedStyle(() => {
+    return {
+      ...styles.noneScreen,
+      ...(fill && styles.screenFill),
+      opacity: isFocused ? 1 : 0,
+      pointerEvents: isFocused ? 'auto' : 'none',
+    }
+  })
 
   // MARK: Renderers
 
+  const renderScreen = screens[route.name]
+
   return (
-    <Animated.View style={screenStyle}>
-      <EmbeddedStackRouteContext.Provider value={routeContext}>
+    <EmbeddedStackRouteContext.Provider value={routeContext}>
+      <Animated.View
+        style={[
+          styles.root,
+          fill && styles.fill,
+          transitionType === 'slide' ? slideStyle : undefined,
+          transitionType === 'fade' ? fadeStyle : undefined,
+          transitionType === 'none' ? noneStyle : undefined,
+        ]}
+        onLayout={(e) => {
+          if (!fill) {
+            onHeightChange(route, e.nativeEvent.layout.height)
+          }
+        }}
+      >
         {renderScreen?.()}
-      </EmbeddedStackRouteContext.Provider>
-    </Animated.View>
+      </Animated.View>
+    </EmbeddedStackRouteContext.Provider>
   )
 }
 
@@ -87,15 +111,26 @@ export const EmbeddedStackScreen: FC<EmbeddedStackScreenProps> = ({
 
 const styles = StyleSheet.create({
   fadeScreen: {
-    bottom: 0,
-    height: '100%',
     left: 0,
     position: 'absolute',
     right: 0,
-    top: 0,
     width: '100%',
   },
-  root: {
+  fill: {
     flex: 1,
+  },
+  noneScreen: {
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    width: '100%',
+  },
+  root: {},
+  screenFill: {
+    height: '100%',
+  },
+  slideScreen: {
+    position: 'absolute',
+    width: '100%',
   },
 })

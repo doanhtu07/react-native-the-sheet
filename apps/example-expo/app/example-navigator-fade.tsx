@@ -7,18 +7,22 @@ import {
   EmbeddedStackNavigator,
   ScreenRenderer,
 } from '@the-sheet/embedded-stack-navigator'
+import { ScreenC } from '@/features/example-navigator/screen-c'
 
 export default function ExampleNavigatorFade() {
   const renderScreenA = useCallback(() => <ScreenA />, [])
 
   const renderScreenB = useCallback(() => <ScreenB />, [])
 
+  const renderScreenC = useCallback(() => <ScreenC />, [])
+
   const screens = useMemo(() => {
     return {
       ScreenA: renderScreenA,
       ScreenB: renderScreenB,
+      ScreenC: renderScreenC,
     } satisfies Record<keyof RouteParamList, ScreenRenderer>
-  }, [renderScreenA, renderScreenB])
+  }, [renderScreenA, renderScreenB, renderScreenC])
 
   return (
     <View style={styles.root}>
@@ -27,12 +31,19 @@ export default function ExampleNavigatorFade() {
         initialParams={undefined}
         screens={screens}
         transitionType="fade"
+        animateDynamicHeight
+        styles={{ root: styles.navigator }}
       />
     </View>
   )
 }
 
+// MARK: Styles
+
 const styles = StyleSheet.create({
+  navigator: {
+    backgroundColor: 'red',
+  },
   root: {
     flex: 1,
   },
