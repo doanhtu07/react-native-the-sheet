@@ -134,12 +134,13 @@ Now that we know the behavior of `flex: 1` and ScrollView, we can explain why Sc
 
 ### `fill` prop
 
-NOTE: If you use `EmbeddedStackNavigator` (which needs `flex: 1`) with `ScrollView`, you need to be aware of the rules above
+NOTE: If you use `EmbeddedStackNavigator` with `ScrollView`, you need to be aware of the rules above. Use the `fill` prop on `EmbeddedStackNavigator` to apply `flex: 1`
 
 ---
 
 To make it easier, I've exposed prop `fill` for:
 
+- `EmbeddedStackNavigator`
 - `BottomSheet`
 - `BottomSheetView`
 - `BottomSheetScrollView`
