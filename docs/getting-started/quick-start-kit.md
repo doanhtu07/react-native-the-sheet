@@ -26,7 +26,7 @@ Required peer dependencies:
 
 ---
 
-`@the-sheet/embedded-stack-navigator`: Install if you want a pure React navigator to work within the bottom sheet
+`@the-sheet/embedded-stack-navigator`: Install if you want a navigator to work within the bottom sheet
 
 ---
 

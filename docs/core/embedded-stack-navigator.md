@@ -84,6 +84,7 @@ return {
               initialParams={undefined}
               screens={screens}
               transitionType="fade"
+              fill
             />
           </BottomSheetView>
         </BottomSheet>
