@@ -216,6 +216,9 @@ importers:
       react-native-builder-bob:
         specifier: ^0.43.0
         version: 0.43.0
+      react-native-reanimated:
+        specifier: ~3.17.5
+        version: 3.17.5(@babel/core@7.29.7)(react-native@0.79.6(@babel/core@7.29.7)(@types/react@19.0.14)(react@19.0.0))(react@19.0.0)
       turbo:
         specifier: ^2.10.0
         version: 2.10.0

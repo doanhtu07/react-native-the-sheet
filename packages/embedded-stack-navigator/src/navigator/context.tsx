@@ -4,9 +4,6 @@ import type { EmbeddedStackNavigationApi, EmbeddedStackRoute } from './types'
 export const EmbeddedStackNavigationContext =
   createContext<EmbeddedStackNavigationApi | null>(null)
 
-export const EmbeddedStackRouteContext =
-  createContext<EmbeddedStackRoute | null>(null)
-
 export const useEmbeddedStackNavigation = <
   ParamList extends Record<string, unknown> = Record<string, unknown>,
 >() => {
@@ -21,6 +18,9 @@ export const useEmbeddedStackNavigation = <
 
   return nav
 }
+
+export const EmbeddedStackRouteContext =
+  createContext<EmbeddedStackRoute | null>(null)
 
 export const useEmbeddedStackRoute = <
   ParamList extends Record<string, unknown> = Record<string, unknown>,

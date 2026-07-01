@@ -1,14 +1,15 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Animated, StyleSheet, View } from 'react-native'
-import { EmbeddedStackScreen } from './stack-screen'
+import { StyleSheet, View } from 'react-native'
+import { useSharedValue, runOnJS, withSpring } from 'react-native-reanimated'
 import type {
   EmbeddedStackNavigationApi,
   EmbeddedStackNavigatorProps,
   EmbeddedStackRoute,
   ScreenRenderer,
 } from './types'
-import { FADE_DURATION_MS, SLIDE_DURATION_MS } from './config'
+import { SPRING_CONFIG } from './config'
 import { EmbeddedStackNavigationContext } from './context'
+import { EmbeddedStackContainer } from './stack-container'
 
 export const EmbeddedStackNavigator = function <
   Screens extends Record<string, ScreenRenderer>,
@@ -19,9 +20,11 @@ export const EmbeddedStackNavigator = function <
   initialParams,
   screens,
   transitionType = 'slide',
+  animateDynamicHeight = true,
+  fill = false,
+  styles: propStyles,
 }: EmbeddedStackNavigatorProps<Screens, ParamList, InitialRouteName>) {
-  const isMountedRef = useRef(false)
-  const fadeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const isMounted = useSharedValue(false)
 
   const [stack, setStack] = useState<EmbeddedStackRoute[]>([
     {
@@ -33,46 +36,66 @@ export const EmbeddedStackNavigator = function <
     },
   ])
 
-  const [removingScreenName, setRemovingScreenName] = useState<string | null>(
-    null,
-  )
+  const [navigatorWidth, setNavigatorWidth] = useState(0)
 
-  const [rootWidth, setRootWidth] = useState(0)
-  const translateX = useRef(new Animated.Value(0))
+  // MARK: Slide
+
+  const slideTranslateX = useSharedValue(0)
+
+  // MARK: Fade
+
+  const pendingFadeStackRef = useRef<EmbeddedStackRoute[] | null>(null)
+
+  const [removingFadeScreenName, setRemovingFadeScreenName] = useState<
+    string | null
+  >(null)
+
+  // MARK: Dynamic height
+
+  // route.key -> height
+  const [dynamicRouteHeights, setDynamicRouteHeights] = useState<
+    Record<string, number>
+  >({})
+
+  const currentDynamicRouteHeight = useSharedValue(0)
 
   // MARK: Transition methods
 
-  const jumpTo = useCallback((toValue: number) => {
-    translateX.current.setValue(toValue)
-  }, [])
+  const jumpTo = useCallback(
+    (toValue: number) => {
+      slideTranslateX.value = toValue
+    },
+    [slideTranslateX],
+  )
 
   const slideTo = useCallback(
     (toValue: number, newStack: EmbeddedStackRoute[]) => {
-      Animated.timing(translateX.current, {
-        toValue,
-        duration: SLIDE_DURATION_MS,
-        useNativeDriver: true,
-      }).start(({ finished }) => {
-        if (finished && isMountedRef.current) {
-          setStack(newStack)
+      slideTranslateX.value = withSpring(toValue, SPRING_CONFIG, (finished) => {
+        if (finished && isMounted.value) {
+          runOnJS(setStack)(newStack)
         }
       })
     },
-    [],
+    [isMounted, slideTranslateX],
   )
 
   const fadeTo = useCallback((newStack: EmbeddedStackRoute[]) => {
-    fadeTimeoutRef.current = setTimeout(() => {
-      if (!isMountedRef.current) return
-      setStack(newStack)
-      setRemovingScreenName(null)
-    }, FADE_DURATION_MS)
+    pendingFadeStackRef.current = newStack
+  }, [])
+
+  const onFadeComplete = useCallback(() => {
+    const pending = pendingFadeStackRef.current
+    if (!pending) return
+
+    pendingFadeStackRef.current = null
+    setStack(pending)
+    setRemovingFadeScreenName(null)
   }, [])
 
   // MARK: Navigation methods
 
   const navigate = useCallback(
-    function navigate<ScreenName extends keyof ParamList>(input: {
+    function navigateCore<ScreenName extends keyof ParamList>(input: {
       name: ScreenName
       params: ParamList[ScreenName]
     }) {
@@ -109,25 +132,23 @@ export const EmbeddedStackNavigator = function <
         }
 
         if (transitionType === 'slide') {
-          slideTo(-rootWidth * (newStack.length - 1), newStack)
+          slideTo(-navigatorWidth * (newStack.length - 1), newStack)
 
           // If screen already exists in stack, we keep previous stack, so the animation could finish smoothly
           // Then, after animation finishes, the new stack will be set (see slideTo callback)
           if (existingIdx !== -1) {
             return prev
           }
-        } else {
-          fadeTo(newStack)
         }
 
         return newStack
       })
     },
-    [transitionType, slideTo, rootWidth, fadeTo],
+    [transitionType, slideTo, navigatorWidth],
   )
 
   const push = useCallback(
-    function push<ScreenName extends keyof ParamList>(input: {
+    function pushCore<ScreenName extends keyof ParamList>(input: {
       name: ScreenName
       params: ParamList[ScreenName]
     }) {
@@ -145,15 +166,13 @@ export const EmbeddedStackNavigator = function <
         const newStack = [...prev, route]
 
         if (transitionType === 'slide') {
-          slideTo(-rootWidth * (newStack.length - 1), newStack)
-        } else {
-          fadeTo(newStack)
+          slideTo(-navigatorWidth * (newStack.length - 1), newStack)
         }
 
         return newStack
       })
     },
-    [transitionType, slideTo, rootWidth, fadeTo],
+    [transitionType, slideTo, navigatorWidth],
   )
 
   const pop = useCallback(() => {
@@ -163,18 +182,20 @@ export const EmbeddedStackNavigator = function <
       const newStack = prev.slice(0, -1)
 
       if (transitionType === 'slide') {
-        slideTo(-rootWidth * (prev.length - 2), newStack)
-      } else {
-        setRemovingScreenName(prev.at(-1)?.name || null)
+        slideTo(-navigatorWidth * (prev.length - 2), newStack)
+      } else if (transitionType === 'fade') {
+        setRemovingFadeScreenName(prev.at(-1)?.name || null)
         fadeTo(newStack)
+      } else if (transitionType === 'none') {
+        return newStack
       }
 
       return prev // Keep previous stack until animation finishes
     })
-  }, [transitionType, slideTo, rootWidth, fadeTo])
+  }, [transitionType, slideTo, navigatorWidth, fadeTo])
 
   const pushBefore = useCallback(
-    function pushBefore<ScreenName extends keyof ParamList>(input: {
+    function pushBeforeCore<ScreenName extends keyof ParamList>(input: {
       name: ScreenName
       params: ParamList[ScreenName]
     }) {
@@ -195,7 +216,7 @@ export const EmbeddedStackNavigator = function <
 
         // Step 2: Jump to current screen (last position in new stack)
         if (transitionType === 'slide') {
-          jumpTo(-rootWidth * (stackWithNewScreen.length - 1))
+          jumpTo(-navigatorWidth * (stackWithNewScreen.length - 1))
         }
 
         // Step 3: Schedule animation to the newly inserted screen
@@ -204,11 +225,11 @@ export const EmbeddedStackNavigator = function <
         return stackWithNewScreen
       })
     },
-    [transitionType, pop, jumpTo, rootWidth],
+    [transitionType, pop, jumpTo, navigatorWidth],
   )
 
   const replace = useCallback(
-    function replace<ScreenName extends keyof ParamList>(input: {
+    function replaceCore<ScreenName extends keyof ParamList>(input: {
       name: ScreenName
       params: ParamList[ScreenName]
     }) {
@@ -225,33 +246,35 @@ export const EmbeddedStackNavigator = function <
         const newStack = [...prev.slice(0, -1), route]
 
         if (transitionType === 'slide') {
-          slideTo(-rootWidth * (newStack.length - 1), newStack)
-        } else {
-          fadeTo(newStack)
+          slideTo(-navigatorWidth * (newStack.length - 1), newStack)
         }
 
         return newStack
       })
     },
-    [transitionType, slideTo, rootWidth, fadeTo],
+    [transitionType, slideTo, navigatorWidth],
   )
 
-  const reset = useCallback(function reset<
-    ScreenName extends keyof ParamList,
-  >(input: { name: ScreenName; params: ParamList[ScreenName] }) {
-    const { name, params } = input
+  const reset = useCallback(
+    function resetCore<ScreenName extends keyof ParamList>(input: {
+      name: ScreenName
+      params: ParamList[ScreenName]
+    }) {
+      const { name, params } = input
 
-    const route = {
-      key: `${String(name)}_${Date.now()}`,
-      name: String(name),
-      params,
-      isFocused: false,
-      canGoBack: false,
-    }
+      const route = {
+        key: `${String(name)}_${Date.now()}`,
+        name: String(name),
+        params,
+        isFocused: false,
+        canGoBack: false,
+      }
 
-    setStack([route])
-    translateX.current.setValue(0)
-  }, [])
+      setStack([route])
+      slideTranslateX.value = 0
+    },
+    [slideTranslateX],
+  )
 
   const navigation = useMemo(
     () => ({ push, pushBefore, pop, replace, reset, navigate }),
@@ -261,19 +284,13 @@ export const EmbeddedStackNavigator = function <
   // MARK: Effects
 
   useEffect(() => {
-    isMountedRef.current = true
-    const translateXCurrent = translateX.current
+    isMounted.value = true
 
     return () => {
-      isMountedRef.current = false
-
-      if (fadeTimeoutRef.current) {
-        clearTimeout(fadeTimeoutRef.current)
-      }
-
-      translateXCurrent.removeAllListeners()
+      isMounted.value = false
+      pendingFadeStackRef.current = null
     }
-  }, [])
+  }, [isMounted])
 
   // MARK: Renderers
 
@@ -282,35 +299,28 @@ export const EmbeddedStackNavigator = function <
       value={navigation as EmbeddedStackNavigationApi}
     >
       <View
-        style={styles.root}
-        onLayout={(e) => setRootWidth(e.nativeEvent.layout.width)}
+        style={[styles.root, propStyles?.root, fill && styles.fill]}
+        onLayout={(e) => setNavigatorWidth(e.nativeEvent.layout.width)}
       >
-        <Animated.View
-          style={[
-            styles.animatedContainer,
-            {
-              width:
-                transitionType === 'slide'
-                  ? rootWidth * stack.length
-                  : rootWidth,
-              transform: [{ translateX: translateX.current }],
-            },
-          ]}
-        >
-          {stack.map((route, idx) => (
-            <EmbeddedStackScreen
-              key={route.key}
-              screens={screens}
-              transitionType={transitionType}
-              //
-              route={route}
-              idx={idx}
-              stackLength={stack.length}
-              rootWidth={rootWidth}
-              removingScreenName={removingScreenName}
-            />
-          ))}
-        </Animated.View>
+        <EmbeddedStackContainer
+          screens={screens}
+          transitionType={transitionType}
+          animateDynamicHeight={animateDynamicHeight}
+          fill={fill}
+          //
+          stack={stack}
+          //
+          navigatorWidth={navigatorWidth}
+          //
+          slideTranslateX={slideTranslateX}
+          //
+          removingFadeScreenName={removingFadeScreenName}
+          onFadeComplete={onFadeComplete}
+          //
+          dynamicRouteHeights={dynamicRouteHeights}
+          setDynamicRouteHeights={setDynamicRouteHeights}
+          currentDynamicRouteHeight={currentDynamicRouteHeight}
+        />
       </View>
     </EmbeddedStackNavigationContext.Provider>
   )
@@ -319,12 +329,10 @@ export const EmbeddedStackNavigator = function <
 // MARK: Styles
 
 const styles = StyleSheet.create({
-  animatedContainer: {
+  fill: {
     flex: 1,
-    flexDirection: 'row',
   },
   root: {
-    flex: 1,
     overflow: 'hidden',
     width: '100%',
   },

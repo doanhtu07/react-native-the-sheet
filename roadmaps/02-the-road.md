@@ -68,9 +68,17 @@ To support that, we need:
 
 ---
 
-- [ ] Export https://benji.org/family-values. See if we can re-create something similar
-  - **Simple case**: Dynamic tray that has content inside + background that can animates height separately from the content inside (to avoid re-laying out)
-  - **Hard case**: Think how we can morph background shape and button position like one example in the link above
+- [ ] Explore https://benji.org/family-values. See if we can re-create something similar
+
+  - [x] **Bottom sheet case**: Reuse bottom sheet presenter to present the tray. The tray only needs to animate height based on its content
+  - [ ] **Tray from a button (simple)**: Tray spawns (morphs) from a button. The tray also has only one primary action, so it does not need to morph the button's position and size
+  - [ ] **Tray from a button (hard)**: Tray spawns (morphs) from a button. The tray could have two or more actions, so it needs to morph the button's position and size to the correct position and size of the tray's primary action
+  - [ ] **Tray expanding to full screen**: Tray animates to fill the whole screen
+
+Similar projects:
+
+- https://github.com/sivantha96/react-native-trays
+- https://github.com/torsello/react-native-floating-tray
 
 ---
 

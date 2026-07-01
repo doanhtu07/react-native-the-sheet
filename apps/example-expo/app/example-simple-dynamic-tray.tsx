@@ -1,35 +1,41 @@
 import { ThemedText } from '@/components/themed-text'
-import { ScreenA } from '@/features/example-navigator/screen-a'
-import { ScreenB } from '@/features/example-navigator/screen-b'
-import { RouteParamList } from '@/features/example-navigator/types'
 import { useCallback, useMemo, useState } from 'react'
-import { Button, StyleSheet, View } from 'react-native'
-import {
-  EmbeddedStackNavigator,
-  ScreenRenderer,
-} from '@the-sheet/embedded-stack-navigator'
+import { Button, StyleSheet, useColorScheme, View } from 'react-native'
 import {
   Backdrop,
   BottomSheet,
-  BottomSheetHandle,
   BottomSheetPresenter,
   BottomSheetProvider,
   BottomSheetView,
   SheetStackItem,
 } from '@the-sheet/the-sheet'
 import { Portal } from '@the-sheet/universe-portal'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { ScreenA } from '@/features/example-navigator/screen-a'
+import { ScreenB } from '@/features/example-navigator/screen-b'
+import { RouteParamList } from '@/features/example-navigator/types'
+import {
+  EmbeddedStackNavigator,
+  ScreenRenderer,
+} from '@the-sheet/embedded-stack-navigator'
 import { ScreenC } from '@/features/example-navigator/screen-c'
 
-export default function ExampleBottomSheetPresenter() {
+export default function ExampleSimpleDynamicTray() {
+  const theme = useColorScheme()
+  const safeAreaInsets = useSafeAreaInsets()
+
+  const isDark = theme === 'dark'
+  const backgroundColor = isDark ? '#1C1C1E' : '#FFFFFF'
+
   const [isOpenA, setIsOpenA] = useState(false)
 
   // MARK: Renderers
 
-  const renderScreenA = useCallback(() => <ScreenA fill />, [])
+  const renderScreenA = useCallback(() => <ScreenA />, [])
 
-  const renderScreenB = useCallback(() => <ScreenB fill />, [])
+  const renderScreenB = useCallback(() => <ScreenB />, [])
 
-  const renderScreenC = useCallback(() => <ScreenC fill />, [])
+  const renderScreenC = useCallback(() => <ScreenC />, [])
 
   const screens = useMemo(() => {
     return {
@@ -41,9 +47,7 @@ export default function ExampleBottomSheetPresenter() {
 
   return (
     <View style={styles.root}>
-      <ThemedText style={styles.header}>
-        Example Bottom Sheet With Navigator
-      </ThemedText>
+      <ThemedText style={styles.header}>Example Simple Dynamic Tray</ThemedText>
 
       <Button title="Open Sheet A" onPress={() => setIsOpenA(true)} />
 
@@ -57,11 +61,21 @@ export default function ExampleBottomSheetPresenter() {
           <Backdrop />
 
           <BottomSheetPresenter>
-            <BottomSheetProvider>
-              <BottomSheet fill styles={{ root: { maxHeight: '75%' } }}>
-                <BottomSheetHandle />
-
-                <BottomSheetView fill>
+            <BottomSheetProvider disableDrag>
+              <BottomSheet
+                styles={{
+                  root: [
+                    styles.trayContainer,
+                    {
+                      paddingBottom: safeAreaInsets.bottom,
+                      paddingTop: safeAreaInsets.top,
+                    },
+                  ],
+                }}
+              >
+                <BottomSheetView
+                  styles={{ root: [styles.tray, { backgroundColor }] }}
+                >
                   <ThemedText>Sheet A</ThemedText>
 
                   <Button
@@ -78,7 +92,7 @@ export default function ExampleBottomSheetPresenter() {
                     initialParams={undefined}
                     screens={screens}
                     transitionType="fade"
-                    fill
+                    animateDynamicHeight={true}
                   />
                 </BottomSheetView>
               </BottomSheet>
@@ -101,5 +115,13 @@ const styles = StyleSheet.create({
     flex: 1,
     gap: 8,
     padding: 16,
+  },
+  tray: {
+    borderRadius: 20,
+    padding: 20,
+  },
+  trayContainer: {
+    backgroundColor: 'transparent',
+    paddingHorizontal: 12,
   },
 })

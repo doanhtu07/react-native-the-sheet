@@ -9,7 +9,7 @@ import {
 } from '@the-sheet/embedded-stack-navigator'
 import { ScreenC } from '@/features/example-navigator/screen-c'
 
-export default function ExampleNavigatorSlide() {
+export default function ExampleNavigatorNone() {
   const renderScreenA = useCallback(() => <ScreenA />, [])
 
   const renderScreenB = useCallback(() => <ScreenB />, [])
@@ -30,8 +30,8 @@ export default function ExampleNavigatorSlide() {
         initialRouteName={'ScreenA'}
         initialParams={undefined}
         screens={screens}
-        transitionType="slide"
-        animateDynamicHeight
+        transitionType="none"
+        animateDynamicHeight={false}
         styles={{ root: styles.navigator }}
       />
     </View>
