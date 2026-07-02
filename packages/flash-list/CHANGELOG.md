@@ -1,11 +1,44 @@
 # @the-sheet/flash-list
 
+## 2.0.23
+
+### Patch Changes
+
+- Updated dependencies
+  - @the-sheet/the-sheet@2.0.23
+
+#### Changes only in `@the-sheet/embedded-stack-navigator`
+
+- Add `react-native-reanimated` as a peer dependency (⚠️ **BREAKING**)
+
+---
+
+- Remove `SLIDE_DURATION_MS`. Instead, sliding animation is done through new combo `withSpring` + `SPRING_CONFIG` (⚠️ **BREAKING**)
+
+---
+
+- Add new value for `transitionType` = `none`
+
+---
+
+- Add `animateDynamicHeight` prop to control whether the height of the stack navigator should animate when the content height changes. Defaults to `true`
+
+---
+
+- Add `fill` prop to control whether the stack navigator should fill the parent container. Defaults to `false` (⚠️ **BREAKING**)
+
+  - Before, the stack navigator would always fill the parent container, but now it will only do so if `fill` is set to `true`
+
+---
+
+- Add `styles` prop to override some stylings in the stack navigator
+
 ## 2.0.22
 
 ### Patch Changes
 
 - Updated dependencies
-  - @the-sheet/the-sheet@1.0.21
+  - @the-sheet/the-sheet@2.0.22
 
 ---
 
@@ -25,7 +58,7 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @the-sheet/the-sheet@1.0.20
+  - @the-sheet/the-sheet@2.0.21
 
 ---
 
