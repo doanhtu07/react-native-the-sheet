@@ -267,7 +267,7 @@ export default function Index() {
       <Text selectable>https://benji.org/family-values</Text>
 
       <Button
-        title="Example Dynamic Tray"
+        title="Example Simple Dynamic Tray"
         onPress={() => {
           router.push('/example-simple-dynamic-tray')
         }}
