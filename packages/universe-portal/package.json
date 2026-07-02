@@ -1,6 +1,6 @@
 {
   "name": "@the-sheet/universe-portal",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "Portals that transport your components to a different universe",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
