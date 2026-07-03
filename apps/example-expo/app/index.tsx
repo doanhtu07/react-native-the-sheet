@@ -272,6 +272,13 @@ export default function Index() {
           router.push('/example-simple-dynamic-tray')
         }}
       />
+
+      <Button
+        title="Example Simple Tray Morphing From Button"
+        onPress={() => {
+          router.push('/example-simple-tray-morphing-from-button')
+        }}
+      />
     </ScrollView>
   )
 }
