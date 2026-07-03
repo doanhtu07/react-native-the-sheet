@@ -1,5 +1,5 @@
 import { ThemedText } from '@/components/themed-text'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Text, Button, Pressable, StyleSheet, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useNavigation } from 'expo-router'
@@ -18,9 +18,9 @@ export default function ExampleSimpleTrayMorphingFromButton() {
   const navigation = useNavigation()
   const safeAreaInsets = useSafeAreaInsets()
 
-  const isOpen = useSharedValue(false)
+  const [isOpen, setIsOpen] = useState(false)
   const openProgress = useDerivedValue(() => {
-    return withTiming(isOpen.value ? 1 : 0, { duration: 300 })
+    return withTiming(isOpen ? 1 : 0, { duration: 300 })
   })
   const isPressing = useSharedValue(false)
 
@@ -73,7 +73,7 @@ export default function ExampleSimpleTrayMorphingFromButton() {
     )
 
     return {
-      backgroundColor: 'lightgray',
+      backgroundColor: 'white',
       overflow: 'hidden',
       position: 'absolute',
       opacity: isPressing.value && openProgress.value === 0 ? 0 : 1,
@@ -136,7 +136,7 @@ export default function ExampleSimpleTrayMorphingFromButton() {
     )
 
     return {
-      backgroundColor: 'lightgray',
+      backgroundColor: 'white',
       position: 'absolute',
       opacity: isPressing.value && openProgress.value === 0 ? 0 : 1,
       borderRadius,
@@ -163,7 +163,7 @@ export default function ExampleSimpleTrayMorphingFromButton() {
     const opacity = interpolate(openProgress.value, [0, 1], [0, 0.5])
 
     return {
-      ...StyleSheet.absoluteFillObject,
+      ...StyleSheet.absoluteFill,
       backgroundColor: '#000000',
       opacity,
     }
@@ -192,7 +192,10 @@ export default function ExampleSimpleTrayMorphingFromButton() {
       {/* MARK: Backdrop */}
       <Pressable
         style={StyleSheet.absoluteFill}
-        onPress={() => (isOpen.value = false)}
+        pointerEvents={isOpen ? 'auto' : 'none'}
+        onPress={() => {
+          setIsOpen(false)
+        }}
       >
         <Animated.View style={animatedBackdropStyle} />
       </Pressable>
@@ -201,7 +204,7 @@ export default function ExampleSimpleTrayMorphingFromButton() {
       <View
         style={styles.trayContainer}
         onLayout={(e) => {
-          trayContainerWidth.value = e.nativeEvent.layout.width
+          trayContainerWidth.set(e.nativeEvent.layout.width)
         }}
       >
         {/* MARK: Tray shape */}
@@ -210,7 +213,7 @@ export default function ExampleSimpleTrayMorphingFromButton() {
           <Animated.View
             style={animatedTrayContentStyle}
             onLayout={(e) => {
-              trayContentHeight.value = e.nativeEvent.layout.height
+              trayContentHeight.set(e.nativeEvent.layout.height)
             }}
           >
             <View style={styles.trayContentInner}>
@@ -232,17 +235,17 @@ export default function ExampleSimpleTrayMorphingFromButton() {
               pressed && styles.buttonPressed,
             ]}
             onLayout={(e) => {
-              trayButtonHeight.value = e.nativeEvent.layout.height
-              trayButtonWidth.value = e.nativeEvent.layout.width
+              trayButtonHeight.set(e.nativeEvent.layout.height)
+              trayButtonWidth.set(e.nativeEvent.layout.width)
             }}
             onPressIn={() => {
-              isPressing.value = true
+              isPressing.set(true)
             }}
             onPressOut={() => {
-              isPressing.value = false
+              isPressing.set(false)
             }}
             onPress={() => {
-              isOpen.value = !isOpen.value
+              setIsOpen(!isOpen)
             }}
           >
             <Text style={styles.buttonText}>Press Me</Text>
@@ -288,7 +291,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: TRAY_CONTAINER_PADDING,
   },
   trayContentInner: {
-    backgroundColor: 'lightgray',
     flex: 1,
     padding: 8,
   },
