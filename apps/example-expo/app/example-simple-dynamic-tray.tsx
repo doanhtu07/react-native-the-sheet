@@ -123,5 +123,6 @@ const styles = StyleSheet.create({
   trayContainer: {
     backgroundColor: 'transparent',
     paddingHorizontal: 12,
+    pointerEvents: 'box-none',
   },
 })
