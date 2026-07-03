@@ -71,7 +71,7 @@ To support that, we need:
 - [ ] Explore https://benji.org/family-values. See if we can re-create something similar
 
   - [x] **Bottom sheet case**: Reuse bottom sheet presenter to present the tray. The tray only needs to animate height based on its content
-  - [ ] **Tray from a button (simple)**: Tray spawns (morphs) from a button. The tray also has only one primary action, so it does not need to morph the button's position and size
+  - [x] **Tray from a button (simple)**: Tray spawns (morphs) from a button. The tray also has only one primary action, so it does not need to morph the button's position and size
   - [ ] **Tray from a button (hard)**: Tray spawns (morphs) from a button. The tray could have two or more actions, so it needs to morph the button's position and size to the correct position and size of the tray's primary action
   - [ ] **Tray expanding to full screen**: Tray animates to fill the whole screen
 
