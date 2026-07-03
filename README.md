@@ -35,6 +35,15 @@ The library relies on a few core dependencies:
 
 - [youtube comment sheet clone - android - adjust resize with keyboard provider](https://youtube.com/shorts/tBw6lPjeIR0)
 
+---
+
+- [family-style bottom sheet tray animate height](https://youtube.com/shorts/WeSuaElBuso?feature=share)
+
+---
+
+- [family-style tray morphing experiment](https://youtube.com/shorts/WsqvQHxsCn8?feature=share)
+  - **Note**: This is purely an experiment without using any actual APIs from this package
+
 ## Features
 
 - 📐 True dynamic sizing by default - snap points are opt-in, with full ScrollView support
