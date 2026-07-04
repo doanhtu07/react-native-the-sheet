@@ -30,7 +30,7 @@
     "@the-sheet/the-sheet": "workspace:*",
     "@the-sheet/universe-portal": "workspace:*",
     "expo": "^56.0.13",
-    "expo-constants": "~56.0.19",
+    "expo-constants": "~57.0.3",
     "expo-dev-client": "~56.0.21",
     "expo-font": "~56.0.7",
     "expo-haptics": "~56.0.3",
