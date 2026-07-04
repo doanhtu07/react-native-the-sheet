@@ -21,7 +21,7 @@
     "epc": "tsx scripts/expo-packages-check.ts"
   },
   "dependencies": {
-    "@expo/vector-icons": "^14.1.0",
+    "@expo/vector-icons": "^15.1.1",
     "@faker-js/faker": "^10.5.0",
     "@react-navigation/bottom-tabs": "^7.18.3",
     "@react-navigation/elements": "^2.9.26",
