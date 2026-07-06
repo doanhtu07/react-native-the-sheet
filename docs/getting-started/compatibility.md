@@ -4,7 +4,7 @@
 
 | Sheet version         | Reanimated version | React Native Worklets version | React Native version | React version           | Expo SDK version     |
 | --------------------- | ------------------ | ----------------------------- | -------------------- | ----------------------- | -------------------- |
-| 2.x.x (branch `main`) | 4.x.x              | 0.4.x - 0.8.x                 | 0.78 - 0.85          | Depends on React Native | Manages React Native |
+| 2.x.x (branch `main`) | 4.x.x              | 0.4.x - 0.10.x                | 0.78 - 0.86          | Depends on React Native | Manages React Native |
 | 1.x.x (branch `v1`)   | 3.x.x              | N/A                           | 0.63 - 0.81          | Depends on React Native | Manages React Native |
 
 ## Core dependencies
