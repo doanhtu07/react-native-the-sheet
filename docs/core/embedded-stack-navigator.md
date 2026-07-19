@@ -6,7 +6,7 @@ Traditionally, you would use `NavigationIndependentTree` to create an independen
 
 But it has limitations and is tricky to work with if you want to navigate outside from inside the bottom sheet
 
-Read more here: https://reactnavigation.org/docs/8.x/navigation-container#independent-navigation-containers
+[Read more here](https://reactnavigation.org/docs/8.x/navigation-container#independent-navigation-containers)
 
 ## Solution
 

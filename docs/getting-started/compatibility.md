@@ -16,8 +16,8 @@ If confused, check `apps/example-expo/package.json` to see the versions of the c
 `react-native-reanimated`
 
 - Defines our package major version => Other dependencies (React, React Native, ...) must be compatible with it
-- Check v4 compatibility table: https://docs.swmansion.com/react-native-reanimated/docs/4.x/guides/compatibility/
-- Check v3 compatibility table: https://docs.swmansion.com/react-native-reanimated/docs/3.x/guides/compatibility/
+- Check v4 compatibility table: [Compatibility Table V4](https://docs.swmansion.com/react-native-reanimated/docs/4.x/guides/compatibility/)
+- Check v3 compatibility table: [Compatibility Table V3](https://docs.swmansion.com/react-native-reanimated/docs/3.x/guides/compatibility/)
 
 ---
 
@@ -37,7 +37,7 @@ If confused, check `apps/example-expo/package.json` to see the versions of the c
 
 - Defines React version
 - Check React Native compatibility through its package.json
-  - Example: https://github.com/facebook/react-native/blob/v0.85.0/package.json
+  - Example: [package.json](https://github.com/facebook/react-native/blob/v0.85.0/package.json)
 
 ---
 
@@ -50,7 +50,7 @@ If confused, check `apps/example-expo/package.json` to see the versions of the c
 `expo`
 
 - Manages React Native version and some other dependencies (including Reanimated)
-- Check compatibility table: https://docs.expo.dev/versions/latest/
+- Check compatibility table: [Compatibility Table](https://docs.expo.dev/versions/latest/)
 
 Note: You can use `apps/example-expo/scripts/expo-packages-check.ts` to check the packages Expo manages
 

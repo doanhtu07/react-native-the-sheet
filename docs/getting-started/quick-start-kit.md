@@ -22,7 +22,7 @@ Required peer dependencies:
 
 `@the-sheet/universe-portal`: Install if you need portal features and don't have a library of your own yet
 
-- What are React Portals? https://www.w3schools.com/react/react_portals.asp
+- [What are React Portals?](https://www.w3schools.com/react/react_portals.asp)
 
 ---
 
@@ -40,7 +40,7 @@ While the library is stable enough for use, it is currently in a rapid experimen
 
 ## Sample code snippet
 
-- Check out full examples and test cases: [Example Expo App](../../apps/example-expo)
+- Check out full examples and test cases: [Example Expo App](https://github.com/doanhtu07/react-native-the-sheet/tree/v1/apps/example-expo)
 
 ### Wrap your app with necessary providers
 

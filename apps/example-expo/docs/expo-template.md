@@ -12,7 +12,7 @@ Template for simple Expo app
 
 ## Upgrading Expo SDK + dependencies
 
-https://docs.expo.dev/workflow/upgrading-expo-sdk-walkthrough/#upgrade-dependencies:
+[Upgrading Expo SDK](https://docs.expo.dev/workflow/upgrading-expo-sdk-walkthrough/#upgrade-dependencies)
 
 - `pnpx expo upgrade`: Upgrade the Expo SDK version and update all dependencies to compatible versions
   - Or `pnpm add expo@^55.0.0`
@@ -23,13 +23,13 @@ https://docs.expo.dev/workflow/upgrading-expo-sdk-walkthrough/#upgrade-dependenc
 
 Read more:
 
-- Code: https://github.com/expo/expo
+- Code: [expo/expo](https://github.com/expo/expo)
   - tools/src/Versions.ts
   - packages/expo-doctor/src/api/getNativeModuleVersionsAsync.ts
   - packages/expo/bundledNativeModules.json
 
-- All Expo versions: https://api.expo.dev/v2/versions/latest
-- Live Expo SDK package versions: https://api.expo.dev/v2/sdks/EXPO_SDK_VERSION.0.0/native-modules
+- All Expo versions: [https://api.expo.dev/v2/versions/latest](https://api.expo.dev/v2/versions/latest)
+- Live Expo SDK package versions: [https://api.expo.dev/v2/sdks/EXPO_SDK_VERSION.0.0/native-modules](https://api.expo.dev/v2/sdks/EXPO_SDK_VERSION.0.0/native-modules)
 
 ## Package management
 

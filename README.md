@@ -4,8 +4,8 @@
 
 ## GitBook docs
 
-- V1: https://the-sheet.gitbook.io/the-sheet-v1/
-- V2: https://the-sheet.gitbook.io/the-sheet-v2/
+- V1: [https://the-sheet.gitbook.io/the-sheet-v1/](https://the-sheet.gitbook.io/the-sheet-v1/)
+- V2: [https://the-sheet.gitbook.io/the-sheet-v2/](https://the-sheet.gitbook.io/the-sheet-v2/)
 
 ## Overview
 
@@ -54,11 +54,11 @@ The library relies on a few core dependencies:
 
 ## NPM packages
 
-- Embedded Stack Navigator: https://www.npmjs.com/package/@the-sheet/embedded-stack-navigator/v/1.0.22
-- Flash List V1: https://www.npmjs.com/package/@the-sheet/flash-list/v/1.0.22
-- Flash List V2: https://www.npmjs.com/package/@the-sheet/flash-list-v2/v/1.0.22
-- Universe Portal: https://www.npmjs.com/package/@the-sheet/universe-portal/v/1.0.22
-- The Sheet: https://www.npmjs.com/package/@the-sheet/the-sheet/v/1.0.22
+- Embedded Stack Navigator: [https://www.npmjs.com/package/@the-sheet/embedded-stack-navigator/v/1.0.22](https://www.npmjs.com/package/@the-sheet/embedded-stack-navigator/v/1.0.22)
+- Flash List V1: [https://www.npmjs.com/package/@the-sheet/flash-list/v/1.0.22](https://www.npmjs.com/package/@the-sheet/flash-list/v/1.0.22)
+- Flash List V2: [https://www.npmjs.com/package/@the-sheet/flash-list-v2/v/1.0.22](https://www.npmjs.com/package/@the-sheet/flash-list-v2/v/1.0.22)
+- Universe Portal: [https://www.npmjs.com/package/@the-sheet/universe-portal/v/1.0.22](https://www.npmjs.com/package/@the-sheet/universe-portal/v/1.0.22)
+- The Sheet: [https://www.npmjs.com/package/@the-sheet/the-sheet/v/1.0.22](https://www.npmjs.com/package/@the-sheet/the-sheet/v/1.0.22)
 
 ## Mental model
 
@@ -73,7 +73,7 @@ To get you started quickly, I've created a quick start kit that includes:
 - Installation instructions
 - Sample code snippet
 
-You can always refer to [Example Expo App](./apps/example-expo) for more complete examples and test cases
+You can always refer to [Example Expo App](https://github.com/doanhtu07/react-native-the-sheet/tree/v1/apps/example-expo) for more complete examples and test cases
 
 [Read more](./docs/getting-started/quick-start-kit.md)
 
@@ -110,7 +110,7 @@ Reanimated has really strict rules for versioning, so our library follows the ma
 I don't plan to support Web for a couple of reasons:
 
 1. Bottom sheets on web are usually not the right UX choice
-2. Web leans towards popups/modals which can be implemented much simpler with CSS and libraries like https://motion.dev
+2. Web leans towards popups/modals which can be implemented much simpler with CSS and libraries like [Motion](https://motion.dev)
 
 ---
 
@@ -121,8 +121,8 @@ I don't plan to support Web for a couple of reasons:
 
 Thank you to all the open source projects that inspired this project:
 
-- https://github.com/gorhom/react-native-bottom-sheet (For the original motivation)
-- https://github.com/shopify/react-native-skia (For Reanimated API design inspiration)
+- [gorhom/react-native-bottom-sheet](https://github.com/gorhom/react-native-bottom-sheet) (For the original motivation)
+- [shopify/react-native-skia](https://github.com/shopify/react-native-skia) (For Reanimated API design inspiration)
 
 ## Contributing
 
