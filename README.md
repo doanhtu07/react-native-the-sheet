@@ -110,7 +110,7 @@ Reanimated has really strict rules for versioning, so our library follows the ma
 I don't plan to support Web for a couple of reasons:
 
 1. Bottom sheets on web are usually not the right UX choice
-2. Web leans towards popups/modals which can be implemented much simpler with CSS and libraries like https://motion.dev
+2. Web leans towards popups/modals which can be implemented much simpler with CSS and libraries like [Motion](https://motion.dev)
 
 ---
 
@@ -121,8 +121,8 @@ I don't plan to support Web for a couple of reasons:
 
 Thank you to all the open source projects that inspired this project:
 
-- https://github.com/gorhom/react-native-bottom-sheet (For the original motivation)
-- https://github.com/shopify/react-native-skia (For Reanimated API design inspiration)
+- [gorhom/react-native-bottom-sheet](https://github.com/gorhom/react-native-bottom-sheet) (For the original motivation)
+- [shopify/react-native-skia](https://github.com/shopify/react-native-skia) (For Reanimated API design inspiration)
 
 ## Contributing
 

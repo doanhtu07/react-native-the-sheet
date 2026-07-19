@@ -68,7 +68,7 @@ To support that, we need:
 
 ---
 
-- [ ] Explore https://benji.org/family-values. See if we can re-create something similar
+- [ ] Explore [https://benji.org/family-values](https://benji.org/family-values). See if we can re-create something similar
 
   - [x] **Bottom sheet case**: Reuse bottom sheet presenter to present the tray. The tray only needs to animate height based on its content
   - [x] **Tray from a button (simple)**: Tray spawns (morphs) from a button. The tray also has only one primary action, so it does not need to morph the button's position and size
@@ -77,8 +77,8 @@ To support that, we need:
 
 Similar projects:
 
-- https://github.com/sivantha96/react-native-trays
-- https://github.com/torsello/react-native-floating-tray
+- [sivantha96/react-native-trays](https://github.com/sivantha96/react-native-trays)
+- [torsello/react-native-floating-tray](https://github.com/torsello/react-native-floating-tray)
 
 ---
 
