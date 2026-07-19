@@ -1,11 +1,11 @@
 # react-native-the-sheet
 
-[![Reanimated v4 version](https://img.shields.io/github/package-json/v/doanhtu07/react-native-the-sheet/main?filename=packages/the-sheet/package.json&label=Reanimated%20v4&style=flat-square)](https://github.com/doanhtu07/react-native-the-sheet) [![Reanimated v3 version](https://img.shields.io/github/package-json/v/doanhtu07/react-native-the-sheet/v1?filename=packages/the-sheet/package.json&label=Reanimated%20v3&style=flat-square)](https://github.com/doanhtu07/react-native-the-sheet/tree/v1) [![license](https://img.shields.io/npm/l/@gorhom/bottom-sheet?style=flat-square)]()
+[![Reanimated v4 version](https://img.shields.io/github/package-json/v/doanhtu07/react-native-the-sheet/main?filename=packages/the-sheet/package.json&label=Reanimated%20v4&style=flat-square)](https://github.com/doanhtu07/react-native-the-sheet) [![Reanimated v3 version](https://img.shields.io/github/package-json/v/doanhtu07/react-native-the-sheet/v1?filename=packages/the-sheet/package.json&label=Reanimated%20v3&style=flat-square)](https://github.com/doanhtu07/react-native-the-sheet/tree/v1) [![license](https://img.shields.io/npm/l/@gorhom/bottom-sheet?style=flat-square)](<>)
 
 ## GitBook docs
 
-- V1: https://the-sheet.gitbook.io/the-sheet-v1/
-- V2: https://the-sheet.gitbook.io/the-sheet-v2/
+- V1: [https://the-sheet.gitbook.io/the-sheet-v1/](https://the-sheet.gitbook.io/the-sheet-v1/)
+- V2: [https://the-sheet.gitbook.io/the-sheet-v2/](https://the-sheet.gitbook.io/the-sheet-v2/)
 
 ## Overview
 
@@ -54,11 +54,11 @@ The library relies on a few core dependencies:
 
 ## NPM packages
 
-- Embedded Stack Navigator: https://www.npmjs.com/package/@the-sheet/embedded-stack-navigator/v/2.0.23
-- Flash List V1: https://www.npmjs.com/package/@the-sheet/flash-list/v/2.0.23
-- Flash List V2: https://www.npmjs.com/package/@the-sheet/flash-list-v2/v/2.0.23
-- Universe Portal: https://www.npmjs.com/package/@the-sheet/universe-portal/v/2.0.23
-- The Sheet: https://www.npmjs.com/package/@the-sheet/the-sheet/v/2.0.23
+- Embedded Stack Navigator: [https://www.npmjs.com/package/@the-sheet/embedded-stack-navigator/v/2.0.23](https://www.npmjs.com/package/@the-sheet/embedded-stack-navigator/v/2.0.23)
+- Flash List V1: [https://www.npmjs.com/package/@the-sheet/flash-list/v/2.0.23](https://www.npmjs.com/package/@the-sheet/flash-list/v/2.0.23)
+- Flash List V2: [https://www.npmjs.com/package/@the-sheet/flash-list-v2/v/2.0.23](https://www.npmjs.com/package/@the-sheet/flash-list-v2/v/2.0.23)
+- Universe Portal: [https://www.npmjs.com/package/@the-sheet/universe-portal/v/2.0.23](https://www.npmjs.com/package/@the-sheet/universe-portal/v/2.0.23)
+- The Sheet: [https://www.npmjs.com/package/@the-sheet/the-sheet/v/2.0.23](https://www.npmjs.com/package/@the-sheet/the-sheet/v/2.0.23)
 
 ## Mental model
 
@@ -73,7 +73,7 @@ To get you started quickly, I've created a quick start kit that includes:
 - Installation instructions
 - Sample code snippet
 
-You can always refer to [Example Expo App](./apps/example-expo) for more complete examples and test cases
+You can always refer to [Example Expo App](https://github.com/doanhtu07/react-native-the-sheet/tree/main/apps/example-expo) for more complete examples and test cases
 
 [Read more](./docs/getting-started/quick-start-kit.md)
 
