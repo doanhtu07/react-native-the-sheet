@@ -78,10 +78,10 @@
     "nodemon": "^3.1.14",
     "prettier": "^3.9.5",
     "react": "19.2.3",
-    "react-native": "0.86.0",
+    "react-native": "0.86.2",
     "react-native-builder-bob": "^0.43.0",
-    "react-native-reanimated": "4.5.0",
-    "react-native-worklets": "0.10.0",
+    "react-native-reanimated": "4.5.1",
+    "react-native-worklets": "0.10.1",
     "turbo": "^2.10.4",
     "typescript": "~6.0.3"
   },
