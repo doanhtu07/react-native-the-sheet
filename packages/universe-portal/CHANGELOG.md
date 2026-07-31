@@ -1,5 +1,11 @@
 # @the-sheet/universe-portal
 
+## 1.0.23
+
+### Patch Changes
+
+- Remove redundant code in BottomSheetKeyboardExpander
+
 ## 1.0.22
 
 ### Patch Changes

@@ -61,15 +61,13 @@ export function BottomSheetKeyboardExpander({
   const checkShouldExpandTimeout = useRef<ReturnType<typeof setTimeout> | null>(
     null,
   )
-  const isCheckShouldExpandTimeoutSet = useSharedValue(false)
 
   const clearCheckShouldExpandTimeout = useCallback(() => {
     if (checkShouldExpandTimeout.current) {
       clearTimeout(checkShouldExpandTimeout.current)
       checkShouldExpandTimeout.current = null
-      isCheckShouldExpandTimeoutSet.value = false
     }
-  }, [isCheckShouldExpandTimeoutSet])
+  }, [])
 
   const cleanupInput = useCallback(() => {
     inputOverlap.value = null
@@ -91,8 +89,6 @@ export function BottomSheetKeyboardExpander({
           cleanupInput()
           return
         }
-
-        isCheckShouldExpandTimeoutSet.value = true
 
         const inputHandle = TextInput.State.currentlyFocusedInput()
 
@@ -152,7 +148,6 @@ export function BottomSheetKeyboardExpander({
       initialInputBottom,
       inputOverlap,
       isAndroidKeyboardResizeMode,
-      isCheckShouldExpandTimeoutSet,
       isEdgeToEdge,
       isInputFocused,
       safeAreaHeight,
@@ -215,25 +210,8 @@ export function BottomSheetKeyboardExpander({
 
       // Keyboard is hiding, reset everything
       if (!prepared.keyboardVisible && prepared.keyboardFinalHeight === 0) {
-        runOnJS(cleanupInput)()
-      }
-    },
-  )
-
-  // Effect: Detect Android adjustResize keyboard behavior
-  useAnimatedReaction(
-    () => {
-      return {
-        isAndroidKeyboardResizeMode: isAndroidKeyboardResizeMode.value,
-        isCheckShouldExpandTimeoutSet: isCheckShouldExpandTimeoutSet.value,
-      }
-    },
-    (prepared) => {
-      if (
-        prepared.isAndroidKeyboardResizeMode &&
-        prepared.isCheckShouldExpandTimeoutSet
-      ) {
         runOnJS(clearCheckShouldExpandTimeout)()
+        runOnJS(cleanupInput)()
       }
     },
   )

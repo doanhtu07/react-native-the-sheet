@@ -54,11 +54,11 @@ The library relies on a few core dependencies:
 
 ## NPM packages
 
-- Embedded Stack Navigator: [https://www.npmjs.com/package/@the-sheet/embedded-stack-navigator/v/1.0.22](https://www.npmjs.com/package/@the-sheet/embedded-stack-navigator/v/1.0.22)
-- Flash List V1: [https://www.npmjs.com/package/@the-sheet/flash-list/v/1.0.22](https://www.npmjs.com/package/@the-sheet/flash-list/v/1.0.22)
-- Flash List V2: [https://www.npmjs.com/package/@the-sheet/flash-list-v2/v/1.0.22](https://www.npmjs.com/package/@the-sheet/flash-list-v2/v/1.0.22)
-- Universe Portal: [https://www.npmjs.com/package/@the-sheet/universe-portal/v/1.0.22](https://www.npmjs.com/package/@the-sheet/universe-portal/v/1.0.22)
-- The Sheet: [https://www.npmjs.com/package/@the-sheet/the-sheet/v/1.0.22](https://www.npmjs.com/package/@the-sheet/the-sheet/v/1.0.22)
+- Embedded Stack Navigator: [https://www.npmjs.com/package/@the-sheet/embedded-stack-navigator/v/1.0.23](https://www.npmjs.com/package/@the-sheet/embedded-stack-navigator/v/1.0.23)
+- Flash List V1: [https://www.npmjs.com/package/@the-sheet/flash-list/v/1.0.23](https://www.npmjs.com/package/@the-sheet/flash-list/v/1.0.23)
+- Flash List V2: [https://www.npmjs.com/package/@the-sheet/flash-list-v2/v/1.0.23](https://www.npmjs.com/package/@the-sheet/flash-list-v2/v/1.0.23)
+- Universe Portal: [https://www.npmjs.com/package/@the-sheet/universe-portal/v/1.0.23](https://www.npmjs.com/package/@the-sheet/universe-portal/v/1.0.23)
+- The Sheet: [https://www.npmjs.com/package/@the-sheet/the-sheet/v/1.0.23](https://www.npmjs.com/package/@the-sheet/the-sheet/v/1.0.23)
 
 ## Mental model
 
