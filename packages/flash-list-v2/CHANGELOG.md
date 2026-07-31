@@ -1,5 +1,16 @@
 # @the-sheet/flash-list-v2
 
+## 2.0.24
+
+### Patch Changes
+
+- Updated dependencies
+  - @the-sheet/the-sheet@2.0.24
+
+---
+
+- Remove redundant code in BottomSheetKeyboardExpander
+
 ## 2.0.23
 
 ### Patch Changes
