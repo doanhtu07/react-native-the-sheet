@@ -62,7 +62,7 @@
   },
   "devDependencies": {
     "@eslint/compat": "^2.1.0",
-    "@eslint/eslintrc": "^3.3.5",
+    "@eslint/eslintrc": "^3.3.6",
     "@eslint/js": "^10.0.1",
     "@jest/globals": "^30.0.0",
     "@react-native/babel-preset": "0.86.2",
