@@ -62,7 +62,7 @@
   },
   "devDependencies": {
     "@eslint/compat": "^2.1.0",
-    "@eslint/eslintrc": "^3.3.5",
+    "@eslint/eslintrc": "^3.3.6",
     "@eslint/js": "^10.0.1",
     "@jest/globals": "^30.0.0",
     "@react-native/babel-preset": "0.86.2",
@@ -75,7 +75,7 @@
     "eslint-plugin-ft-flow": "^3.0.11",
     "eslint-plugin-prettier": "^5.5.5",
     "jest": "^30.3.0",
-    "prettier": "^3.9.5",
+    "prettier": "^3.9.6",
     "react": "19.2.3",
     "react-native": "0.86.2",
     "react-native-builder-bob": "^0.43.0",
