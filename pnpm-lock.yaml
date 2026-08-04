@@ -157,8 +157,8 @@ importers:
         specifier: ^7.8.5
         version: 7.8.5
       tsx:
-        specifier: ^4.23.0
-        version: 4.23.0
+        specifier: ^4.23.4
+        version: 4.23.5
       typescript:
         specifier: ~5.8.3
         version: 5.8.3
@@ -178,14 +178,14 @@ importers:
         specifier: ^30.0.0
         version: 30.4.1(supports-color@5.5.0)
       '@react-native/babel-preset':
-        specifier: 0.86.0
-        version: 0.86.0(@babel/core@7.29.7(supports-color@5.5.0))(supports-color@5.5.0)
+        specifier: 0.86.2
+        version: 0.86.2(@babel/core@7.29.7(supports-color@5.5.0))(supports-color@5.5.0)
       '@react-native/eslint-config':
-        specifier: 0.86.0
-        version: 0.86.0(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.4.2(@types/node@25.9.4)(supports-color@5.5.0))(prettier@3.8.4)(supports-color@5.5.0)(typescript@5.8.3)
+        specifier: 0.86.2
+        version: 0.86.2(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.4.2(@types/node@25.9.4)(supports-color@5.5.0))(prettier@3.8.4)(supports-color@5.5.0)(typescript@5.8.3)
       '@react-native/jest-preset':
-        specifier: 0.86.0
-        version: 0.86.0(@babel/core@7.29.7(supports-color@5.5.0))(react@19.0.0)(supports-color@5.5.0)
+        specifier: 0.86.2
+        version: 0.86.2(@babel/core@7.29.7(supports-color@5.5.0))(react@19.0.0)(supports-color@5.5.0)
       '@types/react':
         specifier: ~19.0.14
         version: 19.0.14
@@ -251,14 +251,14 @@ importers:
         specifier: ^30.0.0
         version: 30.4.1(supports-color@8.1.1)
       '@react-native/babel-preset':
-        specifier: 0.86.0
-        version: 0.86.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
+        specifier: 0.86.2
+        version: 0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       '@react-native/eslint-config':
-        specifier: 0.86.0
-        version: 0.86.0(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.4.2(@types/node@25.9.4)(supports-color@8.1.1))(prettier@3.8.4)(supports-color@8.1.1)(typescript@5.8.3)
+        specifier: 0.86.2
+        version: 0.86.2(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.4.2(@types/node@25.9.4)(supports-color@8.1.1))(prettier@3.8.4)(supports-color@8.1.1)(typescript@5.8.3)
       '@react-native/jest-preset':
-        specifier: 0.86.0
-        version: 0.86.0(@babel/core@7.29.7(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1)
+        specifier: 0.86.2
+        version: 0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1)
       '@shopify/flash-list':
         specifier: 1.7.6
         version: 1.7.6(@babel/runtime@7.29.7)(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)
@@ -324,14 +324,14 @@ importers:
         specifier: ^30.0.0
         version: 30.4.1(supports-color@8.1.1)
       '@react-native/babel-preset':
-        specifier: 0.86.0
-        version: 0.86.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
+        specifier: 0.86.2
+        version: 0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       '@react-native/eslint-config':
-        specifier: 0.86.0
-        version: 0.86.0(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.4.2(@types/node@25.9.4)(supports-color@8.1.1))(prettier@3.8.4)(supports-color@8.1.1)(typescript@5.8.3)
+        specifier: 0.86.2
+        version: 0.86.2(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.4.2(@types/node@25.9.4)(supports-color@8.1.1))(prettier@3.8.4)(supports-color@8.1.1)(typescript@5.8.3)
       '@react-native/jest-preset':
-        specifier: 0.86.0
-        version: 0.86.0(@babel/core@7.29.7(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1)
+        specifier: 0.86.2
+        version: 0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1)
       '@shopify/flash-list':
         specifier: 2.0.2
         version: 2.0.2(@babel/runtime@7.29.7)(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)
@@ -393,14 +393,14 @@ importers:
         specifier: ^30.0.0
         version: 30.4.1(supports-color@8.1.1)
       '@react-native/babel-preset':
-        specifier: 0.86.0
-        version: 0.86.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
+        specifier: 0.86.2
+        version: 0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       '@react-native/eslint-config':
-        specifier: 0.86.0
-        version: 0.86.0(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.4.2(@types/node@25.9.4)(supports-color@8.1.1))(prettier@3.8.4)(supports-color@8.1.1)(typescript@5.8.3)
+        specifier: 0.86.2
+        version: 0.86.2(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.4.2(@types/node@25.9.4)(supports-color@8.1.1))(prettier@3.8.4)(supports-color@8.1.1)(typescript@5.8.3)
       '@react-native/jest-preset':
-        specifier: 0.86.0
-        version: 0.86.0(@babel/core@7.29.7(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1)
+        specifier: 0.86.2
+        version: 0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1)
       '@types/react':
         specifier: ~19.0.14
         version: 19.0.14
@@ -465,14 +465,14 @@ importers:
         specifier: ^30.0.0
         version: 30.4.1(supports-color@8.1.1)
       '@react-native/babel-preset':
-        specifier: 0.86.0
-        version: 0.86.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
+        specifier: 0.86.2
+        version: 0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       '@react-native/eslint-config':
-        specifier: 0.86.0
-        version: 0.86.0(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.4.2(@types/node@25.9.4)(supports-color@8.1.1))(prettier@3.8.4)(supports-color@8.1.1)(typescript@5.8.3)
+        specifier: 0.86.2
+        version: 0.86.2(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.4.2(@types/node@25.9.4)(supports-color@8.1.1))(prettier@3.8.4)(supports-color@8.1.1)(typescript@5.8.3)
       '@react-native/jest-preset':
-        specifier: 0.86.0
-        version: 0.86.0(@babel/core@7.29.7(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1)
+        specifier: 0.86.2
+        version: 0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1)
       '@types/react':
         specifier: ~19.0.14
         version: 19.0.14
@@ -1932,8 +1932,8 @@ packages:
     resolution: {integrity: sha512-CS5OrgcMPixOyUJ/Sk/HSsKsKgyKT5P7y3CojimOQzWqRZBmoQfxdST4ugj7n1H+ebM2IKqbgovApFbqXsoX0g==}
     engines: {node: '>=18'}
 
-  '@react-native/babel-plugin-codegen@0.86.0':
-    resolution: {integrity: sha512-qdsABWNW7uTll90l4Vh03gjeyu3WVDi2CyiiyvYGMRDcoYbjbQi6df3BMAm9lQI2yslZ1T14LlDDAsgTwNxplA==}
+  '@react-native/babel-plugin-codegen@0.86.2':
+    resolution: {integrity: sha512-NNDZqOlNbH5SzgPks1jFDYH3234Rpa5e/nhZymxhIiBH3NcE3uD+rGj/HWXhH7nHF2ToGK6XbUpqy7nmJPeh+g==}
     engines: {node: ^20.19.4 || ^22.13.0 || ^24.3.0 || >= 25.0.0}
 
   '@react-native/babel-preset@0.79.6':
@@ -1942,8 +1942,8 @@ packages:
     peerDependencies:
       '@babel/core': '*'
 
-  '@react-native/babel-preset@0.86.0':
-    resolution: {integrity: sha512-bYQcWiPySNvF4dns9Ls9gMmwgq66ohvM9Fwc/Kn8r85t66UNHxch3p1QwPiSorDelFauZwJbgo9+ReibTgvpbA==}
+  '@react-native/babel-preset@0.86.2':
+    resolution: {integrity: sha512-4XKEJ6jKW9lXMB1O5o47gBoGgolde1fbX13gLW/erlcn+1ky+MHHo5UjuM3RWGdPJHIvIzekDDumSUHhB9x5iQ==}
     engines: {node: ^20.19.4 || ^22.13.0 || ^24.3.0 || >= 25.0.0}
     peerDependencies:
       '@babel/core': '*'
@@ -1954,8 +1954,8 @@ packages:
     peerDependencies:
       '@babel/core': '*'
 
-  '@react-native/codegen@0.86.0':
-    resolution: {integrity: sha512-uTs9DBo3+/lUqinsGZK0FKJRBVClrwMXoZToaDxE1Q2SL2e55vs2GwyZfIKzPl5uJnbu4PfFMIp0/mLXLWUMuA==}
+  '@react-native/codegen@0.86.2':
+    resolution: {integrity: sha512-xKkudsahUJ1n//55g4fXk5BStVqqmZlz8HQveL45ZxcfDnwvhuYe2GymksQANFsSN+slvrarjrfq8kIxJzbceA==}
     engines: {node: ^20.19.4 || ^22.13.0 || ^24.3.0 || >= 25.0.0}
     peerDependencies:
       '@babel/core': '*'
@@ -1984,16 +1984,27 @@ packages:
       eslint: ^8.0.0 || ^9.0.0
       prettier: '>=2'
 
+  '@react-native/eslint-config@0.86.2':
+    resolution: {integrity: sha512-6SLtYDNMfW2sVjCEXrwIRBA/1KxOfNHPVEAjJu6gUM08aDJurpnavgTzF3blKahAgokP2sabsiiWgCcx/1PtCw==}
+    engines: {node: ^20.19.4 || ^22.13.0 || ^24.3.0 || >= 25.0.0}
+    peerDependencies:
+      eslint: ^8.0.0 || ^9.0.0
+      prettier: '>=2'
+
   '@react-native/eslint-plugin@0.86.0':
     resolution: {integrity: sha512-v0zZAO9tfB72RdluTGHZcYDe5fIH6hf/bk8jATTCdwNNWcvPEjHdzuA2O6M4OAEmC+UDq/kURb+LY5f2fGGRGg==}
+    engines: {node: ^20.19.4 || ^22.13.0 || ^24.3.0 || >= 25.0.0}
+
+  '@react-native/eslint-plugin@0.86.2':
+    resolution: {integrity: sha512-Z2NdVQg8O+PIvzD4lsB00Irk/OMW9qqR+wCdt6WM0tuiFKnh00qX8ptKPkogSSx9ymXLqLNdpZ9Z0f6j+uzIRw==}
     engines: {node: ^20.19.4 || ^22.13.0 || ^24.3.0 || >= 25.0.0}
 
   '@react-native/gradle-plugin@0.79.6':
     resolution: {integrity: sha512-C5odetI6py3CSELeZEVz+i00M+OJuFZXYnjVD4JyvpLn462GesHRh+Se8mSkU5QSaz9cnpMnyFLJAx05dokWbA==}
     engines: {node: '>=18'}
 
-  '@react-native/jest-preset@0.86.0':
-    resolution: {integrity: sha512-KA+xpIP3DvJy7PQJ9c6ZdEKkOPChl+Rk/rV2MhQACEAzfhWU84407KZQv4ccyO3B4caD0gPrFjE96a4P993nsQ==}
+  '@react-native/jest-preset@0.86.2':
+    resolution: {integrity: sha512-wneoqwKWdv6wIcWotVgp6NMlMWcJDjxDnp7fVYym2Pn6JLgAKgkbmuHGmxW0cLCGoa9wtcO680uciv+Kzx0G7w==}
     engines: {node: '>= 20.19.4'}
     peerDependencies:
       react: ^19.2.3
@@ -2002,8 +2013,8 @@ packages:
     resolution: {integrity: sha512-6wOaBh1namYj9JlCNgX2ILeGUIwc6OP6MWe3Y5jge7Xz9fVpRqWQk88Q5Y9VrAtTMTcxoX3CvhrfRr3tGtSfQw==}
     engines: {node: '>=18'}
 
-  '@react-native/js-polyfills@0.86.0':
-    resolution: {integrity: sha512-zYy/Cjd1VTnZ2iCNaG9bDF9C3l2ntESiPRscjIlI5FKugu6aeTwsDSv1aI8Bc4Kp3vEdoVg+UQhLAhE4svREaQ==}
+  '@react-native/js-polyfills@0.86.2':
+    resolution: {integrity: sha512-bIwNcGBaQ74shB5z1mRkxOpjikimuwsnOCEkZSzL67Z1FTyK1ObpENfyd2QvcvVW9Cjl+tHuw9ynpBnb2jPoJQ==}
     engines: {node: ^20.19.4 || ^22.13.0 || ^24.3.0 || >= 25.0.0}
 
   '@react-native/normalize-colors@0.74.89':
@@ -5676,8 +5687,8 @@ packages:
   tslib@2.8.1:
     resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
-  tsx@4.23.0:
-    resolution: {integrity: sha512-eUdUIaCr963q2h5u3+QwvYp0+eqPvn+egeqZUm0hwERCqqx1E3kK5ehbGCvqSE5MQAULr67ww0cA3jKc3YkM1w==}
+  tsx@4.23.5:
+    resolution: {integrity: sha512-rw55FUaqOoI7RvlQwLbhO4nSDApnQ4/CykPuiQ/EPvtrX3WA9Ig55jIt9VvbBJbzJuj12ueRu4PMZ2SxPVbihg==}
     engines: {node: '>=18.0.0'}
     hasBin: true
 
@@ -8924,18 +8935,18 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  '@react-native/babel-plugin-codegen@0.86.0(@babel/core@7.29.7(supports-color@5.5.0))(supports-color@5.5.0)':
+  '@react-native/babel-plugin-codegen@0.86.2(@babel/core@7.29.7(supports-color@5.5.0))(supports-color@5.5.0)':
     dependencies:
       '@babel/traverse': 7.29.7(supports-color@5.5.0)
-      '@react-native/codegen': 0.86.0(@babel/core@7.29.7(supports-color@5.5.0))
+      '@react-native/codegen': 0.86.2(@babel/core@7.29.7(supports-color@5.5.0))
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
 
-  '@react-native/babel-plugin-codegen@0.86.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)':
+  '@react-native/babel-plugin-codegen@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)':
     dependencies:
       '@babel/traverse': 7.29.7(supports-color@8.1.1)
-      '@react-native/codegen': 0.86.0(@babel/core@7.29.7(supports-color@8.1.1))
+      '@react-native/codegen': 0.86.2(@babel/core@7.29.7(supports-color@8.1.1))
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
@@ -8990,7 +9001,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@react-native/babel-preset@0.86.0(@babel/core@7.29.7(supports-color@5.5.0))(supports-color@5.5.0)':
+  '@react-native/babel-preset@0.86.2(@babel/core@7.29.7(supports-color@5.5.0))(supports-color@5.5.0)':
     dependencies:
       '@babel/core': 7.29.7(supports-color@5.5.0)
       '@babel/plugin-proposal-export-default-from': 7.29.7(@babel/core@7.29.7(supports-color@5.5.0))
@@ -9021,14 +9032,14 @@ snapshots:
       '@babel/plugin-transform-runtime': 7.29.7(@babel/core@7.29.7(supports-color@5.5.0))(supports-color@5.5.0)
       '@babel/plugin-transform-typescript': 7.29.7(@babel/core@7.29.7(supports-color@5.5.0))(supports-color@5.5.0)
       '@babel/plugin-transform-unicode-regex': 7.29.7(@babel/core@7.29.7(supports-color@5.5.0))
-      '@react-native/babel-plugin-codegen': 0.86.0(@babel/core@7.29.7(supports-color@5.5.0))(supports-color@5.5.0)
+      '@react-native/babel-plugin-codegen': 0.86.2(@babel/core@7.29.7(supports-color@5.5.0))(supports-color@5.5.0)
       babel-plugin-syntax-hermes-parser: 0.36.0
       babel-plugin-transform-flow-enums: 0.0.2(@babel/core@7.29.7(supports-color@5.5.0))
       react-refresh: 0.14.2
     transitivePeerDependencies:
       - supports-color
 
-  '@react-native/babel-preset@0.86.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)':
+  '@react-native/babel-preset@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)':
     dependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
       '@babel/plugin-proposal-export-default-from': 7.29.7(@babel/core@7.29.7(supports-color@8.1.1))
@@ -9059,7 +9070,7 @@ snapshots:
       '@babel/plugin-transform-runtime': 7.29.7(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       '@babel/plugin-transform-typescript': 7.29.7(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       '@babel/plugin-transform-unicode-regex': 7.29.7(@babel/core@7.29.7(supports-color@8.1.1))
-      '@react-native/babel-plugin-codegen': 0.86.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
+      '@react-native/babel-plugin-codegen': 0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       babel-plugin-syntax-hermes-parser: 0.36.0
       babel-plugin-transform-flow-enums: 0.0.2(@babel/core@7.29.7(supports-color@8.1.1))
       react-refresh: 0.14.2
@@ -9086,7 +9097,7 @@ snapshots:
       nullthrows: 1.1.1
       yargs: 17.7.3
 
-  '@react-native/codegen@0.86.0(@babel/core@7.29.7(supports-color@5.5.0))':
+  '@react-native/codegen@0.86.2(@babel/core@7.29.7(supports-color@5.5.0))':
     dependencies:
       '@babel/core': 7.29.7(supports-color@5.5.0)
       '@babel/parser': 7.29.7
@@ -9096,7 +9107,7 @@ snapshots:
       tinyglobby: 0.2.17
       yargs: 17.7.3
 
-  '@react-native/codegen@0.86.0(@babel/core@7.29.7(supports-color@8.1.1))':
+  '@react-native/codegen@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))':
     dependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
       '@babel/parser': 7.29.7
@@ -9174,27 +9185,6 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@react-native/eslint-config@0.86.0(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.4.2(@types/node@25.9.4)(supports-color@5.5.0))(prettier@3.8.4)(supports-color@5.5.0)(typescript@5.8.3)':
-    dependencies:
-      '@babel/core': 7.29.7(supports-color@5.5.0)
-      '@babel/eslint-parser': 7.29.7(@babel/core@7.29.7(supports-color@5.5.0))(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))
-      '@react-native/eslint-plugin': 0.86.0
-      '@typescript-eslint/eslint-plugin': 8.62.0(@typescript-eslint/parser@8.62.0(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3))(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3)
-      '@typescript-eslint/parser': 8.62.0(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3)
-      eslint: 10.7.0(jiti@2.6.1)(supports-color@5.5.0)
-      eslint-config-prettier: 8.10.2(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))
-      eslint-plugin-eslint-comments: 3.2.0(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))
-      eslint-plugin-ft-flow: 2.0.3(@babel/eslint-parser@7.29.7(@babel/core@7.29.7(supports-color@5.5.0))(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0)))(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))
-      eslint-plugin-jest: 29.15.2(@typescript-eslint/eslint-plugin@8.62.0(@typescript-eslint/parser@8.62.0(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3))(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3))(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.4.2(@types/node@25.9.4)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3)
-      eslint-plugin-react: 7.37.5(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))
-      eslint-plugin-react-hooks: 7.1.1(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)
-      eslint-plugin-react-native: 5.0.0(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))
-      prettier: 3.8.4
-    transitivePeerDependencies:
-      - jest
-      - supports-color
-      - typescript
-
   '@react-native/eslint-config@0.86.0(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.4.2(@types/node@25.9.4)(supports-color@8.1.1))(prettier@3.8.4)(supports-color@8.1.1)(typescript@5.8.3)':
     dependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
@@ -9216,14 +9206,58 @@ snapshots:
       - supports-color
       - typescript
 
+  '@react-native/eslint-config@0.86.2(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.4.2(@types/node@25.9.4)(supports-color@5.5.0))(prettier@3.8.4)(supports-color@5.5.0)(typescript@5.8.3)':
+    dependencies:
+      '@babel/core': 7.29.7(supports-color@5.5.0)
+      '@babel/eslint-parser': 7.29.7(@babel/core@7.29.7(supports-color@5.5.0))(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))
+      '@react-native/eslint-plugin': 0.86.2
+      '@typescript-eslint/eslint-plugin': 8.62.0(@typescript-eslint/parser@8.62.0(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3))(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3)
+      '@typescript-eslint/parser': 8.62.0(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3)
+      eslint: 10.7.0(jiti@2.6.1)(supports-color@5.5.0)
+      eslint-config-prettier: 8.10.2(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))
+      eslint-plugin-eslint-comments: 3.2.0(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))
+      eslint-plugin-ft-flow: 2.0.3(@babel/eslint-parser@7.29.7(@babel/core@7.29.7(supports-color@5.5.0))(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0)))(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))
+      eslint-plugin-jest: 29.15.2(@typescript-eslint/eslint-plugin@8.62.0(@typescript-eslint/parser@8.62.0(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3))(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3))(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.4.2(@types/node@25.9.4)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@5.8.3)
+      eslint-plugin-react: 7.37.5(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))
+      eslint-plugin-react-hooks: 7.1.1(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)
+      eslint-plugin-react-native: 5.0.0(eslint@10.7.0(jiti@2.6.1)(supports-color@5.5.0))
+      prettier: 3.8.4
+    transitivePeerDependencies:
+      - jest
+      - supports-color
+      - typescript
+
+  '@react-native/eslint-config@0.86.2(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.4.2(@types/node@25.9.4)(supports-color@8.1.1))(prettier@3.8.4)(supports-color@8.1.1)(typescript@5.8.3)':
+    dependencies:
+      '@babel/core': 7.29.7(supports-color@8.1.1)
+      '@babel/eslint-parser': 7.29.7(@babel/core@7.29.7(supports-color@8.1.1))(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))
+      '@react-native/eslint-plugin': 0.86.2
+      '@typescript-eslint/eslint-plugin': 8.62.0(@typescript-eslint/parser@8.62.0(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.8.3))(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.8.3)
+      '@typescript-eslint/parser': 8.62.0(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.8.3)
+      eslint: 10.7.0(jiti@2.6.1)(supports-color@8.1.1)
+      eslint-config-prettier: 8.10.2(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))
+      eslint-plugin-eslint-comments: 3.2.0(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))
+      eslint-plugin-ft-flow: 2.0.3(@babel/eslint-parser@7.29.7(@babel/core@7.29.7(supports-color@8.1.1))(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1)))(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))
+      eslint-plugin-jest: 29.15.2(@typescript-eslint/eslint-plugin@8.62.0(@typescript-eslint/parser@8.62.0(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.8.3))(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.8.3))(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.4.2(@types/node@25.9.4)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.8.3)
+      eslint-plugin-react: 7.37.5(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))
+      eslint-plugin-react-hooks: 7.1.1(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)
+      eslint-plugin-react-native: 5.0.0(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))
+      prettier: 3.8.4
+    transitivePeerDependencies:
+      - jest
+      - supports-color
+      - typescript
+
   '@react-native/eslint-plugin@0.86.0': {}
+
+  '@react-native/eslint-plugin@0.86.2': {}
 
   '@react-native/gradle-plugin@0.79.6': {}
 
-  '@react-native/jest-preset@0.86.0(@babel/core@7.29.7(supports-color@5.5.0))(react@19.0.0)(supports-color@5.5.0)':
+  '@react-native/jest-preset@0.86.2(@babel/core@7.29.7(supports-color@5.5.0))(react@19.0.0)(supports-color@5.5.0)':
     dependencies:
       '@jest/create-cache-key-function': 29.7.0
-      '@react-native/js-polyfills': 0.86.0
+      '@react-native/js-polyfills': 0.86.2
       babel-jest: 29.7.0(@babel/core@7.29.7(supports-color@5.5.0))(supports-color@5.5.0)
       jest-environment-node: 29.7.0
       react: 19.0.0
@@ -9232,10 +9266,10 @@ snapshots:
       - '@babel/core'
       - supports-color
 
-  '@react-native/jest-preset@0.86.0(@babel/core@7.29.7(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1)':
+  '@react-native/jest-preset@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1)':
     dependencies:
       '@jest/create-cache-key-function': 29.7.0
-      '@react-native/js-polyfills': 0.86.0
+      '@react-native/js-polyfills': 0.86.2
       babel-jest: 29.7.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       jest-environment-node: 29.7.0
       react: 19.0.0
@@ -9246,7 +9280,7 @@ snapshots:
 
   '@react-native/js-polyfills@0.79.6': {}
 
-  '@react-native/js-polyfills@0.86.0': {}
+  '@react-native/js-polyfills@0.86.2': {}
 
   '@react-native/normalize-colors@0.74.89': {}
 
@@ -14466,7 +14500,7 @@ snapshots:
 
   tslib@2.8.1: {}
 
-  tsx@4.23.0:
+  tsx@4.23.5:
     dependencies:
       esbuild: 0.28.1
     optionalDependencies:
