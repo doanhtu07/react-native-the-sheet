@@ -83,7 +83,7 @@
     "react-native-reanimated": "4.5.1",
     "react-native-safe-area-context": "~5.7.0",
     "react-native-worklets": "0.10.1",
-    "turbo": "^2.10.4",
+    "turbo": "^2.10.8",
     "typescript": "~6.0.3"
   },
   "peerDependencies": {
