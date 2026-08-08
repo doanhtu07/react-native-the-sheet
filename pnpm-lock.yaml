@@ -108,8 +108,8 @@ importers:
         specifier: ~2.24.0
         version: 2.24.0(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)
       react-native-keyboard-controller:
-        specifier: ^1.22.0
-        version: 1.22.0(react-native-reanimated@3.17.5(@babel/core@7.29.7(supports-color@8.1.1))(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1))(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)
+        specifier: ^1.22.3
+        version: 1.22.3(react-native-reanimated@3.17.5(@babel/core@7.29.7(supports-color@8.1.1))(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1))(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)
       react-native-reanimated:
         specifier: ~3.17.5
         version: 3.17.5(@babel/core@7.29.7(supports-color@8.1.1))(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1)
@@ -5134,8 +5134,8 @@ packages:
       react: '*'
       react-native: '*'
 
-  react-native-keyboard-controller@1.22.0:
-    resolution: {integrity: sha512-FT8/xmb69o8rlqAxHg808p+m6+wigDLYWATKOnUgOoF2XlE2HV/2uPD6umKUg9sL6EX/uuLzoLMdsJlJGtwO9g==}
+  react-native-keyboard-controller@1.22.3:
+    resolution: {integrity: sha512-MLIV5IFKT7IUjEzALgrE1Ja+i69UGSBhQTXJCZvDd9EPktLXDPINxn1ODsnfWDP+yp2zbd+5h8GQMuGBHhliiA==}
     peerDependencies:
       react: '*'
       react-native: '*'
@@ -13760,7 +13760,7 @@ snapshots:
       react: 19.0.0
       react-native: 0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1)
 
-  react-native-keyboard-controller@1.22.0(react-native-reanimated@3.17.5(@babel/core@7.29.7(supports-color@8.1.1))(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1))(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0):
+  react-native-keyboard-controller@1.22.3(react-native-reanimated@3.17.5(@babel/core@7.29.7(supports-color@8.1.1))(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1))(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0):
     dependencies:
       react: 19.0.0
       react-native: 0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1)
