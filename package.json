@@ -7,7 +7,13 @@
   "author": "",
   "license": "MIT",
   "main": "index.js",
-  "packageManager": "pnpm@11.18.0",
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^11.21.0",
+      "onFail": "download"
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean-deps": "bash ./scripts/clean-deps.sh",
