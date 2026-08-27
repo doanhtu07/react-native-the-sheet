@@ -18,7 +18,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean-deps": "bash ./scripts/clean-deps.sh",
     "prepare": "husky",
-    "typecheck": "pnpm -r --parallel typecheck"
+    "typecheck": "pnpm -r --parallel typecheck",
+    "build:packages": "bash ./scripts/build-packages.sh"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.1",
