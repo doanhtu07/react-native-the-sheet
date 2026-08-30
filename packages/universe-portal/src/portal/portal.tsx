@@ -23,7 +23,9 @@ export function usePortalHosts() {
   const ctx = useContext(PortalHostsCtx)
 
   if (!ctx) {
-    throw new Error('Portal components must be used inside <PortalProvider>')
+    throw new Error(
+      '@the-sheet/universe-portal - src/portal/portal.tsx - Portal components must be used inside <PortalProvider>',
+    )
   }
 
   return ctx

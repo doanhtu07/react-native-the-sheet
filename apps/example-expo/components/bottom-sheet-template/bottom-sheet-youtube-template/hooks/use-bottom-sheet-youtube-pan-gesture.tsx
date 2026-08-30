@@ -1,6 +1,10 @@
-import { useCallback } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { Gesture } from 'react-native-gesture-handler'
-import { useSharedValue, withSpring } from 'react-native-reanimated'
+import {
+  useAnimatedReaction,
+  useSharedValue,
+  withSpring,
+} from 'react-native-reanimated'
 import {
   FLICK_VELOCITY_THRESHOLD,
   isApproxEqual,
@@ -33,10 +37,9 @@ export const useBottomSheetYoutubePanGesture = ({ close, sheetId }: Props) => {
     snapTranslateYs,
     translateY,
     isTranslateYAnimating,
+    activeScrollViewIds,
+    getScrollViewMetadata,
     isScrollViewInteracting,
-    scrollY,
-    scrollViewHeight,
-    scrollViewContentHeight,
     isPanGestureActive,
   } = commentSheet
 
@@ -44,6 +47,17 @@ export const useBottomSheetYoutubePanGesture = ({ close, sheetId }: Props) => {
 
   const snapshotTranslateY = useSharedValue(0)
   const lastTranslationY = useSharedValue(0)
+
+  const [activeScrollViewId, setActiveScrollViewId] = useState<
+    string | undefined
+  >(undefined)
+
+  const metadata = useMemo(() => {
+    if (!activeScrollViewId) {
+      return undefined
+    }
+    return getScrollViewMetadata?.(activeScrollViewId)
+  }, [activeScrollViewId, getScrollViewMetadata])
 
   const cleanupGesture = () => {
     'worklet'
@@ -54,8 +68,21 @@ export const useBottomSheetYoutubePanGesture = ({ close, sheetId }: Props) => {
 
     isPanGestureActive.value = false
   }
-
   const cleanupGestureRef = useSyncedRef(cleanupGesture)
+
+  // MARK: Effects
+
+  useAnimatedReaction(
+    () => {
+      return {
+        activeScrollViewIds: activeScrollViewIds?.value,
+      }
+    },
+    (prepared) => {
+      const activeId = Object.keys(prepared.activeScrollViewIds || {}).at(-1)
+      runOnJS(setActiveScrollViewId)(activeId)
+    },
+  )
 
   // MARK: Pan gesture
 
@@ -92,11 +119,13 @@ export const useBottomSheetYoutubePanGesture = ({ close, sheetId }: Props) => {
           TRANSLATE_Y_REST_THRESHOLD,
         )
 
-        const isScrollAtTop = scrollY.value <= SCROLL_Y_TOP_THRESHOLD
+        const isScrollAtTop =
+          (metadata?.scrollY.value || 0) <= SCROLL_Y_TOP_THRESHOLD
 
         const isScrollAtBottom =
-          scrollY.value >=
-          scrollViewContentHeight.value - scrollViewHeight.value
+          (metadata?.scrollY.value || 0) >=
+          (metadata?.scrollViewContentHeight.value || 0) -
+            (metadata?.scrollViewHeight.value || 0)
 
         // If we are moving UP fast (velocityY < -MICRO_FLICK_VELOCITY_THRESHOLD)
         // and we are already at or above the rest point,
@@ -139,7 +168,9 @@ export const useBottomSheetYoutubePanGesture = ({ close, sheetId }: Props) => {
       .onEnd((event) => {
         'worklet'
 
-        const isAtScrollTop = scrollY.value <= SCROLL_Y_TOP_THRESHOLD
+        const isAtScrollTop =
+          (metadata?.scrollY.value || 0) <= SCROLL_Y_TOP_THRESHOLD
+
         const isFlickedDown = event.velocityY > FLICK_VELOCITY_THRESHOLD
 
         if (isFlickedDown && isAtScrollTop) {
@@ -198,13 +229,11 @@ export const useBottomSheetYoutubePanGesture = ({ close, sheetId }: Props) => {
     closeRef,
     cleanupGestureRef,
     isCommentSheetAvailable,
+    metadata,
     isPanGestureActive,
     snapshotTranslateY,
     translateY,
     lastTranslationY,
-    scrollY,
-    scrollViewContentHeight,
-    scrollViewHeight,
     isScrollViewInteracting,
     snapTranslateYs,
     enableOverdrag,

@@ -1,41 +1,54 @@
-import Animated, {
-  scrollTo,
-  useAnimatedReaction,
-  useAnimatedStyle,
-} from 'react-native-reanimated'
+import Animated, { useAnimatedStyle } from 'react-native-reanimated'
 import type { BottomSheetScrollViewProps } from './types'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
-import { StyleSheet } from 'react-native'
-import { useMemo } from 'react'
+import { ScrollView, StyleSheet } from 'react-native'
+import {
+  forwardRef,
+  useCallback,
+  useId,
+  useMemo,
+  useRef,
+  type Ref,
+} from 'react'
 import { useBottomSheetScrollViewUtils } from './hooks/use-bottom-sheet-scroll-view-utils'
 import { useBottomSheetPanGesture } from './hooks/use-bottom-sheet-pan-gesture'
-import { useBottomSheet } from './bottom-sheet-provider'
 import { useToSharedValue } from '../hooks/use-to-shared-value'
 import { runOnJS } from 'react-native-worklets'
+import {
+  useBottomSheetClaimScrollViewRef,
+  useBottomSheetCleanupScrollViewMetadata,
+  useBottomSheetLockScroll,
+} from './hooks'
 
-export function BottomSheetScrollView({
-  fill: propFill = false,
-  getPanGesture: propGetPanGesture,
+function BottomSheetScrollViewInner(
+  {
+    fill: propFill = false,
+    isActive: propIsActive = true,
+    getPanGesture: propGetPanGesture,
 
-  onLayout: propOnLayout,
-  onContentSizeChange: propOnContentSizeChange,
-  onTouchStart: propOnTouchStart,
-  onTouchEnd: propOnTouchEnd,
+    onLayout: propOnLayout,
+    onContentSizeChange: propOnContentSizeChange,
+    onTouchStart: propOnTouchStart,
+    onTouchEnd: propOnTouchEnd,
 
-  onScroll: propOnScroll,
-  onBeginDrag: propOnBeginDrag,
-  onEndDrag: propOnEndDrag,
-  onMomentumBegin: propOnMomentumBegin,
-  onMomentumEnd: propOnMomentumEnd,
+    onScroll: propOnScroll,
+    onBeginDrag: propOnBeginDrag,
+    onEndDrag: propOnEndDrag,
+    onMomentumBegin: propOnMomentumBegin,
+    onMomentumEnd: propOnMomentumEnd,
 
-  style,
-  contentContainerStyle,
+    style,
+    contentContainerStyle,
 
-  children,
-  ...rest
-}: Readonly<BottomSheetScrollViewProps>) {
-  const { scrollViewRef, scrollY, lockedScrollY, isScrollLocked } =
-    useBottomSheet()
+    children,
+    ...rest
+  }: Readonly<BottomSheetScrollViewProps>,
+
+  ref: Ref<ScrollView>,
+) {
+  const id = useId()
+  const nativeRef = useRef<ScrollView | null>(null)
+  const isActive = useToSharedValue(propIsActive)
 
   const getPanGesture = useBottomSheetPanGesture()
 
@@ -49,6 +62,7 @@ export function BottomSheetScrollView({
     onTouchEnd,
     onScroll,
   } = useBottomSheetScrollViewUtils({
+    scrollViewId: id,
     onLayout: propOnLayout,
     onContentSizeChange: propOnContentSizeChange,
     onTouchStart: propOnTouchStart,
@@ -69,26 +83,30 @@ export function BottomSheetScrollView({
     })
   }, [getPanGesture, propGetPanGesture, unsetScrollViewInteracting])
 
+  // Callback ref: store node locally + forward to consumer
+  const callbackRef = useCallback(
+    (node: any) => {
+      nativeRef.current = node
+      if (typeof ref === 'function') ref(node)
+      else if (ref) ref.current = node
+    },
+    [ref],
+  )
+
   // MARK: Effects
 
-  useAnimatedReaction(
-    () => ({
-      isScrollLocked: isScrollLocked.value,
-      lockedScrollY: lockedScrollY.value,
-      scrollY: scrollY.value,
-    }),
-    (prepared) => {
-      // If we are locked but the current scroll doesn't match the target
-      // might be due to momentum)
-      // force it back immediately
-      if (
-        prepared.isScrollLocked &&
-        prepared.scrollY !== prepared.lockedScrollY
-      ) {
-        scrollTo(scrollViewRef, 0, prepared.lockedScrollY, false)
-      }
-    },
-  )
+  // Effect: Clean up metadata when unmounting
+  useBottomSheetCleanupScrollViewMetadata({ scrollViewId: id })
+
+  // Effect: Claim scroll view ref
+  useBottomSheetClaimScrollViewRef({
+    scrollViewId: id,
+    scrollViewNativeRef: nativeRef,
+    isActive,
+  })
+
+  // Effect: Lock scrolling
+  useBottomSheetLockScroll({ scrollViewId: id, isActive })
 
   // MARK: Preparation
 
@@ -106,7 +124,7 @@ export function BottomSheetScrollView({
     >
       <Animated.ScrollView
         {...rest}
-        ref={scrollViewRef}
+        ref={callbackRef}
         style={[styles.root, style, animatedStyle]}
         contentContainerStyle={contentContainerStyle}
         bounces={false} // iOS bounce ruins the scrollY <= 0 check
@@ -121,6 +139,10 @@ export function BottomSheetScrollView({
     </GestureDetector>
   )
 }
+
+export const BottomSheetScrollView = forwardRef(BottomSheetScrollViewInner) as (
+  props: BottomSheetScrollViewProps & { ref?: Ref<ScrollView> },
+) => ReturnType<typeof BottomSheetScrollViewInner>
 
 // MARK: Styles
 

@@ -7,6 +7,7 @@ import type { AnimatedProp } from '../types'
 export type HeightBudgetContextType = {
   maxHeight: SharedValue<number>
   staticHeights: SharedValue<Record<string, number>>
+  activeClaimIds: SharedValue<Record<string, boolean>>
 }
 
 export type HeightBudgetProviderProps = PropsWithChildren & {
@@ -16,6 +17,7 @@ export type HeightBudgetProviderProps = PropsWithChildren & {
 type AnimatedViewProps = ComponentProps<typeof Animated.View>
 
 export type HeightClaimProps = Omit<AnimatedViewProps, 'onLayout'> & {
+  isActive?: AnimatedProp<boolean>
   onLayout?: (e: LayoutChangeEvent) => void
 }
 

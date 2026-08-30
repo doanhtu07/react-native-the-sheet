@@ -1,13 +1,27 @@
-import { createContext, useContext, useEffect, useId, useRef } from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useId,
+  useRef,
+} from 'react'
 import {
   useSharedValue,
   useDerivedValue,
   useAnimatedRef,
+  makeMutable,
+  useAnimatedReaction,
+  runOnJS,
 } from 'react-native-reanimated'
 import { useSyncedSharedValue } from '../hooks/use-synced-shared-value'
 import { useToSharedValue } from '../hooks/use-to-shared-value'
 import { useTrueSafeArea } from '../hooks'
-import type { BottomSheetContextType, BottomSheetProviderProps } from './types'
+import type {
+  BottomSheetContextType,
+  BottomSheetProviderProps,
+  ScrollViewMetadata,
+} from './types'
 import { useBottomSheetRegistryDangerously } from './bottom-sheet-registry-provider'
 
 const BottomSheetContext = createContext<BottomSheetContextType | undefined>(
@@ -18,7 +32,9 @@ export const useBottomSheet = () => {
   const context = useContext(BottomSheetContext)
 
   if (!context) {
-    throw new Error('useBottomSheet must be used within a BottomSheetProvider')
+    throw new Error(
+      '@the-sheet/the-sheet - src/core/bottom-sheet/bottom-sheet-provider.tsx - useBottomSheet must be used within a BottomSheetProvider',
+    )
   }
 
   return context
@@ -40,6 +56,8 @@ export function BottomSheetProvider({
   const unregisterSheet = bottomSheetRegistry?.unregisterSheet
 
   const safeAreaHeight = useToSharedValue(safeAreaHeightValue)
+
+  // MARK: Bottom sheet state
 
   const snapPoints = useToSharedValue(propSnapPoints)
   const enableFloat = useToSharedValue(propEnableFloat)
@@ -90,22 +108,71 @@ export function BottomSheetProvider({
 
   const isTranslateYAnimating = useSharedValue(false)
 
-  // MARK: Bottom sheet context
+  // MARK: Scroll view state
+
+  const activeScrollViewIds = useSharedValue<Record<string, true>>({})
+  const scrollViewMetadataMap = useRef<Record<string, ScrollViewMetadata>>({})
+
+  const getScrollViewMetadata = useCallback(
+    (scrollViewId: string): ScrollViewMetadata => {
+      if (!scrollViewMetadataMap.current[scrollViewId]) {
+        scrollViewMetadataMap.current[scrollViewId] = {
+          scrollY: makeMutable(0),
+          scrollViewHeight: makeMutable(0),
+          scrollViewContentHeight: makeMutable(0),
+          hasLaidOut: makeMutable(false),
+        }
+      }
+
+      return scrollViewMetadataMap.current[scrollViewId]!
+    },
+    [],
+  )
+
+  const cleanupScrollViewMetadata = useCallback((scrollViewId: string) => {
+    delete scrollViewMetadataMap.current[scrollViewId]
+  }, [])
 
   const scrollViewRef = useAnimatedRef<any>()
-  const isScrollViewReady = useSharedValue(false)
   const isScrollViewInteracting = useSharedValue(false)
-  const scrollY = useSharedValue(0)
-  const scrollViewHeight = useSharedValue(0)
-  const scrollViewContentHeight = useSharedValue(0)
-
   const isPanGestureActive = useSharedValue(false)
   const lockedScrollY = useSharedValue(0)
   const isScrollLocked = useSharedValue(false)
 
+  // MARK: Keyboard expander state
+
   const keyboardExpanderTargetHeight = useSharedValue(0)
   const keyboardExpanderCurrentHeight = useSharedValue(0)
   const keyboardExpanderHeightRatio = useSharedValue(0)
+
+  // MARK: Timeout for invalid activeScrollViewIds (when there are 2 active scroll views at the same time)
+
+  const invalidActiveScrollViewIdsTimeoutRef = useRef<ReturnType<
+    typeof setTimeout
+  > | null>(null)
+
+  const setInvalidActiveScrollViewIdsTimeout = useCallback(() => {
+    if (invalidActiveScrollViewIdsTimeoutRef.current) {
+      clearTimeout(invalidActiveScrollViewIdsTimeoutRef.current)
+    }
+
+    invalidActiveScrollViewIdsTimeoutRef.current = setTimeout(() => {
+      invalidActiveScrollViewIdsTimeoutRef.current = null
+
+      throw new Error(
+        '@the-sheet/the-sheet - src/core/bottom-sheet/bottom-sheet-provider.tsx - There are 2 active scroll views at the same time. This is not allowed. Please make sure only one scroll view is active at a time.',
+      )
+    }, 3000)
+  }, [])
+
+  const clearInvalidActiveScrollViewIdsTimeout = useCallback(() => {
+    if (invalidActiveScrollViewIdsTimeoutRef.current) {
+      clearTimeout(invalidActiveScrollViewIdsTimeoutRef.current)
+      invalidActiveScrollViewIdsTimeoutRef.current = null
+    }
+  }, [])
+
+  // MARK: Bottom sheet context
 
   const contextValue = useRef<BottomSheetContextType>({
     enableFloat,
@@ -121,13 +188,13 @@ export function BottomSheetProvider({
     translateY,
     isTranslateYAnimating,
 
-    scrollViewRef,
-    isScrollViewReady,
-    isScrollViewInteracting,
-    scrollY,
-    scrollViewHeight,
-    scrollViewContentHeight,
+    activeScrollViewIds,
+    scrollViewMetadataMap,
+    getScrollViewMetadata,
+    cleanupScrollViewMetadata,
 
+    scrollViewRef,
+    isScrollViewInteracting,
     isPanGestureActive,
     lockedScrollY,
     isScrollLocked,
@@ -139,6 +206,7 @@ export function BottomSheetProvider({
 
   // MARK: Effects
 
+  // Effect: Register bottom sheet in registry
   useEffect(() => {
     if (!registerSheet || !unregisterSheet) {
       return
@@ -152,6 +220,30 @@ export function BottomSheetProvider({
       unregisterSheet(bottomSheetProviderId)
     }
   }, [autoGenBottomSheetProviderId, id, registerSheet, unregisterSheet])
+
+  // Effect: Watch for invalid activeScrollViewIds
+  /*
+    Because when a new scroll view shows up, 
+    there will be a moment when both the old and new scroll views 
+    are active at the same time
+
+    So we have a timeout to wait for things to settle down
+    before throwing an error if there are still 2 active scroll views
+  */
+  useAnimatedReaction(
+    () => {
+      return {
+        activeScrollViewIds: activeScrollViewIds.value,
+      }
+    },
+    (prepared) => {
+      if (Object.keys(prepared.activeScrollViewIds).length >= 2) {
+        runOnJS(setInvalidActiveScrollViewIdsTimeout)()
+      } else {
+        runOnJS(clearInvalidActiveScrollViewIdsTimeout)()
+      }
+    },
+  )
 
   // MARK: Renderers
 

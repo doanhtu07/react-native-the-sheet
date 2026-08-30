@@ -1,19 +1,19 @@
-import Animated, {
-  scrollTo,
-  useAnimatedReaction,
-  type ScrollHandler,
-} from 'react-native-reanimated'
+import Animated, { type ScrollHandler } from 'react-native-reanimated'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
-import { useMemo } from 'react'
+import { useCallback, useId, useMemo, useRef } from 'react'
 import {
-  useBottomSheet,
+  useBottomSheetClaimScrollViewRef,
+  useBottomSheetCleanupScrollViewMetadata,
+  useBottomSheetLockScroll,
   useBottomSheetPanGesture,
   useBottomSheetScrollViewUtils,
+  useToSharedValue,
 } from '@the-sheet/the-sheet'
 import type { BottomSheetFlashListScrollComponentProps } from './types'
 import { runOnJS } from 'react-native-worklets'
 
 export function BottomSheetFlashListScrollComponent({
+  isActive: propIsActive = true,
   getPanGesture: propGetPanGesture,
 
   onLayout: propOnLayout,
@@ -33,10 +33,13 @@ export function BottomSheetFlashListScrollComponent({
   flashListOnMomentumBegin,
   flashListOnMomentumEnd,
 
+  ref: flashListInternalRef,
+
   ...rest
 }: Readonly<BottomSheetFlashListScrollComponentProps>) {
-  const { scrollViewRef, scrollY, lockedScrollY, isScrollLocked } =
-    useBottomSheet()
+  const id = useId()
+  const nativeRef = useRef<any>(null)
+  const isActive = useToSharedValue(propIsActive)
 
   const getPanGesture = useBottomSheetPanGesture()
 
@@ -83,6 +86,7 @@ export function BottomSheetFlashListScrollComponent({
     onTouchEnd,
     onScroll,
   } = useBottomSheetScrollViewUtils({
+    scrollViewId: id,
     onLayout: propOnLayout,
     onContentSizeChange: propOnContentSizeChange,
     onTouchStart: propOnTouchStart,
@@ -103,26 +107,30 @@ export function BottomSheetFlashListScrollComponent({
     })
   }, [getPanGesture, propGetPanGesture, unsetScrollViewInteracting])
 
+  // Callback ref: store node locally + forward FlashList's internal ref
+  const callbackRef = useCallback(
+    (node: any) => {
+      nativeRef.current = node
+      if (typeof flashListInternalRef === 'function') flashListInternalRef(node)
+      else if (flashListInternalRef) flashListInternalRef.current = node
+    },
+    [flashListInternalRef],
+  )
+
   // MARK: Effects
 
-  useAnimatedReaction(
-    () => ({
-      isScrollLocked: isScrollLocked.value,
-      lockedScrollY: lockedScrollY.value,
-      scrollY: scrollY.value,
-    }),
-    (prepared) => {
-      // If we are locked but the current scroll doesn't match the target
-      // might be due to momentum)
-      // force it back immediately
-      if (
-        prepared.isScrollLocked &&
-        prepared.scrollY !== prepared.lockedScrollY
-      ) {
-        scrollTo(scrollViewRef, 0, prepared.lockedScrollY, false)
-      }
-    },
-  )
+  // Effect: Clean up metadata when unmounting
+  useBottomSheetCleanupScrollViewMetadata({ scrollViewId: id })
+
+  // Effect: Claim scroll view ref
+  useBottomSheetClaimScrollViewRef({
+    scrollViewId: id,
+    scrollViewNativeRef: nativeRef,
+    isActive,
+  })
+
+  // Effect: Lock scrolling
+  useBottomSheetLockScroll({ scrollViewId: id, isActive })
 
   // MARK: Renderers
 
@@ -132,7 +140,7 @@ export function BottomSheetFlashListScrollComponent({
     >
       <Animated.ScrollView
         {...rest}
-        ref={scrollViewRef}
+        ref={callbackRef}
         bounces={false} // iOS bounce ruins the scrollY <= 0 check
         onLayout={onLayout}
         onContentSizeChange={onContentSizeChange}

@@ -8,7 +8,9 @@ export const useInputFocus = () => {
   const context = useContext(InputFocusContext)
 
   if (!context) {
-    throw new Error('useInputFocus must be used within a InputFocusProvider')
+    throw new Error(
+      '@the-sheet/the-sheet - src/core/input-focus-provider/input-focus-provider.tsx - useInputFocus must be used within a InputFocusProvider',
+    )
   }
 
   return context

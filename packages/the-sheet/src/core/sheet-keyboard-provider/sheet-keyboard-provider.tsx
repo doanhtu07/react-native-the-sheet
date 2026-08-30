@@ -23,7 +23,7 @@ export const useSheetKeyboard = () => {
 
   if (!context) {
     throw new Error(
-      'useSheetKeyboard must be used within a SheetKeyboardProvider',
+      '@the-sheet/the-sheet - src/core/sheet-keyboard-provider/sheet-keyboard-provider.tsx - useSheetKeyboard must be used within a SheetKeyboardProvider',
     )
   }
 

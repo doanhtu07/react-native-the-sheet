@@ -1,105 +1,17 @@
 import { ThemedText } from '@/components/themed-text'
-import { Fragment, useState } from 'react'
-import { Button, StyleSheet, View } from 'react-native'
-import {
-  Backdrop,
-  BottomSheet,
-  BottomSheetHandle,
-  BottomSheetPresenter,
-  BottomSheetProvider,
-  BottomSheetScrollView,
-  BottomSheetView,
-  HeightBudgetProvider,
-  HeightClaim,
-  HeightFill,
-  SheetStackItem,
-} from '@the-sheet/the-sheet'
-import { Portal } from '@the-sheet/universe-portal'
+import { DynamicSizingSheetA } from '@/features/example-height-budget-scroll-view/dynamic-sizing-sheet-a'
+import { HeightBudgetSheetB } from '@/features/example-height-budget-scroll-view/height-budget-sheet-b/height-budget-sheet-b'
+import { StyleSheet, View } from 'react-native'
 
 export default function ExampleHeightBudgetScrollView() {
-  const [isOpenA, setIsOpenA] = useState(false)
-  const [numElements, setNumElements] = useState(300)
-
-  // When using dynamic sizing, it's important to set a max height
-  // to prevent content taking up the entire screen
-  const maxHeight = 600
-
-  // MARK: Renderers
-
-  const renderContent = () => {
-    return (
-      <Fragment>
-        {Array.from({ length: numElements }).map((_, index) => (
-          <ThemedText key={index}>Item {index + 1}</ThemedText>
-        ))}
-      </Fragment>
-    )
-  }
-
   return (
     <View style={styles.root}>
       <ThemedText style={styles.header}>
         Example Height Budget Scroll View
       </ThemedText>
 
-      <Button
-        title="Open Sheet A (Dynamic sizing)"
-        onPress={() => setIsOpenA(true)}
-      />
-
-      <Portal hostName="root">
-        <SheetStackItem
-          isOpen={isOpenA}
-          close={() => setIsOpenA(false)}
-          waitForFullyExit
-          testID="sheetA"
-        >
-          <Backdrop />
-
-          <BottomSheetPresenter>
-            <BottomSheetProvider>
-              <BottomSheet styles={{ root: { maxHeight } }}>
-                <HeightBudgetProvider maxHeight={maxHeight}>
-                  <HeightClaim>
-                    <BottomSheetHandle />
-                  </HeightClaim>
-
-                  <View>
-                    <HeightClaim>
-                      <BottomSheetView>
-                        <ThemedText>Sheet A</ThemedText>
-
-                        <Button
-                          title="Set elements to 10"
-                          onPress={() => setNumElements(10)}
-                        />
-
-                        <Button
-                          title="Set elements to 300"
-                          onPress={() => setNumElements(300)}
-                        />
-
-                        <Button
-                          title="Close Sheet A"
-                          onPress={() => setIsOpenA(false)}
-                        />
-                      </BottomSheetView>
-                    </HeightClaim>
-
-                    <View>
-                      <HeightFill>
-                        <BottomSheetScrollView>
-                          {renderContent()}
-                        </BottomSheetScrollView>
-                      </HeightFill>
-                    </View>
-                  </View>
-                </HeightBudgetProvider>
-              </BottomSheet>
-            </BottomSheetProvider>
-          </BottomSheetPresenter>
-        </SheetStackItem>
-      </Portal>
+      <DynamicSizingSheetA />
+      <HeightBudgetSheetB />
     </View>
   )
 }

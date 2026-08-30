@@ -1,5 +1,6 @@
 import { ThemedText } from '@/components/themed-text'
 import { DynamicSizingSheetA } from '@/features/example-bottom-sheet-scroll-view/dynamic-sizing-sheet-a'
+import { NativeRefSheetD } from '@/features/example-bottom-sheet-scroll-view/native-ref-sheet-d/native-ref-sheet-d'
 import { NestedScrollSheetC } from '@/features/example-bottom-sheet-scroll-view/nested-scroll-sheet-c'
 import { SnapPointsSheetB } from '@/features/example-bottom-sheet-scroll-view/snap-points-sheet-b'
 import { StyleSheet, View } from 'react-native'
@@ -14,6 +15,7 @@ export default function ExampleBottomSheetScrollView() {
       <DynamicSizingSheetA />
       <SnapPointsSheetB />
       <NestedScrollSheetC />
+      <NativeRefSheetD />
     </View>
   )
 }

@@ -27,7 +27,9 @@ export const useSheetStack = () => {
   const context = useContext(SheetStackContext)
 
   if (!context) {
-    throw new Error('useSheetStack must be used within a SheetStackProvider')
+    throw new Error(
+      '@the-sheet/the-sheet - src/core/sheet-stack/sheet-stack-provider.tsx - useSheetStack must be used within a SheetStackProvider',
+    )
   }
 
   return context
@@ -165,7 +167,7 @@ export const SheetStackProvider: FC<SheetStackProviderProps> = ({
   useEffect(() => {
     if (debug) {
       console.debug(
-        '@the-sheet/the-sheet - src/sheet-stack/sheet-stack-provider.tsx - stack:',
+        '@the-sheet/the-sheet - src/core/sheet-stack/sheet-stack-provider.tsx - stack:',
         { stack: JSON.stringify(stack, null, 2) },
       )
     }

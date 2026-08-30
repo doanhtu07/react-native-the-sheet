@@ -1,2 +1,5 @@
+export * from './use-bottom-sheet-claim-scroll-view-ref'
+export * from './use-bottom-sheet-cleanup-scroll-view-metadata'
+export * from './use-bottom-sheet-lock-scroll'
 export * from './use-bottom-sheet-pan-gesture'
 export * from './use-bottom-sheet-scroll-view-utils'

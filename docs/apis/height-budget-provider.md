@@ -17,3 +17,4 @@ It provides:
 
 - `maxHeight`: Passed from props
 - `staticHeights`: A shared value that tracks all static heights from `HeightClaim` in the subtree of this provider
+- `activeClaimIds`: A shared value that tracks which height claims are currently active
