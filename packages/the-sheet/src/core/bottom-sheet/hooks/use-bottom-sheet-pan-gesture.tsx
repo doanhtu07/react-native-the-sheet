@@ -1,8 +1,9 @@
-import { useCallback } from 'react'
+import { useCallback, useMemo, useState } from 'react'
 import { Gesture } from 'react-native-gesture-handler'
 import {
   runOnJS,
   scrollTo,
+  useAnimatedReaction,
   useSharedValue,
   withSpring,
 } from 'react-native-reanimated'
@@ -57,10 +58,10 @@ export const useBottomSheetPanGesture = () => {
     snapTranslateYs,
     translateY,
     isTranslateYAnimating,
+    activeScrollViewIds,
+    getScrollViewMetadata,
     scrollViewRef,
-    isScrollViewReady,
     isScrollViewInteracting,
-    scrollY,
     isPanGestureActive,
     lockedScrollY,
     isScrollLocked,
@@ -73,12 +74,27 @@ export const useBottomSheetPanGesture = () => {
   const snapshotTranslateY = useSharedValue(0)
   const lastTranslationY = useSharedValue(0)
 
+  const [activeScrollViewId, setActiveScrollViewId] = useState<
+    string | undefined
+  >(undefined)
+
+  const metadata = useMemo(() => {
+    if (!activeScrollViewId) {
+      return undefined
+    }
+    return getScrollViewMetadata(activeScrollViewId)
+  }, [activeScrollViewId, getScrollViewMetadata])
+
   const lockScroll = () => {
     'worklet'
 
-    if (isScrollViewReady.value) {
+    if (!metadata) {
+      return
+    }
+
+    if (metadata.hasLaidOut.value) {
       if (!isScrollLocked.value) {
-        lockedScrollY.value = scrollY.value
+        lockedScrollY.value = metadata.scrollY.value
         isScrollLocked.value = true
       }
 
@@ -109,6 +125,20 @@ export const useBottomSheetPanGesture = () => {
     }
   }
   const cleanupGestureRef = useSyncedRef(cleanupGesture)
+
+  // MARK: Effects
+
+  useAnimatedReaction(
+    () => {
+      return {
+        activeScrollViewIds: activeScrollViewIds.value,
+      }
+    },
+    (prepared) => {
+      const activeId = Object.keys(prepared.activeScrollViewIds).at(-1)
+      runOnJS(setActiveScrollViewId)(activeId)
+    },
+  )
 
   // MARK: Pan gesture
 
@@ -145,7 +175,8 @@ export const useBottomSheetPanGesture = () => {
           TRANSLATE_Y_REST_THRESHOLD,
         )
 
-        const isScrollAtTop = scrollY.value <= SCROLL_Y_TOP_THRESHOLD
+        const isScrollAtTop =
+          (metadata?.scrollY.value || 0) <= SCROLL_Y_TOP_THRESHOLD
 
         // If we are moving UP fast (velocityY < -MICRO_FLICK_VELOCITY_THRESHOLD)
         // and we are already at or above the rest point,
@@ -185,7 +216,9 @@ export const useBottomSheetPanGesture = () => {
       .onEnd((event) => {
         'worklet'
 
-        const isAtScrollTop = scrollY.value <= SCROLL_Y_TOP_THRESHOLD
+        const isAtScrollTop =
+          (metadata?.scrollY.value || 0) <= SCROLL_Y_TOP_THRESHOLD
+
         const isFlickedDown = event.velocityY > FLICK_VELOCITY_THRESHOLD
 
         if (isFlickedDown && isAtScrollTop) {
@@ -245,11 +278,11 @@ export const useBottomSheetPanGesture = () => {
     lockScrollRef,
     unlockScrollRef,
     cleanupGestureRef,
+    metadata,
     isPanGestureActive,
     snapshotTranslateY,
     translateY,
     lastTranslationY,
-    scrollY,
     isScrollViewInteracting,
     disableDrag,
     enableOverdrag,

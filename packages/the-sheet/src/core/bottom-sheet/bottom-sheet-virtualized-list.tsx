@@ -1,7 +1,5 @@
 import Animated, {
   runOnJS,
-  scrollTo,
-  useAnimatedReaction,
   useAnimatedStyle,
   type AnimatedProps,
   type AnimateProps,
@@ -16,39 +14,57 @@ import {
   VirtualizedList,
   type VirtualizedListProps,
 } from 'react-native'
-import { useMemo, type ComponentClass } from 'react'
+import {
+  forwardRef,
+  useCallback,
+  useId,
+  useMemo,
+  useRef,
+  type Ref,
+  type ComponentClass,
+} from 'react'
 import { useBottomSheetScrollViewUtils } from './hooks/use-bottom-sheet-scroll-view-utils'
 import { useBottomSheetPanGesture } from './hooks/use-bottom-sheet-pan-gesture'
-import { useBottomSheet } from './bottom-sheet-provider'
 import { useToSharedValue } from '../hooks/use-to-shared-value'
+import {
+  useBottomSheetClaimScrollViewRef,
+  useBottomSheetLockScroll,
+  useBottomSheetCleanupScrollViewMetadata,
+} from './hooks'
 
 export const AnimatedVirtualizedList = Animated.createAnimatedComponent(
   VirtualizedList,
 ) as ComponentClass<AnimateProps<VirtualizedListProps<unknown>>, any> &
   AnimatedVirtualizedListComplement<unknown>
 
-export function BottomSheetVirtualizedList<T>({
-  fill: propFill = false,
-  getPanGesture: propGetPanGesture,
+function BottomSheetVirtualizedListInner<T>(
+  {
+    fill: propFill = false,
+    isActive: propIsActive = true,
+    getPanGesture: propGetPanGesture,
 
-  onLayout: propOnLayout,
-  onContentSizeChange: propOnContentSizeChange,
-  onTouchStart: propOnTouchStart,
-  onTouchEnd: propOnTouchEnd,
+    onLayout: propOnLayout,
+    onContentSizeChange: propOnContentSizeChange,
+    onTouchStart: propOnTouchStart,
+    onTouchEnd: propOnTouchEnd,
 
-  onScroll: propOnScroll,
-  onBeginDrag: propOnBeginDrag,
-  onEndDrag: propOnEndDrag,
-  onMomentumBegin: propOnMomentumBegin,
-  onMomentumEnd: propOnMomentumEnd,
+    onScroll: propOnScroll,
+    onBeginDrag: propOnBeginDrag,
+    onEndDrag: propOnEndDrag,
+    onMomentumBegin: propOnMomentumBegin,
+    onMomentumEnd: propOnMomentumEnd,
 
-  style,
-  contentContainerStyle,
+    style,
+    contentContainerStyle,
 
-  ...rest
-}: Readonly<BottomSheetVirtualizedListProps<T>>) {
-  const { scrollViewRef, scrollY, lockedScrollY, isScrollLocked } =
-    useBottomSheet()
+    ...rest
+  }: Readonly<BottomSheetVirtualizedListProps<T>>,
+
+  ref: Ref<any>,
+) {
+  const id = useId()
+  const nativeRef = useRef<any>(null)
+  const isActive = useToSharedValue(propIsActive)
 
   const getPanGesture = useBottomSheetPanGesture()
 
@@ -62,6 +78,7 @@ export function BottomSheetVirtualizedList<T>({
     onTouchEnd,
     onScroll,
   } = useBottomSheetScrollViewUtils({
+    scrollViewId: id,
     onLayout: propOnLayout,
     onContentSizeChange: propOnContentSizeChange,
     onTouchStart: propOnTouchStart,
@@ -82,26 +99,30 @@ export function BottomSheetVirtualizedList<T>({
     })
   }, [getPanGesture, propGetPanGesture, unsetScrollViewInteracting])
 
+  // Callback ref: store node locally + forward to consumer
+  const callbackRef = useCallback(
+    (node: any) => {
+      nativeRef.current = node
+      if (typeof ref === 'function') ref(node)
+      else if (ref) ref.current = node
+    },
+    [ref],
+  )
+
   // MARK: Effects
 
-  useAnimatedReaction(
-    () => ({
-      isScrollLocked: isScrollLocked.value,
-      lockedScrollY: lockedScrollY.value,
-      scrollY: scrollY.value,
-    }),
-    (prepared) => {
-      // If we are locked but the current scroll doesn't match the target
-      // might be due to momentum)
-      // force it back immediately
-      if (
-        prepared.isScrollLocked &&
-        prepared.scrollY !== prepared.lockedScrollY
-      ) {
-        scrollTo(scrollViewRef, 0, prepared.lockedScrollY, false)
-      }
-    },
-  )
+  // Effect: Clean up metadata when unmounting
+  useBottomSheetCleanupScrollViewMetadata({ scrollViewId: id })
+
+  // Effect: Claim scroll view ref
+  useBottomSheetClaimScrollViewRef({
+    scrollViewId: id,
+    scrollViewNativeRef: nativeRef,
+    isActive,
+  })
+
+  // Effect: Lock scrolling
+  useBottomSheetLockScroll({ scrollViewId: id, isActive })
 
   // MARK: Preparation
 
@@ -119,7 +140,7 @@ export function BottomSheetVirtualizedList<T>({
     >
       <AnimatedVirtualizedList
         {...(rest as AnimatedProps<VirtualizedListProps<unknown>>)}
-        ref={scrollViewRef}
+        ref={callbackRef}
         style={[styles.root, style, animatedStyle]}
         contentContainerStyle={contentContainerStyle}
         bounces={false} // iOS bounce ruins the scrollY <= 0 check
@@ -132,6 +153,12 @@ export function BottomSheetVirtualizedList<T>({
     </GestureDetector>
   )
 }
+
+export const BottomSheetVirtualizedList = forwardRef(
+  BottomSheetVirtualizedListInner,
+) as <T>(
+  props: BottomSheetVirtualizedListProps<T> & { ref?: Ref<any> },
+) => ReturnType<typeof BottomSheetVirtualizedListInner>
 
 // MARK: Styles
 

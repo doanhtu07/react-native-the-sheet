@@ -1,4 +1,4 @@
-import type { ComponentProps, PropsWithChildren } from 'react'
+import type { ComponentProps, PropsWithChildren, RefObject } from 'react'
 import type {
   DefaultSectionT,
   GestureResponderEvent,
@@ -48,7 +48,16 @@ export type BottomSheetRegistryProviderProps = PropsWithChildren
 /** Percentage is compared to the screen height */
 export type SnapPoint = number | `${number}%`
 
+export type ScrollViewMetadata = {
+  scrollY: SharedValue<number>
+  scrollViewHeight: SharedValue<number>
+  scrollViewContentHeight: SharedValue<number>
+  hasLaidOut: SharedValue<boolean>
+}
+
 export type BottomSheetContextType = {
+  // > Bottom sheet
+
   enableFloat: SharedValue<boolean>
   enableOverdrag: SharedValue<boolean>
   disableDrag: SharedValue<boolean>
@@ -62,16 +71,31 @@ export type BottomSheetContextType = {
   translateY: SharedValue<number>
   isTranslateYAnimating: SharedValue<boolean>
 
-  scrollViewRef: AnimatedRef<any>
-  isScrollViewReady: SharedValue<boolean>
-  isScrollViewInteracting: SharedValue<boolean>
-  scrollY: SharedValue<number>
-  scrollViewHeight: SharedValue<number>
-  scrollViewContentHeight: SharedValue<number>
+  // > Scroll
 
+  /**
+   * Scroll view id -> true
+   *
+   * Size is usually only 1, but it can grow to 2 during claiming phase
+   *
+   * Since it's a record, newest item will always be the last item in the record,
+   * so we can use that to determine which scroll view is active
+   */
+  activeScrollViewIds: SharedValue<Record<string, true>>
+
+  /** Scroll view id -> metadata */
+  scrollViewMetadataMap: RefObject<Record<string, ScrollViewMetadata>>
+  getScrollViewMetadata: (scrollViewId: string) => ScrollViewMetadata
+  cleanupScrollViewMetadata: (scrollViewId: string) => void
+
+  // Need to reset these when claiming scroll view ref
+  scrollViewRef: AnimatedRef<any>
+  isScrollViewInteracting: SharedValue<boolean>
   isPanGestureActive: SharedValue<boolean>
   lockedScrollY: SharedValue<number>
   isScrollLocked: SharedValue<boolean>
+
+  // > Keyboard expander
 
   keyboardExpanderTargetHeight: SharedValue<number>
   keyboardExpanderCurrentHeight: SharedValue<number>
@@ -131,6 +155,7 @@ export type BottomSheetScrollViewProps = Omit<
   | 'onMomentumEnd'
 > & {
   fill?: AnimatedProp<boolean>
+  isActive?: AnimatedProp<boolean>
   getPanGesture?: () => PanGesture
 
   onLayout?: (e: LayoutChangeEvent) => void
@@ -162,6 +187,7 @@ export type BottomSheetFlatListProps<T> = Omit<
   | 'onMomentumEnd'
 > & {
   fill?: AnimatedProp<boolean>
+  isActive?: AnimatedProp<boolean>
   getPanGesture?: () => PanGesture
 
   onLayout?: (e: LayoutChangeEvent) => void
@@ -199,6 +225,7 @@ export type BottomSheetVirtualizedListProps<T> = Omit<
   | 'onMomentumEnd'
 > & {
   fill?: AnimatedProp<boolean>
+  isActive?: AnimatedProp<boolean>
   getPanGesture?: () => PanGesture
 
   onLayout?: (e: LayoutChangeEvent) => void
@@ -243,6 +270,7 @@ export type BottomSheetSectionListProps<
   | 'onMomentumEnd'
 > & {
   fill?: AnimatedProp<boolean>
+  isActive?: AnimatedProp<boolean>
   getPanGesture?: () => PanGesture
 
   onLayout?: (e: LayoutChangeEvent) => void

@@ -17,6 +17,7 @@ It provides:
 
 | Prop name             | Type                                 | Required | Default     | Description                                                      |
 | --------------------- | ------------------------------------ | -------- | ----------- | ---------------------------------------------------------------- |
+| `scrollViewId`        | `string`                             | **true** | N/A         | A unique identifier for the scroll view (e.g. from `useId()`)    |
 | `onLayout`            | `(e: LayoutChangeEvent) => void`     | false    | `undefined` | The onLayout callback of the bottom sheet scroll view            |
 | `onContentSizeChange` | `(w: number, h: number) => void`     | false    | `undefined` | The onContentSizeChange callback of the bottom sheet scroll view |
 | `onTouchStart`        | `(e: GestureResponderEvent) => void` | false    | `undefined` | The onTouchStart callback of the bottom sheet scroll view        |

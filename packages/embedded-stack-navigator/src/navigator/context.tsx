@@ -13,7 +13,7 @@ export const useEmbeddedStackNavigation = <
 
   if (!nav)
     throw new Error(
-      'useEmbeddedStackNavigation must be used inside EmbeddedStackNavigator',
+      '@the-sheet/embedded-stack-navigator - src/navigator/context.tsx - useEmbeddedStackNavigation must be used inside EmbeddedStackNavigator',
     )
 
   return nav
@@ -33,7 +33,7 @@ export const useEmbeddedStackRoute = <
 
   if (!route)
     throw new Error(
-      'useEmbeddedStackRoute must be used inside EmbeddedStackNavigator',
+      '@the-sheet/embedded-stack-navigator - src/navigator/context.tsx - useEmbeddedStackRoute must be used inside EmbeddedStackNavigator',
     )
 
   return route

@@ -19,6 +19,7 @@ export type BottomSheetFlashListProps<T> = Omit<
   | 'onMomentumEnd'
 > & {
   fill?: AnimatedProp<boolean>
+  isActive?: AnimatedProp<boolean>
   getPanGesture?: () => PanGesture
 
   onLayout?: (e: LayoutChangeEvent) => void

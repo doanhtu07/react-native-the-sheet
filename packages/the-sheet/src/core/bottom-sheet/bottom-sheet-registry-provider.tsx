@@ -19,7 +19,7 @@ export const useBottomSheetRegistry = () => {
 
   if (!context) {
     throw new Error(
-      'useBottomSheetRegistry must be used within a BottomSheetRegistryProvider',
+      '@the-sheet/the-sheet - src/core/bottom-sheet/bottom-sheet-registry-provider.tsx - useBottomSheetRegistry must be used within a BottomSheetRegistryProvider',
     )
   }
 

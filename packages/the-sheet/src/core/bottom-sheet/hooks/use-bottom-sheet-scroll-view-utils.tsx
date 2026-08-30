@@ -2,11 +2,11 @@ import type { GestureResponderEvent, LayoutChangeEvent } from 'react-native'
 import type { BottomSheetScrollViewProps } from '../types'
 import { runOnJS, useAnimatedScrollHandler } from 'react-native-reanimated'
 import { useBottomSheet } from '../bottom-sheet-provider'
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useMemo, useRef } from 'react'
 
 const UNSET_SCROLLING_DELAY = 200
 
-type Props = Pick<
+type Props = { scrollViewId: string } & Pick<
   BottomSheetScrollViewProps,
   | 'onLayout'
   | 'onContentSizeChange'
@@ -20,6 +20,7 @@ type Props = Pick<
 >
 
 export const useBottomSheetScrollViewUtils = ({
+  scrollViewId,
   onLayout: propOnLayout,
   onContentSizeChange: propOnContentSizeChange,
   onTouchStart: propOnTouchStart,
@@ -30,13 +31,12 @@ export const useBottomSheetScrollViewUtils = ({
   onMomentumBegin: propOnMomentumBegin,
   onMomentumEnd: propOnMomentumEnd,
 }: Props) => {
-  const {
-    isScrollViewReady,
-    isScrollViewInteracting,
-    scrollY,
-    scrollViewHeight,
-    scrollViewContentHeight,
-  } = useBottomSheet()
+  const { getScrollViewMetadata, isScrollViewInteracting } = useBottomSheet()
+
+  const metadata = useMemo(
+    () => getScrollViewMetadata(scrollViewId),
+    [getScrollViewMetadata, scrollViewId],
+  )
 
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
 
@@ -61,13 +61,13 @@ export const useBottomSheetScrollViewUtils = ({
 
   const onLayout = (event: LayoutChangeEvent) => {
     propOnLayout?.(event)
-    isScrollViewReady.value = true
-    scrollViewHeight.value = event.nativeEvent.layout.height
+    metadata.hasLaidOut.value = true
+    metadata.scrollViewHeight.value = event.nativeEvent.layout.height
   }
 
   const onContentSizeChange = (w: number, h: number) => {
     propOnContentSizeChange?.(w, h)
-    scrollViewContentHeight.value = h
+    metadata.scrollViewContentHeight.value = h
   }
 
   const onTouchStart = (event: GestureResponderEvent) => {
@@ -84,7 +84,7 @@ export const useBottomSheetScrollViewUtils = ({
     onScroll: (event, context) => {
       'worklet'
       propOnScroll?.(event, context)
-      scrollY.value = event.contentOffset.y
+      metadata.scrollY.value = event.contentOffset.y
     },
     onBeginDrag: (event, context) => {
       'worklet'

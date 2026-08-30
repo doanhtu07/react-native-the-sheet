@@ -30,7 +30,7 @@ Required peer dependencies:
 
 ---
 
-`@shopify/flash-list`: Install if you want to use `BottomSheetFlashList` for performant lists with the bottom sheet
+`@shopify/flash-list` with `@the-sheet/flash-list` or `@the-sheet/flash-list-v2`: Install if you want to use `BottomSheetFlashList` for performant lists with the bottom sheet
 
 ### 🧪 Experimental
 

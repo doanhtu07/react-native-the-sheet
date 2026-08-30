@@ -28,7 +28,9 @@ export const useSheetStackItem = () => {
   const context = useContext(SheetStackItemContext)
 
   if (!context) {
-    throw new Error('useSheetStackItem must be used within a SheetStackItem')
+    throw new Error(
+      '@the-sheet/the-sheet - src/core/sheet-stack/sheet-stack-item.tsx - useSheetStackItem must be used within a SheetStackItem',
+    )
   }
 
   return context

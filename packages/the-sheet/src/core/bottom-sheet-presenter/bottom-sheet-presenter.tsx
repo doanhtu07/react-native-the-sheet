@@ -35,7 +35,7 @@ export const useBottomSheetPresenter = () => {
 
   if (!context) {
     throw new Error(
-      'useBottomSheetPresenter must be used within a BottomSheetPresenter',
+      '@the-sheet/the-sheet - src/core/bottom-sheet-presenter/bottom-sheet-presenter.tsx - useBottomSheetPresenter must be used within a BottomSheetPresenter',
     )
   }
 

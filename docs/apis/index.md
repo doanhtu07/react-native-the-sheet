@@ -74,4 +74,12 @@
 
 [useBottomSheetPanGesture](./use-bottom-sheet-pan-gesture.md)
 
+---
+
+[useBottomSheetClaimScrollViewRef](./use-bottom-sheet-claim-scroll-view-ref.md)
+
+[useBottomSheetCleanupScrollViewMetadata](./use-bottom-sheet-cleanup-scroll-view-metadata.md)
+
+[useBottomSheetLockScroll](./use-bottom-sheet-lock-scroll.md)
+
 [useBottomSheetScrollViewUtils](./use-bottom-sheet-scroll-view-utils.md)

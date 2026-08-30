@@ -1,7 +1,7 @@
 import { ThemedText } from '@/components/themed-text'
-import { ListRenderItem } from '@shopify/flash-list'
-import { useMemo, useState } from 'react'
-import { Button, StyleSheet, View } from 'react-native'
+import { FlashList, ListRenderItem } from '@shopify/flash-list'
+import { useMemo, useRef, useState } from 'react'
+import { Alert, Button, StyleSheet, View } from 'react-native'
 import {
   Backdrop,
   BottomSheet,
@@ -21,6 +21,9 @@ export default function ExampleBottomSheetFlashList() {
   // When using dynamic sizing, it's important to set a max height
   // to prevent content taking up the entire screen
   const maxHeight = 500
+
+  const flatListRefA = useRef<FlashList<any>>(null)
+  const flatListRefB = useRef<FlashList<any>>(null)
 
   const data = useMemo(() => {
     return Array.from({ length: 50 }).map((_, index) => ({
@@ -79,7 +82,22 @@ export default function ExampleBottomSheetFlashList() {
                     onPress={() => setIsOpenA(false)}
                   />
 
+                  <Button
+                    title="Scroll to offset 200"
+                    onPress={() => {
+                      if (flatListRefA.current?.scrollToOffset) {
+                        flatListRefA.current.scrollToOffset({
+                          offset: 200,
+                          animated: true,
+                        })
+                      } else {
+                        Alert.alert('scrollToOffset not available')
+                      }
+                    }}
+                  />
+
                   <BottomSheetFlashList
+                    ref={flatListRefA}
                     fill
                     data={data}
                     renderItem={renderItem}
@@ -114,7 +132,22 @@ export default function ExampleBottomSheetFlashList() {
                     onPress={() => setIsOpenB(false)}
                   />
 
+                  <Button
+                    title="Scroll to offset 200"
+                    onPress={() => {
+                      if (flatListRefB.current?.scrollToOffset) {
+                        flatListRefB.current.scrollToOffset({
+                          offset: 200,
+                          animated: true,
+                        })
+                      } else {
+                        Alert.alert('scrollToOffset not available')
+                      }
+                    }}
+                  />
+
                   <BottomSheetFlashList
+                    ref={flatListRefB}
                     fill
                     data={data}
                     renderItem={renderItem}

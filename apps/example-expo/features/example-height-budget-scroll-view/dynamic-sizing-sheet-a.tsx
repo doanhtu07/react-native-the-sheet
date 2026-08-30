@@ -1,0 +1,99 @@
+import { ThemedText } from '@/components/themed-text'
+import { Fragment, useState } from 'react'
+import { Button, View } from 'react-native'
+import {
+  Backdrop,
+  BottomSheet,
+  BottomSheetHandle,
+  BottomSheetPresenter,
+  BottomSheetProvider,
+  BottomSheetScrollView,
+  BottomSheetView,
+  HeightBudgetProvider,
+  HeightClaim,
+  HeightFill,
+  SheetStackItem,
+} from '@the-sheet/the-sheet'
+import { Portal } from '@the-sheet/universe-portal'
+
+export function DynamicSizingSheetA() {
+  const [isOpenA, setIsOpenA] = useState(false)
+  const [numElements, setNumElements] = useState(300)
+
+  const maxHeight = 600
+
+  // MARK: Renderers
+
+  const renderContent = () => {
+    return (
+      <Fragment>
+        {Array.from({ length: numElements }).map((_, index) => (
+          <ThemedText key={index}>Item {index + 1}</ThemedText>
+        ))}
+      </Fragment>
+    )
+  }
+
+  return (
+    <Fragment>
+      <Button
+        title="Open Sheet A (Dynamic sizing)"
+        onPress={() => setIsOpenA(true)}
+      />
+
+      <Portal hostName="root">
+        <SheetStackItem
+          isOpen={isOpenA}
+          close={() => setIsOpenA(false)}
+          waitForFullyExit
+          testID="sheetA"
+        >
+          <Backdrop />
+
+          <BottomSheetPresenter>
+            <BottomSheetProvider>
+              <BottomSheet styles={{ root: { maxHeight } }}>
+                <HeightBudgetProvider maxHeight={maxHeight}>
+                  <HeightClaim>
+                    <BottomSheetHandle />
+                  </HeightClaim>
+
+                  <View>
+                    <HeightClaim>
+                      <BottomSheetView>
+                        <ThemedText>Sheet A</ThemedText>
+
+                        <Button
+                          title="Set elements to 10"
+                          onPress={() => setNumElements(10)}
+                        />
+
+                        <Button
+                          title="Set elements to 300"
+                          onPress={() => setNumElements(300)}
+                        />
+
+                        <Button
+                          title="Close Sheet A"
+                          onPress={() => setIsOpenA(false)}
+                        />
+                      </BottomSheetView>
+                    </HeightClaim>
+
+                    <View>
+                      <HeightFill>
+                        <BottomSheetScrollView>
+                          {renderContent()}
+                        </BottomSheetScrollView>
+                      </HeightFill>
+                    </View>
+                  </View>
+                </HeightBudgetProvider>
+              </BottomSheet>
+            </BottomSheetProvider>
+          </BottomSheetPresenter>
+        </SheetStackItem>
+      </Portal>
+    </Fragment>
+  )
+}
