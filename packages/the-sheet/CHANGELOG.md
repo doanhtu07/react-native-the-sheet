@@ -1,5 +1,86 @@
 # @the-sheet/the-sheet
 
+## 1.0.24
+
+### Patch Changes
+
+#### Scroll views
+
+**Introduce `isActive` prop to all scroll views** (🐛 **Bug Fix**)
+
+- Only one scroll view should control the bottom sheet height at a time
+- When navigating between screens inside a bottom sheet (via React Navigation or an embedded stack navigator), the previous screen's scroll view stays mounted while the new screen's scroll view mounts — both fight for the main `scrollViewRef`
+- This prop lets you explicitly tell the bottom sheet which scroll view is active. Drive it from your navigation state (e.g. `isFocused`)
+
+Applies to: `BottomSheetScrollView`, `BottomSheetFlatList`, `BottomSheetVirtualizedList`, `BottomSheetSectionList`, `BottomSheetFlashList`, `BottomSheetFlashList` (v2)
+
+---
+
+**You can now pass `ref` to all scroll views**
+
+- `BottomSheetScrollView` forwards `ref<ScrollView>`
+- `BottomSheetFlatList` forwards `ref<FlatList<T>>`
+- `BottomSheetVirtualizedList` forwards `ref<VirtualizedList<T>>`
+- `BottomSheetSectionList` forwards `ref<SectionList<T>>`
+- `BottomSheetFlashList` / `BottomSheetFlashList` (v2) forwards `ref<FlashListRef<T>>`
+
+You can still use `scrollViewRef` from `useBottomSheet()` to access whichever scroll view is currently active — it's now set by the claiming system rather than directly by the scroll view.
+
+---
+
+**Introduce a few hooks for scroll views:**
+
+- `useBottomSheetClaimScrollViewRef` — used by scroll views to claim the main `scrollViewRef` when active
+- `useBottomSheetCleanupScrollViewMetadata` — used by scroll views to clean up their metadata on unmount
+- `useBottomSheetLockScroll` — used by scroll views to lock scroll position (works together with the panning gesture orchestration)
+
+---
+
+**`useBottomSheetScrollViewUtils` now requires `scrollViewId`** (⚠️ **BREAKING**)
+
+- Pass a unique `scrollViewId` (e.g. from `useId()`) so metadata is tracked per scroll view
+
+---
+
+**Remove `isScrollViewReady`, `scrollY`, `scrollViewHeight`, `scrollViewContentHeight` from `useBottomSheet()`** (⚠️ **BREAKING**)
+
+- Replaced with per-scroll-view metadata accessed via:
+  - `activeScrollViewIds` — which scroll views are currently active (last item = most recent)
+  - `getScrollViewMetadata(id)` — returns `{ scrollY, scrollViewHeight, scrollViewContentHeight, hasLaidOut }` for a given scroll view
+  - `cleanupScrollViewMetadata(id)` — removes metadata entry
+  - `scrollViewMetadataMap` — raw ref to the metadata store
+
+---
+
+**Safety net: timeout for stale active scroll views**
+
+- If 2+ scroll views remain active for more than 3 seconds, an error is thrown
+- This catches cases where `isActive` is not being toggled correctly
+
+---
+
+#### Height claims
+
+**Introduce `isActive` prop to `HeightClaim`** (🐛 **Bug Fix**)
+
+- Similar to the scroll view `isActive` prop
+- Height claims from inactive screens no longer contribute to the height fill calculation
+
+---
+
+**Expose `activeClaimIds` from `useHeightBudget()`**
+
+- Which height claims are currently active
+
+---
+
+#### Developer experience
+
+**Improved error messages**
+
+- All error messages now include the file path (e.g. `@the-sheet/the-sheet - src/core/bottom-sheet/bottom-sheet-provider.tsx - useBottomSheet must be used within a BottomSheetProvider`)
+- Makes it easier to trace where an error originates
+
 ## 1.0.23
 
 ### Patch Changes

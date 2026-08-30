@@ -139,9 +139,7 @@ function BottomSheetScrollViewInner(
   )
 }
 
-export const BottomSheetScrollView = forwardRef(BottomSheetScrollViewInner) as (
-  props: BottomSheetScrollViewProps & { ref?: Ref<ScrollView> },
-) => ReturnType<typeof BottomSheetScrollViewInner>
+export const BottomSheetScrollView = forwardRef(BottomSheetScrollViewInner)
 
 // MARK: Styles
 
