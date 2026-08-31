@@ -41,7 +41,7 @@ export const useBottomSheetYoutubePanGesture = ({ close, sheetId }: Props) => {
     getScrollViewMetadata,
     isScrollViewInteracting,
     isPanGestureActive,
-  } = commentSheet
+  } = commentSheet || {}
 
   const closeRef = useSyncedRef(close)
 

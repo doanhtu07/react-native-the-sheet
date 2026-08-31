@@ -26,6 +26,7 @@ export default function ExampleYouTubeClone() {
 
   const commentSheetId = `${reactId}.commentSheet`
   const commentSheet = sheets?.[commentSheetId]
+  const { sheetVisibleHeight } = commentSheet || {}
 
   const maxSheetHeight = safeAreaHeight - insets.top
 
@@ -54,20 +55,18 @@ export default function ExampleYouTubeClone() {
       }
     }
 
-    const sheetVisibleHeight = commentSheet.sheetVisibleHeight.value
-
     const maxTranslate = imageLocalTop
     const dockSheetTop = insets.top + imageHeight
     const dockSheetVisibleHeight = safeAreaHeight - dockSheetTop
 
     const translateProgress = clamp(
-      sheetVisibleHeight / dockSheetVisibleHeight,
+      sheetVisibleHeight.value / dockSheetVisibleHeight,
       0,
       1,
     )
 
     const remainingSheetProgress =
-      (sheetVisibleHeight - dockSheetVisibleHeight) /
+      (sheetVisibleHeight.value - dockSheetVisibleHeight) /
       (maxSheetHeight - dockSheetVisibleHeight)
 
     const scaleProgress = clamp(remainingSheetProgress, 0, 1)
