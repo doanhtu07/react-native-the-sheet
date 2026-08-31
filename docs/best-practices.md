@@ -16,3 +16,29 @@ You can check out one template example at `apps/example-expo/components/bottom-s
 - Header left / center / right
 - Close button
 - Action buttons (Not sticky footer though)
+
+## Worklets and Object.freeze
+
+Reanimated deep-freezes every plain object reachable from a captured closure when a worklet captures a value. This means if you capture the entire bottom sheet context (from `useBottomSheet`) inside a worklet (e.g. `useAnimatedStyle`), Reanimated will freeze the entire object graph — including any mutable refs.
+
+**The problem**: If a `useRef` holding mutable data lives on the main sheet context, a consumer worklet that captures the context will freeze that ref. Subsequent writes silently no-op, causing `undefined` errors (e.g. `"Cannot read property 'hasLaidOut' of undefined"`).
+
+**The workaround**: Don't throw the whole sheet context into a worklet. Access only the specific shared values you need:
+
+```tsx
+// Bad — captures entire context, triggers deep-freeze
+const sheet = useBottomSheet()
+useAnimatedStyle(() => {
+  return {
+    opacity: sheet.sheetVisibleRatio.value,
+  }
+})
+
+// Good — only captures the specific shared value
+const { sheetVisibleRatio } = useBottomSheet()
+useAnimatedStyle(() => {
+  return {
+    opacity: sheetVisibleRatio.value,
+  }
+})
+```

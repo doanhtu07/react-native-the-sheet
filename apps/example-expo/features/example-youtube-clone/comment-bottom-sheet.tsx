@@ -32,6 +32,12 @@ export const CommentBottomSheet = ({
   const sheets = bottomSheetRegistry?.sheets
 
   const commentSheet = sheets?.[sheetId]
+  const {
+    sheetHeight,
+    sheetVisibleHeight,
+    isTranslateYAnimating,
+    isPanGestureActive,
+  } = commentSheet || {}
 
   const getYoutubeCommentPanGesture = useBottomSheetYoutubePanGesture({
     close,
@@ -54,12 +60,11 @@ export const CommentBottomSheet = ({
 
     const sheetHiddenHeight = Math.max(
       0,
-      commentSheet.sheetHeight.value - commentSheet.sheetVisibleHeight.value,
+      sheetHeight.value - sheetVisibleHeight.value,
     )
 
     if (
-      (commentSheet.isTranslateYAnimating.value ||
-        commentSheet.isPanGestureActive.value) &&
+      (isTranslateYAnimating.value || isPanGestureActive.value) &&
       prevMarginBottom.value < sheetHiddenHeight
     ) {
       return {
@@ -67,7 +72,7 @@ export const CommentBottomSheet = ({
       }
     }
 
-    if (commentSheet.isTranslateYAnimating.value) {
+    if (isTranslateYAnimating.value) {
       // When translateY is animating withSpring, somehow we need to use animate marginBottom as well
       // Or else, translateY will not animate smoothly and instead suddenly jump
       prevMarginBottom.value = withTiming(sheetHiddenHeight, { duration: 1 })

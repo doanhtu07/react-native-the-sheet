@@ -19,12 +19,13 @@ export default function ExampleAboveBottomSheetView() {
 
   const bottomSheetId = 'sheetA'
   const sheetA = sheets?.[bottomSheetId]
+  const { sheetVisibleHeight } = sheetA || {}
 
   const [isOpenA, setIsOpenA] = useState(false)
 
   const animatedSpacerStyle = useAnimatedStyle(() => {
     return {
-      paddingBottom: sheetA?.sheetVisibleHeight.value || 0,
+      paddingBottom: sheetVisibleHeight?.value || 0,
     }
   })
 

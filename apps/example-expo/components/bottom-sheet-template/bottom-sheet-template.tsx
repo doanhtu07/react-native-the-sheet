@@ -67,6 +67,7 @@ export const BottomSheetTemplate = ({
 
   const resolvedSheetId = sheetId || reactId
   const sheetData = sheets?.[resolvedSheetId]
+  const { sheetVisibleRatio } = sheetData || {}
 
   const isDark = theme === 'dark'
   const borderColor = isDark ? '#3A3A3C' : '#D1D1D6'
@@ -78,7 +79,7 @@ export const BottomSheetTemplate = ({
     const maxOpacity = 0.6
     const opacity = Math.min(
       maxOpacity,
-      maxOpacity * (sheetData?.sheetVisibleRatio.value || 0),
+      maxOpacity * (sheetVisibleRatio?.value || 0),
     )
 
     return {

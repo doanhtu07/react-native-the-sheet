@@ -32,13 +32,14 @@ export const AddCommentBottomSheet = ({
   const sheets = bottomSheetRegistry?.sheets
 
   const addCommentSheet = sheets?.[sheetId]
+  const { keyboardExpanderHeightRatio } = addCommentSheet || {}
 
   const isDark = theme === 'dark'
   const backgroundColor = isDark ? '#1C1C1E' : '#FFFFFF'
   const borderColor = isDark ? '#3A3A3C' : '#D1D1D6'
 
   const backdropDisabled = useDerivedValue(() => {
-    return addCommentSheet?.keyboardExpanderHeightRatio.value !== 1
+    return keyboardExpanderHeightRatio?.value !== 1
   })
 
   // MARK: Preparation
@@ -48,7 +49,7 @@ export const AddCommentBottomSheet = ({
 
     const opacity = Math.max(
       0,
-      maxOpacity * (addCommentSheet?.keyboardExpanderHeightRatio.value || 0),
+      maxOpacity * (keyboardExpanderHeightRatio?.value || 0),
     )
 
     return {

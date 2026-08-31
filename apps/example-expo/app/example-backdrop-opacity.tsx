@@ -20,6 +20,7 @@ export default function ExampleBackdropOpacity() {
 
   const bottomSheetId = 'sheetA'
   const sheetA = sheets?.[bottomSheetId]
+  const { sheetVisibleRatio } = sheetA || {}
 
   const [isOpenA, setIsOpenA] = useState(false)
 
@@ -28,7 +29,7 @@ export default function ExampleBackdropOpacity() {
 
     const opacity = Math.min(
       maxOpacity,
-      maxOpacity * (sheetA?.sheetVisibleRatio.value || 0),
+      maxOpacity * (sheetVisibleRatio?.value || 0),
     )
 
     return {
