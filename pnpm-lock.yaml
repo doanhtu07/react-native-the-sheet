@@ -229,8 +229,8 @@ importers:
         specifier: ^10.5.0
         version: 10.5.0
       '@react-native-vector-icons/ant-design':
-        specifier: ^13.1.2
-        version: 13.1.2(@expo/config-plugins@57.0.8(supports-color@8.1.1)(typescript@6.0.3))(@react-native/assets-registry@0.86.2)(expo-font@57.0.1)(react-native@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/jest-preset@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(react@19.2.3)(supports-color@8.1.1))(@react-native/metro-config@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.2.16)(react@19.2.3)(supports-color@8.1.1))(react@19.2.3)
+        specifier: ^13.1.4
+        version: 13.1.4(@expo/config-plugins@57.0.8(supports-color@8.1.1)(typescript@6.0.3))(@react-native/assets-registry@0.86.2)(expo-font@57.0.1)(react-native@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/jest-preset@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(react@19.2.3)(supports-color@8.1.1))(@react-native/metro-config@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.2.16)(react@19.2.3)(supports-color@8.1.1))(react@19.2.3)
       '@react-native-vector-icons/material-design-icons':
         specifier: ^13.1.2
         version: 13.1.2(@expo/config-plugins@57.0.8(supports-color@8.1.1)(typescript@6.0.3))(@react-native/assets-registry@0.86.2)(expo-font@57.0.1)(react-native@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/jest-preset@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(react@19.2.3)(supports-color@8.1.1))(@react-native/metro-config@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.2.16)(react@19.2.3)(supports-color@8.1.1))(react@19.2.3)
@@ -2425,8 +2425,8 @@ packages:
       react: '>=16'
       react-native: '>=0.57'
 
-  '@react-native-vector-icons/ant-design@13.1.2':
-    resolution: {integrity: sha512-ugERUvjK8hX2o2IJGSoinotn/MNlhJq+pZ0T1qJ2i1FbrfcgFAdhaMmhcueIk6J6ZrEFzNJex9T7bS+AyikdXA==}
+  '@react-native-vector-icons/ant-design@13.1.4':
+    resolution: {integrity: sha512-Rp/6bKDLrCHeyWff9JBATNtx4fuvFhx0G4xUHuGRp2KD4EzIS6qmTPoFKBkNLd3PRVj2/nYKAh1dAgMq1uu3yg==}
     engines: {node: '>= 18.0.0'}
     peerDependencies:
       '@expo/config-plugins': '>=10.0.0'
@@ -2442,6 +2442,24 @@ packages:
     hasBin: true
     peerDependencies:
       '@react-native-vector-icons/get-image': ^13.0.0
+      '@react-native/assets-registry': '*'
+      expo-font: '*'
+      react: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      '@react-native-vector-icons/get-image':
+        optional: true
+      '@react-native/assets-registry':
+        optional: true
+      expo-font:
+        optional: true
+
+  '@react-native-vector-icons/common@13.0.3':
+    resolution: {integrity: sha512-Ty47I/INab3IjPonvo2xlRN1pB/sG5/jCuq49/Vq8Q4MchQ6jSh8vdq5KVcJer3XIyc0DJyC6fKVxN2CGx78YQ==}
+    engines: {node: '>=20.19.0 <21.0.0 || >=22.0.0'}
+    hasBin: true
+    peerDependencies:
+      '@react-native-vector-icons/get-image': ^13.0.1
       '@react-native/assets-registry': '*'
       expo-font: '*'
       react: '*'
@@ -9730,9 +9748,9 @@ snapshots:
       react: 19.2.3
       react-native: 0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/jest-preset@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(react@19.2.3)(supports-color@8.1.1))(@react-native/metro-config@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.2.16)(react@19.2.3)(supports-color@8.1.1)
 
-  '@react-native-vector-icons/ant-design@13.1.2(@expo/config-plugins@57.0.8(supports-color@8.1.1)(typescript@6.0.3))(@react-native/assets-registry@0.86.2)(expo-font@57.0.1)(react-native@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/jest-preset@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(react@19.2.3)(supports-color@8.1.1))(@react-native/metro-config@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.2.16)(react@19.2.3)(supports-color@8.1.1))(react@19.2.3)':
+  '@react-native-vector-icons/ant-design@13.1.4(@expo/config-plugins@57.0.8(supports-color@8.1.1)(typescript@6.0.3))(@react-native/assets-registry@0.86.2)(expo-font@57.0.1)(react-native@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/jest-preset@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(react@19.2.3)(supports-color@8.1.1))(@react-native/metro-config@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.2.16)(react@19.2.3)(supports-color@8.1.1))(react@19.2.3)':
     dependencies:
-      '@react-native-vector-icons/common': 13.0.1(@react-native/assets-registry@0.86.2)(expo-font@57.0.1)(react-native@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/jest-preset@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(react@19.2.3)(supports-color@8.1.1))(@react-native/metro-config@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.2.16)(react@19.2.3)(supports-color@8.1.1))(react@19.2.3)
+      '@react-native-vector-icons/common': 13.0.3(@react-native/assets-registry@0.86.2)(expo-font@57.0.1)(react-native@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/jest-preset@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(react@19.2.3)(supports-color@8.1.1))(@react-native/metro-config@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.2.16)(react@19.2.3)(supports-color@8.1.1))(react@19.2.3)
       react: 19.2.3
       react-native: 0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/jest-preset@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(react@19.2.3)(supports-color@8.1.1))(@react-native/metro-config@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.2.16)(react@19.2.3)(supports-color@8.1.1)
     optionalDependencies:
@@ -9743,6 +9761,17 @@ snapshots:
       - expo-font
 
   '@react-native-vector-icons/common@13.0.1(@react-native/assets-registry@0.86.2)(expo-font@57.0.1)(react-native@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/jest-preset@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(react@19.2.3)(supports-color@8.1.1))(@react-native/metro-config@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.2.16)(react@19.2.3)(supports-color@8.1.1))(react@19.2.3)':
+    dependencies:
+      find-up: 8.0.0
+      picocolors: 1.1.1
+      plist: 3.1.1
+      react: 19.2.3
+      react-native: 0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/jest-preset@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(react@19.2.3)(supports-color@8.1.1))(@react-native/metro-config@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.2.16)(react@19.2.3)(supports-color@8.1.1)
+    optionalDependencies:
+      '@react-native/assets-registry': 0.86.2
+      expo-font: 57.0.1(expo@57.0.14)(react-native@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/jest-preset@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(react@19.2.3)(supports-color@8.1.1))(@react-native/metro-config@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.2.16)(react@19.2.3)(supports-color@8.1.1))(react@19.2.3)
+
+  '@react-native-vector-icons/common@13.0.3(@react-native/assets-registry@0.86.2)(expo-font@57.0.1)(react-native@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/jest-preset@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(react@19.2.3)(supports-color@8.1.1))(@react-native/metro-config@0.86.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.2.16)(react@19.2.3)(supports-color@8.1.1))(react@19.2.3)':
     dependencies:
       find-up: 8.0.0
       picocolors: 1.1.1
