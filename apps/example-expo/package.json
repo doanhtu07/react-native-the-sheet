@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@faker-js/faker": "^10.5.0",
-    "@react-native-vector-icons/ant-design": "^13.1.2",
+    "@react-native-vector-icons/ant-design": "^13.1.4",
     "@react-native-vector-icons/material-design-icons": "^13.1.2",
     "@shopify/flash-list": "2.0.2",
     "@the-sheet/embedded-stack-navigator": "workspace:*",
