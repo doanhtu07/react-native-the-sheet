@@ -289,8 +289,8 @@ importers:
         specifier: ~0.4.5
         version: 0.4.5(expo@53.0.27(@babel/core@7.29.7(supports-color@8.1.1))(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1))(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))
       expo-system-ui:
-        specifier: ~5.0.11
-        version: 5.0.11(expo@53.0.27(@babel/core@7.29.7(supports-color@8.1.1))(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1))(react-native-web@0.20.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(supports-color@5.5.0)
+        specifier: ~57.0.3
+        version: 57.0.3(expo@53.0.27(@babel/core@7.29.7(supports-color@8.1.1))(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1))(react-native-web@0.20.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(supports-color@8.1.1)
       expo-web-browser:
         specifier: ~14.2.0
         version: 14.2.0(expo@53.0.27(@babel/core@7.29.7(supports-color@8.1.1))(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1))(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))
@@ -2222,6 +2222,9 @@ packages:
   '@react-native/normalize-colors@0.79.6':
     resolution: {integrity: sha512-0v2/ruY7eeKun4BeKu+GcfO+SHBdl0LJn4ZFzTzjHdWES0Cn+ONqKljYaIv8p9MV2Hx/kcdEvbY4lWI34jC/mQ==}
 
+  '@react-native/normalize-colors@0.86.3':
+    resolution: {integrity: sha512-Cv3CDkprb67GrzuaS9BGbBJC/6G4lIw3nyKOHRKTqTTum4bn37y5+R0Z04L8mcbQN85eEohNrRwb7IOM4j6uvg==}
+
   '@react-native/virtualized-lists@0.79.6':
     resolution: {integrity: sha512-khA/Hrbb+rB68YUHrLubfLgMOD9up0glJhw25UE3Kntj32YDyuO0Tqc81ryNTcCekFKJ8XrAaEjcfPg81zBGPw==}
     engines: {node: '>=18'}
@@ -3753,8 +3756,8 @@ packages:
       expo: '*'
       react-native: '*'
 
-  expo-system-ui@5.0.11:
-    resolution: {integrity: sha512-PG5VdaG5cwBe1Rj02mJdnsihKl9Iw/w/a6+qh2mH3f2K/IvQ+Hf7aG2kavSADtkGNCNj7CEIg7Rn4DQz/SE5rQ==}
+  expo-system-ui@57.0.3:
+    resolution: {integrity: sha512-3N3BoagGojEvQw0h7kL0Lvv2LrVjqEvODSNS+Nc9lj/kzaTaVx4K1HI8qqxeALMf5jui3rLP2b3Ai2pXotoNuA==}
     peerDependencies:
       expo: '*'
       react-native: '*'
@@ -9487,6 +9490,8 @@ snapshots:
 
   '@react-native/normalize-colors@0.79.6': {}
 
+  '@react-native/normalize-colors@0.86.3': {}
+
   '@react-native/virtualized-lists@0.79.6(@types/react@19.0.14)(react-native@0.79.6(@babel/core@7.29.7(supports-color@5.5.0))(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))(react@19.0.0)':
     dependencies:
       invariant: 2.2.4
@@ -11653,10 +11658,10 @@ snapshots:
       react-native: 0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1)
       sf-symbols-typescript: 2.2.0
 
-  expo-system-ui@5.0.11(expo@53.0.27(@babel/core@7.29.7(supports-color@8.1.1))(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1))(react-native-web@0.20.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(supports-color@5.5.0):
+  expo-system-ui@57.0.3(expo@53.0.27(@babel/core@7.29.7(supports-color@8.1.1))(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1))(react-native-web@0.20.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(supports-color@8.1.1):
     dependencies:
-      '@react-native/normalize-colors': 0.79.6
-      debug: 4.4.3(supports-color@5.5.0)
+      '@react-native/normalize-colors': 0.86.3
+      debug: 4.4.3(supports-color@8.1.1)
       expo: 53.0.27(@babel/core@7.29.7(supports-color@8.1.1))(@expo/metro-runtime@5.0.5(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1)))(babel-plugin-react-compiler@1.0.0)(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1)
       react-native: 0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1)
     optionalDependencies:
