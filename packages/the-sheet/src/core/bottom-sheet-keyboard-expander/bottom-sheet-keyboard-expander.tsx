@@ -22,7 +22,7 @@ import { useBottomSheet } from '../bottom-sheet/bottom-sheet-provider'
 import {
   KEYBOARD_EXPANDER_ANIMATION_DURATION,
   KEYBOARD_EXPANDER_ANIMATION_EASING,
-} from './private/constants'
+} from './constants'
 import { useToSharedValue } from '../hooks/use-to-shared-value'
 
 export function BottomSheetKeyboardExpander({
