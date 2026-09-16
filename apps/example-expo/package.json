@@ -23,7 +23,7 @@
   "dependencies": {
     "@expo/vector-icons": "^14.1.0",
     "@faker-js/faker": "^10.5.0",
-    "@react-navigation/bottom-tabs": "^7.18.14",
+    "@react-navigation/bottom-tabs": "^7.19.1",
     "@react-navigation/elements": "^2.9.30",
     "@react-navigation/native": "^7.3.8",
     "@shopify/flash-list": "1.7.6",
@@ -59,7 +59,7 @@
     "@react-native/eslint-config": "^0.86.0",
     "@types/node": "^25.9.4",
     "@types/react": "~19.0.14",
-    "@types/semver": "^7.7.1",
+    "@types/semver": "^7.8.0",
     "babel-plugin-react-compiler": "^1.0.0",
     "eslint": "^10.7.0",
     "eslint-config-expo": "~9.2.0",
