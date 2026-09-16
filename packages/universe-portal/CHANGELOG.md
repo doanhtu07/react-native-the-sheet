@@ -1,5 +1,11 @@
 # @the-sheet/universe-portal
 
+## 2.0.26
+
+### Patch Changes
+
+- Move bottom sheet keyboard expander constants to public interface
+
 ## 2.0.25
 
 ### Patch Changes

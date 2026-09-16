@@ -1,5 +1,13 @@
 # @the-sheet/flash-list
 
+## 2.0.26
+
+### Patch Changes
+
+- Move bottom sheet keyboard expander constants to public interface
+- Updated dependencies
+  - @the-sheet/the-sheet@2.0.26
+
 ## 2.0.25
 
 ### Patch Changes
