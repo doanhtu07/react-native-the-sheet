@@ -1,5 +1,11 @@
 # @the-sheet/embedded-stack-navigator
 
+## 1.0.25
+
+### Patch Changes
+
+- Move bottom sheet keyboard expander constants to public interface
+
 ## 1.0.24
 
 ### Patch Changes
