@@ -1,29 +1,226 @@
 name: Release
 
-on:
-  workflow_dispatch:
+# Builds the @the-sheet/* libraries and publishes each one twice from a single
+# `v<version>` tag:
+#   1. npm registry (registry.npmjs.org) under the channel's dist-tag, and
+#   2. per-package tarballs attached to the GitHub Release.
+# Consumers normally install by name + semver; the tarballs are a fallback that
+# needs no registry setup. Nothing compiled (`lib/`) is ever committed — both
+# artifacts are built in CI from the tagged source.
+#
+# Three channels, all driven by the tag name — the workflow is branch-agnostic
+# because it always checks out the tag ref, so a release can be cut from any
+# branch:
+#   v1.2.0-alpha.N → QA   → npm dist-tag `alpha`, GitHub pre-release
+#   v1.2.0-beta.N  → UAT  → npm dist-tag `beta`,  GitHub pre-release
+#   v1.2.0         → prod → npm dist-tag `latest`, full GitHub release
+#
+# Auth is OIDC trusted publishing — no long-lived npm token is stored. Each
+# @the-sheet/* package needs a trusted publisher on npmjs.com pointing at this
+# repo + workflow file with `npm publish` allowed (see
+# docs/resources/publish-npm-package.md).
 
-# https://docs.npmjs.com/trusted-publishers
+on:
+  push:
+    tags:
+      - 'v*'
+
+  # Manual fallback: if a tag push didn't trigger a run (or a run failed),
+  # release any existing tag from the Actions tab → "Run workflow".
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing tag to (re)build and release, e.g. v1.2.0 or v1.2.0-alpha.0'
+        required: true
+        type: string
+
+# Resolve the target tag once: the pushed tag, or the manually entered one.
+env:
+  RELEASE_TAG: ${{ github.event.inputs.tag || github.ref_name }}
+
+concurrency:
+  group: release-${{ github.event.inputs.tag || github.ref_name }}
+  cancel-in-progress: false
+
 permissions:
-  id-token: write # Required for OIDC
-  contents: read
+  contents: write # create the Release and upload tarball assets
+  id-token: write # OIDC trusted publishing to the npm registry
 
 jobs:
   release:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v7
+        with:
+          # For manual runs, check out the requested tag's exact source
+          # (a push event already runs at the tag ref).
+          ref: ${{ env.RELEASE_TAG }}
+
+      - name: Verify tag
+        # Guard against a typo'd tag on manual dispatch.
+        run: |
+          if ! git rev-parse -q --verify "refs/tags/${RELEASE_TAG}" >/dev/null; then
+            echo "::error::Tag '${RELEASE_TAG}' does not exist."
+            exit 1
+          fi
+          echo "Releasing tag ${RELEASE_TAG}"
+
+      - name: Resolve release channel
+        # The tag's prerelease suffix picks the npm dist-tag. Keeping alpha/beta
+        # off `latest` means a plain `npm i @the-sheet/the-sheet` in production
+        # never resolves to a QA or UAT build.
+        run: |
+          version="${RELEASE_TAG#v}"
+          case "$version" in
+            *-alpha.*) channel=alpha ;;
+            *-beta.*)  channel=beta ;;
+            *-*)
+              echo "::error::Unsupported prerelease tag '${RELEASE_TAG}'. Use -alpha.N (QA) or -beta.N (UAT)."
+              exit 1
+              ;;
+            *)         channel=latest ;;
+          esac
+          if [ "$channel" = latest ]; then prerelease=false; else prerelease=true; fi
+          echo "NPM_TAG=$channel" >> "$GITHUB_ENV"
+          echo "PRERELEASE=$prerelease" >> "$GITHUB_ENV"
+          echo "npm dist-tag: $channel | GitHub pre-release: $prerelease"
 
       - uses: pnpm/action-setup@v6
+        with:
+          version: 11.24.0
+          run_install: false
 
       - uses: actions/setup-node@v7
         with:
           node-version: 24
-          registry-url: https://registry.npmjs.org
-          cache: pnpm
+          cache: 'pnpm'
+          # Default registry for publishing. Auth itself comes from OIDC
+          # (trusted publishing) — no NODE_AUTH_TOKEN is set on purpose.
+          registry-url: 'https://registry.npmjs.org'
 
-      - run: pnpm install
+      - name: Install
+        run: pnpm install --frozen-lockfile
 
-      - name: Publish
-        run: pnpm -r publish
+      - name: Build packages
+        # Tiered bob builds: the-sheet (and the other independents) before the
+        # flash-list adapters that depend on it via workspace:*.
+        run: bash ./scripts/build-packages.sh
+
+      - name: Pack packages
+        # `pnpm pack` respects each package.json "files" field, so every
+        # tarball contains exactly what a publish would (src + lib).
+        # Tarballs keep the name pnpm gives them —
+        # `the-sheet-<pkg>-<version>.tgz` — so a downloaded asset identifies its
+        # own package and version without renaming.
+        run: |
+          mkdir -p .release-assets
+          for dir in \
+            packages/the-sheet \
+            packages/embedded-stack-navigator \
+            packages/universe-portal \
+            packages/flash-list \
+            packages/flash-list-v2; do
+            (cd "$dir" && pnpm pack --pack-destination "$GITHUB_WORKSPACE/.release-assets")
+          done
+          ls -la .release-assets
+
+      - name: Publish to npm
+        # Publishes each package to the npm registry in dependency order, so
+        # consumers can `npm i @the-sheet/the-sheet@<version>` with a semver range.
+        # Auth is OIDC: the npm CLI detects the trusted-publisher environment
+        # automatically (requires `id-token: write` above and a trusted
+        # publisher configured per package on npmjs.com).
+        # --no-git-checks skips the clean-tree / branch guards that don't apply
+        # in a tag-triggered CI build.
+        # --tag pins the dist-tag to the channel resolved above, so alpha/beta
+        # builds are installable by name but never become `latest`.
+        # Idempotent: a re-run of an already-published version is tolerated so
+        # a manual re-release (e.g. to fix a tarball) doesn't fail the job.
+        run: |
+          for dir in \
+            packages/the-sheet \
+            packages/embedded-stack-navigator \
+            packages/universe-portal \
+            packages/flash-list \
+            packages/flash-list-v2; do
+            echo "Publishing $dir under dist-tag '${NPM_TAG}' …"
+            if ! pnpm --filter "./$dir" publish --tag "$NPM_TAG" --no-git-checks 2>&1 | tee /tmp/pub.log; then
+              if grep -q -e 'EPUBLISHCONFLICT' -e 'already exists' -e 'cannot publish over' /tmp/pub.log; then
+                echo "::warning::$dir version already published — skipping."
+              else
+                echo "::error::Failed to publish $dir"
+                exit 1
+              fi
+            fi
+          done
+
+      - name: Assemble release notes
+        # Our peer-dependency summary, followed by GitHub's own auto-generated
+        # notes (fetched via the first-party releases API through gh).
+        run: |
+          : > RELEASE_NOTES.md
+          if [ "$PRERELEASE" = true ]; then
+            {
+              printf '> **%s pre-release** — install with the `%s` dist-tag:\n>\n' \
+                "$([ "$NPM_TAG" = alpha ] && echo QA || echo UAT)" "$NPM_TAG"
+              printf '> ```sh\n> npm i @the-sheet/the-sheet@%s\n> ```\n>\n' "$NPM_TAG"
+              printf '> Not published to `latest`. Do not ship to production.\n\n'
+            } >> RELEASE_NOTES.md
+          fi
+
+          node --input-type=module <<'EOF' >> RELEASE_NOTES.md
+          import { readFileSync } from 'node:fs';
+          const pkgs = [
+            'packages/the-sheet',
+            'packages/embedded-stack-navigator',
+            'packages/universe-portal',
+            'packages/flash-list',
+            'packages/flash-list-v2',
+          ];
+          let out = '## Peer dependencies\n\n';
+          out += 'Each package expects these to be installed by the consumer:\n\n';
+          for (const dir of pkgs) {
+            const p = JSON.parse(readFileSync(`${dir}/package.json`, 'utf8'));
+            const peers = p.peerDependencies ?? {};
+            out += `### \`${p.name}\` — v${p.version}\n\n`;
+            const keys = Object.keys(peers);
+            if (keys.length === 0) {
+              out += '_No peer dependencies._\n\n';
+            } else {
+              for (const k of keys) out += `- \`${k}\`: \`${peers[k]}\`\n`;
+              out += '\n';
+            }
+          }
+          process.stdout.write(out);
+          EOF
+
+          # Auto-generated changelog notes from the releases API.
+          notes=$(gh api "repos/${GITHUB_REPOSITORY}/releases/generate-notes" \
+            -f tag_name="${RELEASE_TAG}" --jq '.body' || true)
+          if [ -n "$notes" ]; then
+            printf '\n---\n\n%s\n' "$notes" >> RELEASE_NOTES.md
+          fi
+          cat RELEASE_NOTES.md
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish release
+        # Idempotent: create the release, or update it (and overwrite assets)
+        # if a manual re-run targets an existing tag.
+        # alpha/beta tags are flagged as pre-releases so GitHub keeps "Latest
+        # release" pointing at the newest stable tag.
+        run: |
+          if gh release view "${RELEASE_TAG}" >/dev/null 2>&1; then
+            gh release edit "${RELEASE_TAG}" \
+              --notes-file RELEASE_NOTES.md \
+              --prerelease="${PRERELEASE}"
+            gh release upload "${RELEASE_TAG}" .release-assets/*.tgz --clobber
+          else
+            gh release create "${RELEASE_TAG}" .release-assets/*.tgz \
+              --title "${RELEASE_TAG}" \
+              --notes-file RELEASE_NOTES.md \
+              --prerelease="${PRERELEASE}" \
+              --verify-tag
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

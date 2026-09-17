@@ -10,9 +10,12 @@ Most up-to-date branches:
 
 - `main`, `v1`, ...
 
-Release tags (code freeze):
+Release tags (code freeze, lockstep across all `@the-sheet/*` packages):
 
-- `react-native-the-sheet@1.0.0`, `react-native-the-sheet@2.0.0`, ...
+- `v1.0.0`, `v1.2.0-alpha.0`, `v1.2.0-beta.0`, ...
+
+Pushing a `v*` tag runs the release workflow (npm publish + tarballs + GitHub
+Release). See [Publish NPM Package](./docs/resources/publish-npm-package.md).
 
 ## Versioning
 
