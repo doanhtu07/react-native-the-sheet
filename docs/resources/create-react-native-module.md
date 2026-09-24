@@ -1,10 +1,10 @@
 # Create React Native Module
 
-pnpx create-react-native-library@latest PACKAGE_NAME
+pnpx create-react-native-library@latest PACKAGE_NAME --example none
 
 - `Turbo module`
 - `Kotlin & Objective-C`
-- `App with Expo CLI`
+- `App with Community CLI`
 - [`Eslint with Prettier`, `Jest`]
 
 ## Remove all yarn related stuff
@@ -26,9 +26,6 @@ Remove list:
 - `workspaces` from `package.json`
 - `prettier` from `package.json`
 
-- Remove `nodeLinker: hoisted` from `pnpm-workspace.yaml` if you are using pnpm
-  - `pnpx create-react-native-library@latest PACKAGE_NAME` command will accidentally add this back every single time
-
 ## Fix Eslint file
 
 - Use `@react-native/eslint-config/flat`
@@ -36,3 +33,7 @@ Remove list:
 ## Install dependencies
 
 - `pnpm add -D prettier`
+
+## Backward compatibility
+
+https://github.com/reactwg/react-native-new-architecture/blob/main/docs/backwards-compat.md
