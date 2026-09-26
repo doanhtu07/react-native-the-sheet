@@ -18,7 +18,7 @@ SafeAreaProvider (Required) + KeyboardProvider (Recommended)
                                 └── BottomSheetHandle
                                 └── BottomSheetView
                                 └── BottomSheetScrollView / BottomSheetFlatList / BottomSheetFlashList / BottomSheetSectionList / BottomSheetVirtualizedList
-                                    (Could be nested under BottomSheetView as well)
+                                    (Can be nested under BottomSheetView, though not recommended — may conflict with the pan gesture. Prefer sibling BottomSheetViews, see BottomSheetView docs)
                                 └── BottomSheetFooter
                             └── BottomSheetKeyboardExpander
 ```
