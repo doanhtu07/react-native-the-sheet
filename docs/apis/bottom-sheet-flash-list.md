@@ -15,6 +15,9 @@ import { BottomSheetFlashList } from '@the-sheet/flash-list-v2'
 > - Install `@shopify/flash-list@1.x` for `@the-sheet/flash-list`
 > - Install `@shopify/flash-list@2.x` for `@the-sheet/flash-list-v2`
 
+> [!TIP]
+> It's not recommended to nest `BottomSheetFlashList` inside `BottomSheetView`. Both attach their own gesture detector for the bottom sheet pan gesture, so nesting may cause the gestures to conflict in some cases. If you need sheet gesture handling around non-scrollable areas plus a scrollable area, it's recommended to use multiple sibling `BottomSheetView`s to cover the areas that need the bottom sheet gesture instead of wrapping the scroll view.
+
 ## Props
 
 Inherits all props of `FlashList`, except for the following overriden props:
