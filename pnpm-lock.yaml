@@ -208,6 +208,9 @@ importers:
       '@the-sheet/flash-list':
         specifier: workspace:*
         version: link:../../packages/flash-list
+      '@the-sheet/keyboard-controller':
+        specifier: workspace:*
+        version: link:../../packages/keyboard-controller
       '@the-sheet/the-sheet':
         specifier: workspace:*
         version: link:../../packages/the-sheet
@@ -532,6 +535,82 @@ importers:
       react-native-builder-bob:
         specifier: ^0.43.0
         version: 0.43.0(supports-color@8.1.1)
+      turbo:
+        specifier: ^2.11.2
+        version: 2.11.2
+      typescript:
+        specifier: ~5.8.3
+        version: 5.8.3
+
+  packages/keyboard-controller:
+    dependencies:
+      '@the-sheet/the-sheet':
+        specifier: workspace:*
+        version: link:../the-sheet
+    devDependencies:
+      '@eslint/compat':
+        specifier: ^2.1.0
+        version: 2.1.0(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))
+      '@eslint/eslintrc':
+        specifier: ^3.3.5
+        version: 3.3.5(supports-color@8.1.1)
+      '@eslint/js':
+        specifier: ^10.0.1
+        version: 10.0.1(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))
+      '@jest/globals':
+        specifier: ^30.0.0
+        version: 30.4.1(supports-color@8.1.1)
+      '@react-native/babel-preset':
+        specifier: 0.87.1
+        version: 0.87.1(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
+      '@react-native/eslint-config':
+        specifier: 0.87.1
+        version: 0.87.1(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.4.2(@types/node@26.6.2)(supports-color@8.1.1))(prettier@3.8.4)(supports-color@8.1.1)(typescript@5.8.3)
+      '@react-native/jest-preset':
+        specifier: 0.87.1
+        version: 0.87.1(@babel/core@7.29.7(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1)
+      '@types/react':
+        specifier: ~19.0.14
+        version: 19.0.14
+      del-cli:
+        specifier: ^7.0.0
+        version: 7.0.0
+      eslint:
+        specifier: ^10.7.0
+        version: 10.7.0(jiti@2.6.1)(supports-color@8.1.1)
+      eslint-config-prettier:
+        specifier: ^10.1.8
+        version: 10.1.8(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))
+      eslint-plugin-ft-flow:
+        specifier: ^3.0.11
+        version: 3.0.11(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(hermes-eslint@0.36.1)
+      eslint-plugin-prettier:
+        specifier: ^5.5.5
+        version: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1)))(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(prettier@3.8.4)
+      jest:
+        specifier: ^30.3.0
+        version: 30.4.2(@types/node@26.6.2)(supports-color@8.1.1)
+      nodemon:
+        specifier: ^3.1.14
+        version: 3.1.14
+      prettier:
+        specifier: ^3.8.3
+        version: 3.8.4
+      react:
+        specifier: 19.0.0
+        version: 19.0.0
+      react-native:
+        specifier: 0.79.6
+        version: 0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1)
+      react-native-builder-bob:
+        specifier: ^0.43.0
+        version: 0.43.0(supports-color@8.1.1)
+      react-native-keyboard-controller:
+        specifier: ^1.22.4
+        version: 1.22.4(react-native-reanimated@3.17.5(@babel/core@7.29.7(supports-color@8.1.1))(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1))(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)
+      react-native-reanimated:
+        specifier: ~3.17.5
+        version: 3.17.5(@babel/core@7.29.7(supports-color@8.1.1))(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1)
       turbo:
         specifier: ^2.11.2
         version: 2.11.2
@@ -9300,6 +9379,27 @@ snapshots:
       - supports-color
       - typescript
 
+  '@react-native/eslint-config@0.87.1(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.4.2(@types/node@26.6.2)(supports-color@8.1.1))(prettier@3.8.4)(supports-color@8.1.1)(typescript@5.8.3)':
+    dependencies:
+      '@babel/core': 7.29.7(supports-color@8.1.1)
+      '@babel/eslint-parser': 7.29.7(@babel/core@7.29.7(supports-color@8.1.1))(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))
+      '@react-native/eslint-plugin': 0.87.1
+      '@typescript-eslint/eslint-plugin': 8.62.0(@typescript-eslint/parser@8.62.0(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.8.3))(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.8.3)
+      '@typescript-eslint/parser': 8.62.0(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.8.3)
+      eslint: 10.7.0(jiti@2.6.1)(supports-color@8.1.1)
+      eslint-config-prettier: 8.10.2(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))
+      eslint-plugin-eslint-comments: 3.2.0(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))
+      eslint-plugin-ft-flow: 2.0.3(@babel/eslint-parser@7.29.7(@babel/core@7.29.7(supports-color@8.1.1))(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1)))(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))
+      eslint-plugin-jest: 29.15.2(@typescript-eslint/eslint-plugin@8.62.0(@typescript-eslint/parser@8.62.0(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.8.3))(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.8.3))(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.4.2(@types/node@26.6.2)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.8.3)
+      eslint-plugin-react: 7.37.5(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))
+      eslint-plugin-react-hooks: 7.1.1(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)
+      eslint-plugin-react-native: 5.0.0(eslint@10.7.0(jiti@2.6.1)(supports-color@8.1.1))
+      prettier: 3.8.4
+    transitivePeerDependencies:
+      - jest
+      - supports-color
+      - typescript
+
   '@react-native/eslint-plugin@0.86.0': {}
 
   '@react-native/eslint-plugin@0.87.1': {}
@@ -12275,7 +12375,6 @@ snapshots:
       - esbuild-register
       - supports-color
       - ts-node
-    optional: true
 
   jest-config@30.4.2(@types/node@25.9.4)(supports-color@5.5.0):
     dependencies:
@@ -12369,7 +12468,6 @@ snapshots:
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
-    optional: true
 
   jest-diff@30.4.1:
     dependencies:
@@ -12784,7 +12882,6 @@ snapshots:
       - esbuild-register
       - supports-color
       - ts-node
-    optional: true
 
   jimp-compact@0.16.1: {}
 

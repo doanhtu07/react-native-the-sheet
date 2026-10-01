@@ -1,5 +1,12 @@
 # @the-sheet/flash-list
 
+## 1.1.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @the-sheet/the-sheet@1.1.0
+
 ## 1.0.25
 
 ### Patch Changes

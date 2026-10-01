@@ -5,23 +5,20 @@ import {
   SheetKeyboardProvider,
   SheetStackProvider,
   BottomSheetRegistryProvider,
-  AnimatedProp,
-  ANDROID_WINDOW_SOFT_INPUT_MODES,
   BottomSheetPresenterRegistryProvider,
+  type AndroidWindowSoftInputMode,
 } from '@the-sheet/the-sheet'
 import { PortalProvider, PortalHost } from '@the-sheet/universe-portal'
 
 type Props = {
-  androidWindowSoftInputMode: AnimatedProp<
-    keyof typeof ANDROID_WINDOW_SOFT_INPUT_MODES
-  >
+  defaultSoftInputMode: AndroidWindowSoftInputMode
 }
 
-export const BaseProviders = ({ androidWindowSoftInputMode }: Props) => {
+export const BaseProviders = ({ defaultSoftInputMode }: Props) => {
   return (
     <SafeAreaProvider>
       <SheetKeyboardProvider
-        androidWindowSoftInputMode={androidWindowSoftInputMode}
+        defaultAndroidWindowSoftInputMode={defaultSoftInputMode}
       >
         <SheetStackProvider debug>
           <PortalProvider>

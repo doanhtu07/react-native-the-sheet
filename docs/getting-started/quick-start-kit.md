@@ -60,7 +60,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <SheetKeyboardProvider
-        androidWindowSoftInputMode={/* Your app's Android window soft input mode */}
+        defaultAndroidWindowSoftInputMode={/* Your app's Android window soft input mode */}
       >
         <SheetStackProvider debug>
           <PortalProvider>

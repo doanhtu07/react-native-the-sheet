@@ -7,6 +7,7 @@
       "@the-sheet/embedded-stack-navigator",
       "@the-sheet/flash-list",
       "@the-sheet/flash-list-v2",
+      "@the-sheet/keyboard-controller",
       "@the-sheet/the-sheet",
       "@the-sheet/universe-portal"
     ]

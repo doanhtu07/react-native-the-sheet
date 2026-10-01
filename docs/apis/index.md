@@ -54,6 +54,8 @@
 
 [BottomSheetKeyboardExpander](./bottom-sheet-keyboard-expander.md)
 
+[BottomSheetInlineKeyboardExpander](./bottom-sheet-inline-keyboard-expander.md)
+
 ---
 
 [HeightBudgetProvider](./height-budget-provider.md)

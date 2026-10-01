@@ -6,18 +6,20 @@ export default function RootLayout() {
   // Need to rebuild (or at least restart) the app when toggling this
   const enableKeyboardProvider = false
 
-  const androidWindowSoftInputMode =
-    ANDROID_WINDOW_SOFT_INPUT_MODES.adjustResize
+  /*
+    Must match android:windowSoftInputMode in AndroidManifest.xml.
+    Screens can override it at runtime through useSheetKeyboard()
+    (e.g. the chat example switches to adjustNothing while open).
+  */
+  const defaultSoftInputMode = ANDROID_WINDOW_SOFT_INPUT_MODES.adjustResize
 
   if (!enableKeyboardProvider) {
-    return (
-      <BaseProviders androidWindowSoftInputMode={androidWindowSoftInputMode} />
-    )
+    return <BaseProviders defaultSoftInputMode={defaultSoftInputMode} />
   }
 
   return (
     <KeyboardProvider>
-      <BaseProviders androidWindowSoftInputMode={androidWindowSoftInputMode} />
+      <BaseProviders defaultSoftInputMode={defaultSoftInputMode} />
     </KeyboardProvider>
   )
 }

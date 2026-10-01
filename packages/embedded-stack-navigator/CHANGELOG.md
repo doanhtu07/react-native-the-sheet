@@ -1,5 +1,9 @@
 # @the-sheet/embedded-stack-navigator
 
+## 1.1.0
+
+No changes in this release.
+
 ## 1.0.25
 
 ### Patch Changes

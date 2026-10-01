@@ -1,0 +1,10 @@
+{
+  "codegenConfig": {
+    "name": "KeyboardControllerSpec",
+    "type": "modules",
+    "jsSrcsDir": "src",
+    "android": {
+      "javaPackageName": "com.keyboardcontroller"
+    }
+  }
+}

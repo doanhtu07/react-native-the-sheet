@@ -21,6 +21,7 @@ All packages in the `fixed` group share one version (see `.changeset/config.json
 - `@the-sheet/universe-portal`
 - `@the-sheet/flash-list`
 - `@the-sheet/flash-list-v2`
+- `@the-sheet/keyboard-controller`
 
 A single `v<version>` tag therefore covers the whole set.
 
@@ -49,7 +50,7 @@ CI publishes via [OIDC trusted publishing](https://docs.npmjs.com/trusted-publis
 no long-lived npm token is stored in the repo. Each package needs its own
 trusted publisher (npm only trusts the exact package + workflow pair), so repeat
 this once per package (`the-sheet`, `embedded-stack-navigator`,
-`universe-portal`, `flash-list`, `flash-list-v2`):
+`universe-portal`, `flash-list`, `flash-list-v2`, `keyboard-controller`):
 
 1. Go to `npmjs.com/package/@the-sheet/<pkg>` > Settings > **Trusted Publishers**.
 2. Add a GitHub Actions publisher:
@@ -62,7 +63,7 @@ this once per package (`the-sheet`, `embedded-stack-navigator`,
 3. The workflow already requests `id-token: write`, so nothing else is needed —
    the next tag push publishes without any secret.
 
-This is already configured for all five existing packages (every past release
+This is already configured for all six existing packages (every past release
 went out through this workflow, which carries no token — only OIDC could have
 authenticated it). Only repeat the steps above for a newly added package.
 
@@ -211,6 +212,7 @@ the-sheet-embedded-stack-navigator-<version>.tgz
 the-sheet-universe-portal-<version>.tgz
 the-sheet-flash-list-<version>.tgz
 the-sheet-flash-list-v2-<version>.tgz
+the-sheet-keyboard-controller-<version>.tgz
 ```
 
 Note there is no `v` prefix on the version in the **filename** (npm's
