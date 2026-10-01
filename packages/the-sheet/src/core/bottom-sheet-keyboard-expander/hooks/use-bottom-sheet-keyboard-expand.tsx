@@ -40,7 +40,7 @@ export const useBottomSheetKeyboardExpand = ({
     isAndroidKeyboardResizeMode,
   } = useSheetKeyboard()
 
-  const { isEdgeToEdge, safeAreaHeight, trueTop, trueBottom } =
+  const { isEdgeToEdge, safeAreaHeight, trueBottom, windowHeight } =
     useTrueSafeArea()
 
   const isInputFocused = useToSharedValue(propIsInputFocused)
@@ -107,9 +107,21 @@ export const useBottomSheetKeyboardExpand = ({
             // to have a good calculation against current keyboard height
             let inputBottom = initialInputBottom.value
 
+            /*
+              Edge-to-edge: measureInWindow is screen-absolute (root starts at y=0).
+              RN reports keyboard height WITHOUT the nav bar
+              (ReactRootView: ime.bottom - systemBars.bottom),
+              so visual keyboard top = windowHeight - trueBottom - keyboardHeight.
+            
+              Non-edge-to-edge / iOS: measureInWindow is root-relative and the root
+              starts below the status bar, so both sides are already in frame space
+              and safeAreaHeight - keyboardHeight is correct as-is (verified on
+              Android emulator: ime frame top == windowHeight - trueBottom - K,
+              input sits exactly keyboardOffset above it after expansion).
+            */
             const keyboardTop =
               Platform.OS === 'android' && isEdgeToEdge
-                ? safeAreaHeight - trueTop - trueBottom - keyboardHeightValue
+                ? windowHeight - trueBottom - keyboardHeightValue
                 : safeAreaHeight - keyboardHeightValue
 
             // On Android + adjustPan, Android does not take into account translateY
@@ -151,7 +163,7 @@ export const useBottomSheetKeyboardExpand = ({
       safeAreaHeight,
       sheetHiddenHeight,
       trueBottom,
-      trueTop,
+      windowHeight,
     ],
   )
 
