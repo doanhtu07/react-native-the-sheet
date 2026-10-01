@@ -662,6 +662,9 @@ importers:
       jest:
         specifier: ^30.3.0
         version: 30.4.2(@types/node@25.9.4)(supports-color@8.1.1)
+      nodemon:
+        specifier: ^3.1.14
+        version: 3.1.14
       prettier:
         specifier: ^3.8.3
         version: 3.8.4
