@@ -1,6 +1,5 @@
 import type { PropsWithChildren } from 'react'
 import type { DerivedValue, SharedValue } from 'react-native-reanimated'
-import type { AnimatedProp } from '../types'
 
 export const ANDROID_WINDOW_SOFT_INPUT_MODES = {
   adjustResize: 'adjustResize',
@@ -8,19 +7,19 @@ export const ANDROID_WINDOW_SOFT_INPUT_MODES = {
   adjustNothing: 'adjustNothing',
 } as const
 
+export type AndroidWindowSoftInputMode =
+  keyof typeof ANDROID_WINDOW_SOFT_INPUT_MODES
+
 export type SheetKeyboardContextType = {
   keyboardVisible: SharedValue<boolean>
   keyboardFinalHeight: SharedValue<number>
 
-  androidWindowSoftInputMode: SharedValue<
-    keyof typeof ANDROID_WINDOW_SOFT_INPUT_MODES
-  >
+  androidWindowSoftInputMode: SharedValue<AndroidWindowSoftInputMode>
+  defaultAndroidWindowSoftInputMode: AndroidWindowSoftInputMode
   isVisuallyAndroidKeyboardResizeMode: SharedValue<boolean | null>
   isAndroidKeyboardResizeMode: DerivedValue<boolean>
 }
 
 export type SheetKeyboardProviderProps = PropsWithChildren & {
-  androidWindowSoftInputMode: AnimatedProp<
-    keyof typeof ANDROID_WINDOW_SOFT_INPUT_MODES
-  >
+  defaultAndroidWindowSoftInputMode: AndroidWindowSoftInputMode
 }

@@ -43,4 +43,4 @@ We use @changesets/cli for managing versioning and releases
 
 ### Android keyboard mode testing
 
-- When updating keyboard mode for Android, don't forget to adjust `androidWindowSoftInputMode` in `apps/example-expo/app/_layout.tsx`
+- When updating keyboard mode for Android, don't forget to adjust `defaultAndroidWindowSoftInputMode` in `apps/example-expo/app/_layout.tsx`

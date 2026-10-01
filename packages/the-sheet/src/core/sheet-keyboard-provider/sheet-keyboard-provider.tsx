@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useMemo } from 'react'
 import {
   ANDROID_WINDOW_SOFT_INPUT_MODES,
+  type AndroidWindowSoftInputMode,
   type SheetKeyboardContextType,
   type SheetKeyboardProviderProps,
 } from './types'
@@ -31,7 +32,7 @@ export const useSheetKeyboard = () => {
 }
 
 export const SheetKeyboardProvider = ({
-  androidWindowSoftInputMode: propAndroidWindowSoftInputMode,
+  defaultAndroidWindowSoftInputMode,
   children,
 }: SheetKeyboardProviderProps) => {
   const { isEdgeToEdge, trueBottom: trueBottomValue } = useTrueSafeArea()
@@ -41,8 +42,8 @@ export const SheetKeyboardProvider = ({
   const keyboardVisible = useSharedValue(false)
   const keyboardFinalHeight = useSharedValue(0)
 
-  const androidWindowSoftInputMode = useToSharedValue(
-    propAndroidWindowSoftInputMode,
+  const androidWindowSoftInputMode = useSharedValue<AndroidWindowSoftInputMode>(
+    defaultAndroidWindowSoftInputMode,
   )
 
   const isVisuallyAndroidKeyboardResizeMode = useSharedValue<boolean | null>(
@@ -75,6 +76,7 @@ export const SheetKeyboardProvider = ({
       keyboardFinalHeight,
 
       androidWindowSoftInputMode,
+      defaultAndroidWindowSoftInputMode,
       isVisuallyAndroidKeyboardResizeMode,
       isAndroidKeyboardResizeMode,
     }
@@ -82,6 +84,7 @@ export const SheetKeyboardProvider = ({
     keyboardVisible,
     keyboardFinalHeight,
     androidWindowSoftInputMode,
+    defaultAndroidWindowSoftInputMode,
     isVisuallyAndroidKeyboardResizeMode,
     isAndroidKeyboardResizeMode,
   ])

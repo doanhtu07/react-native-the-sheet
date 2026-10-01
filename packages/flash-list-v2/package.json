@@ -1,6 +1,6 @@
 {
   "name": "@the-sheet/flash-list-v2",
-  "version": "2.0.26",
+  "version": "2.1.0",
   "description": "@shopify/flash-list v2 support for The Sheet",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
@@ -84,13 +84,19 @@
     "react": "19.2.3",
     "react-native": "0.86.3",
     "react-native-builder-bob": "^0.43.1",
+    "react-native-gesture-handler": "~2.32.0",
+    "react-native-reanimated": "4.5.1",
+    "react-native-worklets": "0.10.1",
     "turbo": "^2.11.2",
     "typescript": "~6.0.3"
   },
   "peerDependencies": {
     "@shopify/flash-list": "^2.0.0",
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-gesture-handler": "*",
+    "react-native-reanimated": "*",
+    "react-native-worklets": "*"
   },
   "react-native-builder-bob": {
     "source": "src",
@@ -124,6 +130,6 @@
       "eslint",
       "jest"
     ],
-    "version": "0.61.0"
+    "version": "0.62.0"
   }
 }

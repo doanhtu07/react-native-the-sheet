@@ -9,7 +9,7 @@ Then, you can install the corresponding version of our library
 For example, if you are using Reanimated v4, you would install v2 of our library like this:
 
 ```bash
-npm install @the-sheet/the-sheet@2.0.26
+npm install @the-sheet/the-sheet@2.1.0
 ```
 
 Required peer dependencies:
@@ -60,7 +60,7 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <SheetKeyboardProvider
-        androidWindowSoftInputMode={/* Your app's Android window soft input mode */}
+        defaultAndroidWindowSoftInputMode={/* Your app's Android window soft input mode */}
       >
         <SheetStackProvider debug>
           <PortalProvider>

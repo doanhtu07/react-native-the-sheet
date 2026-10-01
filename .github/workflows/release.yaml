@@ -119,7 +119,8 @@ jobs:
             packages/embedded-stack-navigator \
             packages/universe-portal \
             packages/flash-list \
-            packages/flash-list-v2; do
+            packages/flash-list-v2 \
+            packages/keyboard-controller; do
             (cd "$dir" && pnpm pack --pack-destination "$GITHUB_WORKSPACE/.release-assets")
           done
           ls -la .release-assets
@@ -142,7 +143,8 @@ jobs:
             packages/embedded-stack-navigator \
             packages/universe-portal \
             packages/flash-list \
-            packages/flash-list-v2; do
+            packages/flash-list-v2 \
+            packages/keyboard-controller; do
             echo "Publishing $dir under dist-tag '${NPM_TAG}' …"
             if ! pnpm --filter "./$dir" publish --tag "$NPM_TAG" --no-git-checks 2>&1 | tee /tmp/pub.log; then
               if grep -q -e 'EPUBLISHCONFLICT' -e 'already exists' -e 'cannot publish over' /tmp/pub.log; then
@@ -176,6 +178,7 @@ jobs:
             'packages/universe-portal',
             'packages/flash-list',
             'packages/flash-list-v2',
+            'packages/keyboard-controller',
           ];
           let out = '## Peer dependencies\n\n';
           out += 'Each package expects these to be installed by the consumer:\n\n';

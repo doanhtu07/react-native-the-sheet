@@ -1,5 +1,12 @@
 # @the-sheet/flash-list-v2
 
+## 2.1.0
+
+### Patch Changes
+
+- Updated dependencies
+  - @the-sheet/the-sheet@2.1.0
+
 ## 2.0.26
 
 ### Patch Changes

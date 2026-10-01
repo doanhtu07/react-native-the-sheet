@@ -1,6 +1,6 @@
 {
   "name": "@the-sheet/embedded-stack-navigator",
-  "version": "2.0.26",
+  "version": "2.1.0",
   "description": "A stack navigator that can be embedded anywhere",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
@@ -123,6 +123,6 @@
       "eslint",
       "jest"
     ],
-    "version": "0.61.0"
+    "version": "0.62.0"
   }
 }

@@ -219,6 +219,13 @@ export default function Index() {
         }}
       />
 
+      <Button
+        title="Example Chat Composer (Inline Expander)"
+        onPress={() => {
+          router.push('/example-chat-composer')
+        }}
+      />
+
       {/* MARK: Watcher Pattern */}
 
       <Text style={styles.header}>Watcher Pattern</Text>
