@@ -32,6 +32,12 @@ Required peer dependencies:
 
 `@shopify/flash-list` with `@the-sheet/flash-list` or `@the-sheet/flash-list-v2`: Install if you want to use `BottomSheetFlashList` for performant lists with the bottom sheet
 
+---
+
+`react-native-keyboard-controller` with `@the-sheet/keyboard-controller`: Install if you want to use `BottomSheetInlineKeyboardExpander` for inputs inside a footer/composer pinned at the bottom of the sheet (e.g. chat composer)
+
+- [BottomSheetInlineKeyboardExpander](../apis/bottom-sheet-inline-keyboard-expander.md)
+
 ### 🧪 Experimental
 
 While the library is stable enough for use, it is currently in a rapid experimentation phase regarding its API
