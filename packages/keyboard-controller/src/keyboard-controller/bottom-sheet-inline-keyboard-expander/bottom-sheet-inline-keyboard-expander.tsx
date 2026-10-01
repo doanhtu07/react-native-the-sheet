@@ -25,9 +25,23 @@ export function BottomSheetInlineKeyboardExpander({
 
   // MARK: Effects
 
-  // Effect: Force Android to adjustNothing while mounted
-  // Under adjustPan the OS re-pans on every layout change and cancels
-  // the expansion visually, so the expander must own the offset alone.
+  /*
+    Effect: Force Android to adjustNothing while mounted.
+    
+    Unlike the sibling BottomSheetKeyboardExpander (outside BottomSheet,
+    repositions the whole sheet as a rigid block, so the OS keeps its
+    sticky pan — verified with keyboardOffset={300} under adjustPan),
+    this expander lives INSIDE the same container as the input (e.g. chat
+    composer).
+    
+    Its growth changes content height within the focused view's
+    own subtree, so under adjustPan the OS re-runs minimal-pan and shrinks
+    its pan by the same amount, cancelling the lift (input jammed at the
+    keyboard top, Send/footer behind the keyboard — verified on emulator).
+    
+    Under adjustNothing the OS never pans, so the expander solely owns
+    target = inputOverlap + keyboardOffset.
+  */
   useEffect(() => {
     if (Platform.OS !== 'android') {
       return
