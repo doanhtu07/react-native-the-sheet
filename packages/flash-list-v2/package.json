@@ -84,13 +84,17 @@
     "react": "19.0.0",
     "react-native": "0.79.6",
     "react-native-builder-bob": "^0.43.0",
+    "react-native-gesture-handler": "~2.24.0",
+    "react-native-reanimated": "~3.17.5",
     "turbo": "^2.11.2",
     "typescript": "~5.8.3"
   },
   "peerDependencies": {
     "@shopify/flash-list": "^2.0.0",
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-gesture-handler": "*",
+    "react-native-reanimated": "*"
   },
   "react-native-builder-bob": {
     "source": "src",
@@ -124,6 +128,6 @@
       "eslint",
       "jest"
     ],
-    "version": "0.61.0"
+    "version": "0.62.0"
   }
 }
