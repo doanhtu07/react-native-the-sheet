@@ -57,7 +57,7 @@
   "devDependencies": {
     "@eslint/compat": "^2.1.0",
     "@react-native/eslint-config": "^0.87.1",
-    "@types/node": "^26.5.1",
+    "@types/node": "^26.6.3",
     "@types/react": "~19.2.4",
     "@types/semver": "^7.8.0",
     "eslint": "^10.3.0",
