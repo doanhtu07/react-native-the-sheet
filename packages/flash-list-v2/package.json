@@ -64,7 +64,7 @@
     "@the-sheet/the-sheet": "workspace:*"
   },
   "devDependencies": {
-    "@eslint/compat": "^2.1.0",
+    "@eslint/compat": "^2.1.1",
     "@eslint/eslintrc": "^3.3.6",
     "@eslint/js": "^10.0.1",
     "@jest/globals": "^30.5.2",
@@ -74,7 +74,7 @@
     "@shopify/flash-list": "2.0.2",
     "@types/react": "~19.2.4",
     "del-cli": "^7.0.0",
-    "eslint": "^10.3.0",
+    "eslint": "^10.12.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-ft-flow": "^3.0.11",
     "eslint-plugin-prettier": "^5.5.5",
@@ -87,7 +87,7 @@
     "react-native-gesture-handler": "~2.32.0",
     "react-native-reanimated": "4.5.1",
     "react-native-worklets": "0.10.1",
-    "turbo": "^2.11.2",
+    "turbo": "^2.11.7",
     "typescript": "~6.0.3"
   },
   "peerDependencies": {
