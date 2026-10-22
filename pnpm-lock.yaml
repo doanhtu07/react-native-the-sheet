@@ -289,7 +289,7 @@ importers:
         version: 2.1.1(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))
       '@react-native/eslint-config':
         specifier: ^0.87.1
-        version: 0.87.1(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.5.2(@types/node@26.6.4)(supports-color@8.1.1))(prettier@3.9.6)(supports-color@8.1.1)(typescript@6.0.3)
+        version: 0.87.1(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.5.2(@types/node@26.6.4)(supports-color@8.1.1))(prettier@3.9.10)(supports-color@8.1.1)(typescript@6.0.3)
       '@types/node':
         specifier: ^26.6.4
         version: 26.6.4
@@ -307,10 +307,10 @@ importers:
         version: 58.0.4(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
       eslint-plugin-prettier:
         specifier: ^5.5.5
-        version: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1)))(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(prettier@3.9.6)
+        version: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1)))(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(prettier@3.9.10)
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.10
+        version: 3.9.10
       semver:
         specifier: ^7.8.5
         version: 7.8.5
@@ -340,7 +340,7 @@ importers:
         version: 0.88.0(@babel/core@7.29.7(supports-color@5.5.0))(supports-color@5.5.0)
       '@react-native/eslint-config':
         specifier: 0.88.0
-        version: 0.88.0(eslint@10.12.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.5.2(@types/node@26.5.1)(supports-color@5.5.0))(prettier@3.9.6)(supports-color@5.5.0)(typescript@6.0.3)
+        version: 0.88.0(eslint@10.12.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.5.2(@types/node@26.5.1)(supports-color@5.5.0))(prettier@3.9.10)(supports-color@5.5.0)(typescript@6.0.3)
       '@react-native/jest-preset':
         specifier: 0.88.0
         version: 0.88.0(@babel/core@7.29.7(supports-color@5.5.0))(react@19.3.0)(supports-color@5.5.0)
@@ -361,7 +361,7 @@ importers:
         version: 3.0.11(eslint@10.12.0(jiti@2.6.1)(supports-color@5.5.0))(hermes-eslint@0.36.1)
       eslint-plugin-prettier:
         specifier: ^5.5.5
-        version: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.6.1)(supports-color@5.5.0)))(eslint@10.12.0(jiti@2.6.1)(supports-color@5.5.0))(prettier@3.9.6)
+        version: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.6.1)(supports-color@5.5.0)))(eslint@10.12.0(jiti@2.6.1)(supports-color@5.5.0))(prettier@3.9.10)
       jest:
         specifier: ^30.5.2
         version: 30.5.2(@types/node@26.5.1)(supports-color@5.5.0)
@@ -369,8 +369,8 @@ importers:
         specifier: ^3.1.14
         version: 3.1.14
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.10
+        version: 3.9.10
       react:
         specifier: 19.3.0
         version: 19.3.0
@@ -416,7 +416,7 @@ importers:
         version: 0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       '@react-native/eslint-config':
         specifier: 0.88.0
-        version: 0.88.0(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.5.2(@types/node@26.5.1)(supports-color@8.1.1))(prettier@3.9.6)(supports-color@8.1.1)(typescript@6.0.3)
+        version: 0.88.0(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.5.2(@types/node@26.5.1)(supports-color@8.1.1))(prettier@3.9.10)(supports-color@8.1.1)(typescript@6.0.3)
       '@react-native/jest-preset':
         specifier: 0.88.0
         version: 0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(react@19.3.0)(supports-color@8.1.1)
@@ -440,7 +440,7 @@ importers:
         version: 3.0.11(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(hermes-eslint@0.36.1)
       eslint-plugin-prettier:
         specifier: ^5.5.5
-        version: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1)))(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(prettier@3.9.6)
+        version: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1)))(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(prettier@3.9.10)
       jest:
         specifier: ^30.5.2
         version: 30.5.2(@types/node@26.5.1)(supports-color@8.1.1)
@@ -448,8 +448,8 @@ importers:
         specifier: ^3.1.14
         version: 3.1.14
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.10
+        version: 3.9.10
       react:
         specifier: 19.3.0
         version: 19.3.0
@@ -498,7 +498,7 @@ importers:
         version: 0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       '@react-native/eslint-config':
         specifier: 0.88.0
-        version: 0.88.0(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.5.2(@types/node@26.5.1)(supports-color@8.1.1))(prettier@3.9.6)(supports-color@8.1.1)(typescript@6.0.3)
+        version: 0.88.0(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.5.2(@types/node@26.5.1)(supports-color@8.1.1))(prettier@3.9.10)(supports-color@8.1.1)(typescript@6.0.3)
       '@react-native/jest-preset':
         specifier: 0.88.0
         version: 0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(react@19.3.0)(supports-color@8.1.1)
@@ -522,7 +522,7 @@ importers:
         version: 3.0.11(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(hermes-eslint@0.36.1)
       eslint-plugin-prettier:
         specifier: ^5.5.5
-        version: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1)))(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(prettier@3.9.6)
+        version: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1)))(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(prettier@3.9.10)
       jest:
         specifier: ^30.5.2
         version: 30.5.2(@types/node@26.5.1)(supports-color@8.1.1)
@@ -530,8 +530,8 @@ importers:
         specifier: ^3.1.14
         version: 3.1.14
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.10
+        version: 3.9.10
       react:
         specifier: 19.3.0
         version: 19.3.0
@@ -580,7 +580,7 @@ importers:
         version: 0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       '@react-native/eslint-config':
         specifier: 0.88.0
-        version: 0.88.0(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.5.2(@types/node@26.5.1)(supports-color@8.1.1))(prettier@3.9.6)(supports-color@8.1.1)(typescript@6.0.3)
+        version: 0.88.0(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.5.2(@types/node@26.5.1)(supports-color@8.1.1))(prettier@3.9.10)(supports-color@8.1.1)(typescript@6.0.3)
       '@react-native/jest-preset':
         specifier: 0.88.0
         version: 0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(react@19.3.0)(supports-color@8.1.1)
@@ -601,7 +601,7 @@ importers:
         version: 3.0.11(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(hermes-eslint@0.36.1)
       eslint-plugin-prettier:
         specifier: ^5.5.5
-        version: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1)))(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(prettier@3.9.6)
+        version: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1)))(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(prettier@3.9.10)
       jest:
         specifier: ^30.5.2
         version: 30.5.2(@types/node@26.5.1)(supports-color@8.1.1)
@@ -609,8 +609,8 @@ importers:
         specifier: ^3.1.14
         version: 3.1.14
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.10
+        version: 3.9.10
       react:
         specifier: 19.3.0
         version: 19.3.0
@@ -655,7 +655,7 @@ importers:
         version: 0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       '@react-native/eslint-config':
         specifier: 0.88.0
-        version: 0.88.0(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.5.2(@types/node@26.5.1)(supports-color@8.1.1))(prettier@3.9.6)(supports-color@8.1.1)(typescript@6.0.3)
+        version: 0.88.0(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.5.2(@types/node@26.5.1)(supports-color@8.1.1))(prettier@3.9.10)(supports-color@8.1.1)(typescript@6.0.3)
       '@react-native/jest-preset':
         specifier: 0.88.0
         version: 0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(react@19.3.0)(supports-color@8.1.1)
@@ -676,7 +676,7 @@ importers:
         version: 3.0.11(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(hermes-eslint@0.36.1)
       eslint-plugin-prettier:
         specifier: ^5.5.5
-        version: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1)))(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(prettier@3.9.6)
+        version: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1)))(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(prettier@3.9.10)
       jest:
         specifier: ^30.5.2
         version: 30.5.2(@types/node@26.5.1)(supports-color@8.1.1)
@@ -684,8 +684,8 @@ importers:
         specifier: ^3.1.14
         version: 3.1.14
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.10
+        version: 3.9.10
       react:
         specifier: 19.3.0
         version: 19.3.0
@@ -733,7 +733,7 @@ importers:
         version: 0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       '@react-native/eslint-config':
         specifier: 0.88.0
-        version: 0.88.0(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.5.2(@types/node@26.5.1)(supports-color@8.1.1))(prettier@3.9.6)(supports-color@8.1.1)(typescript@6.0.3)
+        version: 0.88.0(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.5.2(@types/node@26.5.1)(supports-color@8.1.1))(prettier@3.9.10)(supports-color@8.1.1)(typescript@6.0.3)
       '@react-native/jest-preset':
         specifier: 0.88.0
         version: 0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(react@19.3.0)(supports-color@8.1.1)
@@ -754,7 +754,7 @@ importers:
         version: 3.0.11(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(hermes-eslint@0.36.1)
       eslint-plugin-prettier:
         specifier: ^5.5.5
-        version: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1)))(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(prettier@3.9.6)
+        version: 5.5.6(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1)))(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(prettier@3.9.10)
       jest:
         specifier: ^30.5.2
         version: 30.5.2(@types/node@26.5.1)(supports-color@8.1.1)
@@ -762,8 +762,8 @@ importers:
         specifier: ^3.1.14
         version: 3.1.14
       prettier:
-        specifier: ^3.9.6
-        version: 3.9.6
+        specifier: ^3.9.10
+        version: 3.9.10
       react:
         specifier: 19.3.0
         version: 19.3.0
@@ -5689,8 +5689,8 @@ packages:
     resolution: {integrity: sha512-SxToR7P8Y2lWmv/kTzVLC1t/GDI2WGjMwNhLLE9qtH8Q13C+aEmuRlzDst4Up4s0Wc8sF2M+J57iB3cMLqftfg==}
     engines: {node: '>=6.0.0'}
 
-  prettier@3.9.6:
-    resolution: {integrity: sha512-OpN0zzVdiaiAhxpuuj5efpIS4sY9j7bY6uR5mnj5yPzGkdkjNKSJeUThPb60Jw29QuAZgA4o+/iB49kFiaBX6g==}
+  prettier@3.9.10:
+    resolution: {integrity: sha512-skGHTH1Yb9QvaTC4hWnRTzEYtCpApF0UMBPz+t/0ZPzP8ihefo/btKd+QA7pUE0fEwA1SbS/NmhyEcstdXOIdA==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -9148,7 +9148,7 @@ snapshots:
   '@jest/console@30.5.2':
     dependencies:
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.4
       chalk: 4.1.2
       jest-message-util: 30.5.1
       jest-util: 30.5.1
@@ -9162,7 +9162,7 @@ snapshots:
       '@jest/test-result': 30.5.2
       '@jest/transform': 30.5.2(supports-color@5.5.0)
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.4
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       ci-info: 4.4.0
@@ -9170,7 +9170,7 @@ snapshots:
       fast-json-stable-stringify: 2.1.0
       graceful-fs: 4.2.11
       jest-changed-files: 30.5.1
-      jest-config: 30.5.2(@types/node@26.5.1)(supports-color@5.5.0)
+      jest-config: 30.5.2(@types/node@26.6.4)(supports-color@5.5.0)
       jest-haste-map: 30.5.1
       jest-message-util: 30.5.1
       jest-regex-util: 30.5.0
@@ -9198,7 +9198,7 @@ snapshots:
       '@jest/test-result': 30.5.2
       '@jest/transform': 30.5.2(supports-color@8.1.1)
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.4
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       ci-info: 4.4.0
@@ -9206,7 +9206,7 @@ snapshots:
       fast-json-stable-stringify: 2.1.0
       graceful-fs: 4.2.11
       jest-changed-files: 30.5.1
-      jest-config: 30.5.2(@types/node@26.5.1)(supports-color@8.1.1)
+      jest-config: 30.5.2(@types/node@26.6.4)(supports-color@8.1.1)
       jest-haste-map: 30.5.1
       jest-message-util: 30.5.1
       jest-regex-util: 30.5.0
@@ -9304,7 +9304,7 @@ snapshots:
 
   '@jest/pattern@30.5.0':
     dependencies:
-      '@types/node': 26.5.1
+      '@types/node': 26.6.4
       jest-regex-util: 30.5.0
 
   '@jest/reporters@30.5.2(supports-color@5.5.0)':
@@ -9315,7 +9315,7 @@ snapshots:
       '@jest/transform': 30.5.2(supports-color@5.5.0)
       '@jest/types': 30.5.1
       '@jridgewell/trace-mapping': 0.3.31
-      '@types/node': 26.5.1
+      '@types/node': 26.6.4
       chalk: 4.1.2
       collect-v8-coverage: 1.0.3
       exit-x: 0.2.2
@@ -9343,7 +9343,7 @@ snapshots:
       '@jest/transform': 30.5.2(supports-color@8.1.1)
       '@jest/types': 30.5.1
       '@jridgewell/trace-mapping': 0.3.31
-      '@types/node': 26.5.1
+      '@types/node': 26.6.4
       chalk: 4.1.2
       collect-v8-coverage: 1.0.3
       exit-x: 0.2.2
@@ -9492,7 +9492,7 @@ snapshots:
       '@jest/schemas': 30.5.0
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 26.5.1
+      '@types/node': 26.6.4
       '@types/yargs': 17.0.35
       chalk: 4.1.2
 
@@ -10137,7 +10137,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@react-native/eslint-config@0.87.1(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.5.2(@types/node@26.6.4)(supports-color@8.1.1))(prettier@3.9.6)(supports-color@8.1.1)(typescript@6.0.3)':
+  '@react-native/eslint-config@0.87.1(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.5.2(@types/node@26.6.4)(supports-color@8.1.1))(prettier@3.9.10)(supports-color@8.1.1)(typescript@6.0.3)':
     dependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
       '@babel/eslint-parser': 7.29.7(@babel/core@7.29.7(supports-color@8.1.1))(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))
@@ -10152,13 +10152,13 @@ snapshots:
       eslint-plugin-react: 7.37.5(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))
       eslint-plugin-react-hooks: 7.1.1(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)
       eslint-plugin-react-native: 5.0.0(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))
-      prettier: 3.9.6
+      prettier: 3.9.10
     transitivePeerDependencies:
       - jest
       - supports-color
       - typescript
 
-  '@react-native/eslint-config@0.88.0(eslint@10.12.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.5.2(@types/node@26.5.1)(supports-color@5.5.0))(prettier@3.9.6)(supports-color@5.5.0)(typescript@6.0.3)':
+  '@react-native/eslint-config@0.88.0(eslint@10.12.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.5.2(@types/node@26.5.1)(supports-color@5.5.0))(prettier@3.9.10)(supports-color@5.5.0)(typescript@6.0.3)':
     dependencies:
       '@babel/core': 7.29.7(supports-color@5.5.0)
       '@babel/eslint-parser': 7.29.7(@babel/core@7.29.7(supports-color@5.5.0))(eslint@10.12.0(jiti@2.6.1)(supports-color@5.5.0))
@@ -10173,13 +10173,13 @@ snapshots:
       eslint-plugin-react: 7.37.5(eslint@10.12.0(jiti@2.6.1)(supports-color@5.5.0))
       eslint-plugin-react-hooks: 7.1.1(eslint@10.12.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)
       eslint-plugin-react-native: 5.0.0(eslint@10.12.0(jiti@2.6.1)(supports-color@5.5.0))
-      prettier: 3.9.6
+      prettier: 3.9.10
     transitivePeerDependencies:
       - jest
       - supports-color
       - typescript
 
-  '@react-native/eslint-config@0.88.0(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.5.2(@types/node@26.5.1)(supports-color@8.1.1))(prettier@3.9.6)(supports-color@8.1.1)(typescript@6.0.3)':
+  '@react-native/eslint-config@0.88.0(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(jest@30.5.2(@types/node@26.5.1)(supports-color@8.1.1))(prettier@3.9.10)(supports-color@8.1.1)(typescript@6.0.3)':
     dependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
       '@babel/eslint-parser': 7.29.7(@babel/core@7.29.7(supports-color@8.1.1))(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))
@@ -10194,7 +10194,7 @@ snapshots:
       eslint-plugin-react: 7.37.5(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))
       eslint-plugin-react-hooks: 7.1.1(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)
       eslint-plugin-react-native: 5.0.0(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))
-      prettier: 3.9.6
+      prettier: 3.9.10
     transitivePeerDependencies:
       - jest
       - supports-color
@@ -11880,19 +11880,19 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-plugin-prettier@5.5.6(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.6.1)(supports-color@5.5.0)))(eslint@10.12.0(jiti@2.6.1)(supports-color@5.5.0))(prettier@3.9.6):
+  eslint-plugin-prettier@5.5.6(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.6.1)(supports-color@5.5.0)))(eslint@10.12.0(jiti@2.6.1)(supports-color@5.5.0))(prettier@3.9.10):
     dependencies:
       eslint: 10.12.0(jiti@2.6.1)(supports-color@5.5.0)
-      prettier: 3.9.6
+      prettier: 3.9.10
       prettier-linter-helpers: 1.0.1
       synckit: 0.11.13
     optionalDependencies:
       eslint-config-prettier: 10.1.8(eslint@10.12.0(jiti@2.6.1)(supports-color@5.5.0))
 
-  eslint-plugin-prettier@5.5.6(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1)))(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(prettier@3.9.6):
+  eslint-plugin-prettier@5.5.6(eslint-config-prettier@10.1.8(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1)))(eslint@10.12.0(jiti@2.6.1)(supports-color@8.1.1))(prettier@3.9.10):
     dependencies:
       eslint: 10.12.0(jiti@2.6.1)(supports-color@8.1.1)
-      prettier: 3.9.6
+      prettier: 3.9.10
       prettier-linter-helpers: 1.0.1
       synckit: 0.11.13
     optionalDependencies:
@@ -13054,7 +13054,7 @@ snapshots:
       '@jest/expect': 30.5.2(supports-color@5.5.0)
       '@jest/test-result': 30.5.2
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.4
       chalk: 4.1.2
       co: 4.6.0
       dedent: 1.7.2
@@ -13080,7 +13080,7 @@ snapshots:
       '@jest/expect': 30.5.2(supports-color@8.1.1)
       '@jest/test-result': 30.5.2
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.4
       chalk: 4.1.2
       co: 4.6.0
       dedent: 1.7.2
@@ -13220,6 +13220,37 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
+  jest-config@30.5.2(@types/node@26.6.4)(supports-color@5.5.0):
+    dependencies:
+      '@babel/core': 7.29.7(supports-color@5.5.0)
+      '@jest/get-type': 30.5.0
+      '@jest/pattern': 30.5.0
+      '@jest/test-sequencer': 30.5.2
+      '@jest/types': 30.5.1
+      babel-jest: 30.5.2(@babel/core@7.29.7(supports-color@5.5.0))(supports-color@5.5.0)
+      chalk: 4.1.2
+      ci-info: 4.4.0
+      deepmerge: 4.3.1
+      glob: 13.0.6
+      graceful-fs: 4.2.11
+      jest-circus: 30.5.2(supports-color@5.5.0)
+      jest-docblock: 30.5.0
+      jest-environment-node: 30.5.2
+      jest-regex-util: 30.5.0
+      jest-resolve: 30.5.1
+      jest-runner: 30.5.2(supports-color@5.5.0)
+      jest-util: 30.5.1
+      jest-validate: 30.5.1
+      parse-json: 5.2.0
+      pretty-format: 30.5.1
+      slash: 3.0.0
+      strip-json-comments: 3.1.1
+    optionalDependencies:
+      '@types/node': 26.6.4
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - supports-color
+
   jest-config@30.5.2(@types/node@26.6.4)(supports-color@8.1.1):
     dependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
@@ -13250,7 +13281,6 @@ snapshots:
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
-    optional: true
 
   jest-diff@30.5.2:
     dependencies:
@@ -13286,7 +13316,7 @@ snapshots:
       '@jest/environment': 30.5.2
       '@jest/fake-timers': 30.5.2
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.4
       jest-mock: 30.5.2
       jest-util: 30.5.1
       jest-validate: 30.5.1
@@ -13313,7 +13343,7 @@ snapshots:
     dependencies:
       '@jest/types': 30.5.1
       '@parcel/watcher': 2.6.0
-      '@types/node': 26.5.1
+      '@types/node': 26.6.4
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       fdir: 6.5.0(picomatch@4.0.7)
@@ -13409,7 +13439,7 @@ snapshots:
       '@jest/test-result': 30.5.2
       '@jest/transform': 30.5.2(supports-color@5.5.0)
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.4
       chalk: 4.1.2
       emittery: 0.13.1
       exit-x: 0.2.2
@@ -13436,7 +13466,7 @@ snapshots:
       '@jest/test-result': 30.5.2
       '@jest/transform': 30.5.2(supports-color@8.1.1)
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.4
       chalk: 4.1.2
       emittery: 0.13.1
       exit-x: 0.2.2
@@ -13464,7 +13494,7 @@ snapshots:
       '@jest/test-result': 30.5.2
       '@jest/transform': 30.5.2(supports-color@5.5.0)
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.4
       chalk: 4.1.2
       cjs-module-lexer: 2.2.0
       collect-v8-coverage: 1.0.3
@@ -13492,7 +13522,7 @@ snapshots:
       '@jest/test-result': 30.5.2
       '@jest/transform': 30.5.2(supports-color@8.1.1)
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.4
       chalk: 4.1.2
       cjs-module-lexer: 2.2.0
       collect-v8-coverage: 1.0.3
@@ -13575,7 +13605,7 @@ snapshots:
   jest-util@30.5.1:
     dependencies:
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.4
       chalk: 4.1.2
       ci-info: 4.4.0
       graceful-fs: 4.2.11
@@ -13603,7 +13633,7 @@ snapshots:
     dependencies:
       '@jest/test-result': 30.5.2
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.4
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       emittery: 0.13.1
@@ -13619,7 +13649,7 @@ snapshots:
 
   jest-worker@30.5.1:
     dependencies:
-      '@types/node': 26.5.1
+      '@types/node': 26.6.4
       '@ungap/structured-clone': 1.3.2
       jest-util: 30.5.1
       merge-stream: 2.0.0
@@ -14739,7 +14769,7 @@ snapshots:
     dependencies:
       fast-diff: 1.3.0
 
-  prettier@3.9.6: {}
+  prettier@3.9.10: {}
 
   pretty-format@29.7.0:
     dependencies:
