@@ -237,7 +237,7 @@ importers:
         version: 58.0.14(expo@58.0.17)(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)(supports-color@8.1.1)(typescript@6.0.3)
       expo-router:
         specifier: ~58.0.25
-        version: 58.0.25(22252c6f129148bb90f4ae7eeae65c35)
+        version: 58.0.25(1d56967a0b06e9d520ba8f825fdbfbb3)
       expo-splash-screen:
         specifier: ~58.0.11
         version: 58.0.11(expo@58.0.17)(supports-color@8.1.1)(typescript@6.0.3)
@@ -263,8 +263,8 @@ importers:
         specifier: 0.88.0
         version: 0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1)
       react-native-gesture-handler:
-        specifier: ~3.3.0
-        version: 3.3.0(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
+        specifier: ~3.4.0
+        version: 3.4.0(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
       react-native-keyboard-controller:
         specifier: 1.22.7
         version: 1.22.7(react-native-reanimated@4.7.1(patch_hash=0c43057b7a224678494fbc6b2a89f4846bbecf7fcf0393d2052d4847762bb968)(react-native-worklets@0.13.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)(supports-color@8.1.1))(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0))(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
@@ -340,7 +340,7 @@ importers:
         version: 0.88.0(@babel/core@7.29.7(supports-color@5.5.0))(supports-color@5.5.0)
       '@react-native/eslint-config':
         specifier: 0.88.0
-        version: 0.88.0(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.5.2(@types/node@26.5.1)(supports-color@5.5.0))(prettier@3.9.10)(supports-color@5.5.0)(typescript@6.0.3)
+        version: 0.88.0(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.5.2(@types/node@26.6.5)(supports-color@5.5.0))(prettier@3.9.10)(supports-color@5.5.0)(typescript@6.0.3)
       '@react-native/jest-preset':
         specifier: 0.88.0
         version: 0.88.0(@babel/core@7.29.7(supports-color@5.5.0))(react@19.3.0)(supports-color@5.5.0)
@@ -364,7 +364,7 @@ importers:
         version: 5.5.7(eslint-config-prettier@10.1.8(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0)))(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(prettier@3.9.10)
       jest:
         specifier: ^30.5.2
-        version: 30.5.2(@types/node@26.5.1)(supports-color@5.5.0)
+        version: 30.5.2(@types/node@26.6.5)(supports-color@5.5.0)
       nodemon:
         specifier: ^3.1.14
         version: 3.1.14
@@ -460,8 +460,8 @@ importers:
         specifier: ^0.43.2
         version: 0.43.2(supports-color@8.1.1)
       react-native-gesture-handler:
-        specifier: ~3.3.0
-        version: 3.3.0(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
+        specifier: ~3.4.0
+        version: 3.4.0(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
       react-native-reanimated:
         specifier: 4.7.1
         version: 4.7.1(patch_hash=0c43057b7a224678494fbc6b2a89f4846bbecf7fcf0393d2052d4847762bb968)(react-native-worklets@0.13.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)(supports-color@8.1.1))(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
@@ -542,8 +542,8 @@ importers:
         specifier: ^0.43.2
         version: 0.43.2(supports-color@8.1.1)
       react-native-gesture-handler:
-        specifier: ~3.3.0
-        version: 3.3.0(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
+        specifier: ~3.4.0
+        version: 3.4.0(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
       react-native-reanimated:
         specifier: 4.7.1
         version: 4.7.1(patch_hash=0c43057b7a224678494fbc6b2a89f4846bbecf7fcf0393d2052d4847762bb968)(react-native-worklets@0.13.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)(supports-color@8.1.1))(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
@@ -696,8 +696,8 @@ importers:
         specifier: ^0.43.2
         version: 0.43.2(supports-color@8.1.1)
       react-native-gesture-handler:
-        specifier: ~3.3.0
-        version: 3.3.0(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
+        specifier: ~3.4.0
+        version: 3.4.0(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
       react-native-reanimated:
         specifier: 4.7.1
         version: 4.7.1(patch_hash=0c43057b7a224678494fbc6b2a89f4846bbecf7fcf0393d2052d4847762bb968)(react-native-worklets@0.13.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)(supports-color@8.1.1))(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
@@ -2895,9 +2895,6 @@ packages:
 
   '@types/react-test-renderer@19.1.0':
     resolution: {integrity: sha512-XD0WZrHqjNrxA/MaR9O22w/RNidWR9YZmBdRGI7wcnWGrv/3dA8wKCJ8m63Sn+tLJhcjmuhOi629N66W6kgWzQ==}
-
-  '@types/react@19.2.16':
-    resolution: {integrity: sha512-esJiCAnl0kfpNdE69f3So4WJUXy95dLZydX0KwK46riIHDzHM7O9Vtf9xCHW0PXIqvgqNrswl522kA/5yx+F4w==}
 
   '@types/react@19.3.0':
     resolution: {integrity: sha512-N0rFCuH9YoxG9/m61l9MfpJKfmLOVU0em7ipIz6TRgSSkvReLB9vL85GB+yr8Bs5leqpvg96JSwF4ZS1s4viQg==}
@@ -5794,8 +5791,8 @@ packages:
       react-native-gesture-handler: '>= 2.0.0'
       react-native-reanimated: '>= 2.0.0'
 
-  react-native-gesture-handler@3.3.0:
-    resolution: {integrity: sha512-ZCTlJ09nE3GPbm7J74lvwpxmx1TQ/7MDlHZNLARVYTN82k21mJUJ7BmI9eWjEi8eevHiAudI5O1Cpnt0rJfoJA==}
+  react-native-gesture-handler@3.4.0:
+    resolution: {integrity: sha512-jBg4ZWDvegeaZ4OHq9oxVOS/Qa6pV+LhtsUExothyhWxqzG0Lkg7kl2ztemPj/pnJxkq9j/+6wAw3jZGwdssww==}
     peerDependencies:
       react: '*'
       react-native: '*'
@@ -8797,7 +8794,7 @@ snapshots:
       ws: 8.21.0
       zod: 3.25.76
     optionalDependencies:
-      expo-router: 58.0.25(22252c6f129148bb90f4ae7eeae65c35)
+      expo-router: 58.0.25(1d56967a0b06e9d520ba8f825fdbfbb3)
       react-native: 0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1)
     transitivePeerDependencies:
       - '@expo/dom-webview'
@@ -9098,7 +9095,7 @@ snapshots:
       react: 19.3.0
     optionalDependencies:
       '@expo/metro-runtime': 58.0.15(@expo/log-box@58.0.13)(expo@58.0.17)(react-dom@19.3.0(react@19.3.0))(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
-      expo-router: 58.0.25(22252c6f129148bb90f4ae7eeae65c35)
+      expo-router: 58.0.25(1d56967a0b06e9d520ba8f825fdbfbb3)
       react-dom: 19.3.0(react@19.3.0)
     transitivePeerDependencies:
       - supports-color
@@ -9165,7 +9162,7 @@ snapshots:
   '@jest/console@30.5.2':
     dependencies:
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.5
       chalk: 4.1.2
       jest-message-util: 30.5.1
       jest-util: 30.5.1
@@ -9179,7 +9176,7 @@ snapshots:
       '@jest/test-result': 30.5.2
       '@jest/transform': 30.5.2(supports-color@5.5.0)
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.5
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       ci-info: 4.4.0
@@ -9187,7 +9184,7 @@ snapshots:
       fast-json-stable-stringify: 2.1.0
       graceful-fs: 4.2.11
       jest-changed-files: 30.5.1
-      jest-config: 30.5.2(@types/node@26.5.1)(supports-color@5.5.0)
+      jest-config: 30.5.2(@types/node@26.6.5)(supports-color@5.5.0)
       jest-haste-map: 30.5.1
       jest-message-util: 30.5.1
       jest-regex-util: 30.5.0
@@ -9215,7 +9212,7 @@ snapshots:
       '@jest/test-result': 30.5.2
       '@jest/transform': 30.5.2(supports-color@8.1.1)
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.5
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       ci-info: 4.4.0
@@ -9223,7 +9220,7 @@ snapshots:
       fast-json-stable-stringify: 2.1.0
       graceful-fs: 4.2.11
       jest-changed-files: 30.5.1
-      jest-config: 30.5.2(@types/node@26.5.1)(supports-color@8.1.1)
+      jest-config: 30.5.2(@types/node@26.6.5)(supports-color@8.1.1)
       jest-haste-map: 30.5.1
       jest-message-util: 30.5.1
       jest-regex-util: 30.5.0
@@ -9321,7 +9318,7 @@ snapshots:
 
   '@jest/pattern@30.5.0':
     dependencies:
-      '@types/node': 26.5.1
+      '@types/node': 26.6.5
       jest-regex-util: 30.5.0
 
   '@jest/reporters@30.5.2(supports-color@5.5.0)':
@@ -9332,7 +9329,7 @@ snapshots:
       '@jest/transform': 30.5.2(supports-color@5.5.0)
       '@jest/types': 30.5.1
       '@jridgewell/trace-mapping': 0.3.31
-      '@types/node': 26.5.1
+      '@types/node': 26.6.5
       chalk: 4.1.2
       collect-v8-coverage: 1.0.3
       exit-x: 0.2.2
@@ -9360,7 +9357,7 @@ snapshots:
       '@jest/transform': 30.5.2(supports-color@8.1.1)
       '@jest/types': 30.5.1
       '@jridgewell/trace-mapping': 0.3.31
-      '@types/node': 26.5.1
+      '@types/node': 26.6.5
       chalk: 4.1.2
       collect-v8-coverage: 1.0.3
       exit-x: 0.2.2
@@ -9509,7 +9506,7 @@ snapshots:
       '@jest/schemas': 30.5.0
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 26.5.1
+      '@types/node': 26.6.5
       '@types/yargs': 17.0.35
       chalk: 4.1.2
 
@@ -10154,7 +10151,7 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@react-native/eslint-config@0.88.0(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.5.2(@types/node@26.5.1)(supports-color@5.5.0))(prettier@3.9.10)(supports-color@5.5.0)(typescript@6.0.3)':
+  '@react-native/eslint-config@0.88.0(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.5.2(@types/node@26.6.5)(supports-color@5.5.0))(prettier@3.9.10)(supports-color@5.5.0)(typescript@6.0.3)':
     dependencies:
       '@babel/core': 7.29.7(supports-color@5.5.0)
       '@babel/eslint-parser': 7.29.7(@babel/core@7.29.7(supports-color@5.5.0))(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))
@@ -10165,7 +10162,7 @@ snapshots:
       eslint-config-prettier: 8.10.2(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))
       eslint-plugin-eslint-comments: 3.2.0(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))
       eslint-plugin-ft-flow: 2.0.3(@babel/eslint-parser@7.29.7(@babel/core@7.29.7(supports-color@5.5.0))(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0)))(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))
-      eslint-plugin-jest: 29.15.2(@typescript-eslint/eslint-plugin@8.62.0(@typescript-eslint/parser@8.62.0(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3))(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3))(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.5.2(@types/node@26.5.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3)
+      eslint-plugin-jest: 29.15.2(@typescript-eslint/eslint-plugin@8.62.0(@typescript-eslint/parser@8.62.0(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3))(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3))(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.5.2(@types/node@26.6.5)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3)
       eslint-plugin-react: 7.37.5(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))
       eslint-plugin-react-hooks: 7.1.1(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)
       eslint-plugin-react-native: 5.0.0(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))
@@ -10435,11 +10432,7 @@ snapshots:
 
   '@types/react-test-renderer@19.1.0':
     dependencies:
-      '@types/react': 19.2.16
-
-  '@types/react@19.2.16':
-    dependencies:
-      csstype: 3.2.3
+      '@types/react': 19.3.0
 
   '@types/react@19.3.0':
     dependencies:
@@ -11871,13 +11864,13 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  eslint-plugin-jest@29.15.2(@typescript-eslint/eslint-plugin@8.62.0(@typescript-eslint/parser@8.62.0(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3))(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3))(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.5.2(@types/node@26.5.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3):
+  eslint-plugin-jest@29.15.2(@typescript-eslint/eslint-plugin@8.62.0(@typescript-eslint/parser@8.62.0(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3))(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3))(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(jest@30.5.2(@types/node@26.6.5)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3):
     dependencies:
       '@typescript-eslint/utils': 8.62.0(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3)
       eslint: 10.13.0(jiti@2.6.1)(supports-color@5.5.0)
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 8.62.0(@typescript-eslint/parser@8.62.0(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3))(eslint@10.13.0(jiti@2.6.1)(supports-color@5.5.0))(supports-color@5.5.0)(typescript@6.0.3)
-      jest: 30.5.2(@types/node@26.5.1)(supports-color@5.5.0)
+      jest: 30.5.2(@types/node@26.6.5)(supports-color@5.5.0)
       typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
@@ -12286,7 +12279,7 @@ snapshots:
       '@expo/modules-macros-win32-arm64': 0.22.0
       '@expo/modules-macros-win32-x64': 0.22.0
 
-  expo-router@58.0.25(22252c6f129148bb90f4ae7eeae65c35):
+  expo-router@58.0.25(1d56967a0b06e9d520ba8f825fdbfbb3):
     dependencies:
       '@expo/log-box': 58.0.13(@expo/dom-webview@58.0.2)(expo@58.0.17)(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
       '@expo/metro-runtime': 58.0.15(@expo/log-box@58.0.13)(expo@58.0.17)(react-dom@19.3.0(react@19.3.0))(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
@@ -12306,7 +12299,7 @@ snapshots:
       react-fast-compare: 3.2.2
       react-is: 19.2.7
       react-native: 0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1)
-      react-native-drawer-layout: 4.2.12(732682857a83a9c29540b98eef4b71da)
+      react-native-drawer-layout: 4.2.12(c344723e3855bf6affff414d33fc29bb)
       react-native-safe-area-context: 5.10.1(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
       react-native-screens: 4.30.0(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
       server-only: 0.0.1
@@ -12315,7 +12308,7 @@ snapshots:
     optionalDependencies:
       expo-symbols: 58.0.4(expo-font@58.0.9)(expo@58.0.17)(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
       react-dom: 19.3.0(react@19.3.0)
-      react-native-gesture-handler: 3.3.0(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
+      react-native-gesture-handler: 3.4.0(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
       react-native-reanimated: 4.7.1(patch_hash=0c43057b7a224678494fbc6b2a89f4846bbecf7fcf0393d2052d4847762bb968)(react-native-worklets@0.13.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)(supports-color@8.1.1))(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
       react-native-web: 0.21.4(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       react-native-worklets: 0.13.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)(supports-color@8.1.1)
@@ -13090,7 +13083,7 @@ snapshots:
       '@jest/expect': 30.5.2(supports-color@5.5.0)
       '@jest/test-result': 30.5.2
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.5
       chalk: 4.1.2
       co: 4.6.0
       dedent: 1.7.2
@@ -13116,7 +13109,7 @@ snapshots:
       '@jest/expect': 30.5.2(supports-color@8.1.1)
       '@jest/test-result': 30.5.2
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.5
       chalk: 4.1.2
       co: 4.6.0
       dedent: 1.7.2
@@ -13136,15 +13129,15 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
-  jest-cli@30.5.2(@types/node@26.5.1)(supports-color@5.5.0):
+  jest-cli@30.5.2(@types/node@26.5.1)(supports-color@8.1.1):
     dependencies:
-      '@jest/core': 30.5.2(supports-color@5.5.0)
+      '@jest/core': 30.5.2(supports-color@8.1.1)
       '@jest/test-result': 30.5.2
       '@jest/types': 30.5.1
       chalk: 4.1.2
       exit-x: 0.2.2
       import-local: 3.2.0
-      jest-config: 30.5.2(@types/node@26.5.1)(supports-color@5.5.0)
+      jest-config: 30.5.2(@types/node@26.5.1)(supports-color@8.1.1)
       jest-util: 30.5.1
       jest-validate: 30.5.1
       yargs: 17.7.3
@@ -13155,15 +13148,15 @@ snapshots:
       - supports-color
       - ts-node
 
-  jest-cli@30.5.2(@types/node@26.5.1)(supports-color@8.1.1):
+  jest-cli@30.5.2(@types/node@26.6.5)(supports-color@5.5.0):
     dependencies:
-      '@jest/core': 30.5.2(supports-color@8.1.1)
+      '@jest/core': 30.5.2(supports-color@5.5.0)
       '@jest/test-result': 30.5.2
       '@jest/types': 30.5.1
       chalk: 4.1.2
       exit-x: 0.2.2
       import-local: 3.2.0
-      jest-config: 30.5.2(@types/node@26.5.1)(supports-color@8.1.1)
+      jest-config: 30.5.2(@types/node@26.6.5)(supports-color@5.5.0)
       jest-util: 30.5.1
       jest-validate: 30.5.1
       yargs: 17.7.3
@@ -13194,37 +13187,6 @@ snapshots:
       - ts-node
     optional: true
 
-  jest-config@30.5.2(@types/node@26.5.1)(supports-color@5.5.0):
-    dependencies:
-      '@babel/core': 7.29.7(supports-color@5.5.0)
-      '@jest/get-type': 30.5.0
-      '@jest/pattern': 30.5.0
-      '@jest/test-sequencer': 30.5.2
-      '@jest/types': 30.5.1
-      babel-jest: 30.5.2(@babel/core@7.29.7(supports-color@5.5.0))(supports-color@5.5.0)
-      chalk: 4.1.2
-      ci-info: 4.4.0
-      deepmerge: 4.3.1
-      glob: 13.0.6
-      graceful-fs: 4.2.11
-      jest-circus: 30.5.2(supports-color@5.5.0)
-      jest-docblock: 30.5.0
-      jest-environment-node: 30.5.2
-      jest-regex-util: 30.5.0
-      jest-resolve: 30.5.1
-      jest-runner: 30.5.2(supports-color@5.5.0)
-      jest-util: 30.5.1
-      jest-validate: 30.5.1
-      parse-json: 5.2.0
-      pretty-format: 30.5.1
-      slash: 3.0.0
-      strip-json-comments: 3.1.1
-    optionalDependencies:
-      '@types/node': 26.5.1
-    transitivePeerDependencies:
-      - babel-plugin-macros
-      - supports-color
-
   jest-config@30.5.2(@types/node@26.5.1)(supports-color@8.1.1):
     dependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
@@ -13252,6 +13214,37 @@ snapshots:
       strip-json-comments: 3.1.1
     optionalDependencies:
       '@types/node': 26.5.1
+    transitivePeerDependencies:
+      - babel-plugin-macros
+      - supports-color
+
+  jest-config@30.5.2(@types/node@26.6.5)(supports-color@5.5.0):
+    dependencies:
+      '@babel/core': 7.29.7(supports-color@5.5.0)
+      '@jest/get-type': 30.5.0
+      '@jest/pattern': 30.5.0
+      '@jest/test-sequencer': 30.5.2
+      '@jest/types': 30.5.1
+      babel-jest: 30.5.2(@babel/core@7.29.7(supports-color@5.5.0))(supports-color@5.5.0)
+      chalk: 4.1.2
+      ci-info: 4.4.0
+      deepmerge: 4.3.1
+      glob: 13.0.6
+      graceful-fs: 4.2.11
+      jest-circus: 30.5.2(supports-color@5.5.0)
+      jest-docblock: 30.5.0
+      jest-environment-node: 30.5.2
+      jest-regex-util: 30.5.0
+      jest-resolve: 30.5.1
+      jest-runner: 30.5.2(supports-color@5.5.0)
+      jest-util: 30.5.1
+      jest-validate: 30.5.1
+      parse-json: 5.2.0
+      pretty-format: 30.5.1
+      slash: 3.0.0
+      strip-json-comments: 3.1.1
+    optionalDependencies:
+      '@types/node': 26.6.5
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -13286,7 +13279,6 @@ snapshots:
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
-    optional: true
 
   jest-diff@30.5.2:
     dependencies:
@@ -13322,7 +13314,7 @@ snapshots:
       '@jest/environment': 30.5.2
       '@jest/fake-timers': 30.5.2
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.5
       jest-mock: 30.5.2
       jest-util: 30.5.1
       jest-validate: 30.5.1
@@ -13349,7 +13341,7 @@ snapshots:
     dependencies:
       '@jest/types': 30.5.1
       '@parcel/watcher': 2.6.0
-      '@types/node': 26.5.1
+      '@types/node': 26.6.5
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       fdir: 6.5.0(picomatch@4.0.7)
@@ -13445,7 +13437,7 @@ snapshots:
       '@jest/test-result': 30.5.2
       '@jest/transform': 30.5.2(supports-color@5.5.0)
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.5
       chalk: 4.1.2
       emittery: 0.13.1
       exit-x: 0.2.2
@@ -13472,7 +13464,7 @@ snapshots:
       '@jest/test-result': 30.5.2
       '@jest/transform': 30.5.2(supports-color@8.1.1)
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.5
       chalk: 4.1.2
       emittery: 0.13.1
       exit-x: 0.2.2
@@ -13500,7 +13492,7 @@ snapshots:
       '@jest/test-result': 30.5.2
       '@jest/transform': 30.5.2(supports-color@5.5.0)
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.5
       chalk: 4.1.2
       cjs-module-lexer: 2.2.0
       collect-v8-coverage: 1.0.3
@@ -13528,7 +13520,7 @@ snapshots:
       '@jest/test-result': 30.5.2
       '@jest/transform': 30.5.2(supports-color@8.1.1)
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.5
       chalk: 4.1.2
       cjs-module-lexer: 2.2.0
       collect-v8-coverage: 1.0.3
@@ -13611,7 +13603,7 @@ snapshots:
   jest-util@30.5.1:
     dependencies:
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.5
       chalk: 4.1.2
       ci-info: 4.4.0
       graceful-fs: 4.2.11
@@ -13639,7 +13631,7 @@ snapshots:
     dependencies:
       '@jest/test-result': 30.5.2
       '@jest/types': 30.5.1
-      '@types/node': 26.5.1
+      '@types/node': 26.6.5
       ansi-escapes: 4.3.2
       chalk: 4.1.2
       emittery: 0.13.1
@@ -13655,24 +13647,11 @@ snapshots:
 
   jest-worker@30.5.1:
     dependencies:
-      '@types/node': 26.5.1
+      '@types/node': 26.6.5
       '@ungap/structured-clone': 1.3.2
       jest-util: 30.5.1
       merge-stream: 2.0.0
       supports-color: 8.1.1
-
-  jest@30.5.2(@types/node@26.5.1)(supports-color@5.5.0):
-    dependencies:
-      '@jest/core': 30.5.2(supports-color@5.5.0)
-      '@jest/types': 30.5.1
-      import-local: 3.2.0
-      jest-cli: 30.5.2(@types/node@26.5.1)(supports-color@5.5.0)
-    transitivePeerDependencies:
-      - '@types/node'
-      - babel-plugin-macros
-      - esbuild-register
-      - supports-color
-      - ts-node
 
   jest@30.5.2(@types/node@26.5.1)(supports-color@8.1.1):
     dependencies:
@@ -13680,6 +13659,19 @@ snapshots:
       '@jest/types': 30.5.1
       import-local: 3.2.0
       jest-cli: 30.5.2(@types/node@26.5.1)(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - '@types/node'
+      - babel-plugin-macros
+      - esbuild-register
+      - supports-color
+      - ts-node
+
+  jest@30.5.2(@types/node@26.6.5)(supports-color@5.5.0):
+    dependencies:
+      '@jest/core': 30.5.2(supports-color@5.5.0)
+      '@jest/types': 30.5.1
+      import-local: 3.2.0
+      jest-cli: 30.5.2(@types/node@26.6.5)(supports-color@5.5.0)
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -14914,16 +14906,16 @@ snapshots:
       - babel-plugin-macros
       - supports-color
 
-  react-native-drawer-layout@4.2.12(732682857a83a9c29540b98eef4b71da):
+  react-native-drawer-layout@4.2.12(c344723e3855bf6affff414d33fc29bb):
     dependencies:
       color: 4.2.3
       react: 19.3.0
       react-native: 0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1)
-      react-native-gesture-handler: 3.3.0(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
+      react-native-gesture-handler: 3.4.0(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
       react-native-reanimated: 4.7.1(patch_hash=0c43057b7a224678494fbc6b2a89f4846bbecf7fcf0393d2052d4847762bb968)(react-native-worklets@0.13.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)(supports-color@8.1.1))(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0)
       use-latest-callback: 0.2.6(react@19.3.0)
 
-  react-native-gesture-handler@3.3.0(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0):
+  react-native-gesture-handler@3.4.0(react-native@0.88.0(@babel/core@7.29.7(supports-color@8.1.1))(@react-native/metro-config@0.86.3(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1))(@types/react@19.3.0)(react@19.3.0)(supports-color@8.1.1))(react@19.3.0):
     dependencies:
       '@types/react-test-renderer': 19.1.0
       invariant: 2.2.4
