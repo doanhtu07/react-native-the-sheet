@@ -1,9 +1,9 @@
 import { forwardRef } from 'react'
-import { TextInputProps } from 'react-native'
+import { TextInputProps, type TextInputInstance } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler'
 import { useInputFocus } from '@the-sheet/the-sheet'
 
-export const ManagedTextInput = forwardRef<TextInput, TextInputProps>(
+export const ManagedTextInput = forwardRef<TextInputInstance, TextInputProps>(
   ({ onFocus: propOnFocus, onBlur: propOnBlur, ...rest }, ref) => {
     const { onFocus, onBlur } = useInputFocus()
 

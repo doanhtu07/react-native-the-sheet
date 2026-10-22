@@ -14,13 +14,13 @@ import type {
   SharedValue,
 } from 'react-native-reanimated'
 import type { AnimatedProp } from '../types'
-import type { PanGesture } from 'react-native-gesture-handler'
+import type { LegacyPanGesture } from 'react-native-gesture-handler'
 import type { VirtualizedListProps } from '../virtualized-list/types'
 
 // MARK: Bottom sheet handle
 
 export type BottomSheetHandleProps = {
-  getPanGesture?: () => PanGesture
+  getPanGesture?: () => LegacyPanGesture
 
   styles?: {
     root?: StyleProp<ViewStyle>
@@ -126,7 +126,7 @@ export type BottomSheetApi = {
 
 export type BottomSheetViewProps = PropsWithChildren & {
   fill?: AnimatedProp<boolean>
-  getPanGesture?: () => PanGesture
+  getPanGesture?: () => LegacyPanGesture
 
   styles?: {
     root?: StyleProp<ViewStyle>
@@ -141,6 +141,7 @@ type AnimatedScrollViewProps = ComponentProps<typeof Animated.ScrollView>
 
 export type BottomSheetScrollViewProps = Omit<
   AnimatedScrollViewProps,
+  | 'ref'
   | 'onLayout'
   | 'onContentSizeChange'
   | 'onTouchStart'
@@ -153,7 +154,7 @@ export type BottomSheetScrollViewProps = Omit<
 > & {
   fill?: AnimatedProp<boolean>
   isActive?: AnimatedProp<boolean>
-  getPanGesture?: () => PanGesture
+  getPanGesture?: () => LegacyPanGesture
 
   onLayout?: (e: LayoutChangeEvent) => void
   onContentSizeChange?: (w: number, h: number) => void
@@ -185,7 +186,7 @@ export type BottomSheetFlatListProps<T> = Omit<
 > & {
   fill?: AnimatedProp<boolean>
   isActive?: AnimatedProp<boolean>
-  getPanGesture?: () => PanGesture
+  getPanGesture?: () => LegacyPanGesture
 
   onLayout?: (e: LayoutChangeEvent) => void
   onContentSizeChange?: (w: number, h: number) => void
@@ -217,7 +218,7 @@ export type BottomSheetVirtualizedListProps = Omit<
 > & {
   fill?: AnimatedProp<boolean>
   isActive?: AnimatedProp<boolean>
-  getPanGesture?: () => PanGesture
+  getPanGesture?: () => LegacyPanGesture
 
   onLayout?: (e: LayoutChangeEvent) => void
   onContentSizeChange?: (w: number, h: number) => void
@@ -259,7 +260,7 @@ export type BottomSheetSectionListProps<
 > & {
   fill?: AnimatedProp<boolean>
   isActive?: AnimatedProp<boolean>
-  getPanGesture?: () => PanGesture
+  getPanGesture?: () => LegacyPanGesture
 
   onLayout?: (e: LayoutChangeEvent) => void
   onContentSizeChange?: (w: number, h: number) => void

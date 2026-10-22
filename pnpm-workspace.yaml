@@ -12,3 +12,40 @@ allowBuilds:
   unrs-resolver: true
 
 publishBranch: main
+
+patchedDependencies:
+  react-native-reanimated@4.7.1: patches/react-native-reanimated@4.7.1.patch
+
+minimumReleaseAgeExclude:
+  - '@expo/cli@58.1.14'
+  - '@expo/config-plugins@58.0.10'
+  - '@expo/config@58.0.7'
+  - '@expo/env@2.5.3'
+  - '@expo/fingerprint@0.21.6'
+  - '@expo/inline-modules@0.2.7'
+  - '@expo/local-build-cache-provider@58.0.7'
+  - '@expo/log-box@58.0.13'
+  - '@expo/metro-config@58.0.16'
+  - '@expo/metro-runtime@58.0.15'
+  - '@expo/prebuild-config@58.0.15'
+  - '@expo/router-server@58.0.16'
+  - '@noxcturnal/noxcturnal-darwin-arm64@0.1.8'
+  - '@noxcturnal/noxcturnal-darwin-x64@0.1.8'
+  - '@noxcturnal/noxcturnal-linux-arm64-gnu@0.1.8'
+  - '@noxcturnal/noxcturnal-linux-arm64-musl@0.1.8'
+  - '@noxcturnal/noxcturnal-linux-x64-gnu@0.1.8'
+  - '@noxcturnal/noxcturnal-linux-x64-musl@0.1.8'
+  - '@noxcturnal/noxcturnal-win32-arm64-msvc@0.1.8'
+  - '@noxcturnal/noxcturnal-win32-x64-msvc@0.1.8'
+  - babel-preset-expo@58.0.19
+  - expo-asset@58.0.18
+  - expo-constants@58.0.13
+  - expo-linking@58.0.14
+  - expo-modules-autolinking@58.0.14
+  - expo-modules-core@58.0.24
+  - expo-modules-jsi@58.0.17
+  - expo-router@58.0.25
+  - expo-splash-screen@58.0.11
+  - expo-status-bar@58.0.4
+  - expo@58.0.17
+  - noxcturnal@0.1.8

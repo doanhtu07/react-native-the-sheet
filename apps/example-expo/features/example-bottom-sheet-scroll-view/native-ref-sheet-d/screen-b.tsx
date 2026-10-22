@@ -1,6 +1,12 @@
 import { ThemedText } from '@/components/themed-text'
 import { useRef } from 'react'
-import { Alert, Button, ScrollView, StyleSheet, View } from 'react-native'
+import {
+  Alert,
+  Button,
+  StyleSheet,
+  View,
+  type ScrollViewInstance,
+} from 'react-native'
 import { BottomSheetScrollView } from '@the-sheet/the-sheet'
 import {
   useEmbeddedStackNavigation,
@@ -11,7 +17,7 @@ import { RouteParamList } from './types'
 export function ScreenB() {
   const route = useEmbeddedStackRoute()
   const navigation = useEmbeddedStackNavigation<RouteParamList>()
-  const scrollViewRef = useRef<ScrollView>(null)
+  const scrollViewRef = useRef<ScrollViewInstance>(null)
 
   // MARK: Renderers
 

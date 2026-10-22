@@ -1,7 +1,7 @@
 import { Platform } from 'react-native'
 import { useTrueSafeArea } from '@the-sheet/the-sheet'
 import { NativeStackHeaderProps } from 'expo-router'
-import { Header } from 'expo-router/build/react-navigation'
+import { Header } from 'expo-router/build/react-navigation/elements/index'
 
 export const CustomHeaderWithKeyboard = (props: NativeStackHeaderProps) => {
   const { isEdgeToEdge } = useTrueSafeArea()

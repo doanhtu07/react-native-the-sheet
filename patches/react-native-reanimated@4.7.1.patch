@@ -1,0 +1,52 @@
+diff --git a/src/mutables.native.ts b/src/mutables.native.ts
+index 79d2ea3df0b57d2285089cdec07a6cf6217daf60..bc789bdea104e79a8c8c253e5af84b06353bd260 100644
+--- a/src/mutables.native.ts
++++ b/src/mutables.native.ts
+@@ -12,11 +12,13 @@ import {
+   UIRuntimeId,
+ } from 'react-native-worklets';
+ 
++import { logger } from './common';
+ import type { Mutable } from './commonTypes';
+ import {
+   checkInvalidReadDuringRender,
+   checkInvalidWriteDuringRender,
+   mutableHostDecorator,
++  shouldWarnAboutAccessDuringRender,
+ } from './mutablesCommon';
+ 
+ function mutableGuestDecorator<TValue>(
+@@ -30,6 +32,20 @@ function mutableGuestDecorator<TValue>(
+   Object.defineProperties(mutable, {
+     value: {
+       get() {
++        if (
++          globalThis.__RUNTIME_KIND === 1 &&
++          shouldWarnAboutAccessDuringRender()
++        ) {
++          const err = new Error('SharedValue read during render');
++
++          console.warn({
++            file: 'node_modules/.pnpm_patches/react-native-reanimated@4.7.1/src/mutables.native.ts',
++            message: err.message,
++          });
++
++          logger.warn(err.stack || 'No stack trace available');
++        }
++
+         if (globalThis.__RUNTIME_KIND !== 1) {
+           latest = mutable.getSync();
+         } else {
+diff --git a/src/mutablesCommon.ts b/src/mutablesCommon.ts
+index 9e57d83f28d29364777d876115f5016e14d91326..2b34c04b7222e3da4abc9b250d9b2412f3d21ccb 100644
+--- a/src/mutablesCommon.ts
++++ b/src/mutablesCommon.ts
+@@ -7,7 +7,7 @@ import type { Mutable } from './commonTypes';
+ import { isFirstReactRender, isReactRendering } from './reactUtils';
+ import { valueSetter } from './valueSetter';
+ 
+-function shouldWarnAboutAccessDuringRender() {
++export function shouldWarnAboutAccessDuringRender() {
+   return __DEV__ && isReactRendering() && !isFirstReactRender();
+ }
+ 

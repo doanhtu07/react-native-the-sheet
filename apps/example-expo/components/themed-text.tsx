@@ -1,7 +1,12 @@
 import { forwardRef } from 'react'
-import { Text, TextProps, useColorScheme } from 'react-native'
+import {
+  Text,
+  TextProps,
+  useColorScheme,
+  type TextInstance,
+} from 'react-native'
 
-export const ThemedText = forwardRef<Text, TextProps>(
+export const ThemedText = forwardRef<TextInstance, TextProps>(
   ({ style, ...rest }, ref) => {
     const theme = useColorScheme()
 

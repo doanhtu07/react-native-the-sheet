@@ -14,6 +14,11 @@ import {
 import { BottomSheetFlashList } from '@the-sheet/flash-list-v2'
 import { Portal } from '@the-sheet/universe-portal'
 
+type Item = {
+  id: string
+  text: string
+}
+
 export default function ExampleBottomSheetFlashList() {
   const [isOpenA, setIsOpenA] = useState(false)
   const [isOpenB, setIsOpenB] = useState(false)
@@ -22,8 +27,8 @@ export default function ExampleBottomSheetFlashList() {
   // to prevent content taking up the entire screen
   const maxHeight = 500
 
-  const flatListRefA = useRef<FlashListRef<any>>(null)
-  const flatListRefB = useRef<FlashListRef<any>>(null)
+  const flatListRefA = useRef<FlashListRef<Item>>(null)
+  const flatListRefB = useRef<FlashListRef<Item>>(null)
 
   const data = useMemo(() => {
     return Array.from({ length: 50 }).map((_, index) => ({
