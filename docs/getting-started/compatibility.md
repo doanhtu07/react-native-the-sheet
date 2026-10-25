@@ -1,11 +1,17 @@
 # Compatibility
 
-## Quick reference
+## Tested example stacks
 
-| Sheet version         | Reanimated version | React Native Worklets version | React Native version | React version           | Expo SDK version     |
-| --------------------- | ------------------ | ----------------------------- | -------------------- | ----------------------- | -------------------- |
-| 2.x.x (branch `main`) | 4.x.x              | 0.4.x - 0.10.x                | 0.78 - 0.86          | Depends on React Native | Manages React Native |
-| 1.x.x (branch `v1`)   | 3.x.x              | N/A                           | 0.63 - 0.81          | Depends on React Native | Manages React Native |
+The arrows for 2.x show the example app's previous stack → current stack after its Expo 58 upgrade.
+
+| Sheet line   | Reanimated / Worklets           | Gesture Handler  | React Native    | Expo SDK |
+| ------------ | ------------------------------- | ---------------- | --------------- | -------- |
+| 2.x (`main`) | 4.5.1 / 0.10.1 → 4.7.1 / 0.13.0 | ~2.32.0 → ~3.3.0 | 0.86.3 → 0.88.0 | 57 → 58  |
+| 1.x (`v1`)   | ~3.17.5 / N/A                   | ~2.24.0          | 0.79.6          | 53       |
+
+Sheet 2.x was developed and worked with Gesture Handler 2. The recent Expo upgrade moved its example app to Gesture Handler 3; the sheet still uses the gesture-builder API (`Gesture.Pan()`), which Gesture Handler 3 deprecates but retains. This does not represent a deliberate drop of Gesture Handler 2 support or a migration to `usePanGesture`.
+
+These are example stacks, not exhaustive version bounds. For other combinations, check the [Reanimated 4](https://docs.swmansion.com/react-native-reanimated/docs/4.x/guides/compatibility/) or [Reanimated 3](https://docs.swmansion.com/react-native-reanimated/docs/3.x/guides/compatibility/) compatibility table and use Expo's recommended package versions.
 
 ## Core dependencies
 
@@ -16,20 +22,19 @@ If confused, check `apps/example-expo/package.json` to see the versions of the c
 `react-native-reanimated`
 
 - Defines our package major version => Other dependencies (React, React Native, ...) must be compatible with it
-- Check v4 compatibility table: [Compatibility Table V4](https://docs.swmansion.com/react-native-reanimated/docs/4.x/guides/compatibility/)
-- Check v3 compatibility table: [Compatibility Table V3](https://docs.swmansion.com/react-native-reanimated/docs/3.x/guides/compatibility/)
+- Check the compatibility table for [Reanimated 4](https://docs.swmansion.com/react-native-reanimated/docs/4.x/guides/compatibility/) or [Reanimated 3](https://docs.swmansion.com/react-native-reanimated/docs/3.x/guides/compatibility/)
 
 ---
 
 `react-native-worklets`
 
-- Follows React Native Reanimated compatibility
+- Required by the-sheet 2.x with Reanimated 4; follows Reanimated compatibility
 
 ---
 
 `react-native-gesture-handler`
 
-- Follows React Native Reanimated compatibility
+- See the example stacks above; 2.x supports the builder API used by Gesture Handler 2 and currently runs against Gesture Handler 3 in the Expo 58 example
 
 ---
 

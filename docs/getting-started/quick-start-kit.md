@@ -12,11 +12,16 @@ For example, if you are using Reanimated v4, you would install v2 of our library
 npm install @the-sheet/the-sheet@2.1.0
 ```
 
-Required peer dependencies:
+Required peer dependencies for the-sheet 2.x (Reanimated 4):
 
 - `react-native-reanimated`
+- `react-native-worklets`
 - `react-native-gesture-handler`
 - `react-native-safe-area-context`
+
+See the [compatibility table](./compatibility.md) for example stacks.
+
+Sheet 2.x was developed with Gesture Handler 2; just recently, the example app is bumped to Expo 58, which uses Gesture Handler 3 without issues.
 
 ### Optional dependencies
 
