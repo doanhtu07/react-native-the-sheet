@@ -384,8 +384,8 @@ importers:
         specifier: 0.79.6
         version: 0.79.6(@babel/core@7.29.7(supports-color@5.5.0))(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0)
       react-native-builder-bob:
-        specifier: ^0.43.2
-        version: 0.43.2(supports-color@5.5.0)
+        specifier: ^0.44.1
+        version: 0.44.1(supports-color@5.5.0)
       react-native-reanimated:
         specifier: ~3.17.5
         version: 3.17.5(@babel/core@7.29.7(supports-color@5.5.0))(react-native@0.79.6(@babel/core@7.29.7(supports-color@5.5.0))(@types/react@19.0.14)(react@19.0.0)(supports-color@5.5.0))(react@19.0.0)(supports-color@5.5.0)
@@ -460,8 +460,8 @@ importers:
         specifier: 0.79.6
         version: 0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1)
       react-native-builder-bob:
-        specifier: ^0.43.2
-        version: 0.43.2(supports-color@8.1.1)
+        specifier: ^0.44.1
+        version: 0.44.1(supports-color@8.1.1)
       react-native-gesture-handler:
         specifier: ~2.24.0
         version: 2.24.0(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)
@@ -539,8 +539,8 @@ importers:
         specifier: 0.79.6
         version: 0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1)
       react-native-builder-bob:
-        specifier: ^0.43.2
-        version: 0.43.2(supports-color@8.1.1)
+        specifier: ^0.44.1
+        version: 0.44.1(supports-color@8.1.1)
       react-native-gesture-handler:
         specifier: ~2.24.0
         version: 2.24.0(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)
@@ -615,8 +615,8 @@ importers:
         specifier: 0.79.6
         version: 0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1)
       react-native-builder-bob:
-        specifier: ^0.43.2
-        version: 0.43.2(supports-color@8.1.1)
+        specifier: ^0.44.1
+        version: 0.44.1(supports-color@8.1.1)
       react-native-keyboard-controller:
         specifier: ^1.22.8
         version: 1.22.8(react-native-reanimated@3.17.5(@babel/core@7.29.7(supports-color@8.1.1))(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)(supports-color@8.1.1))(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)
@@ -687,8 +687,8 @@ importers:
         specifier: 0.79.6
         version: 0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1)
       react-native-builder-bob:
-        specifier: ^0.43.2
-        version: 0.43.2(supports-color@8.1.1)
+        specifier: ^0.44.1
+        version: 0.44.1(supports-color@8.1.1)
       react-native-gesture-handler:
         specifier: ~2.24.0
         version: 2.24.0(react-native@0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1))(react@19.0.0)
@@ -762,8 +762,8 @@ importers:
         specifier: 0.79.6
         version: 0.79.6(@babel/core@7.29.7(supports-color@8.1.1))(@types/react@19.0.14)(react@19.0.0)(supports-color@8.1.1)
       react-native-builder-bob:
-        specifier: ^0.43.2
-        version: 0.43.2(supports-color@8.1.1)
+        specifier: ^0.44.1
+        version: 0.44.1(supports-color@8.1.1)
       turbo:
         specifier: ^2.11.10
         version: 2.11.10
@@ -2469,10 +2469,6 @@ packages:
   '@sinclair/typebox@0.34.52':
     resolution: {integrity: sha512-XiMQh7qqVlxZzcVD+kkGMNGMzcTrDMLWI7S4x7z1MkCkbDPrekpZXEUK0eZqZFMuHQg2a2DZOcDIh9o5v3Gonw==}
 
-  '@sindresorhus/merge-streams@2.3.0':
-    resolution: {integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==}
-    engines: {node: '>=18'}
-
   '@sindresorhus/merge-streams@4.0.0':
     resolution: {integrity: sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==}
     engines: {node: '>=18'}
@@ -2969,11 +2965,11 @@ packages:
   babel-plugin-syntax-hermes-parser@0.25.1:
     resolution: {integrity: sha512-IVNpGzboFLfXZUAwkLFcI/bnqVbwky0jP3eBno4HKtqvQJAHBLdgxiG6lQ4to0+Q/YCN3PO0od5NZwIKyY4REQ==}
 
-  babel-plugin-syntax-hermes-parser@0.34.0:
-    resolution: {integrity: sha512-q4xeAymMrot/21MHA3+fd5mcFF7stx6ntKFO/Of5ldyDpgTBcK1l0NiHAh4NdHHdb4aHqHgQOy7r6yk0IIlz8Q==}
-
   babel-plugin-syntax-hermes-parser@0.36.1:
     resolution: {integrity: sha512-ycduwJbvdvIMmVvlAZqGggS+pm5Eu4Bk9pcV9Sm2Z4PJNRVsKkv0g7vHj+LeuC1gHTeF67sJXFOq61IlqCa2hA==}
+
+  babel-plugin-syntax-hermes-parser@0.37.0:
+    resolution: {integrity: sha512-7I9T16lJTjHG6JhHOmM/iqO/UGGQwAcAAD4/tsk+GSjPf9bbusBsPlz1scyGehImMfH1Yopbj0aQYxhTAHdcdg==}
 
   babel-plugin-transform-flow-enums@0.0.2:
     resolution: {integrity: sha512-g4aaCrDDOsWjbm0PUUeVnkcVd6AKJsVc/MbnPhEotEpkeJQP6b8nzewohQi7+QS8UyPehOhGWn0nOwjvWpmMvQ==}
@@ -3370,10 +3366,6 @@ packages:
     resolution: {integrity: sha512-Z4+xLjVJs9dMN4gDMRfY/7b7WItNOB5EOKu9BenbJD63olx9YM5SU/DEuDFWvN0B1BdGIzejCJFgPt2vIGwj1A==}
     engines: {node: '>=22'}
     hasBin: true
-
-  del@8.0.1:
-    resolution: {integrity: sha512-gPqh0mKTPvaUZGAuHbrBUYKZWBNAeHG7TU3QH5EhVwPMyKvmfJaNXhcD2jTcXsJRRcffuho4vaYweu80dRrMGA==}
-    engines: {node: '>=18'}
 
   del@9.0.1:
     resolution: {integrity: sha512-1B11d2d8AJcTcbvXtF5a9NWVoE7G12eJPcadRGdLik38WxgsAyDQO5ZdjHoeIlAIhAhbgnD/AZVBWf9xQze+0w==}
@@ -4132,10 +4124,6 @@ packages:
     resolution: {integrity: sha512-DpLKbNU4WylpxJykQujfCcwYWiV/Jhm50Goo0wrVILAv5jOr9d+H+UR3PhSCD2rCCEIg0uc+G+muBTwD54JhDQ==}
     engines: {node: '>= 0.4'}
 
-  globby@14.1.0:
-    resolution: {integrity: sha512-0Ia46fDOaT7k4og1PDW4YbodWWr3scS2vAr2lTbsplOt2WkKp0vQbkI9wKis/T5LV/dqPjO3bpS/z6GTJB82LA==}
-    engines: {node: '>=18'}
-
   globby@16.2.4:
     resolution: {integrity: sha512-c8B/VNLmxRcmqqenRA9t+9IyOjf9+V6lTxPaUJLqOCONdQkWZ0ETYgX0qbtJqPsgCNusT9MZ5Jeidw8Eb9tn2g==}
     engines: {node: '>=20'}
@@ -4196,9 +4184,6 @@ packages:
   hermes-estree@0.29.1:
     resolution: {integrity: sha512-jl+x31n4/w+wEqm0I2r4CMimukLbLQEYpisys5oCre611CI5fc9TxhqkBBCJ1edDG4Kza0f7CgNz8xVMLZQOmQ==}
 
-  hermes-estree@0.34.0:
-    resolution: {integrity: sha512-6qLylexjmuKa/YYhMiNn/3VejBsdzwmYUGmNpc693/pJzymmbufhkRW/2K6GqFgu0ApRWoqF0NbM6u82jFcOXA==}
-
   hermes-estree@0.36.1:
     resolution: {integrity: sha512-guv1nQ6IJ7S83NRFPWc3SA7IBZrdNC9kapwOq6uXvF4wP+sDCgjzQbKPCoyYmoyZRzztF/n/c36l/rccCZSiCw==}
 
@@ -4210,9 +4195,6 @@ packages:
 
   hermes-parser@0.29.1:
     resolution: {integrity: sha512-xBHWmUtRC5e/UL0tI7Ivt2riA/YBq9+SiYFU7C1oBa/j2jYGlIF9043oak1F47ihuDIxQ5nbsKueYJDRY02UgA==}
-
-  hermes-parser@0.34.0:
-    resolution: {integrity: sha512-tcgan5UNZvu3WwmR3jDAlmwEAR2CMv8cwQVMe5j0NrLQkstf0l3ULbYPuTZWbXxbPa0PyZPiq5LYEcFVmhM9LQ==}
 
   hermes-parser@0.36.1:
     resolution: {integrity: sha512-GApNk4zLHi2UWoWZZkx7LNCOSzLSc5lB55pZ/PhK7ycFeg7u5LcF88p/WbpIi1XUDtE0MpHE3uRR3u3KB7TjSQ==}
@@ -4420,10 +4402,6 @@ packages:
   is-number@7.0.0:
     resolution: {integrity: sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==}
     engines: {node: '>=0.12.0'}
-
-  is-path-cwd@3.0.0:
-    resolution: {integrity: sha512-kyiNFFLU0Ampr6SDZitD/DwUo4Zs1nSdnygUBqsu3LooL00Qvb5j+UnvApUn/TTj1J3OuE6BTdQ5rudKmU2ZaA==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   is-path-cwd@4.0.1:
     resolution: {integrity: sha512-w3upMc5m1LfTkA4VvUcMo764hWF1uuo2NPHtLkLrlhw/tiCLxD5gIhvl72oZIY8oFVpZ/xG2JnqbibZAfSQ3Ww==}
@@ -5257,10 +5235,6 @@ packages:
     resolution: {integrity: sha512-3O/iVVsJAPsOnpwWIeD+d6z/7PmqApyQePUtCndjatj/9I5LylHvt5qluFaBT3I5h3r1ejfR056c+FCv+NnNXg==}
     engines: {node: 18 || 20 || >=22}
 
-  path-type@6.0.0:
-    resolution: {integrity: sha512-Vj7sf++t5pBD637NSfkxpHSMfWaeig5+DKWLhcqIYx6mWQz5hdJTGDVMQiJcw1ZYkhs7AazKDGpRVji1LJCZUQ==}
-    engines: {node: '>=18'}
-
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
@@ -5415,9 +5389,9 @@ packages:
   react-is@19.3.1:
     resolution: {integrity: sha512-RRieF6IyxQBkcK6pP8xOHprLTPW6QjRkbGdImtqNme+/hYVwCZkLQLdlZGOhUqXwkS9IEynaGvPJtv6XB/cz0Q==}
 
-  react-native-builder-bob@0.43.2:
-    resolution: {integrity: sha512-H9RmhrCf2zdxBI5YMznz/uRVZ+CcH1ScUaiSBc0s2JiDwglbbtzrrQJnc5w1IFDvOoVPo/WV3XkBXrb66PG9Pg==}
-    engines: {node: ^20.19.0 || ^22.12.0 || >= 23.4.0}
+  react-native-builder-bob@0.44.1:
+    resolution: {integrity: sha512-CqRvOdSynP27CQohCwNte6r2B8cZSZiA24Vuq3f5jloq/aQ1dlbARtuO6a7hjb7Ao06gfqlde7NuJ5oAocb6iw==}
+    engines: {node: ^22.22.2 || ^24.15.0 || >= 26.0.0}
     hasBin: true
 
   react-native-edge-to-edge@1.6.0:
@@ -6080,10 +6054,6 @@ packages:
     resolution: {integrity: sha512-hpbDzxUY9BFwX+UeBnxv3Sh1q7HFxj48DTmXchNgRa46lO8uj3/1iEn3MiNUYTg1g9ctIqXCCERn8gYZhHC5lQ==}
     engines: {node: '>=4'}
 
-  unicorn-magic@0.3.0:
-    resolution: {integrity: sha512-+QBBXBCvifc56fsbuxZQ6Sic3wqqc3WWaqxs58gvJrcOuN83HGTCwz3oS5phzU9LthRNE9VrJCFCLUgHeeFnfA==}
-    engines: {node: '>=18'}
-
   unicorn-magic@0.4.1:
     resolution: {integrity: sha512-lzlXPoVB0Uy/FvTaUgX39RbixYiSKoc3JSoSf01+0c2B6FR3qdYIPN7Qjo/AV7n6sqLCk0509cT3LRj1oSZ1+A==}
     engines: {node: '>=20'}
@@ -6197,9 +6167,9 @@ packages:
     engines: {node: '>= 8'}
     hasBin: true
 
-  which@6.0.1:
-    resolution: {integrity: sha512-oGLe46MIrCRqX7ytPUf66EAYvdeMIZYn3WaocqqKZAxrBpkqHfL/qvTyJ/bTk5+AqHCjXmrv3CEWgy368zhRUg==}
-    engines: {node: ^20.17.0 || >=22.9.0}
+  which@7.0.0:
+    resolution: {integrity: sha512-RancgH2dmbLdHl6LRhEqvklWMgl/Hdnun0Y90KhBOLkMefg8Qa7/Zel8Sm+8HEcP6DEjzsWzpkuBQEZok58isA==}
+    engines: {node: ^22.22.2 || ^24.15.0 || >=26.0.0}
     hasBin: true
 
   wonka@6.3.6:
@@ -9722,8 +9692,6 @@ snapshots:
 
   '@sinclair/typebox@0.34.52': {}
 
-  '@sindresorhus/merge-streams@2.3.0': {}
-
   '@sindresorhus/merge-streams@4.0.0': {}
 
   '@sinonjs/commons@3.0.1':
@@ -10421,13 +10389,13 @@ snapshots:
     dependencies:
       hermes-parser: 0.25.1
 
-  babel-plugin-syntax-hermes-parser@0.34.0:
-    dependencies:
-      hermes-parser: 0.34.0
-
   babel-plugin-syntax-hermes-parser@0.36.1:
     dependencies:
       hermes-parser: 0.36.1
+
+  babel-plugin-syntax-hermes-parser@0.37.0:
+    dependencies:
+      hermes-parser: 0.37.0
 
   babel-plugin-transform-flow-enums@0.0.2(@babel/core@7.29.7(supports-color@5.5.0)):
     dependencies:
@@ -10947,16 +10915,6 @@ snapshots:
       del: 9.0.1
       meow: 14.1.0
       presentable-error: 0.0.1
-
-  del@8.0.1:
-    dependencies:
-      globby: 14.1.0
-      is-glob: 4.0.3
-      is-path-cwd: 3.0.0
-      is-path-inside: 4.0.0
-      p-map: 7.1.1
-      presentable-error: 0.0.1
-      slash: 5.1.0
 
   del@9.0.1:
     dependencies:
@@ -12044,15 +12002,6 @@ snapshots:
       define-properties: 1.2.1
       gopd: 1.2.0
 
-  globby@14.1.0:
-    dependencies:
-      '@sindresorhus/merge-streams': 2.3.0
-      fast-glob: 3.3.3
-      ignore: 7.0.13
-      path-type: 6.0.0
-      slash: 5.1.0
-      unicorn-magic: 0.3.0
-
   globby@16.2.4:
     dependencies:
       '@sindresorhus/merge-streams': 4.0.0
@@ -12106,8 +12055,6 @@ snapshots:
 
   hermes-estree@0.29.1: {}
 
-  hermes-estree@0.34.0: {}
-
   hermes-estree@0.36.1: {}
 
   hermes-estree@0.37.0: {}
@@ -12119,10 +12066,6 @@ snapshots:
   hermes-parser@0.29.1:
     dependencies:
       hermes-estree: 0.29.1
-
-  hermes-parser@0.34.0:
-    dependencies:
-      hermes-estree: 0.34.0
 
   hermes-parser@0.36.1:
     dependencies:
@@ -12324,8 +12267,6 @@ snapshots:
       has-tostringtag: 1.0.2
 
   is-number@7.0.0: {}
-
-  is-path-cwd@3.0.0: {}
 
   is-path-cwd@4.0.1: {}
 
@@ -13791,8 +13732,6 @@ snapshots:
       lru-cache: 11.5.3
       minipass: 7.1.3
 
-  path-type@6.0.0: {}
-
   picocolors@1.1.1: {}
 
   picomatch@2.3.2: {}
@@ -13931,7 +13870,7 @@ snapshots:
 
   react-is@19.3.1: {}
 
-  react-native-builder-bob@0.43.2(supports-color@5.5.0):
+  react-native-builder-bob@0.44.1(supports-color@5.5.0):
     dependencies:
       '@babel/core': 7.29.7(supports-color@5.5.0)
       '@babel/plugin-transform-flow-strip-types': 7.29.7(@babel/core@7.29.7(supports-color@5.5.0))
@@ -13941,11 +13880,11 @@ snapshots:
       '@babel/preset-typescript': 7.29.7(@babel/core@7.29.7(supports-color@5.5.0))(supports-color@5.5.0)
       '@jridgewell/sourcemap-codec': 1.6.0
       arktype: 2.2.9
-      babel-plugin-syntax-hermes-parser: 0.34.0
+      babel-plugin-syntax-hermes-parser: 0.37.0
       browserslist: 4.29.4
       cross-spawn: 7.0.6
       dedent: 1.7.2
-      del: 8.0.1
+      del: 9.0.1
       escape-string-regexp: 5.0.0
       fs-extra: 11.4.1
       glob: 13.0.6
@@ -13953,13 +13892,13 @@ snapshots:
       kleur: 4.1.5
       prompts: 2.4.2
       typescript: 6.0.3
-      which: 6.0.1
+      which: 7.0.0
       yargs: 18.2.0
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
 
-  react-native-builder-bob@0.43.2(supports-color@8.1.1):
+  react-native-builder-bob@0.44.1(supports-color@8.1.1):
     dependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
       '@babel/plugin-transform-flow-strip-types': 7.29.7(@babel/core@7.29.7(supports-color@8.1.1))
@@ -13969,11 +13908,11 @@ snapshots:
       '@babel/preset-typescript': 7.29.7(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       '@jridgewell/sourcemap-codec': 1.6.0
       arktype: 2.2.9
-      babel-plugin-syntax-hermes-parser: 0.34.0
+      babel-plugin-syntax-hermes-parser: 0.37.0
       browserslist: 4.29.4
       cross-spawn: 7.0.6
       dedent: 1.7.2
-      del: 8.0.1
+      del: 9.0.1
       escape-string-regexp: 5.0.0
       fs-extra: 11.4.1
       glob: 13.0.6
@@ -13981,7 +13920,7 @@ snapshots:
       kleur: 4.1.5
       prompts: 2.4.2
       typescript: 6.0.3
-      which: 6.0.1
+      which: 7.0.0
       yargs: 18.2.0
     transitivePeerDependencies:
       - babel-plugin-macros
@@ -14839,8 +14778,6 @@ snapshots:
 
   unicode-property-aliases-ecmascript@2.2.0: {}
 
-  unicorn-magic@0.3.0: {}
-
   unicorn-magic@0.4.1: {}
 
   unique-string@2.0.0:
@@ -14986,7 +14923,7 @@ snapshots:
     dependencies:
       isexe: 2.0.0
 
-  which@6.0.1:
+  which@7.0.0:
     dependencies:
       isexe: 4.0.0
 

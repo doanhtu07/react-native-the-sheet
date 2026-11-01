@@ -79,7 +79,7 @@
     "prettier": "^3.9.10",
     "react": "19.0.0",
     "react-native": "0.79.6",
-    "react-native-builder-bob": "^0.43.2",
+    "react-native-builder-bob": "^0.44.1",
     "react-native-reanimated": "~3.17.5",
     "turbo": "^2.11.10",
     "typescript": "~5.8.3"
