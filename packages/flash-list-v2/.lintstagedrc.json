@@ -1,3 +1,7 @@
 {
-  "*.{js,ts,tsx}": ["eslint --fix", "prettier --write"]
+  "**/*.{js,jsx,ts,tsx}": [
+    "pnpm --filter @the-sheet/flash-list-v2 exec eslint --fix",
+    "pnpm --filter @the-sheet/flash-list-v2 exec prettier --write"
+  ],
+  "**/*.{css,json,md,yaml,yml}": "pnpm --filter @the-sheet/flash-list-v2 exec prettier --write"
 }
