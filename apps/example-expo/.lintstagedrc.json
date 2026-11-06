@@ -1,6 +1,6 @@
 {
   "**/*.{js,jsx,ts,tsx}": [
-    "pnpm expo lint --fix",
+    "pnpm --filter example-expo exec expo lint --fix",
     "pnpm --filter example-expo exec eslint --fix",
     "pnpm --filter example-expo exec prettier --write"
   ],
