@@ -1,7 +1,7 @@
 {
-  "**/*.{js,jsx,ts,tsx}": [
+  "**/*.{js,jsx,mjs,cjs,ts,tsx}": [
     "pnpm --filter @the-sheet/embedded-stack-navigator exec eslint --fix",
     "pnpm --filter @the-sheet/embedded-stack-navigator exec prettier --write"
   ],
-  "**/*.{css,json,md,yaml,yml}": "pnpm --filter @the-sheet/embedded-stack-navigator exec prettier --write"
+  "**/*.{css,html,json,md,yaml,yml}": "pnpm --filter @the-sheet/embedded-stack-navigator exec prettier --write"
 }
