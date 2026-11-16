@@ -173,7 +173,7 @@ export const useBottomSheetYoutubePanGesture = ({ close, sheetId }: Props) => {
 
         const isFlickedDown = event.velocityY > FLICK_VELOCITY_THRESHOLD
 
-        if (isFlickedDown && isAtScrollTop) {
+        if (!disableDrag.value && isFlickedDown && isAtScrollTop) {
           // Pan down super fast
           runOnJS(closeRefCurrent)()
           return
@@ -202,7 +202,7 @@ export const useBottomSheetYoutubePanGesture = ({ close, sheetId }: Props) => {
         const maxSnapPlusHalf = maxSnap + (sheetHeight.value - maxSnap) * 0.5
 
         // If the bottom sheet is close to closed position, snap more than halfway
-        if (curTranslateY > maxSnapPlusHalf) {
+        if (!disableDrag.value && curTranslateY > maxSnapPlusHalf) {
           runOnJS(closeRefCurrent)()
           return
         }
