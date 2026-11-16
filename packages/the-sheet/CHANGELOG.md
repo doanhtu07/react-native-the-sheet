@@ -5,6 +5,8 @@
 ### Patch Changes
 
 - Add a small guard for disableDrag
+- Bump dev dependencies (eslint, jest, prettier, `react-native-builder-bob`, `@react-native/eslint-config` and others)
+- ⚠️ **Possible type errors on newer stacks (types only, no runtime change):** 1.x is built and typed against Reanimated 3, React Native 0.79 and Gesture Handler 2.24. The type declarations reference names that newer versions removed, such as `AnimateProps` (Reanimated 4) and `DefaultSectionT` / generic `VirtualizedListProps` (React Native 0.88). If you use 1.x with Reanimated 4 or a much newer React Native and your `tsconfig.json` does not set `skipLibCheck: true`, `tsc` may report errors. Use 2.x for those stacks.
 
 ## 1.1.0
 
