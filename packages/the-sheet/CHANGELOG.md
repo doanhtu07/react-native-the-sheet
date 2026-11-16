@@ -1,5 +1,11 @@
 # @the-sheet/the-sheet
 
+## 1.1.1
+
+### Patch Changes
+
+- Add a small guard for disableDrag
+
 ## 1.1.0
 
 ### Minor Changes

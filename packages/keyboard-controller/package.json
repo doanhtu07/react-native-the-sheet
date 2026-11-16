@@ -1,6 +1,6 @@
 {
   "name": "@the-sheet/keyboard-controller",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "react-native-keyboard-controller support for The Sheet",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",
