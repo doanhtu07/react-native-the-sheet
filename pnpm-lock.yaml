@@ -184,6 +184,9 @@ importers:
       lint-staged:
         specifier: ^17.6.0
         version: 17.6.0
+      tsx:
+        specifier: ^4.23.15
+        version: 4.23.15
 
   apps/example-expo:
     dependencies:
