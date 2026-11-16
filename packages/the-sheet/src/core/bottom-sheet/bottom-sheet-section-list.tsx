@@ -17,13 +17,19 @@ import { useBottomSheetPanGesture } from './hooks/use-bottom-sheet-pan-gesture'
 import { useToSharedValue } from '../hooks/use-to-shared-value'
 import type { BottomSheetSectionListProps, DefaultSectionT } from './types'
 import { runOnJS } from 'react-native-worklets'
+import type { AnimatedComponentType } from 'react-native-reanimated/lib/typescript/createAnimatedComponent'
 import {
   useBottomSheetClaimScrollViewRef,
   useBottomSheetLockScroll,
   useBottomSheetCleanupScrollViewMetadata,
 } from './hooks'
 
-export const AnimatedSectionList = Animated.createAnimatedComponent(SectionList)
+export const AnimatedSectionList = Animated.createAnimatedComponent(
+  SectionList,
+) as AnimatedComponentType<
+  Readonly<SectionListProps<unknown, unknown>>,
+  typeof SectionList
+>
 
 function BottomSheetSectionListInner<ItemT, SectionT = DefaultSectionT>(
   {

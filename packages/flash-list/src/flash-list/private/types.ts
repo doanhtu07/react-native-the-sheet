@@ -5,10 +5,12 @@ import type {
   NativeScrollEvent,
   NativeSyntheticEvent,
 } from 'react-native'
-import type { LegacyPanGesture } from 'react-native-gesture-handler'
+import type { Gesture } from 'react-native-gesture-handler'
 import type { ScrollHandler } from 'react-native-reanimated'
 import type { AnimatedProp } from '@the-sheet/the-sheet'
 import type Animated from 'react-native-reanimated'
+
+type PanGestureLike = ReturnType<typeof Gesture.Pan>
 
 type AnimatedScrollViewProps = ComponentProps<typeof Animated.ScrollView>
 
@@ -25,7 +27,7 @@ export type BottomSheetFlashListScrollComponentProps = Omit<
   | 'onMomentumEnd'
 > & {
   isActive?: AnimatedProp<boolean>
-  getPanGesture?: () => LegacyPanGesture
+  getPanGesture?: () => PanGestureLike
 
   onLayout?: (e: LayoutChangeEvent) => void
   onContentSizeChange?: (w: number, h: number) => void

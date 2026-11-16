@@ -1,10 +1,21 @@
 # @the-sheet/the-sheet
 
+## 2.1.2
+
+### Patch Changes
+
+- Make the published types work on both `react-native-gesture-handler` 2.x and 3.x, and on older React Native and Reanimated. Fixes the type errors reported in 2.1.1 (types only, no runtime change)
+  - `getPanGesture` is now typed from `Gesture.Pan()` instead of `LegacyPanGesture`
+  - The `BottomSheetScrollView` ref is typed from `ScrollView` instead of `ScrollViewInstance`
+  - `AnimatedSectionList` has an explicit type, so Reanimated 4.5 consumers no longer hit an `AnimatedComponentType` type-argument error
+
 ## 2.1.1
 
 ### Patch Changes
 
 - Add a small guard for disableDrag
+- Bump dev dependencies, including `react-native-gesture-handler` 3.x, `react-native` 0.88, `react` 19.3 and `react-native-reanimated` 4.7
+- ⚠️ **Possible type errors (types only, no runtime change):** the published type declarations were built against those newer versions, so they reference `LegacyPanGesture` (from `react-native-gesture-handler`) and `ScrollViewInstance` (from `react-native`) in `getPanGesture` and the scroll view `ref`. If you are on `react-native-gesture-handler` 2.x or an older React Native, and your `tsconfig.json` does not set `skipLibCheck: true`, `tsc` may report that these exports do not exist. With `skipLibCheck: true` those types silently fall back to `any`. Fixed in 2.1.2.
 
 ## 2.1.0
 

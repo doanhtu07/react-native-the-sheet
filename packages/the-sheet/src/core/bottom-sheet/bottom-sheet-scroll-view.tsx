@@ -1,13 +1,14 @@
 import Animated, { useAnimatedStyle } from 'react-native-reanimated'
 import type { BottomSheetScrollViewProps } from './types'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
-import { StyleSheet, type ScrollViewInstance } from 'react-native'
+import { StyleSheet, type ScrollView } from 'react-native'
 import {
   forwardRef,
   useCallback,
   useId,
   useMemo,
   useRef,
+  type ComponentRef,
   type Ref,
 } from 'react'
 import { useBottomSheetScrollViewUtils } from './hooks/use-bottom-sheet-scroll-view-utils'
@@ -19,6 +20,8 @@ import {
   useBottomSheetCleanupScrollViewMetadata,
   useBottomSheetLockScroll,
 } from './hooks'
+
+type ScrollViewRef = ComponentRef<typeof ScrollView>
 
 function BottomSheetScrollViewInner(
   {
@@ -44,10 +47,10 @@ function BottomSheetScrollViewInner(
     ...rest
   }: Readonly<BottomSheetScrollViewProps>,
 
-  ref: Ref<ScrollViewInstance>,
+  ref: Ref<ScrollViewRef>,
 ) {
   const id = useId()
-  const nativeRef = useRef<ScrollViewInstance | null>(null)
+  const nativeRef = useRef<ScrollViewRef | null>(null)
   const isActive = useToSharedValue(propIsActive)
 
   const getPanGesture = useBottomSheetPanGesture()
@@ -141,7 +144,7 @@ function BottomSheetScrollViewInner(
 }
 
 export const BottomSheetScrollView = forwardRef(BottomSheetScrollViewInner) as (
-  props: BottomSheetScrollViewProps & { ref?: Ref<ScrollViewInstance> },
+  props: BottomSheetScrollViewProps & { ref?: Ref<ScrollViewRef> },
 ) => ReturnType<typeof BottomSheetScrollViewInner>
 
 // MARK: Styles

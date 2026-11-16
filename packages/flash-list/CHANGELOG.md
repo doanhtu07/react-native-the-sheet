@@ -1,9 +1,19 @@
 # @the-sheet/flash-list
 
+## 2.1.2
+
+### Patch Changes
+
+- Type `getPanGesture` from `Gesture.Pan()` instead of `LegacyPanGesture`, so the published types work on both `react-native-gesture-handler` 2.x and 3.x. Fixes the type error reported in 2.1.1 (types only, no runtime change)
+- Updated dependencies
+  - @the-sheet/the-sheet@2.1.2
+
 ## 2.1.1
 
 ### Patch Changes
 
+- Bump dev dependencies, including `react-native-gesture-handler` 3.x and `react-native` 0.88
+- ⚠️ **Possible type errors (types only, no runtime change):** the published `getPanGesture` type references `LegacyPanGesture` from `react-native-gesture-handler`, which does not exist in 2.x. On gesture-handler 2.x without `skipLibCheck: true`, `tsc` may report a missing export. Fixed in 2.1.2.
 - Updated dependencies
   - @the-sheet/the-sheet@2.1.1
 

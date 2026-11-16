@@ -3,6 +3,7 @@ import Animated, {
   type AnimatedProps,
 } from 'react-native-reanimated'
 import { runOnJS } from 'react-native-worklets'
+import type { AnimatedComponentType } from 'react-native-reanimated/lib/typescript/createAnimatedComponent'
 import { StyleSheet } from 'react-native'
 import {
   useToSharedValue,
@@ -28,7 +29,14 @@ import {
 } from 'react'
 import { Gesture, GestureDetector } from 'react-native-gesture-handler'
 
-export const AnimatedFlashList = Animated.createAnimatedComponent(FlashList)
+export const AnimatedFlashList = Animated.createAnimatedComponent(
+  FlashList,
+) as AnimatedComponentType<
+  Readonly<
+    FlashListProps<unknown> & { ref?: Ref<FlashListRef<unknown>> | undefined }
+  >,
+  typeof FlashList
+>
 
 function BottomSheetFlashListInner<T>(
   {
