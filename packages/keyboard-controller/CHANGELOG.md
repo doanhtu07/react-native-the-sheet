@@ -1,5 +1,12 @@
 # @the-sheet/keyboard-controller
 
+## 2.1.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @the-sheet/the-sheet@2.1.1
+
 ## 2.1.0
 
 ### Minor Changes
